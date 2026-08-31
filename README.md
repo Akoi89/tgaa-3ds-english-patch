@@ -13,10 +13,13 @@ translated — and fixes what playing the result turned up.
 
 > ### Playtesters wanted
 >
-> **Nothing here has ever run on a 3DS.** Everything was tested in an emulator, which is
-> more permissive than real hardware in at least one known way. And 32 of the first
-> game's shouts — the jury verdicts and the pressing voices — have never been heard by
-> anyone, in any build.
+> **Both games install and boot on real 3DS hardware** — confirmed 30 August 2026. That
+> was the largest unknown in this release, and it is closed. Everything else was tested
+> in an emulator, which is more permissive than a console in at least one known way.
+>
+> What is still untested is *playing* it on hardware. 32 of the first game's shouts —
+> the jury verdicts and the pressing voices — have never been heard by anyone, in any
+> build, on any platform.
 >
 > **[Report anything wrong in issue #1](../../issues/1)** — the episode and chapter is
 > enough, and a photo of the screen beats a description. Every real defect this project
@@ -153,7 +156,8 @@ that is deliberate, and it is the alternative to losing the end of the line.
 | DLC mini-episode shouts, second game | confirmed in play |
 | In-game shouts, both games | correct as files, **never heard in context** |
 | The second game's credits sequence | **never run by anyone** |
-| Real hardware | **never** |
+| Installing and booting on a 3DS | **confirmed on hardware**, both games |
+| Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine — they load by a different route than the
 clips that had the slot bug, and Capcom ships entries five times larger in the same

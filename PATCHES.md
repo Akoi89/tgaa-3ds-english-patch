@@ -140,10 +140,12 @@ jury verdict or a press that stops part-way.
 | DLC mini-episode shouts, second game | confirmed in play |
 | In-game shouts, both games | correct as files, **never heard in context** |
 | Second game's credits sequence | **never run by anyone** |
-| Real hardware | **never** |
+| Installing and booting on a 3DS | **confirmed on hardware**, both games |
+| Playing through on a 3DS | not yet |
 
-Everything was tested in an emulator, which is more permissive than a 3DS in at
-least one known way. Nothing here has run on a console.
+Both games install and boot on a real 3DS, confirmed 30 August 2026. Everything
+else was tested in an emulator, which is more permissive than a console in at
+least one known way -- and nobody has yet played through on hardware.
 
 ## Credit
 
