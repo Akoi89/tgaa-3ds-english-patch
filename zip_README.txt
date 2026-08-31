@@ -72,9 +72,13 @@ looks exactly like a bug in the patch.
 
 THIS IS A TEST BUILD, AND THAT IS NOT FALSE MODESTY
 --------------------------------------------------------------------------------
-NOTHING HERE HAS EVER RUN ON A 3DS. Everything was tested in an emulator, which is
-more permissive than real hardware in at least one known way. If you are the first
-to put it on a console, that alone is worth reporting.
+Both games have now been installed and booted on real 3DS hardware -- 30 August
+2026. That was the single largest unknown here, and it is closed. Everything else
+was tested in an emulator, which is more permissive than a console in at least one
+known way.
+
+What nobody has done yet is PLAY it on hardware, start to finish. If you do, you
+are covering the part that is still genuinely untested.
 
 32 of the first game's shouts -- the jury verdicts, and the pressing voices --
 have never been heard by anyone, in any build. They are expected to be fine, for
