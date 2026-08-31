@@ -141,8 +141,15 @@ PLEASE DON'T REPORT THESE -- THEY ARE KNOWN
 IF YOU ALREADY HAVE SENYAROM'S RELEASE
 --------------------------------------------------------------------------------
 Three of the four builds are also published as xdelta patches against their
-release, which are far smaller than re-downloading the CIAs -- the second game's
-update is 2 MB rather than 32 MB. See the release page.
+release, in TGAA-patches-for-testers.zip on the release page. Be aware that only
+one of them saves much:
+
+    TGAA2-update-1.0.2.xdelta      2 MB   instead of 32 MB
+    TGAA1-update-1.0.2.xdelta     29 MB   instead of 62 MB
+    TGAA2-DLC-1.0.3.xdelta        29 MB   instead of 38 MB
+
+The DLC patch barely beats the download. If you have the bandwidth, just take
+the CIAs -- it is the simpler path and there is less to go wrong.
 
 There is no patch for the first game's DLC. Its contents are encrypted and the
 audio work shifted every offset inside them, so the delta comes to 310 MB against

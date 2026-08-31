@@ -195,8 +195,11 @@ at all.
 ### Why these are CIAs and not patch files
 
 A delta against senyarom's release would be the tidier thing to ship, and for three of
-the four builds it works — those patches are attached to the release as an optional,
-much smaller path for anyone who already has their CIAs installed.
+the four builds it works — those patches are attached to the release as an optional path
+for anyone who already has their CIAs. Only one of the three saves much, though: the
+second game's update comes to 2 MB against a 32 MB download, but the first game's is 29
+against 62, and the second game's DLC is 29 against 38. Take the CIAs unless bandwidth
+is genuinely tight.
 
 It does not work for the first game's DLC. Its contents are encrypted, and the audio
 work shifted every offset inside them, so the delta comes to **310 MB against a 326 MB
