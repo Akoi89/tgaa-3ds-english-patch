@@ -170,10 +170,18 @@ rendering soft, menus in the wrong face.
 | **164** | Court Record captions across both games (68 and 96) rewritten to fit at full size. The panel silently shrinks its font rather than clipping, so long captions rendered small and soft instead of looking broken |
 | **1,438** | pages of story dialogue re-broken at the corrected font metrics, which added 124 pages of pagination. Includes the centred pages that overran the box, some running clean off the screen |
 | **43** | glyph advances corrected in the second game's dialogue font, including a tuck for overhanging T, Y and L. This affects every line of text in the game, not one screen |
+| **15** | end-credit cards in the second game rebuilt in English, shipped as two replaced archives. 75 cards exist; the other 60 cannot be ported, and that is listed under known issues below |
 | **42** | menu strings in the second game that fell through to a decorative script and were genuinely hard to read: Yes/No, OK, Cancel, Examine, Move, Converse, Present, every game-over option |
 | **19** | voice clips in the first game's DLC cut off mid-word, per the section above |
 | **1** | save/load screen drawing the timestamp straight through the episode title |
 | **1** | pagination regression that had inflated the script by 6,855 pages |
+
+The scale of that is easy to understate. Diffing these builds against senyarom's release
+file by file, **854 script files differ across the four builds**: 363 in the first game,
+431 in the second, 60 across the two DLCs. That is not 854 separate translations, and it
+should not be read as one. It is the font-metric and reflow work rewriting line breaks
+through nearly every script in both games, which is why it had to be null-tested rather
+than eyeballed.
 
 Every one of these was found by a person looking at a screen or listening to a speaker.
 **None were found by an offline check**. The automated audit passed a build in which one
