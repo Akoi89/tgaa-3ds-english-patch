@@ -1,0 +1,205 @@
+# The Great Ace Attorney 1 & 2 — 3DS English patch
+
+**Capcom's official English text, from *The Great Ace Attorney Chronicles*, carried onto
+the Japanese 3DS releases — including all the DLC.**
+
+*Dai Gyakuten Saiban* (2015) and *Resolve* (2017) never got an English 3DS release.
+Capcom localized both for *Chronicles* (2021) on PC and console, but never brought that
+text back to the handheld. **[senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch)**
+does exactly that, with a real layout pipeline rather than hand-edited scripts.
+
+This builds on their work. It finishes the DLC — which no previous patch had
+translated — and fixes what playing the result turned up.
+
+> ### Playtesters wanted
+>
+> **Nothing here has ever run on a 3DS.** Everything was tested in an emulator, which is
+> more permissive than real hardware in at least one known way. And 32 of the first
+> game's shouts — the jury verdicts and the pressing voices — have never been heard by
+> anyone, in any build.
+>
+> **[Report anything wrong in issue #1](../../issues/1)** — the episode and chapter is
+> enough, and a photo of the screen beats a description. Every real defect this project
+> has had was found by a person looking or listening, and none by an offline check.
+
+**Every figure below is reproducible.** The audio counts come from
+`audit_all_audio.py`, which compares each file against Capcom's own recording rather
+than against a threshold; the caption and layout figures come from the upstream
+pipeline. Where something has not been verified, this README says so.
+
+> **You need the Japanese base games.** They are not distributed here, upstream, or
+> anywhere else in this project. Cartridge or your own dump.
+
+---
+
+## What you need
+
+| | |
+|---|---|
+| **Dai Gyakuten Saiban** and/or **Resolve** | The Japanese 3DS releases. Cartridge or your own dump |
+| **A 3DS that can install CIAs**, or Azahar/Citra | The builds are CIAs. QR codes are not provided |
+
+You do **not** need senyarom's release installed first — these builds supersede it.
+
+## Install
+
+Download from [Releases](../../releases). **Order matters.**
+
+| order | file | what it is |
+|---|---|---|
+| 1 | *the Japanese base game* | not distributed — yours |
+| 2 | `TGAA1-base-1.0.2.cia` / `TGAA2-base-1.0.2.cia` | the update |
+| 3 | `TGAA1-DLC-1.0.4.cia` / `TGAA2-DLC-1.0.3.cia` | the DLC |
+
+`TGAA2-base-1.0.1-no-credits.cia` is a **rollback**, not an upgrade — the same build
+without the 15 English credit cards. Install it only if the credits sequence misbehaves,
+and note it predates the UI readability fix.
+
+### Checking the install took
+
+Both games display their version on screen, and the filename, the version the console
+reads, and the version painted in-game all agree.
+
+| | reads |
+|---|---|
+| TGAA1 title screen | `ENG 1.0.2` |
+| TGAA1 DLC magazine page | `DLC 1.0.4`, top left |
+| TGAA2 title screen | `ENG 1.0.2` |
+| TGAA2 DLC page | `DLC 1.0.3`, bottom right of the banner |
+
+**If a version on screen does not match the file you installed, the install did not
+take.** That is a real bug — please report it.
+
+---
+
+## What this adds on top of senyarom's patch
+
+### The DLC, which nothing had translated
+
+| | |
+|---|---|
+| **46** | DLC gallery voice clips, in Capcom's English |
+| **34** | mini-episode shouts in the second game — the two "Tales" cases spoke Japanese over English text |
+| **11** | commentary videos, subtitled and re-encoded to Capcom's own container spec |
+| **9** | magazine covers rebuilt from the official *Chronicles* banners |
+| **3** | DLC banners and the icon labels redrawn |
+
+### Fixes found by playing
+
+| | |
+|---|---|
+| **164** | Court Record captions rewritten to fit at full size — the panel shrinks its font to fit, so long captions rendered small and soft |
+| **43** | glyph advances corrected in the dialogue font, including a tuck for overhanging T, Y and L |
+| **42** | UI strings in the second game that rendered in a decorative script — Yes/No, OK, Cancel, Examine, Move, Converse, Present, every game-over option |
+| **19** | voice clips that were cut off mid-word in game. See [The slot rule](#the-slot-rule) |
+| **1** | save/load screen that drew the timestamp straight through the episode title |
+| **1** | pagination regression that had inflated the script by 6,855 pages |
+
+### The slot rule
+
+Worth writing down, because it cost days and anyone touching this game's audio will hit
+it.
+
+**A voice stream larger than Capcom's original is cut off in-game** — and not at the
+original's length. It stops at an unpredictable point, and how far it overshoots does
+not predict where. Measured by metering the speaker, not by reading the file:
+
+| our clip | Capcom's slot | actually played |
+|---|---|---|
+| 4.10s | 3.81s — over by 0.29s | **0.98s** |
+| 4.47s | 3.91s — over by 0.56s | **1.86s** |
+| 5.44s | 3.32s — over by 2.12s | **2.77s** |
+| 9.04s | 9.18s — fits | full |
+| 4.60s | 4.69s — fits | full |
+
+Eighteen streams were oversized, because Capcom's English performances run longer than
+the Japanese ones they replace. Trimming them would have cut words — over two seconds
+off one line. Instead the space was bought: leading and trailing silence trimmed, never
+the pauses inside a line, and where that was not enough the sample rate lowered just
+enough for the *complete* take to fit. The game honours the rate field, so pitch and
+timing are unchanged and the cost is treble rather than words.
+
+Eleven of seventeen kept 90% or more of full rate. **One clip is noticeably duller** —
+that is deliberate, and it is the alternative to losing the end of the line.
+
+---
+
+## Known, and not worth reporting
+
+- **The second game's end credits are in Japanese.** 75 cards. 15 are English; the rest
+  cannot be ported, because the PC release lays them out differently — they are a
+  typesetting job, not a copy. This is the largest known gap.
+- **Some voice lines sound slightly duller than others.** Deliberate — see above.
+- **Some English lines are shorter than the Japanese ones were.** The English
+  performance is simply shorter. A line that ends cleanly is complete.
+- **A DLC card on the title screen is blank** in both games. Cosmetic.
+- **"Editor's Notes" behaves like the Picture Book and Theme buttons** in the first
+  game's DLC. A known bug affecting all three.
+
+## What is worth reporting
+
+- **Any voice that is silent, cut off mid-word, or in Japanese.**
+- **Anything that fails to load** — a scene, a movie, the credits.
+- **Text that overflows, clips, or renders at the wrong size**, especially in the second
+  game's menus. 42 UI strings were re-tagged; if anything now looks the wrong *size*,
+  that is a consequence of it.
+- **Anything at all on real hardware**, good or bad.
+
+## Testing status, honestly
+
+| | |
+|---|---|
+| DLC voice galleries, first game | measured in-game, and confirmed by ear |
+| DLC mini-episode shouts, second game | confirmed in play |
+| In-game shouts, both games | correct as files, **never heard in context** |
+| The second game's credits sequence | **never run by anyone** |
+| Real hardware | **never** |
+
+The 32 unheard shouts are expected to be fine — they load by a different route than the
+clips that had the slot bug, and Capcom ships entries five times larger in the same
+archives. But that is reasoning, not listening. **If you play the first game, a jury
+verdict or a press that stops part-way is the single most useful thing to listen for.**
+
+---
+
+## Credits
+
+**senyarom** did the hard part:
+
+> **[senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch)**
+
+This is built entirely on top of their work — their layout pipeline, their font
+handling, their port of Capcom's script onto the 3DS builds. Without it there is nothing
+here. Where Capcom localized the DLC, the text in these builds **is** senyarom's carry
+of Capcom's English, word for word; that was verified by comparing against the
+*Chronicles* release directly.
+
+**Scarlet Study** made the first playable English 3DS build, years earlier, and it was
+used as a reference point throughout.
+
+*The Great Ace Attorney* and *Chronicles* are © Capcom.
+
+## Legal
+
+**The Japanese base games are not distributed here** — the same line upstream draws. You
+supply your own.
+
+The update and DLC packages are installable CIAs containing Capcom's content with
+English assets substituted, which is the same class of artifact
+[senyarom's releases](https://github.com/senyarom/tgaa2-en-patch/releases) carry.
+
+**If you want Capcom's translation, buy *The Great Ace Attorney Chronicles*.** It is
+very good, it is on every current platform, and it is the reason this project can exist
+at all.
+
+### Why these are CIAs and not patch files
+
+A delta against senyarom's release would be the tidier thing to ship, and for three of
+the four builds it works — those patches are attached to the release as an optional,
+much smaller path for anyone who already has their CIAs installed.
+
+It does not work for the first game's DLC. Its contents are encrypted, and the audio
+work shifted every offset inside them, so the delta comes to **310 MB against a 326 MB
+target** — it shares almost nothing with the source. That is not a patch; it is the
+whole DLC with extra steps. Since the DLC extras are where most of this work lives, and
+testers who cannot reach them cannot report on them, the CIA ships instead.
