@@ -97,11 +97,11 @@ So this is the part that did not exist anywhere before:
 
 | | |
 |---|---|
-| **2** | mini-episodes, fully translated and playable |
-| **46** | gallery voice clips, in Capcom's English rather than Japanese |
-| **34** | mini-episode shouts in the second game, which had been speaking Japanese over English text |
-| **11** | commentary videos, subtitled and re-encoded to Capcom's own container spec |
-| **9** | magazine covers rebuilt from the official *Chronicles* banner art |
+| **2** | mini-episodes in the second game, fully translated and playable |
+| **46** | gallery voice clips in the first game's DLC, in Capcom's English rather than Japanese |
+| **34** | shouts in those mini-episodes, which had been speaking Japanese over English text |
+| **11** | commentary videos in the first game's DLC, subtitled and re-encoded to Capcom's own container spec |
+| **9** | magazine covers in the first game's DLC, rebuilt from the official *Chronicles* banner art |
 | **3** | DLC banners and the icon labels redrawn |
 
 **And where Capcom localised a piece of the DLC, this matches Capcom word for word.** One
@@ -144,11 +144,11 @@ box, captions rendering soft, glyphs colliding, menus in the wrong face.
 
 | | |
 |---|---|
-| **164** | Court Record captions rewritten to fit at full size. The panel silently shrinks its font rather than clipping, so long captions rendered small and soft instead of looking broken |
-| **124** | pages of dialogue reflowed where centred text overran the box, including lines that ran clean off the screen |
-| **43** | glyph advances corrected in the dialogue font, including a tuck for overhanging T, Y and L so they stop colliding with the next character |
+| **164** | Court Record captions across both games (68 and 96) rewritten to fit at full size. The panel silently shrinks its font rather than clipping, so long captions rendered small and soft instead of looking broken |
+| **124** | pages of dialogue in the second game reflowed where centred text overran the box, including lines that ran clean off the screen |
+| **43** | glyph advances corrected in the second game's dialogue font, including a tuck for overhanging T, Y and L so they stop colliding with the next character |
 | **42** | menu strings in the second game that fell through to a decorative script and were genuinely hard to read: Yes/No, OK, Cancel, Examine, Move, Converse, Present, every game-over option |
-| **19** | voice clips cut off mid-word, per the section above |
+| **19** | voice clips in the first game's DLC cut off mid-word, per the section above |
 | **1** | save/load screen drawing the timestamp straight through the episode title |
 | **1** | pagination regression that had inflated the script by 6,855 pages |
 
