@@ -1,8 +1,21 @@
-Scope, and whose work is whose
-==============================
+Licence, scope, and whose work is whose
+=======================================
 
-This repository distributes BUILDS, not tools. The CIAs attached to its releases
-are installable patches for games you must already own.
+This repository is licensed GPL-3.0-or-later. See LICENSE.
+
+That is not a choice made freely -- it is inherited, and correctly so. The
+upstream project this builds on is GPL-3.0-or-later, and the scripts in tools/
+import its modules directly. Works derived from it carry the same terms, which
+means the corresponding source for everything in the releases is published in
+tools/. The same licence that lets this project exist requires it to pass that
+freedom on.
+
+The GPL covers this project's own work: the scripts, and the modifications they
+make. It does not and cannot cover Capcom's content, which is not ours to
+license and is addressed below.
+
+The CIAs attached to the releases are installable patches for games you must
+already own.
 
 Nothing here grants any rights to:
 
@@ -13,8 +26,8 @@ Nothing here grants any rights to:
 
 All of which remain (c) Capcom.
 
-Nor does it cover the upstream patch this is built on, which is the work of its
-own author:
+The upstream patch this is built on is the work of its own author, and is
+licensed GPL-3.0-or-later:
 
     https://github.com/senyarom/tgaa2-en-patch
 
