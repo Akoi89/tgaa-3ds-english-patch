@@ -104,6 +104,14 @@ So this is the part that did not exist anywhere before:
 | **9** | magazine covers in the first game's DLC, rebuilt from the official *Chronicles* banner art |
 | **3** | DLC banners and the icon labels redrawn |
 
+**The playable sample was translated by hand.** The first game's DLC magazine carries a
+playable demo as issue No. 13: Episode 1's opening, the Court Record tutorial and a
+cross-examination, around **11,300 characters across five script files**. No patch had
+translated it. It was done from the Japanese by hand for this release, and it is the one
+part of this project that is an original translation rather than a port of Capcom's work.
+Issues 9 to 12 turned out to be empty stubs that open and immediately exit, so their
+covers are now labelled as such and No. 13 is labelled as the playable one.
+
 **And where Capcom localised a piece of the DLC, this matches Capcom word for word.** One
 scene exists in *Chronicles* as official English, which makes an exact check possible:
 comparing box by box, **140 of 190 are byte-identical**, and every remaining difference is
