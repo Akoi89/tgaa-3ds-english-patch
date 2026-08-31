@@ -77,53 +77,80 @@ take.** That is a real bug — please report it.
 
 ## What this adds on top of senyarom's patch
 
-### The DLC, which nothing had translated
+**What is theirs:** the layout pipeline, the font handling, and the carry of Capcom's
+official script onto the Japanese 3DS builds. That is the foundation, and it is the hard
+part of the problem. Nothing here replaces any of it.
+
+**What is here** is three things: the DLC, audio that plays to the end, and the class of
+bug you only find by playing.
+
+### 1. The DLC, which no English release had ever covered
+
+Every previous effort stops at the base games. Scarlet Study's translation and senyarom's
+patch both leave the DLC in Japanese. Even the mod that ports the 3DS DLC across to the
+Steam release says in its own readme that the mini-cases are untranslated, and that no
+text will be displayed during them at all.
+
+So this is the part that did not exist anywhere before:
 
 | | |
 |---|---|
-| **46** | DLC gallery voice clips, in Capcom's English |
-| **34** | mini-episode shouts in the second game — the two "Tales" cases spoke Japanese over English text |
+| **2** | mini-episodes, fully translated and playable |
+| **46** | gallery voice clips, in Capcom's English rather than Japanese |
+| **34** | mini-episode shouts in the second game, which had been speaking Japanese over English text |
 | **11** | commentary videos, subtitled and re-encoded to Capcom's own container spec |
-| **9** | magazine covers rebuilt from the official *Chronicles* banners |
+| **9** | magazine covers rebuilt from the official *Chronicles* banner art |
 | **3** | DLC banners and the icon labels redrawn |
 
-### Fixes found by playing
+**And where Capcom localised a piece of the DLC, this matches Capcom word for word.** One
+scene exists in *Chronicles* as official English, which makes an exact check possible:
+comparing box by box, **140 of 190 are byte-identical**, and every remaining difference is
+either a line wrapped to fit the narrower 3DS box or a curly quote the 3DS font does not
+carry. Not a paraphrase of the official text. The official text.
 
-| | |
-|---|---|
-| **164** | Court Record captions rewritten to fit at full size — the panel shrinks its font to fit, so long captions rendered small and soft |
-| **43** | glyph advances corrected in the dialogue font, including a tuck for overhanging T, Y and L |
-| **42** | UI strings in the second game that rendered in a decorative script — Yes/No, OK, Cancel, Examine, Move, Converse, Present, every game-over option |
-| **19** | voice clips that were cut off mid-word in game. See [The slot rule](#the-slot-rule) |
-| **1** | save/load screen that drew the timestamp straight through the episode title |
-| **1** | pagination regression that had inflated the script by 6,855 pages |
+### 2. Audio that plays to the end of the line
 
-### The slot rule
+The DLC's English voice clips were silent, truncated, or still Japanese. Fixing that meant
+finding out why, and the answer was not obvious:
 
-Worth writing down, because it cost days and anyone touching this game's audio will hit
-it.
-
-**A voice stream larger than Capcom's original is cut off in-game** — and not at the
-original's length. It stops at an unpredictable point, and how far it overshoots does
-not predict where. Measured by metering the speaker, not by reading the file:
+**A voice stream larger than Capcom's original is cut off in-game, and not at the
+original's length.** It stops at an unpredictable point, and how far it overshoots does not
+predict where it stops. Measured by metering the speaker, not by reading the file:
 
 | our clip | Capcom's slot | actually played |
 |---|---|---|
-| 4.10s | 3.81s — over by 0.29s | **0.98s** |
-| 4.47s | 3.91s — over by 0.56s | **1.86s** |
-| 5.44s | 3.32s — over by 2.12s | **2.77s** |
-| 9.04s | 9.18s — fits | full |
-| 4.60s | 4.69s — fits | full |
+| 4.10s | 3.81s, over by 0.29s | **0.98s** |
+| 4.47s | 3.91s, over by 0.56s | **1.86s** |
+| 5.44s | 3.32s, over by 2.12s | **2.77s** |
+| 9.04s | 9.18s, fits | full |
+| 4.60s | 4.69s, fits | full |
 
-Eighteen streams were oversized, because Capcom's English performances run longer than
-the Japanese ones they replace. Trimming them would have cut words — over two seconds
-off one line. Instead the space was bought: leading and trailing silence trimmed, never
-the pauses inside a line, and where that was not enough the sample rate lowered just
-enough for the *complete* take to fit. The game honours the rate field, so pitch and
-timing are unchanged and the cost is treble rather than words.
+Eighteen streams were oversized, because Capcom's English performances simply run longer
+than the Japanese ones they replace. Trimming to fit would have cut words, over two seconds
+off one line. Instead the space was bought: edge silence trimmed but never the pauses
+inside a line, and where that was not enough, the sample rate lowered just far enough for
+the **complete** take to fit. The game honours the rate field, so pitch and timing are
+unchanged and the cost is treble rather than words.
 
-Eleven of seventeen kept 90% or more of full rate. **One clip is noticeably duller** —
-that is deliberate, and it is the alternative to losing the end of the line.
+Eleven of seventeen kept 90% or more of full rate. **One clip is noticeably duller.** That
+is deliberate, and it is the alternative to losing the end of the line.
+
+### 3. The bugs you only find by playing
+
+| | |
+|---|---|
+| **164** | Court Record captions rewritten to fit at full size. The panel silently shrinks its font rather than clipping, so long captions rendered small and soft instead of looking broken |
+| **43** | glyph advances corrected in the dialogue font, including a tuck for overhanging T, Y and L |
+| **42** | menu strings in the second game that fell through to a decorative script and were genuinely hard to read: Yes/No, OK, Cancel, Examine, Move, Converse, Present, every game-over option |
+| **19** | voice clips cut off mid-word, per the section above |
+| **1** | save/load screen drawing the timestamp straight through the episode title |
+| **1** | pagination regression that had inflated the script by 6,855 pages |
+
+Every one of these was found by a person looking at a screen or listening to a speaker.
+**None were found by an offline check** — the automated audit passed a build in which one
+line was silent and another was cut in half, and it did so because a path comparison
+silently matched nothing. That is why this release asks for playtesters rather than for
+more tooling, and why the testing status below is written the way it is.
 
 ---
 
