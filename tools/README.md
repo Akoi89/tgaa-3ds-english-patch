@@ -5,8 +5,8 @@ This is the source for the changes layered on top of
 builds on this repository's [releases page](../../../releases).
 
 senyarom's project is **GPL-3.0-or-later**, and 48 of the scripts here import their
-`dgs2tool` modules directly. These are derivative works, so they carry the same licence —
-see [`../LICENSE`](../LICENSE). Publishing them is the licence working as intended, not a
+`dgs2tool` modules directly. These are derivative works, so they carry the same licence.
+See [`../LICENSE`](../LICENSE). Publishing them is the licence working as intended, not a
 favour: the same terms that let this project exist require it to pass the freedom on.
 
 ## Setting expectations
@@ -56,12 +56,12 @@ Nothing is hardcoded to a machine any more. Set what a given script needs:
 | `cover_build/` | rebuilding the DLC magazine covers from the official Chronicles banners |
 | `tgaa2/` | second-game specific text work, including the DLC banners |
 | `video_inject/` | subtitling and re-encoding the commentary videos to Capcom's container spec |
-| `azrig/` | the emulator driving rig — screen capture, input, and a per-process audio meter used to measure what actually reaches the speaker |
+| `azrig/` | the emulator driving rig: screen capture, input, and a per-process audio meter used to measure what actually reaches the speaker |
 
 ### The two worth reading
 
 **`audio_tools/fit_slots.py`** carries the finding that cost the most time. A voice stream
-larger than Capcom's original slot is cut off in game at an unpredictable point — not
+larger than Capcom's original slot is cut off in game at an unpredictable point, not
 truncated to the slot length. The measured evidence is in its docstring. The fix trims
 only edge silence and then lowers the sample rate until the complete take fits, so the
 cost is treble rather than words.

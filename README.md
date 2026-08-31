@@ -1,27 +1,27 @@
-# The Great Ace Attorney 1 & 2 — 3DS English patch
+# The Great Ace Attorney 1 & 2: 3DS English patch
 
 **Capcom's official English text, from *The Great Ace Attorney Chronicles*, carried onto
-the Japanese 3DS releases — including all the DLC.**
+the Japanese 3DS releases, including all the DLC.**
 
 *Dai Gyakuten Saiban* (2015) and *Resolve* (2017) never got an English 3DS release.
 Capcom localized both for *Chronicles* (2021) on PC and console, but never brought that
 text back to the handheld. **[senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch)**
 does exactly that, with a real layout pipeline rather than hand-edited scripts.
 
-This builds on their work. It finishes the DLC — which no previous patch had
-translated — and fixes what playing the result turned up.
+This builds on their work. It finishes the DLC, which no previous patch had
+translated, and fixes what playing the result turned up.
 
 > ### Playtesters wanted
 >
-> **Both games install and boot on real 3DS hardware** — confirmed 30 August 2026. That
+> **Both games install and boot on real 3DS hardware**, confirmed 30 August 2026. That
 > was the largest unknown in this release, and it is closed. Everything else was tested
 > in an emulator, which is more permissive than a console in at least one known way.
 >
-> What is still untested is *playing* it on hardware. 32 of the first game's shouts —
-> the jury verdicts and the pressing voices — have never been heard by anyone, in any
+> What is still untested is *playing* it on hardware. 32 of the first game's shouts,
+> the jury verdicts and the pressing voices, have never been heard by anyone, in any
 > build, on any platform.
 >
-> **[Report anything wrong in issue #1](../../issues/1)** — the episode and chapter is
+> **[Report anything wrong in issue #1](../../issues/1)**. The episode and chapter is
 > enough, and a photo of the screen beats a description. Every real defect this project
 > has had was found by a person looking or listening, and none by an offline check.
 
@@ -42,7 +42,7 @@ pipeline. Where something has not been verified, this README says so.
 | **Dai Gyakuten Saiban** and/or **Resolve** | The Japanese 3DS releases. Cartridge or your own dump |
 | **A 3DS that can install CIAs**, or Azahar/Citra | The builds are CIAs. QR codes are not provided |
 
-You do **not** need senyarom's release installed first — these builds supersede it.
+You do **not** need senyarom's release installed first. These builds supersede it.
 
 ## Install
 
@@ -50,11 +50,11 @@ Download from [Releases](../../releases). **Order matters.**
 
 | order | file | what it is |
 |---|---|---|
-| 1 | *the Japanese base game* | not distributed — yours |
+| 1 | *the Japanese base game* | not distributed, bring your own |
 | 2 | `TGAA1-base-1.0.2.cia` / `TGAA2-base-1.0.2.cia` | the update |
 | 3 | `TGAA1-DLC-1.0.4.cia` / `TGAA2-DLC-1.0.3.cia` | the DLC |
 
-`TGAA2-base-1.0.1-no-credits.cia` is a **rollback**, not an upgrade — the same build
+`TGAA2-base-1.0.1-no-credits.cia` is a **rollback**, not an upgrade. It is the same build
 without the 15 English credit cards. Install it only if the credits sequence misbehaves,
 and note it predates the UI readability fix.
 
@@ -71,7 +71,7 @@ reads, and the version painted in-game all agree.
 | TGAA2 DLC page | `DLC 1.0.3`, bottom right of the banner |
 
 **If a version on screen does not match the file you installed, the install did not
-take.** That is a real bug — please report it.
+take.** That is a real bug. Please report it.
 
 ---
 
@@ -147,7 +147,7 @@ is deliberate, and it is the alternative to losing the end of the line.
 | **1** | pagination regression that had inflated the script by 6,855 pages |
 
 Every one of these was found by a person looking at a screen or listening to a speaker.
-**None were found by an offline check** — the automated audit passed a build in which one
+**None were found by an offline check**. The automated audit passed a build in which one
 line was silent and another was cut in half, and it did so because a path comparison
 silently matched nothing. That is why this release asks for playtesters rather than for
 more tooling, and why the testing status below is written the way it is.
@@ -157,9 +157,9 @@ more tooling, and why the testing status below is written the way it is.
 ## Known, and not worth reporting
 
 - **The second game's end credits are in Japanese.** 75 cards. 15 are English; the rest
-  cannot be ported, because the PC release lays them out differently — they are a
+  cannot be ported, because the PC release lays them out differently. They are a
   typesetting job, not a copy. This is the largest known gap.
-- **Some voice lines sound slightly duller than others.** Deliberate — see above.
+- **Some voice lines sound slightly duller than others.** Deliberate, see above.
 - **Some English lines are shorter than the Japanese ones were.** The English
   performance is simply shorter. A line that ends cleanly is complete.
 - **A DLC card on the title screen is blank** in both games. Cosmetic.
@@ -169,7 +169,7 @@ more tooling, and why the testing status below is written the way it is.
 ## What is worth reporting
 
 - **Any voice that is silent, cut off mid-word, or in Japanese.**
-- **Anything that fails to load** — a scene, a movie, the credits.
+- **Anything that fails to load**: a scene, a movie, the credits.
 - **Text that overflows, clips, or renders at the wrong size**, especially in the second
   game's menus. 42 UI strings were re-tagged; if anything now looks the wrong *size*,
   that is a consequence of it.
@@ -186,7 +186,7 @@ more tooling, and why the testing status below is written the way it is.
 | Installing and booting on a 3DS | **confirmed on hardware**, both games |
 | Playing through on a 3DS | not yet |
 
-The 32 unheard shouts are expected to be fine — they load by a different route than the
+The 32 unheard shouts are expected to be fine. They load by a different route than the
 clips that had the slot bug, and Capcom ships entries five times larger in the same
 archives. But that is reasoning, not listening. **If you play the first game, a jury
 verdict or a press that stops part-way is the single most useful thing to listen for.**
@@ -199,7 +199,7 @@ verdict or a press that stops part-way is the single most useful thing to listen
 
 > **[senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch)**
 
-This is built entirely on top of their work — their layout pipeline, their font
+This is built entirely on top of their work: their layout pipeline, their font
 handling, their port of Capcom's script onto the 3DS builds. Without it there is nothing
 here. Where Capcom localized the DLC, the text in these builds **is** senyarom's carry
 of Capcom's English, word for word; that was verified by comparing against the
@@ -217,16 +217,16 @@ This project is **GPL-3.0-or-later** ([`LICENSE`](LICENSE)), inherited from
 the same way and whose modules 48 of our scripts import directly.
 
 The corresponding source for every build on the releases page is in
-**[`tools/`](tools/)** — the audio fitters, the text and archive patchers, the cover and
+**[`tools/`](tools/)**: the audio fitters, the text and archive patchers, the cover and
 banner builders, and the emulator driving rig. It is research code rather than a polished
 toolkit, and it ships with no game data.
 
 The GPL covers this project's own work. It does not cover Capcom's content, which is not
-ours to license — see below.
+ours to license. See below.
 
 ## Legal
 
-**The Japanese base games are not distributed here** — the same line upstream draws. You
+**The Japanese base games are not distributed here**, the same line upstream draws. You
 supply your own.
 
 The update and DLC packages are installable CIAs containing Capcom's content with
@@ -240,7 +240,7 @@ at all.
 ### Why these are CIAs and not patch files
 
 A delta against senyarom's release would be the tidier thing to ship, and for three of
-the four builds it works — those patches are attached to the release as an optional path
+the four builds it works. Those patches are attached to the release as an optional path
 for anyone who already has their CIAs. Only one of the three saves much, though: the
 second game's update comes to 2 MB against a 32 MB download, but the first game's is 29
 against 62, and the second game's DLC is 29 against 38. Take the CIAs unless bandwidth
@@ -248,6 +248,6 @@ is genuinely tight.
 
 It does not work for the first game's DLC. Its contents are encrypted, and the audio
 work shifted every offset inside them, so the delta comes to **310 MB against a 326 MB
-target** — it shares almost nothing with the source. That is not a patch; it is the
+target**. It shares almost nothing with the source. That is not a patch; it is the
 whole DLC with extra steps. Since the DLC extras are where most of this work lives, and
 testers who cannot reach them cannot report on them, the CIA ships instead.
