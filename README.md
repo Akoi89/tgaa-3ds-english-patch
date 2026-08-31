@@ -101,7 +101,7 @@ So this is the part that did not exist anywhere before:
 | **46** | gallery voice clips in the first game's DLC, in Capcom's English rather than Japanese |
 | **34** | shouts in those mini-episodes, which had been speaking Japanese over English text |
 | **11** | commentary videos in the first game's DLC, subtitled and re-encoded to Capcom's own container spec |
-| **9** | magazine covers in the first game's DLC, rebuilt from the official *Chronicles* banner art |
+| **14** | magazine covers in the first game's DLC: 9 rebuilt from the official *Chronicles* banner art, 5 relabelled so you can tell the empty issues from the playable one |
 | **3** | DLC banners and the icon labels redrawn |
 
 **The playable sample was translated by hand.** The first game's DLC magazine carries a
@@ -126,7 +126,7 @@ text, all the way through the main story.
 
 | | |
 |---|---|
-| **81** | courtroom shouts in the first game, now Capcom's English. They live as 384 clips inside 56 archives |
+| **81** | courtroom shouts in the first game, now Capcom's English. They ship as 41 replaced archives |
 | **10** | courtroom shouts in the second game |
 | **46** | gallery voice clips in the first game's DLC |
 | **34** | shouts in the second game's DLC mini-episodes |
