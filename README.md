@@ -118,10 +118,24 @@ comparing box by box, **140 of 190 are byte-identical**, and every remaining dif
 either a line wrapped to fit the narrower 3DS box or a curly quote the 3DS font does not
 carry. Not a paraphrase of the official text. The official text.
 
-### 2. Audio that plays to the end of the line
+### 2. English voices, in both base games as well as the DLC
 
-The DLC's English voice clips were silent, truncated, or still Japanese. Fixing that meant
-finding out why, and the answer was not obvious:
+Capcom re-recorded the whole cast for *Chronicles*. senyarom's patch is a text port, so
+none of those recordings came across: both games still shouted in Japanese over English
+text, all the way through the main story.
+
+| | |
+|---|---|
+| **81** | courtroom shouts in the first game, now Capcom's English. They live as 384 clips inside 56 archives |
+| **10** | courtroom shouts in the second game |
+| **46** | gallery voice clips in the first game's DLC |
+| **34** | shouts in the second game's DLC mini-episodes |
+
+The objections, the holds, the takedowns and the jury verdicts are English in both games
+now, not just in the DLC.
+
+Getting the DLC's clips to play was the harder half. They came out silent or truncated,
+and the reason was not obvious:
 
 **A voice stream larger than Capcom's original is cut off in-game, and not at the
 original's length.** It stops at an unpredictable point, and how far it overshoots does not
@@ -147,14 +161,15 @@ is deliberate, and it is the alternative to losing the end of the line.
 
 ### 3. Text that fits the box, and a font that behaves
 
-Most of the work after the DLC was layout: text running past the edge of the dialogue
-box, captions rendering soft, glyphs colliding, menus in the wrong face.
+Most of the work after the DLC was layout, and most of it is in the **story text**, not
+the Court Record: dialogue running past the edge of its box, glyphs colliding, captions
+rendering soft, menus in the wrong face.
 
 | | |
 |---|---|
 | **164** | Court Record captions across both games (68 and 96) rewritten to fit at full size. The panel silently shrinks its font rather than clipping, so long captions rendered small and soft instead of looking broken |
-| **124** | pages of dialogue in the second game reflowed where centred text overran the box, including lines that ran clean off the screen |
-| **43** | glyph advances corrected in the second game's dialogue font, including a tuck for overhanging T, Y and L so they stop colliding with the next character |
+| **1,438** | pages of story dialogue re-broken at the corrected font metrics, which added 124 pages of pagination. Includes the centred pages that overran the box, some running clean off the screen |
+| **43** | glyph advances corrected in the second game's dialogue font, including a tuck for overhanging T, Y and L. This affects every line of text in the game, not one screen |
 | **42** | menu strings in the second game that fell through to a decorative script and were genuinely hard to read: Yes/No, OK, Cancel, Examine, Move, Converse, Present, every game-over option |
 | **19** | voice clips in the first game's DLC cut off mid-word, per the section above |
 | **1** | save/load screen drawing the timestamp straight through the episode title |
