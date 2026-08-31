@@ -126,13 +126,21 @@ text, all the way through the main story.
 
 | | |
 |---|---|
-| **81** | courtroom shouts in the first game, now Capcom's English. They ship as 41 replaced archives |
-| **10** | courtroom shouts in the second game |
+| **81** | courtroom shouts in the first game, now Capcom's English, across 41 replaced character archives |
+| **10** | voice clips in the second game, covering **two characters only**: Naruhodo and Sholmes |
 | **46** | gallery voice clips in the first game's DLC |
 | **34** | shouts in the second game's DLC mini-episodes |
 
-The objections, the holds, the takedowns and the jury verdicts are English in both games
-now, not just in the DLC.
+**The two games are not equally covered, and the second is barely covered at all.** The
+first game's English voices span 41 characters, so its objections, holds, takedowns and
+jury verdicts are Capcom's English throughout. The second game's are not: its shouts live
+inside character archives that this project has not touched, so **82 clips across 32
+characters remain Japanese**, including most of the cast you meet in Episode 1. Only
+Naruhodo's and Sholmes's clips were replaceable, because those are the ones with a
+sourceable *Chronicles* recording.
+
+If you play the second game and hear Japanese where you expected English, that is this,
+and it is expected rather than a broken install.
 
 Getting the DLC's clips to play was the harder half. They came out silent or truncated,
 and the reason was not obvious:
