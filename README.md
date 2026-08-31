@@ -183,6 +183,20 @@ used as a reference point throughout.
 
 *The Great Ace Attorney* and *Chronicles* are © Capcom.
 
+## Licence
+
+This project is **GPL-3.0-or-later** ([`LICENSE`](LICENSE)), inherited from
+[senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch), which is licensed
+the same way and whose modules 48 of our scripts import directly.
+
+The corresponding source for every build on the releases page is in
+**[`tools/`](tools/)** — the audio fitters, the text and archive patchers, the cover and
+banner builders, and the emulator driving rig. It is research code rather than a polished
+toolkit, and it ships with no game data.
+
+The GPL covers this project's own work. It does not cover Capcom's content, which is not
+ours to license — see below.
+
 ## Legal
 
 **The Japanese base games are not distributed here** — the same line upstream draws. You
