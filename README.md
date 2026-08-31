@@ -78,11 +78,13 @@ take.** That is a real bug. Please report it.
 ## What this adds on top of senyarom's patch
 
 **What is theirs:** the layout pipeline, the font handling, and the carry of Capcom's
-official script onto the Japanese 3DS builds. That is the foundation, and it is the hard
+official *script* onto the Japanese 3DS builds. That is the foundation, and it is the hard
 part of the problem. Nothing here replaces any of it.
 
-**What is here** is three things: the DLC, audio that plays to the end, and the class of
-bug you only find by playing.
+**What is here:** senyarom's patch brings Capcom's text across. This brings across the
+rest of what Capcom made, the parts that are not text at all: the English voice acting,
+the videos, and the art. On top of that, the DLC that nothing had ever translated, and the
+layout bugs that only turn up by playing.
 
 ### 1. The DLC, which no English release had ever covered
 
@@ -135,12 +137,16 @@ unchanged and the cost is treble rather than words.
 Eleven of seventeen kept 90% or more of full rate. **One clip is noticeably duller.** That
 is deliberate, and it is the alternative to losing the end of the line.
 
-### 3. The bugs you only find by playing
+### 3. Text that fits the box, and a font that behaves
+
+Most of the work after the DLC was layout: text running past the edge of the dialogue
+box, captions rendering soft, glyphs colliding, menus in the wrong face.
 
 | | |
 |---|---|
 | **164** | Court Record captions rewritten to fit at full size. The panel silently shrinks its font rather than clipping, so long captions rendered small and soft instead of looking broken |
-| **43** | glyph advances corrected in the dialogue font, including a tuck for overhanging T, Y and L |
+| **124** | pages of dialogue reflowed where centred text overran the box, including lines that ran clean off the screen |
+| **43** | glyph advances corrected in the dialogue font, including a tuck for overhanging T, Y and L so they stop colliding with the next character |
 | **42** | menu strings in the second game that fell through to a decorative script and were genuinely hard to read: Yes/No, OK, Cancel, Examine, Move, Converse, Present, every game-over option |
 | **19** | voice clips cut off mid-word, per the section above |
 | **1** | save/load screen drawing the timestamp straight through the episode title |
@@ -151,6 +157,28 @@ Every one of these was found by a person looking at a screen or listening to a s
 line was silent and another was cut in half, and it did so because a path comparison
 silently matched nothing. That is why this release asks for playtesters rather than for
 more tooling, and why the testing status below is written the way it is.
+
+### 4. What was sent back upstream
+
+**Both bugs that other people had reported on senyarom's tracker are fixed here:**
+
+- **[#1](https://github.com/senyarom/tgaa2-en-patch/issues/1)**: text stretching outside
+  the box and off the screen in the first game's Episode 4. Traced to a centred page in
+  `_sce03_c000_0003`, and fixed by the reflow work above.
+- **[#2](https://github.com/senyarom/tgaa2-en-patch/issues/2)**: the second game's DLC
+  episodes showing blank character names, with every dialogue choice reading as invalid.
+
+Two pull requests went back to senyarom rather than being kept here:
+**[#3](https://github.com/senyarom/tgaa2-en-patch/pull/3)** reflows centred pages that
+overflow the box, and **[#4](https://github.com/senyarom/tgaa2-en-patch/pull/4)** stops
+adapted advances running into the next glyph.
+
+Two further issues were filed there and **remain unfixed**, in this build and upstream:
+**[#5](https://github.com/senyarom/tgaa2-en-patch/issues/5)** (the second game's Japanese
+end credits) and **[#6](https://github.com/senyarom/tgaa2-en-patch/issues/6)** (the first
+game's DLC Picture Book and Theme buttons bouncing to the title). Both appear in the known
+issues below. They are listed here because a contribution section that only lists wins is
+not worth much.
 
 ---
 
