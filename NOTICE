@@ -1,0 +1,42 @@
+Scope, and whose work is whose
+==============================
+
+This repository distributes BUILDS, not tools. The CIAs attached to its releases
+are installable patches for games you must already own.
+
+Nothing here grants any rights to:
+
+  * Dai Gyakuten Saiban: Naruhodou Ryuunosuke no Bouken (3DS, 2015)
+  * Dai Gyakuten Saiban 2: Naruhodou Ryuunosuke no Kakugo (3DS, 2017)
+  * The Great Ace Attorney Chronicles (2021)
+  * any text, graphics, audio or data from any of them
+
+All of which remain (c) Capcom.
+
+Nor does it cover the upstream patch this is built on, which is the work of its
+own author:
+
+    https://github.com/senyarom/tgaa2-en-patch
+
+That project ports Capcom's official English text onto the Japanese 3DS builds,
+with the layout pipeline and font handling that make it possible. Everything
+here sits on top of it. Where Capcom localised the DLC, the text in these
+builds IS senyarom's carry of Capcom's English, word for word -- verified by
+comparing against the Chronicles release directly.
+
+Scarlet Study's earlier fan translation made the first playable English 3DS
+build and was used as a reference point throughout:
+
+    https://www.romhacking.net/translations/6510/
+
+THE JAPANESE BASE GAMES ARE NOT DISTRIBUTED HERE, and will not be. That is the
+same line the upstream project draws. You supply your own.
+
+The update and DLC packages that ARE distributed contain Capcom's content with
+English assets substituted -- the same class of artifact upstream releases:
+
+    https://github.com/senyarom/tgaa2-en-patch/releases
+
+If you want Capcom's translation properly, buy The Great Ace Attorney
+Chronicles. It is very good, it is on every current platform, and it is the
+reason any of this can exist.
