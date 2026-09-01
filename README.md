@@ -51,7 +51,7 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-1.0.17.cia` / `TGAA2-base-1.0.10.cia` | the update |
+| 2 | `TGAA1-base-1.0.17.cia` / `TGAA2-base-1.0.11.cia` | the update |
 | 3 | `TGAA1-DLC-1.0.7.cia` / `TGAA2-DLC-1.0.4.cia` | the DLC |
 
 There is no longer a separate no-credits build. The second game's end credits now run
@@ -136,11 +136,20 @@ text, all the way through the main story.
 | **81** | courtroom shouts in the first game, now Capcom's English, across 41 replaced character archives |
 | **25** | story voice clips in the first game |
 | **85** | courtroom shouts in the second game |
-| **232** | story voice clips in the second game |
+| **235** | story voice clips in the second game |
 | **46** | gallery voice clips in the first game's DLC |
 | **34** | shouts in the second game's DLC mini-episodes |
 | **7** | animated cutscenes in the first game |
 | **20** | narration slots across the first game's episode openings |
+
+**Pauses, not fidelity, pay for the fit.** A streamed clip has to fit Capcom's slot in
+bytes, and bytes scale with duration times sample rate. Where an English take runs long,
+the silence *between phrases* is shortened rather than the sample rate lowered, so the
+speech itself is untouched. 24 clips that previously had to drop as low as 75% of full
+rate now play at a higher one, 17 of them at full, and 3 lines that were left in
+Japanese are now English. Pauses are never cut below 150 ms: shorter than that swallows
+the breath marks in a fast delivery and the read sounds spliced, which was confirmed by
+listening rather than assumed.
 
 **The second game was the gap, and it is now closed.** It shipped with ten English clips
 covering two characters, while every other voice in it, shouts and story lines alike,
@@ -151,9 +160,9 @@ What is still Japanese, and why:
 
 | | |
 |---|---|
-| **48** | Capcom never recorded an English take. Four shouts and 44 story lines have no *Chronicles* master, so there is nothing to port. |
-| **31** | An English take exists but is far longer than the 3DS slot. Fitting it would mean dropping below 24.5 kHz, and a degraded English line is worse than a clean Japanese one. Words were never cut to make something fit. |
-| **4** | Shouts baked into the music itself. *Chronicles* never made an English version of those tracks, so there is nothing to port. |
+| **54** | Capcom never recorded an English take. Verified exhaustively rather than assumed: *Chronicles* ships 288 English voice files and every one of them matches a 3DS clip name, with none left over, so there is no alternate naming convention hiding a recording. |
+| **18** | An English take exists but runs 1.4x to 3x longer than the 3DS slot. Shortening the pauses and lowering the rate together cannot close that without the delivery sounding rushed, and a mangled English line is worse than a clean Japanese one. Words were never cut to make something fit. |
+| **4** | Shouts mixed into a music track rather than existing as separate voice files. Replacing the voice means rebuilding the music, which has not been attempted. |
 
 
 The episode openings needed their own approach. Capcom re-recorded the narration for
