@@ -162,7 +162,7 @@ What is still Japanese, and why:
 |---|---|
 | **54** | Capcom never recorded an English take. Verified exhaustively rather than assumed: *Chronicles* ships 288 English voice files and every one of them matches a 3DS clip name, with none left over, so there is no alternate naming convention hiding a recording. |
 | **18** | An English take exists but runs 1.4x to 3x longer than the 3DS slot. Shortening the pauses and lowering the rate together cannot close that without the delivery sounding rushed, and a mangled English line is worse than a clean Japanese one. Words were never cut to make something fit. |
-| **4** | Shouts mixed into a music track rather than existing as separate voice files. Replacing the voice means rebuilding the music, which has not been attempted. |
+| **4** | Courtroom shouts for two minor characters, an *Objection!* and a *Hold it!* each, that Capcom never re-recorded in English. Their archives were checked member by member: 104 shouts live inside the character archives, 100 have a *Chronicles* master, these four do not. |
 
 
 The episode openings needed their own approach. Capcom re-recorded the narration for
