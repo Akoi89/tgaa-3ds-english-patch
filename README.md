@@ -51,17 +51,23 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-1.0.2.cia` / `TGAA2-base-1.0.2.cia` | the update |
+| 2 | `TGAA1-base-1.0.17.cia` / `TGAA2-base-1.0.9.cia` | the update |
 | 3 | `TGAA1-DLC-1.0.4.cia` / `TGAA2-DLC-1.0.3.cia` | the DLC |
 
-`TGAA2-base-1.0.1-no-credits.cia` is a **rollback**, not an upgrade. It is the same build
-without the 15 English credit cards. Install it only if the credits sequence misbehaves,
-and note it predates the UI readability fix.
+`TGAA2-base-1.0.1-no-credits.cia` is a **rollback**, not an upgrade. It is an older build
+without the 15 English credit cards. Install it only if the credits sequence misbehaves.
+It is kept because nobody has yet watched those credits run, and it predates everything
+below, so it also lacks the voice work and the text fixes.
 
 ### Checking the install took
 
 Both games display their version on screen, and the filename, the version the console
 reads, and the version painted in-game all agree.
+
+**The on-screen version does not track the filename, so do not use it to check an
+install.** The first game's title-screen string lives in its executable and the DLC labels
+are painted into textures; none of them were rebumped, so a current install still reads
+the numbers below. This is cosmetic and expected.
 
 | | reads |
 |---|---|
@@ -70,8 +76,10 @@ reads, and the version painted in-game all agree.
 | TGAA2 title screen | `ENG 1.0.2` |
 | TGAA2 DLC page | `DLC 1.0.3`, bottom right of the banner |
 
-**If a version on screen does not match the file you installed, the install did not
-take.** That is a real bug. Please report it.
+To check an install actually took, look at the text instead. In the first game's opening
+cross-examination the first statement should read *"I was ingesting regulation beef steak
+at the restaurant in tactical discussion with the old man."* on **two** lines. If it runs
+to three lines with the third cut off, the update did not install.
 
 ---
 
@@ -127,17 +135,39 @@ text, all the way through the main story.
 | | |
 |---|---|
 | **81** | courtroom shouts in the first game, now Capcom's English, across 41 replaced character archives |
-| **10** | voice clips in the second game, covering **two characters only**: Naruhodo and Sholmes |
+| **25** | story voice clips in the first game |
+| **85** | courtroom shouts in the second game |
+| **232** | story voice clips in the second game |
 | **46** | gallery voice clips in the first game's DLC |
 | **34** | shouts in the second game's DLC mini-episodes |
+| **7** | animated cutscenes in the first game |
+| **20** | narration slots across the first game's episode openings |
 
-**The two games are not equally covered, and the second is barely covered at all.** The
-first game's English voices span 41 characters, so its objections, holds, takedowns and
-jury verdicts are Capcom's English throughout. The second game's are not: its shouts live
-inside character archives that this project has not touched, so **82 clips across 32
-characters remain Japanese**, including most of the cast you meet in Episode 1. Only
-Naruhodo's and Sholmes's clips were replaceable, because those are the ones with a
-sourceable *Chronicles* recording.
+**The second game was the gap, and it is now closed.** It shipped with ten English clips
+covering two characters, while every other voice in it, shouts and story lines alike,
+stayed Japanese over English text. There were two separate systems to fix and finding the
+second one took someone playing the game and asking why a character sounded wrong.
+
+What is still Japanese, and why:
+
+| | |
+|---|---|
+| **48** | Capcom never recorded an English take. Four shouts and 44 story lines have no *Chronicles* master, so there is nothing to port. |
+| **31** | An English take exists but is far longer than the 3DS slot. Fitting it would mean dropping below 24.5 kHz, and a degraded English line is worse than a clean Japanese one. Words were never cut to make something fit. |
+| **4** | Shouts baked into the music itself. *Chronicles* never made an English version of those tracks, so there is nothing to port. |
+
+
+The episode openings needed their own approach. Capcom re-recorded the narration for
+English in ten takes where the Japanese has twenty lines, so one English take spans two
+of the game's pages, and each page has a fixed display window that cuts anything longer.
+Lowering the sample rate shrinks a file without shortening it, so the takes are split at
+the sentence break and time-compressed with the pitch preserved. Two pages turn out to
+have a window shorter than Capcom's own audio, which is why their Japanese never plays
+either.
+
+Three splits land mid-word and carry a short fade. A clean break exists for each, but
+only by pushing a half to around 65% of full quality, which is more noticeable than the
+seam it would fix.
 
 If you play the second game and hear Japanese where you expected English, that is this,
 and it is expected rather than a broken install.
