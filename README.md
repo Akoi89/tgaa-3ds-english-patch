@@ -51,13 +51,12 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-1.0.17.cia` / `TGAA2-base-1.0.9.cia` | the update |
+| 2 | `TGAA1-base-1.0.17.cia` / `TGAA2-base-1.0.10.cia` | the update |
 | 3 | `TGAA1-DLC-1.0.7.cia` / `TGAA2-DLC-1.0.4.cia` | the DLC |
 
-`TGAA2-base-1.0.1-no-credits.cia` is a **rollback**, not an upgrade. It is an older build
-without the 15 English credit cards. Install it only if the credits sequence misbehaves.
-It is kept because nobody has yet watched those credits run, and it predates everything
-below, so it also lacks the voice work and the text fixes.
+There is no longer a separate no-credits build. The second game's end credits now run
+entirely in Japanese, exactly as Capcom shipped them, so the rollback it existed for is
+the normal build.
 
 ### Checking the install took
 
@@ -208,7 +207,7 @@ rendering soft, menus in the wrong face.
 | **164** | Court Record captions across both games (68 and 96) rewritten to fit at full size. The panel silently shrinks its font rather than clipping, so long captions rendered small and soft instead of looking broken |
 | **1,438** | pages of story dialogue re-broken at the corrected font metrics, which added 124 pages of pagination. Includes the centred pages that overran the box, some running clean off the screen |
 | **43** | glyph advances corrected in the second game's dialogue font, including a tuck for overhanging T, Y and L. This affects every line of text in the game, not one screen |
-| **15** | end-credit cards in the second game rebuilt in English, shipped as two replaced archives. 75 cards exist; the other 60 cannot be ported, and that is listed under known issues below |
+| **0** | end-credit cards in the second game. 15 were briefly English; they were reverted so all 75 are Japanese, because a translated block sitting inside an untranslated roll reads as a bug. See known issues |
 | **42** | menu strings in the second game that fell through to a decorative script and were genuinely hard to read: Yes/No, OK, Cancel, Examine, Move, Converse, Present, every game-over option |
 | **19** | voice clips in the first game's DLC cut off mid-word, per the section above |
 | **1** | save/load screen drawing the timestamp straight through the episode title |
@@ -253,9 +252,11 @@ not worth much.
 
 ## Known, and not worth reporting
 
-- **The second game's end credits are in Japanese.** 75 cards. 15 are English; the rest
-  cannot be ported, because the PC release lays them out differently. They are a
-  typesetting job, not a copy. This is the largest known gap.
+- **The second game's end credits are in Japanese.** All 75 cards, deliberately. The PC
+  release lays them out differently and cannot be ported, so translating them is a
+  typesetting job requiring every staff name romanised correctly -- and a misspelled
+  credit is worse than an untranslated one. 15 cards were briefly English; they were
+  reverted for consistency. This is the largest known gap and is reported upstream.
 - **Some voice lines sound slightly duller than others.** Deliberate, see above.
 - **Some English lines are shorter than the Japanese ones were.** The English
   performance is simply shorter. A line that ends cleanly is complete.
@@ -279,7 +280,7 @@ not worth much.
 | DLC voice galleries, first game | measured in-game, and confirmed by ear |
 | DLC mini-episode shouts, second game | confirmed in play |
 | In-game shouts, both games | correct as files, **never heard in context** |
-| The second game's credits sequence | **never run by anyone** |
+| The second game's credits sequence | **never run by anyone**, but now uses Capcom's own untouched archives |
 | Installing and booting on a 3DS | **confirmed on hardware**, both games |
 | Playing through on a 3DS | not yet |
 
