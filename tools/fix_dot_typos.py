@@ -4,6 +4,7 @@ Capcom's English convention is runs of 3, 6 or 9 dots only (verified across
 every shipped page). Five runs in the port break it -- 2, 4 and 11 dots --
 which read as stray or missing punctuation rather than a pause.
 """
+import os
 import sys, os, glob
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

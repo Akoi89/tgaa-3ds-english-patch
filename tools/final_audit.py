@@ -15,6 +15,7 @@ Checks nothing else in this pipeline checks:
   F  statement shape     every 2-page <E008> unit still has page 1 closing
                          <E001>, and page 0 at 2 lines or fewer
 """
+import os
 import sys, os, glob, re, collections
 
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))

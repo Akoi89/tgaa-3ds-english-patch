@@ -18,6 +18,7 @@ plus 14 movie-subtitle pages at 4 lines where the original uses 2.
 Usage:
     python audit_vs_original.py <jp_romfs_dir> <en_romfs_dir> [--limit N]
 """
+import os
 import sys, os, glob, collections
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

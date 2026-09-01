@@ -15,6 +15,7 @@ checked: it is a property of the box, not of the script.
 Usage:
     python audit_all.py [--no-width] [--label NAME] <dir> [<dir>...]
 """
+import os
 import sys, os, re, glob, collections
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

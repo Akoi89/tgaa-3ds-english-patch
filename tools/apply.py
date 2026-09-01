@@ -17,6 +17,7 @@ Never adds a page. A testimony statement is a rigid 2-page unit -- page 0 opens
 STATEMENTS, not pages, so a third page is unreachable. That is what broke
 TGAA2 base 1.0.3.
 """
+import os
 import sys, os, glob, re, json, io
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

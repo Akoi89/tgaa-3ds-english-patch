@@ -5,6 +5,7 @@ Counts every VOICE clip in each title and sorts it into: English now, or still
 Japanese with the reason. Voice only -- BGM and sound effects are excluded, so
 `sound/stream/bgm` and non `_v_` archive members do not inflate the totals.
 """
+import os
 import glob, hashlib, os, sys
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')

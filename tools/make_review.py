@@ -13,9 +13,9 @@ little context.
 Pure re-wrapping (identical words, different line breaks) is counted per
 section but never listed -- no wording changed.
 """
+import os
 import difflib
 import io
-import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

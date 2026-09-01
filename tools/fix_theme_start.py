@@ -26,6 +26,7 @@ and is correct, and OMNIBUS2_START really is unused in issues 0-8.
 Usage:
     python fix_theme_start.py <dlc_romfs_root> [--apply]
 """
+import os
 import sys, os, glob
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

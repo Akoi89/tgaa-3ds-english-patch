@@ -30,8 +30,8 @@ The advance parser is upstream's read_3ds_advances -- do not hand-roll it. The
 20-byte GFD record is codepoint u32 at +0 and advance (u32 at +12) & 0xFFF; the
 plausible-looking byte at +11 is an atlas coordinate, not a width.
 """
-import importlib.util
 import os
+import importlib.util
 import re
 import sys
 from pathlib import Path

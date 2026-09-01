@@ -18,8 +18,8 @@ Long runs of dots are also left alone: they are Capcom's own convention for a
 long silence (their English reaches 18, 27, even 60 and 90 dots) and every run
 in our text is a multiple of three, exactly as theirs are.
 """
-import glob
 import os
+import glob
 import re
 import sys
 

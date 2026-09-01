@@ -15,6 +15,7 @@ shipped text equalled the statement's shipped text inherits the new wording.
 Line breaks are re-flowed at the same point; those boxes auto-paginate, so the
 split is cosmetic there.
 """
+import os
 import sys, os, glob, re
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

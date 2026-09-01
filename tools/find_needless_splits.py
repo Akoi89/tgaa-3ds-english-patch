@@ -24,6 +24,7 @@ away a dramatic pause.
 Usage:
     python find_needless_splits.py <jp_romfs> <en_romfs> [--limit N]
 """
+import os
 import sys, os, glob, collections
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

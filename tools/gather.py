@@ -21,6 +21,7 @@ TWO THINGS THAT WERE WRONG BEFORE, both of which shipped bugs:
 Pages whose best split already fits need only a RE-WRAP (mechanical, no wording
 change); the rest need condensing and are the ones that need drafts.
 """
+import os
 import sys, os, glob, json, io
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')

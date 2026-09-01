@@ -9,8 +9,8 @@ project did.
 Keys are 'path/in/romfs.arc::member/name.gmd' for archive members and the plain
 relative path for loose files, so the two kinds compare cleanly across trees.
 """
-import glob
 import os
+import glob
 import re
 import sys
 
