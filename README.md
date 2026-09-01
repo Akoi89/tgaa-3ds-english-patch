@@ -52,7 +52,7 @@ Download from [Releases](../../releases). **Order matters.**
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
 | 2 | `TGAA1-base-1.0.17.cia` / `TGAA2-base-1.0.9.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.4.cia` / `TGAA2-DLC-1.0.3.cia` | the DLC |
+| 3 | `TGAA1-DLC-1.0.7.cia` / `TGAA2-DLC-1.0.4.cia` | the DLC |
 
 `TGAA2-base-1.0.1-no-credits.cia` is a **rollback**, not an upgrade. It is an older build
 without the 15 English credit cards. Install it only if the credits sequence misbehaves.
