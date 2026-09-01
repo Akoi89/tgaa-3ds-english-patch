@@ -19,10 +19,10 @@ What counts as a defect here: a CIA named in a doc that is neither present in th
 build directory nor attached to the release. Names that are historical by
 intent -- a superseded build being discussed as history -- go in ALLOW.
 """
+import os
 import argparse
 import glob
 import json
-import os
 import re
 import subprocess
 import sys
@@ -34,7 +34,12 @@ ROOT = os.environ.get('TGAA_ROOT', os.path.dirname(os.path.dirname(
 BUILDS = os.environ.get('TGAA_BUILDS', os.path.join(ROOT, 'Final', '_new'))
 REPO = os.environ.get('TGAA_REPO', 'Akoi89/tgaa-3ds-english-patch')
 DOCS = [os.path.join(ROOT, 'public_repo', 'README.md'),
-        os.path.join(ROOT, 'CONTINUE_HERE.md')]
+        os.path.join(ROOT, 'CONTINUE_HERE.md'),
+        # The Reddit drafts are gitignored, but they name CIAs and are aimed
+        # at a public audience, so they go stale exactly like the README did
+        # -- one shipped a filename that had been deleted two builds earlier.
+        os.path.join(ROOT, 'public_repo', 'reddit_post.md'),
+        os.path.join(ROOT, 'public_repo', 'reddit_post_3dspiracy.md')]
 
 CIA = re.compile(r'[A-Za-z0-9_.-]+\.cia')
 # A doc may legitimately discuss superseded builds -- CONTINUE_HERE.md carries a

@@ -25,8 +25,8 @@ established for the music-baked shouts, and its encoder is reused here.
 Streamed, so the slot rule applies: the result is padded back to Capcom's exact
 file size. ADPCM is fixed-bitrate and the durations match, so it fits.
 """
-import argparse
 import os
+import argparse
 import shutil
 import struct
 import subprocess

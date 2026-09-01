@@ -30,6 +30,7 @@ words around the dead tag.
 Usage:
     python fix_button_glyphs.py <romfs_dir> [--apply]
 """
+import os
 import sys, os, re, glob
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

@@ -21,6 +21,7 @@ Usage:
     ... translate each run ...
     new_text = rebuild(tokens, {idx: en_text, ...})
 """
+import os
 import re
 
 TAG_RE = re.compile(r'(<[^>]*>)')

@@ -3,6 +3,7 @@
 contact sheets for eyeballing. Formats: 3=RGBA8, 11=ETC1, 12=LA44, 17=ETC1A4;
 14/16/1 are attempted as 16bpp guesses and labelled.
 """
+import os
 import json, struct, sys
 from pathlib import Path
 import numpy as np
@@ -10,7 +11,6 @@ from PIL import Image, ImageDraw
 
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))
 from dgs2tool.arc import parse_arc
-import os
 
 MOD = [[2,8,-2,-8],[5,17,-5,-17],[9,29,-9,-29],[13,42,-13,-42],
        [18,60,-18,-60],[24,80,-24,-80],[33,106,-33,-106],[47,183,-47,-183]]

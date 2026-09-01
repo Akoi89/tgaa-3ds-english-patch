@@ -18,12 +18,12 @@
    "SpotPass" look like a different typeface from "DLC List", "Picture Book"
    and the rest. Retagged to FONT 0.
 """
+import os
 import sys
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 from dgs2tool.arc import parse_arc, build_arc_bytes
 from dgs2tool.gmd import parse_gmd_bytes, build_gmd_bytes
-import os
 
 ARC = 'base_v12/romfs_dir/archive/msg_cmn_jpn.arc'
 GMD = 'msg/system_title_jpn.gmd'

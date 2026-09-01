@@ -31,6 +31,7 @@ replacement below is under 15000.
 Usage:
     python fix_gallery_titles.py <dlc_root_containing_eng_aocNN_full> [--apply]
 """
+import os
 import sys, os
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

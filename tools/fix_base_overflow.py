@@ -28,6 +28,7 @@ the repairs and nothing else.
 Usage:
     python fix_base_overflow.py <jp_romfs> <en_romfs> <out_dir> [--apply]
 """
+import os
 import sys, os, re, glob, shutil
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

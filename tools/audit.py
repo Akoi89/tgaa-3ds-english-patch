@@ -8,6 +8,7 @@ Classifies every page the way upstream's reflow does -- E041 conversation at
 <SIZE>/<RUBY> pages left alone -- then reports what overflows and whether a
 re-wrap would fix it or the wording has to change.
 """
+import os
 import sys, os, glob
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')

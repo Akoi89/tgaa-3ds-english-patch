@@ -22,6 +22,7 @@ re-flowed to two lines.
 Usage:
     python remove_added_pages.py <baseline_romfs> <our_romfs> [--apply]
 """
+import os
 import sys, os, glob
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

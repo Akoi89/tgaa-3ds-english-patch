@@ -6,6 +6,7 @@
 Catches the failure mode where a statement is reworded but its _MSG twin is
 not, so the same testimony reads two ways depending on how the player reaches it.
 """
+import os
 import sys, os, glob, re, collections
 
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))

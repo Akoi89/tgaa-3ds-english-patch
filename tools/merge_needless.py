@@ -21,6 +21,7 @@ A+B+C does not, and merging the whole run would then overflow.
 Usage:
     python merge_needless.py <jp_romfs> <en_romfs> [--apply] [--show N]
 """
+import os
 import sys, os, glob
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

@@ -27,8 +27,8 @@ The .stqr index carries each stream's size, sample count and rate. It must be
 updated to agree with the rebuilt header or the stream will not play -- that
 mismatch is what made an earlier build silent.
 """
-import argparse
 import os
+import argparse
 import re
 import shutil
 import struct

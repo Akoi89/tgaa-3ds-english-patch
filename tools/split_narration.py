@@ -34,8 +34,8 @@ with the .stqr index synced to the larger size. The documented DLC slot rule
 holds for the base game too, so a half that does not fit at full rate has its
 sample rate lowered until it does -- never its words trimmed.
 """
-import argparse
 import os
+import argparse
 import re
 import struct
 import sys

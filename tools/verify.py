@@ -48,6 +48,7 @@ Four checks, all of which have caught a real shipped bug:
                            earlier passes merged two green pages into one and
                            every later index is then off by one.
 """
+import os
 import sys, os, glob, re
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')

@@ -17,6 +17,7 @@ the user photographed, and it is the only one worth touching text for.
 
 A statement is identified structurally, not by label: 2 pages, <E008> on page 0.
 """
+import os
 import sys, os, glob, shutil
 
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))

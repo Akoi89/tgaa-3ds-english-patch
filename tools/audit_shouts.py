@@ -10,9 +10,9 @@ Its English master sits in Chronicles at
 NOTE the path is sound/se, NOT sound/stream/se -- the streamed story voices live
 under stream/, the shouts do not, and mixing the two reports zero matches.
 """
+import os
 import glob
 import hashlib
-import os
 import sys
 
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))

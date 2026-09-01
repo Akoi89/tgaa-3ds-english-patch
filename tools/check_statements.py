@@ -9,6 +9,7 @@ third line -- which the engine would push to a continuation page -- is
 UNREACHABLE and simply lost. Ordinary dialogue is exempt: there the engine
 paginates and the player advances with A, so 3 lines is normal.
 """
+import os
 import sys, os, glob, re
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')

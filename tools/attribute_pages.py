@@ -27,6 +27,7 @@ Necessity is then judged for each break:
 Usage:
     python attribute_pages.py <jp_romfs> <en_baseline_romfs> <our_romfs>
 """
+import os
 import sys, os, glob, collections
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'..\dlc_icons\tgaa2-en-patch')

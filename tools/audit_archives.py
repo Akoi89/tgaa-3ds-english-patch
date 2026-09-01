@@ -12,9 +12,9 @@ So: every member of every rebuilt archive is compared against the baseline, and
 anything that changed which is NOT an audio clip we intended to replace is a
 failure.
 """
+import os
 import glob
 import hashlib
-import os
 import sys
 
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))

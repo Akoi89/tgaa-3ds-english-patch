@@ -19,8 +19,8 @@ The slot rule still governs: the result is padded back to Capcom's EXACT file
 size, and the .stqr index is updated to agree with the new header or the stream
 plays as silence.
 """
-import argparse
 import os
+import argparse
 import re
 import struct
 import subprocess
