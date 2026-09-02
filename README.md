@@ -14,8 +14,9 @@ result turned up.
 
 > ### Playtesters wanted
 >
-> **Both games install and boot on real 3DS hardware**, confirmed 30 August 2026. That
-> was the largest unknown in this release, and it is closed. Everything else was tested
+> **Both games install and boot on real 3DS hardware**, confirmed 30 August 2026 on the
+> v1.0 builds. v1.1 is built the same way, plus one patched string in the first game's
+> executable, and has not itself been booted on a console yet. Everything else was tested
 > in an emulator, which is more permissive than a console in at least one known way.
 >
 > What is still untested is *playing* it on hardware. 32 of the first game's shouts,
@@ -269,11 +270,13 @@ Two pull requests went back to senyarom rather than being kept here:
 overflow the box, and **[#4](https://github.com/senyarom/tgaa2-en-patch/pull/4)** stops
 adapted advances running into the next glyph.
 
-Two further issues were filed there and **remain unfixed**, in this build and upstream:
+Three further issues were filed there and **remain unfixed**, in this build and upstream:
 **[#5](https://github.com/senyarom/tgaa2-en-patch/issues/5)** (the second game's Japanese
-end credits) and **[#6](https://github.com/senyarom/tgaa2-en-patch/issues/6)** (the first
-game's DLC Picture Book and Theme buttons bouncing to the title). Both appear in the known
-issues below. They are listed here because a contribution section that only lists wins is
+end credits), **[#6](https://github.com/senyarom/tgaa2-en-patch/issues/6)** (the first
+game's DLC Picture Book and Theme buttons bouncing to the title) and
+**[#7](https://github.com/senyarom/tgaa2-en-patch/issues/7)** (40 lines in the first game
+set in the serif face that overrun the box, because the wrapper measures them with the
+other font's metrics). The first two appear in the known issues below. They are listed here because a contribution section that only lists wins is
 not worth much.
 
 ---
@@ -309,7 +312,7 @@ not worth much.
 | DLC mini-episode shouts, second game | confirmed in play |
 | In-game shouts, both games | correct as files, **never heard in context** |
 | The second game's credits sequence | **never run by anyone**, but now uses Capcom's own untouched archives |
-| Installing and booting on a 3DS | **confirmed on hardware**, both games |
+| Installing and booting on a 3DS | **confirmed on hardware**, both games, v1.0 builds; v1.1 not yet |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. They load by a different route than the
@@ -371,11 +374,11 @@ at all.
 ### Why these are CIAs and not patch files
 
 A delta against senyarom's release would be the tidier thing to ship, and for three of
-the four builds it works. Those patches are attached to the release as an optional path
-for anyone who already has their CIAs. Only one of the three saves much, though: the
-second game's update comes to 2 MB against a 32 MB download, but the first game's is 29
-against 62, and the second game's DLC is 29 against 38. Take the CIAs unless bandwidth
-is genuinely tight.
+the four builds it can be made. It just does not save much any more: measured against
+the v1.1 builds, the first game's update patch comes to 53 MB against an 84 MB CIA, the
+second game's to 43 against 76, and the second game's DLC to 30 against 38, because the
+voice and art work touched most of what is inside. No patch files are attached to the
+release; the CIAs are the only download.
 
 It does not work for the first game's DLC. Its contents are encrypted, and the audio
 work shifted every offset inside them, so the delta comes to **310 MB against a 326 MB
