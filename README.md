@@ -334,6 +334,11 @@ of Capcom's English, word for word; that was verified by comparing against the
 **Scarlet Study** made the first playable English 3DS build, years earlier, and it was
 used as a reference point throughout.
 
+The title logos, the evidence cards, the end card and the Dance of Deduction wording are
+Capcom's own artwork and text from *Chronicles*, carried over rather than redrawn. The
+three banners in the second game's DLC are new artwork made for this patch and are not
+Capcom's.
+
 *The Great Ace Attorney* and *Chronicles* are © Capcom.
 
 ## Licence
