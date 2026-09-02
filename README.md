@@ -52,7 +52,7 @@ Download from [Releases](../../releases). **Order matters.**
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
 | 2 | `TGAA1-base-1.0.17.cia` / `TGAA2-base-1.0.11.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.7.cia` / `TGAA2-DLC-1.0.4.cia` | the DLC |
+| 3 | `TGAA1-DLC-1.0.8.cia` / `TGAA2-DLC-1.0.5.cia` | the DLC |
 
 There is no longer a separate no-credits build. The second game's end credits now run
 entirely in Japanese, exactly as Capcom shipped them, so the rollback it existed for is
