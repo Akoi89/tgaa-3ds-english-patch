@@ -9,7 +9,8 @@ text back to the handheld. **[senyarom/tgaa2-en-patch](https://github.com/senyar
 does exactly that, with a real layout pipeline rather than hand-edited scripts.
 
 This builds on their work. It finishes the DLC, which no previous patch had
-translated, and fixes what playing the result turned up.
+translated, brings across Capcom's own voices and art, and fixes what playing the
+result turned up.
 
 > ### Playtesters wanted
 >
