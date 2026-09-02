@@ -23,7 +23,7 @@ You'll also notice the title logos: both are now Capcom's own *Adventures* and *
 Everything here came out of decoding the textures Capcom localised for *Chronicles* and putting each one next to the 3DS build.
 
 - **Capcom's title logos** on both title screens.
-- **12 evidence cards** (the maps, the pawn tickets, a contract) that still carried fan-translation names like "Hatch's Pawnbrokers" and "The Ragged Reader" while the dialogue said Windibank's and Bourbon Books. They're Capcom's cards now, with the red map markers kept from the Japanese originals.
+- **9 evidence cards** (the maps, the pawn tickets, a contract) that still carried fan-translation names like "Hatch's Pawnbrokers" and "The Ragged Reader" while the dialogue said Windibank's and Bourbon Books. They're Capcom's cards now, with the red map markers kept from the Japanese originals.
 - **The first game's end card** was still Japanese. It's Capcom's "FIN" card now.
 - **168 Dance of Deduction plates** re-rendered with Capcom's wording: all 74 in the first game and 94 of 104 in the second. Two plates in the second game had never been translated and were still in Japanese, and one stamp atlas the fan patch had missed now has English stamps.
 - **Madame Tusspells' card** now carries her name.
