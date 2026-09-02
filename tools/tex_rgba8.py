@@ -80,3 +80,27 @@ def decode_rgba8(blob):
     h = 1 << ([i for i in bits if 19 <= i <= 31][0] - 19)
     abgr = detile(blob[HDR:], w, h)
     return abgr[:, :, [3, 2, 1]].copy(), abgr[:, :, 0].copy()
+
+
+def decode_rgb8(blob):
+    """Format 0x11: 3 bytes per pixel, stored B,G,R, same Morton tiling."""
+    import struct
+    v = struct.unpack_from('<I', blob, 8)[0]
+    bits = [i for i in range(32) if v >> i & 1]
+    w = 1 << ([i for i in bits if 6 <= i <= 18][0] - 6)
+    h = 1 << ([i for i in bits if 19 <= i <= 31][0] - 19)
+    bgr = detile(blob[HDR:], w, h, 3)
+    return bgr[:, :, ::-1].copy()
+
+
+def encode_rgb8(donor_blob, rgb):
+    """A new format-0x11 .tex carrying `rgb`, keeping every donor header byte.
+
+    The episode-select cards (title_scenario_NN_BM_NOMIP_HQ) are this format:
+    no alpha, 786452 bytes for 512x512. The decoder above is the exact inverse,
+    so the round-trip is byte-exact -- the gate before writing any of them.
+    """
+    if donor_blob[13] != 0x11:
+        raise ValueError('donor is format %d, not RGB8 (0x11)' % donor_blob[13])
+    rgb = np.asarray(rgb, np.uint8)
+    return donor_blob[:HDR] + tile_bytes(rgb[:, :, ::-1])

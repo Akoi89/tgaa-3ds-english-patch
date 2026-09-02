@@ -51,8 +51,8 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-1.0.17.cia` / `TGAA2-base-1.0.11.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.8.cia` / `TGAA2-DLC-1.0.5.cia` | the DLC |
+| 2 | `TGAA1-base-1.0.18.cia` / `TGAA2-base-1.0.12.cia` | the update |
+| 3 | `TGAA1-DLC-1.0.9.cia` / `TGAA2-DLC-1.0.5.cia` | the DLC |
 
 There is no longer a separate no-credits build. The second game's end credits now run
 entirely in Japanese, exactly as Capcom shipped them, so the rollback it existed for is
@@ -60,25 +60,24 @@ the normal build.
 
 ### Checking the install took
 
-Both games display their version on screen, and the filename, the version the console
-reads, and the version painted in-game all agree.
-
-**The on-screen version does not track the filename, so do not use it to check an
-install.** The first game's title-screen string lives in its executable and the DLC labels
-are painted into textures; none of them were rebumped, so a current install still reads
-the numbers below. This is cosmetic and expected.
+From v1.1 on, the versions on screen are the real ones and match the filenames:
 
 | | reads |
 |---|---|
-| TGAA1 title screen | `ENG 1.0.2` |
-| TGAA1 DLC magazine page | `DLC 1.0.4`, top left |
-| TGAA2 title screen | `ENG 1.0.2` |
-| TGAA2 DLC page | `DLC 1.0.3`, bottom right of the banner |
+| TGAA1 title screen, top right | `ENG 1.0.18` |
+| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.9`, top left |
+| TGAA2 title screen, top right | `ENG 1.0.12` |
+| TGAA2 DLC, costume pack banner | `DLC 1.0.5`, bottom right |
 
-To check an install actually took, look at the text instead. In the first game's opening
-cross-examination the first statement should read *"I was ingesting regulation beef steak
-at the restaurant in tactical discussion with the old man."* on **two** lines. If it runs
-to three lines with the third cut off, the update did not install.
+An older number on a title screen (`ENG 1.0.2` or `ENG 1.0.4`) means the v1.0 update is
+still installed. An older number on a DLC page means the old DLC is still installed.
+
+Both title screens now show Capcom's own *Adventures* and *Resolve* logos instead of the
+fan-drawn ones, so the logo alone tells you the update took. If you want a text check as
+well: in the first game's opening cross-examination the first statement should read *"I
+was ingesting regulation beef steak at the restaurant in tactical discussion with the old
+man."* on **two** lines. Three lines with the third cut off means the update did not
+install.
 
 ---
 
@@ -235,7 +234,26 @@ line was silent and another was cut in half, and it did so because a path compar
 silently matched nothing. That is why this release asks for playtesters rather than for
 more tooling, and why the testing status below is written the way it is.
 
-### 4. What was sent back upstream
+### 4. Capcom's art where the patch had redrawn its own
+
+The *Chronicles* release carries English versions of most of the textures that have words
+on them, and where one exists it now replaces the fan-drawn one, so what is painted on
+screen agrees with what the dialogue says.
+
+| | |
+|---|---|
+| **2** | title logos, Capcom's official *Adventures* and *Resolve* marks in colour, replacing hand-drawn ones that still read "Ryuunosuke Naruhodou" |
+| **12** | evidence cards (maps, pawn tickets, a contract) that carried fan-translation names such as "Hatch's Pawnbrokers" and "The Ragged Reader" while the text said Windibank's and Bourbon Books. Now Capcom's cards, with the red map markers restored from the Japanese originals |
+| **1** | end card in the first game, which was still Japanese: now Capcom's "The Great Ace Attorney, Adventures, FIN" |
+| **168** | Dance of Deduction topic plates re-rendered with Capcom's wording (74 in the first game, 94 of 104 in the second, matched through the game's own hit tables). Two plates in the second game had never been translated at all and were still Japanese; one whole stamp atlas the fan patch had missed now has English stamps |
+| **1** | evidence card for Madame Tusspells, which carried a different name |
+| **2** | title screens showing their real version number, and a "D L C" label on the title card that was blank |
+| **1** | Japanese anti-piracy notice on the first game's boot, now blank exactly as the second game already shipped |
+
+These were found by decoding every texture Capcom localised for *Chronicles* and looking
+at each one next to the 3DS build, rather than trusting filenames.
+
+### 5. What was sent back upstream
 
 **Both bugs that other people had reported on senyarom's tracker are fixed here:**
 
@@ -269,7 +287,7 @@ not worth much.
 - **Some voice lines sound slightly duller than others.** Deliberate, see above.
 - **Some English lines are shorter than the Japanese ones were.** The English
   performance is simply shorter. A line that ends cleanly is complete.
-- **A DLC card on the title screen is blank** in both games. Cosmetic.
+- **The DLC card on the title screen reads "D L C" one letter per slot.** That card's label is four single-character cells the game stacks, so a full word cannot go there. Cosmetic.
 - **"Editor's Notes" behaves like the Picture Book and Theme buttons** in the first
   game's DLC. A known bug affecting all three.
 
