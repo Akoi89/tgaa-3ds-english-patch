@@ -22,9 +22,14 @@ MEASURED CONSTANTS, taken off the shipped aoc00 rather than guessed:
     font              Segoe UI 15 px       renders 60 x 11, plus outline = 61 x 13
     background under  (20, 33, 43)         dark blue-grey
 
-The alpha channel MUST be carried through. texture_sweep's decoder drops it, and
-writing 255 everywhere turns transparent pixels opaque -- see tex_rgba8.py, whose
-round-trip is byte-exact on all 14 covers and is the gate for this script.
+ALPHA COMES FROM THE CLEAN SOURCE PNG, NEVER FROM THE DONOR TEXTURE. The first
+version of this script kept the donor's alpha, and the donor is the SHIPPED,
+STAMPED texture. On issues 0-8 the corner is opaque so that carried nothing; on
+the placeholder plates 9-13 the corner is transparent, so the old stamp survived
+as an alpha SILHOUETTE -- opaque pixels in the shape of 'DLC 1.0.4' showing the
+clean art's black through them. In game: a dark ghost of the old version on five
+pages, from a texture whose RGB was provably clean. The donor now supplies the
+20-byte header only. (tex_rgba8.py's byte-exact round-trip remains the gate.)
 """
 import os
 import argparse
@@ -35,7 +40,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-from tex_rgba8 import decode_rgba8, encode_rgba8      # noqa: E402
+from tex_rgba8 import encode_rgba8                    # noqa: E402
 
 ANCHOR = (34, 8)                  # PIL text origin; ink then lands at y 13..25
 FONT = os.environ.get('STAMP_FONT', 'C:/Windows/Fonts/segoeui.ttf')
@@ -59,16 +64,16 @@ def source_png(cover_dir, n):
     return None
 
 
-def draw_stamp(rgb, text):
-    im = Image.fromarray(rgb.copy())
+def draw_stamp(rgba, text):
+    im = Image.fromarray(rgba.copy(), 'RGBA')
     d = ImageDraw.Draw(im)
     f = ImageFont.truetype(FONT, SIZE)
     x, y = ANCHOR
     for dx in (-1, 0, 1):
         for dy in (-1, 0, 1):
             if dx or dy:
-                d.text((x + dx, y + dy), text, font=f, fill=OUTLINE)
-    d.text((x, y), text, font=f, fill=FILL)
+                d.text((x + dx, y + dy), text, font=f, fill=OUTLINE + (255,))
+    d.text((x, y), text, font=f, fill=FILL + (255,))
     return np.asarray(im)
 
 
@@ -89,15 +94,14 @@ def main():
         if not (png and os.path.exists(donor)):
             print('  aoc%02d SKIPPED (%s missing)'
                   % (n, 'png' if not png else 'donor')); continue
-        blob = open(donor, 'rb').read()
-        _, alpha = decode_rgba8(blob)          # keep Capcom's alpha
-        rgb = np.asarray(Image.open(png).convert('RGB'))
+        blob = open(donor, 'rb').read()      # header only; see the docstring
+        rgba = np.asarray(Image.open(png).convert('RGBA'))
         tag = 'clean'
         if n == a.stamp_on:
-            rgb = draw_stamp(rgb, a.version)
+            rgba = draw_stamp(rgba, a.version)
             tag = 'STAMPED "%s"' % a.version
         out = os.path.join(a.out, TEX % n)
-        open(out, 'wb').write(encode_rgba8(blob, rgb, alpha))
+        open(out, 'wb').write(encode_rgba8(blob, rgba[:, :, :3], rgba[:, :, 3]))
         made += 1
         print('  aoc%02d -> %s  %s' % (n, os.path.basename(out), tag))
     print('  wrote %d textures to %s' % (made, a.out))
