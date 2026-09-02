@@ -1,7 +1,7 @@
 # The Great Ace Attorney 1 & 2: 3DS English patch
 
-**Capcom's official English text, from *The Great Ace Attorney Chronicles*, carried onto
-the Japanese 3DS releases, including all the DLC.**
+**Capcom's official English text, voices and art, from *The Great Ace Attorney
+Chronicles*, carried onto the Japanese 3DS releases, including all the DLC.**
 
 *Dai Gyakuten Saiban* (2015) and *Resolve* (2017) never got an English 3DS release.
 Capcom localized both for *Chronicles* (2021) on PC and console, but never brought that
