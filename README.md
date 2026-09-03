@@ -53,8 +53,8 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-1.0.19.cia` / `TGAA2-base-1.0.12.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.9.cia` / `TGAA2-DLC-1.0.5.cia` | the DLC |
+| 2 | `TGAA1-base-1.0.19.cia` / `TGAA2-base-1.0.13.cia` | the update |
+| 3 | `TGAA1-DLC-1.0.9.cia` / `TGAA2-DLC-1.0.6.cia` | the DLC |
 
 There is no longer a separate no-credits build. The second game's end credits now run
 entirely in Japanese, exactly as Capcom shipped them, so the rollback it existed for is
@@ -68,11 +68,11 @@ From v1.1 on, the versions on screen are the real ones and match the filenames:
 |---|---|
 | TGAA1 title screen, top right | `ENG 1.0.19` |
 | TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.9`, top left |
-| TGAA2 title screen, top right | `ENG 1.0.12` |
-| TGAA2 DLC, costume pack banner | `DLC 1.0.5`, bottom right |
+| TGAA2 title screen, top right | `ENG 1.0.13` |
+| TGAA2 DLC, costume pack banner | `DLC 1.0.6`, bottom right |
 
 An older number on a title screen means an older update is still installed: `ENG 1.0.18`
-is v1.1, `ENG 1.0.2` or `ENG 1.0.4` is v1.0. An older number on a DLC page means the old DLC is still installed.
+or `ENG 1.0.12` is v1.1 or v1.2, `ENG 1.0.2` or `ENG 1.0.4` is v1.0. An older number on a DLC page means the old DLC is still installed.
 
 Both title screens now show Capcom's own *Adventures* and *Resolve* logos instead of the
 fan-drawn ones, so the logo alone tells you the update took. If you want a text check as
@@ -220,7 +220,8 @@ rendering soft, menus in the wrong face.
 | **0** | end-credit cards in the second game. 15 were briefly English; they were reverted so all 75 are Japanese, because a translated block sitting inside an untranslated roll reads as a bug. See known issues |
 | **42** | menu strings in the second game that fell through to a decorative script and were genuinely hard to read: Yes/No, OK, Cancel, Examine, Move, Converse, Present, every game-over option |
 | **19** | voice clips in the first game's DLC cut off mid-word, per the section above |
-| **65** | cross-examination statements in the first game re-laid to the statement box's real width (v1.2). That box is narrower than the dialogue box, because the arrows that step between statements sit inside it, and every earlier build had laid statements out against the wider measurement, so the longest lines ended on the border with their last character cut. 17 only needed a new line break; 48 were shortened by the smallest edit that fits, checked against the Japanese. Found by watching Episode 1 played on the patched build, screen by screen |
+| **202** | cross-examination statements re-laid to the statement box's real width: 65 in the first game (v1.2), 133 in the second and 4 in its DLC (v1.3). That box is narrower than the dialogue box, because the arrows that step between statements sit inside it, and every earlier build had laid statements out against the wider measurement, so the longest lines ended on the border with their last character cut. 17 only needed a new line break; 48 were shortened by the smallest edit that fits, checked against the Japanese. Found by watching Episode 1 played on the patched build, screen by screen; the second game's box was measured in-game with its own font before anything was changed |
+| **16** | evidence and profile descriptions in the second game that the evidence pop-up card drew oversize and cut off. They carried a size tag the Court Record panel honours and the pop-up does not; shortened to fit at normal size in both (v1.3) |
 | **1** | save/load screen drawing the timestamp straight through the episode title |
 | **1** | pagination regression that had inflated the script by 6,855 pages |
 
@@ -314,7 +315,8 @@ not worth much.
 | In-game shouts, both games | correct as files, **never heard in context** |
 | The second game's credits sequence | **never run by anyone**, but now uses Capcom's own untouched archives |
 | Installing and booting on a 3DS | **confirmed on hardware**, both games, v1.0 builds; v1.1 and v1.2 not yet |
-| The first game's Episode 1 on the patched build | watched screen by screen in an emulator up to the second trial (v1.2). That is how the statement widths were found; the second game has not had the same pass |
+| The first game's Episode 1 on the patched build | watched screen by screen in an emulator up to the second trial (v1.2). That is how the statement widths were found |
+| The second game's Episode 1 on the patched build | first two cross-examinations and the evidence pop-ups checked the same way (v1.3); the rest of the game has not had the pass |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. They load by a different route than the
