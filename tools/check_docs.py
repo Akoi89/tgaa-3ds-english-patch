@@ -62,7 +62,7 @@ def current():
 def released():
     try:
         out = subprocess.run(
-            ['gh', 'release', 'view', os.environ.get('TGAA_RELEASE_TAG', 'v1.1'), '--repo', REPO, '--json',
+            ['gh', 'release', 'view', os.environ.get('TGAA_RELEASE_TAG', 'v1.2'), '--repo', REPO, '--json',
              'assets,body'], capture_output=True, text=True, timeout=60)
         if out.returncode:
             return None, None
