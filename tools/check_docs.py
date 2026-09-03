@@ -51,7 +51,7 @@ HIST = re.compile(r'<!--\s*check_docs:\s*historical\s*-->.*?'
                   r'(?:<!--\s*check_docs:\s*end\s*-->|\Z)', re.DOTALL)
 # The Japanese originals the user supplies, and the placeholder in a shell
 # example. Neither is ours to ship and neither tracks a version.
-ALLOW = {'Base.cia', 'file.cia', 'dlc.cia', 'TGAA1 - Base.cia', 'TGAA2 - Base.cia'}
+ALLOW = {'Base.cia', 'file.cia', 'dlc.cia', 'TGAA1 - Base.cia', 'TGAA2 - Base.cia', 't1.cia', 't2.cia'}
 
 
 def current():
