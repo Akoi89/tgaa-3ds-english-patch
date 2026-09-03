@@ -62,12 +62,12 @@ the normal build.
 
 ### Checking the install took
 
-From v1.1 on, the versions on screen are the real ones and match the filenames:
+From v1.1 on, the versions on screen are the real ones. They match the filenames except the first game's DLC cover, noted below:
 
 | | reads |
 |---|---|
 | TGAA1 title screen, top right | `ENG 1.0.19` |
-| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.9`, top left |
+| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.8`, top left (not re-stamped for 1.0.9) |
 | TGAA2 title screen, top right | `ENG 1.0.13` |
 | TGAA2 DLC, costume pack banner | `DLC 1.0.7`, bottom right |
 

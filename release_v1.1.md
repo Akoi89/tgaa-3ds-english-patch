@@ -14,7 +14,7 @@ Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-p
 
 ## How to tell it took
 
-The version numbers on screen are real from this release on. The title screens read `ENG 1.0.18` and `ENG 1.0.12` in the top right, the first game's Episode 0 magazine cover reads `DLC 1.0.9`, the second game's costume pack banner reads `DLC 1.0.5`. If a title screen still says `ENG 1.0.2` or `ENG 1.0.4`, the old update is still installed.
+The version numbers on screen are real from this release on. The title screens read `ENG 1.0.18` and `ENG 1.0.12` in the top right, the first game's Episode 0 magazine cover reads `DLC 1.0.8`, the second game's costume pack banner reads `DLC 1.0.5`. If a title screen still says `ENG 1.0.2` or `ENG 1.0.4`, the old update is still installed.
 
 You'll also notice the title logos: both are now Capcom's own *Adventures* and *Resolve* marks rather than the hand-drawn ones.
 

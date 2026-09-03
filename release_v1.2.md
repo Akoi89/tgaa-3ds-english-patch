@@ -14,7 +14,7 @@ Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-p
 
 ## How to tell it took
 
-The first game's title screen reads `ENG 1.0.19` in the top right. `ENG 1.0.18` means v1.1 is still installed; `ENG 1.0.2` means v1.0. The second game still reads `ENG 1.0.12`, the DLC pages `DLC 1.0.9` and `DLC 1.0.5`.
+The first game's title screen reads `ENG 1.0.19` in the top right. `ENG 1.0.18` means v1.1 is still installed; `ENG 1.0.2` means v1.0. The second game still reads `ENG 1.0.12`, the DLC pages `DLC 1.0.8` and `DLC 1.0.5`.
 
 ## What's new in v1.2
 
