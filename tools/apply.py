@@ -29,11 +29,13 @@ from pxwidth import advances, split_two, BUDGET
 from drafts import DRAFTS
 from drafts_px import DRAFTS_PX
 from drafts_1018 import DRAFTS_1018
+from drafts_1012 import DRAFTS_1012
+from drafts_dlc import DRAFTS_DLC
 
 WRK = sys.argv[1]
 TARGETS = json.load(io.open(sys.argv[2], encoding='utf-8'))
 ADV = advances(sys.argv[3])
-ALL = dict(DRAFTS); ALL.update(DRAFTS_PX); ALL.update(DRAFTS_1018)
+ALL = dict(DRAFTS); ALL.update(DRAFTS_PX); ALL.update(DRAFTS_1018); ALL.update(DRAFTS_1012); ALL.update(DRAFTS_DLC)
 TAG = re.compile(r'<[^>]*>')
 
 
