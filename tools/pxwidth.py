@@ -38,6 +38,13 @@ from pathlib import Path
 
 DIALOGUE = 265
 WIDGET = 365
+# Cross-examination <E008> statements are NARROWER than the generic widget box:
+# the statement-navigation arrows sit inside the text area. Calibrated in-game on
+# the installed TGAA1 base 1.0.18 (rig playthrough, 2026-09-02): lines at 351,
+# 353, 356, 359, 361-365 px clipped on the border or under the arrow; 339-349 px
+# rendered whole. 345 leaves margin for glyph ink past the advance. Applies to
+# 2-page <E008> units only -- ordinary widget text keeps WIDGET.
+STATEMENT = 345
 BUDGET = WIDGET          # back-compat for callers that pass a segment-free line
 _REPO = Path(os.environ.get('DGS2TOOL', os.environ.get('DGS2TOOL', '.')))
 _spec = importlib.util.spec_from_file_location(
@@ -64,6 +71,12 @@ def budget_for(segment):
     if is_standard_dialogue_segment(segment) or is_interactive_tutorial_segment(segment):
         return DIALOGUE
     return WIDGET
+
+
+def is_statement(entry_text):
+    """A rigid 2-page cross-examination unit: page 0 opens <E008>, page 1 closes it."""
+    pages = entry_text.split('<PAGE>')
+    return len(pages) == 2 and '<E008>' in pages[0]
 
 
 def advances(gfd_path):

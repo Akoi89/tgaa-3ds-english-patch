@@ -28,7 +28,7 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))
 from dgs2tool.gmd import parse_gmd_bytes
-from pxwidth import advances, px, lines, best_two_line, BUDGET
+from pxwidth import advances, px, lines, best_two_line, BUDGET, STATEMENT, is_statement
 
 SHIP, GFD, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
 REFS = [('upstream', sys.argv[4] if len(sys.argv) > 4 else None),
@@ -69,6 +69,7 @@ for sp in sorted(glob.glob(os.path.join(SHIP, '**', '*.gmd'), recursive=True)):
     for label, t in ents(sp).items():
         if not label.startswith('L_'):
             continue
+        budget = STATEMENT if is_statement(t) else BUDGET
         for i, pg in enumerate(t.split('<PAGE>')):
             ls = lines(pg)
             if not ls:
@@ -76,15 +77,16 @@ for sp in sorted(glob.glob(os.path.join(SHIP, '**', '*.gmd'), recursive=True)):
             now = max(px(l, ADV) for l in ls)
             body = ' '.join(' '.join(ls).split())
             best = best_two_line(body, ADV)
-            if now <= BUDGET and len(ls) <= 2:
+            if now <= budget and len(ls) <= 2:
                 continue
             key = (os.path.basename(rel), label, i)
             if key in seen:
                 continue
             seen.add(key)
             r = dict(file=os.path.basename(rel), rel=rel, label=label, page=i,
-                     official=body, now_px=now, best_px=best, over=best - BUDGET,
-                     nlines=len(ls), kind='rewrap' if best <= BUDGET else 'condense')
+                     official=body, now_px=now, best_px=best, over=best - budget,
+                     budget=budget,
+                     nlines=len(ls), kind='rewrap' if best <= budget else 'condense')
             for tag, root in REFS:
                 r[tag] = page_text(root, rel, label, i)
             rows.append(r)
@@ -93,7 +95,7 @@ with io.open(OUT, 'w', encoding='utf-8') as f:
     json.dump(rows, f, indent=1, ensure_ascii=False)
 
 nc = [r for r in rows if r['kind'] == 'condense']
-print('  budget            : %d px' % BUDGET)
+print('  budget            : %d px widget / %d px statement' % (BUDGET, STATEMENT))
 print('  pages flagged     : %d   (rewrap %d, condense %d)'
       % (len(rows), len(rows) - len(nc), len(nc)))
 print('  unique statements needing new wording : %d'

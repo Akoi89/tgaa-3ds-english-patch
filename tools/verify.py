@@ -56,7 +56,7 @@ sys.path.insert(0, os.environ.get('TGAA_TOOLS', '.'))
 sys.path.insert(0, os.environ.get('DGS2TOOL', '.'))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from dgs2tool.gmd import parse_gmd_bytes
-from pxwidth import advances, px, hand_laid_out
+from pxwidth import advances, px, hand_laid_out, STATEMENT as STATEMENT_CAP
 
 WRK, SHIP, UP, GFD = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 ADV = advances(GFD)
@@ -113,9 +113,12 @@ for rel, p in sorted(W.items()):
             if not ls:
                 continue
             if not hand_laid_out(pg):
+                # Statements have their own, narrower, in-game-calibrated budget
+                # (pxwidth.STATEMENT); everything else is judged at the passed CAP.
+                cap = min(CAP, STATEMENT_CAP) if is_statement(t) else CAP
                 for l in ls:
-                    if px(l, ADV) > CAP:
-                        w_over.append((rel, label, i, px(l, ADV) - CAP, l))
+                    if px(l, ADV) > cap:
+                        w_over.append((rel, label, i, px(l, ADV) - cap, l))
             if len(ls) > 2:
                 if is_statement(t):
                     up = lines(up_pages[i]) if up_pages and i < len(up_pages) else []
@@ -152,7 +155,7 @@ for rel, p in sorted(W.items()):
             if now < was and now != ups:
                 ungreen.append((rel, label, '%d -> %d green pages' % (was, now)))
 
-print('  TGAA BUILD GATE   cap %d units' % CAP)
+print('  TGAA BUILD GATE   cap %d units (statements %d)' % (CAP, min(CAP, STATEMENT_CAP)))
 print('    1. lines over cap             : %d' % len(w_over))
 print('    2. STATEMENTS over 2 lines    : %d' % len(three_ours))
 print('       upstream already had       : %d  (pre-existing, untouched)' % len(three_theirs))

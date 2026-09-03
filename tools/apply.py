@@ -28,15 +28,16 @@ from dgs2tool.gmd import parse_gmd_bytes, build_gmd_bytes
 from pxwidth import advances, split_two, BUDGET
 from drafts import DRAFTS
 from drafts_px import DRAFTS_PX
+from drafts_1018 import DRAFTS_1018
 
 WRK = sys.argv[1]
 TARGETS = json.load(io.open(sys.argv[2], encoding='utf-8'))
 ADV = advances(sys.argv[3])
-ALL = dict(DRAFTS); ALL.update(DRAFTS_PX)
+ALL = dict(DRAFTS); ALL.update(DRAFTS_PX); ALL.update(DRAFTS_1018)
 TAG = re.compile(r'<[^>]*>')
 
 
-def rebuild_page(pg, new_text):
+def rebuild_page(pg, new_text, budget=BUDGET):
     m = re.match(r'^((?:<[^>]*>|\s)*)', pg)
     prefix = m.group(1)
     rest = pg[len(prefix):]
@@ -46,7 +47,7 @@ def rebuild_page(pg, new_text):
     if TAG.search(body):
         return None
     mw, a, b = split_two(new_text, ADV)
-    if mw > BUDGET:
+    if mw > budget:
         return None
     return prefix + a + '\r\n' + b + suffix
 
@@ -68,7 +69,7 @@ for r in TARGETS:
         pages = e['text'].split('<PAGE>')
         if r['page'] >= len(pages):
             continue
-        np = rebuild_page(pages[r['page']], new)
+        np = rebuild_page(pages[r['page']], new, r.get('budget', BUDGET))
         if np is None:
             skipped.append((r['file'], r['label'], 'embedded tags / no split fits')); continue
         if np != pages[r['page']]:
