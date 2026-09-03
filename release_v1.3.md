@@ -14,7 +14,7 @@ Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-p
 
 ## How to tell it took
 
-The second game's title screen reads `ENG 1.0.13` in the top right and its costume pack banner reads `DLC 1.0.7`. `ENG 1.0.12` means v1.2 is still installed. The first game still reads `ENG 1.0.19` and `DLC 1.0.9`.
+The second game's title screen reads `ENG 1.0.13` in the top right and its costume pack banner reads `DLC 1.0.7`. `ENG 1.0.12` means v1.2 is still installed. The first game still reads `ENG 1.0.19` and `DLC 1.0.8` (the cover art was not re-stamped when the DLC bumped to 1.0.9; the file is the right one).
 
 ## What's new in v1.3
 
