@@ -54,7 +54,7 @@ Download from [Releases](../../releases). **Order matters.**
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
 | 2 | `TGAA1-base-1.0.19.cia` / `TGAA2-base-1.0.13.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.9.cia` / `TGAA2-DLC-1.0.6.cia` | the DLC |
+| 3 | `TGAA1-DLC-1.0.9.cia` / `TGAA2-DLC-1.0.7.cia` | the DLC |
 
 There is no longer a separate no-credits build. The second game's end credits now run
 entirely in Japanese, exactly as Capcom shipped them, so the rollback it existed for is
@@ -69,7 +69,7 @@ From v1.1 on, the versions on screen are the real ones and match the filenames:
 | TGAA1 title screen, top right | `ENG 1.0.19` |
 | TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.9`, top left |
 | TGAA2 title screen, top right | `ENG 1.0.13` |
-| TGAA2 DLC, costume pack banner | `DLC 1.0.6`, bottom right |
+| TGAA2 DLC, costume pack banner | `DLC 1.0.7`, bottom right |
 
 An older number on a title screen means an older update is still installed: `ENG 1.0.18`
 or `ENG 1.0.12` is v1.1 or v1.2, `ENG 1.0.2` or `ENG 1.0.4` is v1.0. An older number on a DLC page means the old DLC is still installed.
