@@ -14,6 +14,7 @@ grey (122,121,118) Segoe UI text peaking at alpha 233. Re-render it.
     python stamp_title_versions.py tex  <atlas.tex> <out.tex> "ENG 1.0.12"
 """
 import os
+import re
 import hashlib
 import struct
 import sys
@@ -32,6 +33,13 @@ STAMP_ANCHOR = (318, 176)
 STAMP_FILL = (239, 235, 229)      # same look as the DLC stamps: light fill, dark 1 px outline
 STAMP_OUTLINE = (15, 10, 8)        # (the fan's flat grey 122,121,118 at alpha 233 blended into the courtroom)
 SLOT_LEN = 12
+
+# The stamp is matched by SHAPE, not by a hardcoded '1.0.' prefix. It used to
+# search for b'ENG 1.0.', which broke silently the moment this project moved off
+# that scheme for 3.2.0: the write still landed, verify_code could then no longer
+# find it and reported an EMPTY stamp, and a second run would have aborted with
+# 'stamp string not found in .code'. Exactly one match exists in .code.
+STAMP_RE = re.compile(rb'ENG \d+\.\d+\.\d+\x00')
 
 
 def _exefs_files(d, ex_off):
@@ -56,7 +64,8 @@ def patch_code(ncch, text):
     idx, name, off, sz = [f for f in _exefs_files(d, ex_off) if f[1] == b'.code'][0]
     start = ex_off + 0x200 + off
     code = bytes(d[start:start + sz])
-    k = code.find(b'ENG 1.0.')
+    m = STAMP_RE.search(code)
+    k = m.start() if m else -1
     if k < 0:
         raise SystemExit('stamp string not found in .code')
     new = text.encode('ascii') + b'\0'
@@ -80,7 +89,8 @@ def verify_code(ncch):
         blob = ncch[ex_off + 0x200 + off:ex_off + 0x200 + off + sz]
         ok = ok and hashlib.sha256(blob).digest() == hdr[0x200 - (i + 1) * 32:0x200 - i * 32]
         if name == b'.code':
-            k = blob.find(b'ENG 1.0.')
+            m = STAMP_RE.search(blob)
+            k = m.start() if m else -1
             found = blob[k:k + SLOT_LEN].split(b'\0')[0].decode()
     return ok, found
 

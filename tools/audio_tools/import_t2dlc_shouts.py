@@ -46,7 +46,26 @@ from encode_shouts import decode_wav, steam_english
 from fit_slots import trim_edges, resample
 
 TREE = os.path.join(ROOT, 'bounce', 't2rev')
+for _a in sys.argv[1:]:
+    if _a.startswith('--tree='):
+        TREE = os.path.abspath(_a[7:])
 QUIET = 150
+FADE_IN, FADE_OUT, PAD = 0.005, 0.010, 0.12   # seconds; PAD matches Capcom's zero tail
+
+
+def shape(pcm, rate):
+    """trim_edges cuts at the first/last sample above QUIET, so every clip used to
+    start and end on a step (0.5-2.4% of peak). Capcom pads each shout with ~0.12 s of
+    zeros and senyarom's base-game clips keep ~0.14 s; ours had none (issue #1, tester's
+    third report). Fade both edges to zero and add the same tail."""
+    x = np.asarray(pcm, dtype=np.float64)
+    fi, fo = int(rate * FADE_IN), int(rate * FADE_OUT)
+    if fi and len(x) > fi:
+        x[:fi] *= np.linspace(0.0, 1.0, fi, endpoint=False)
+    if fo and len(x) > fo:
+        x[-fo:] *= np.linspace(1.0, 0.0, fo, endpoint=False)
+    x = np.concatenate([x, np.zeros(int(rate * PAD))])
+    return np.clip(np.rint(x), -32768, 32767).astype(np.int16)
 
 
 def encode(donor, pcm, rate):
@@ -80,7 +99,7 @@ def plan():
                 if not src:
                     continue
                 h = mca.parse_bytes(e.data)
-                pcm = trim_edges(decode_wav(src, h['rate']))
+                pcm = shape(trim_edges(decode_wav(src, h['rate'])), h['rate'])
                 room = len(e.data) - h['data_off']
                 need = (len(pcm) // 14 * 8 + 63) // 64 * 64
                 rate = h['rate']
