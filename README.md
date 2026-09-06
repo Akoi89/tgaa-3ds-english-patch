@@ -16,9 +16,12 @@ result turned up.
 >
 > **Both games install and boot on real 3DS hardware**, confirmed 30 August 2026, and one
 > tester has since played both of the second game's DLC stories start to finish on an
-> original 3DS. Every fix in v1.4's DLC came out of that run, and the thread is in
-> [issue #1](../../issues/1). Everything else was tested in an emulator, which is more
-> permissive than a console in at least one known way.
+> original 3DS, twice. Every fix in v1.4's DLC came out of that run, and the thread is in
+> [issue #1](../../issues/1). Their fourth report, and a recording made on a second
+> console, found the cause of the pop at the end of shouts (v1.5, below): a defect that
+> had been in every English voice clip in both base games since the first release and
+> that an emulator cannot reproduce. Everything else was tested in an emulator, which is
+> now known to be more permissive than a console in two ways.
 >
 > What is still untested is *playing the base games* on hardware. 32 of the first game's
 > shouts, the jury verdicts and the pressing voices, have never been heard by anyone, in
@@ -54,8 +57,8 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.2.1.cia` / `TGAA2-base-1.0.14.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.10.cia` / `TGAA2-DLC-1.0.8.cia` | the DLC |
+| 2 | `TGAA1-base-3.2.2.cia` / `TGAA2-base-1.0.15.cia` | the update |
+| 3 | `TGAA1-DLC-1.0.10.cia` / `TGAA2-DLC-1.0.9.cia` | the DLC |
 | 4 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, see below |
 
 There is no longer a separate no-credits build. The second game's end credits now run
@@ -91,21 +94,31 @@ From v1.1 on, the versions on screen are the real ones. They match the filenames
 
 | | reads |
 |---|---|
-| TGAA1 title screen, top right | `ENG 3.2.1` |
-| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.8`, top left (not re-stamped for 1.0.10) |
-| TGAA2 title screen, top right | `ENG 1.0.14` |
-| TGAA2 DLC, costume pack banner | `DLC 1.0.8`, bottom right |
+| TGAA1 title screen, top right | `ENG 3.2.2` |
+| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.10`, top left |
+| TGAA2 title screen, top right | `ENG 1.0.15` |
+| TGAA2 DLC, costume pack banner | `DLC 1.0.9`, bottom right |
 
-An older number on a title screen means an older update is still installed: `ENG 1.0.19`
-or `ENG 1.0.13` is v1.3 (`ENG 3.2.0` was a staging build that never shipped), `ENG 1.0.18` or `ENG 1.0.12` is v1.1 or v1.2, `ENG 1.0.2` or
-`ENG 1.0.4` is v1.0. An older number on a DLC page means the old DLC is still installed.
+An older number on a title screen means an older update is still installed: `ENG 3.2.0`
+or `ENG 1.0.14` is v1.4 (v1.4's first game showed `3.2.0` although the file was named
+3.2.1; that is fixed), `ENG 1.0.19` or `ENG 1.0.13` is v1.3, `ENG 1.0.18` or `ENG 1.0.12`
+is v1.1 or v1.2, `ENG 1.0.2` or `ENG 1.0.4` is v1.0. An older number on a DLC page means
+the old DLC is still installed.
+
+**If your console is online and offers you an update for the second game, decline it.**
+That is Capcom's own Japanese update, which the console offered because it carried a
+higher version number than this patch did. From v1.5 the patch outranks it and the offer
+stops; on an older build, accepting it would install the Japanese update over the English
+one.
 
 The first game's number jumped from `1.0.19` to `3.2.1` in v1.4. That is not nineteen
 missed releases. The 3DS stores a title version in a field whose last part cannot go
 above 15, so `1.0.16` and up were never real versions: the files were named `1.0.x`
 while the console was told something else, and the two had drifted apart. From v1.4
-the number on the screen, the number in the filename and the number the console
-sees are the same number, and it is one that supersedes every earlier build.
+the first game's number on the screen, in the filename and in the console are the same
+number. The second game keeps `1.0.x` on screen and in the filename, but from v1.5 the
+console is told `3.0.x`, for the reason in the box above: Capcom's own update for it is
+`1.3.0`, and a lower number is what made consoles offer that update over the patch.
 
 Both title screens now show Capcom's own *Adventures* and *Resolve* logos instead of the
 fan-drawn ones, so the logo alone tells you the update took. If you want a text check as
@@ -249,14 +262,22 @@ unchanged and the cost is treble rather than words.
 Eleven of seventeen kept 90% or more of full rate. **One clip is noticeably duller.** That
 is deliberate, and it is the alternative to losing the end of the line.
 
-**Clean edges (v1.4).** The hardware tester heard a pop at the end of some shouts in the
-second game's DLC. Every clip this project had imported was cut hard at both ends with no
-fade, while Capcom's own shouts and the base games' English clips end in about a tenth of a
-second of true silence. All 34 DLC shouts in the second game (85 archive entries, since one clip serves several
-character archives) now carry a short fade and the same silent tail; the 42 fitted streams in the first game's DLC got the fade in place,
-since those cannot grow past their slot. Whether that was the pop is not proven: the
-tester's build is the one without it, and the one with it has only been heard on an
-emulator, where it is clean.
+**The pop at the end of shouts (found v1.4, fixed v1.5).** The hardware tester heard a
+click at the end of some shouts in the second game's DLC. v1.4 gave every imported clip
+a fade and a silent tail like Capcom's, which was correct but was not the cause: the
+tester still heard it. A recording of the click, made on a second console and lined up
+against the clip, put it about ten milliseconds after the clip's last sample, and the
+one structural difference left was this: every voice file Capcom ships ends in a zero
+trailer that rounds its length to a multiple of 32 bytes, and every clip this project or
+senyarom had written was 8 bytes past that boundary with no trailer. A console reads the
+last 32-byte unit past the end of the file and plays whatever it finds there. An
+emulator reads exact sizes and never hears it. The trailer is now on every replaced
+stream: 89 in the second game's DLC, 130 in the second game and 123 in the first, which
+means the base games had been clicking on hardware since the first release and nobody
+had played them there to know. The first game's DLC was already aligned. A second
+recording on the same console, same shout, same spot, shows nothing at the clip's end.
+The recording also showed which file the DLC's scripted shouts play: the base game's
+copy, not the DLC's own, which is why fixing the DLC alone had changed nothing.
 
 ### 3. Text that fits the box, and a font that behaves
 
@@ -280,6 +301,8 @@ rendering soft, menus in the wrong face.
 | **62** | of the 66 centred banners, sized text and other widget pages in the first game that ran past the box edge, up to 404 units against a 365 box: 43 re-broken, 19 split into two pages; the 4 left alone are listed below (v1.4) |
 | **9** | lines in the second game's DLC that ran off the page, found by the hardware tester, re-split or re-wrapped without changing a word, one of them a case document taken from 384 to 336 units; plus three hand-placed breaks Capcom had put inside a decorative script restored, and one page that had grown to three lines split in two (v1.4) |
 | **1** | profile caption in the second game's DLC that was five lines in a four-line box, so the game shrank it and thin strokes dropped out; condensed to four (v1.4) |
+| **1** | save-slot title in the second game, Episode 1's, the longest of the five, that ran off the slot's right edge on a console; the "Ep. 1:" label is now drawn a step smaller so the title fits at its normal size, and the chapter line under it, which the game was squeezing to fit, now renders one size down and unsquashed. Seen on screen (v1.5) |
+| **2** | system messages in the second game, the return-to-title confirmation and its game-over twin, whose longest lines were the two widest of any dialog in the game, so the box squeezed the whole message sideways until the apostrophe vanished; re-broken onto four and three lines, no words changed. Not yet seen on screen, see the status table (v1.5) |
 | **7,320** | of the 7,358 pages of ordinary dialogue in the second game that ran under the page-advance arrow (v1.4). The whole game had been wrapped to the edge of the box, 365 units, when the arrow that ends every line sits at 345, so the last word of every long line was drawn under it. Measured on the game's own font and calibrated on screen before anything moved: 344 units touches the arrow, 351 passes it. 5,828 pages only needed their line break moved, 716 single lines became two, and 776 pages that cannot fit two lines at all were split into two pages the way Capcom's own continuation pages are built. Words were never changed, and every event and animation marker in all 8,117 script entries is proven to be in its original place. 38 pages are left alone: 13 are a single scream that overflows in Japanese too, and 25 end without a wait marker, so they cannot be split without inventing a pause Capcom did not write |
 
 The scale of that is easy to understate. Diffing these builds against senyarom's release
@@ -384,11 +407,12 @@ not worth much.
 | | |
 |---|---|
 | DLC voice galleries, first game | measured in-game, and confirmed by ear |
-| DLC mini-episode shouts, second game | confirmed in play; the v1.4 clean-edge versions heard on an emulator only |
-| The second game's DLC, both stories | **played start to finish on an original 3DS** by a tester, on v1.2; every defect found is fixed in v1.4 and none has been re-checked on hardware yet |
-| In-game shouts, both games | correct as files, **never heard in context** |
+| DLC mini-episode shouts, second game | confirmed in play on hardware; the v1.5 trailer fix **recorded clean on a console** at the shout that had clicked |
+| The second game's DLC, both stories | **played start to finish on an original 3DS** by a tester, on v1.2 and again on v1.4; every text defect found is fixed, most re-checked on hardware by the tester |
+| The v1.5 return-to-title re-wrap, second game | proven by measurement; **not yet seen on screen**, the long form of that message did not come up in testing |
+| In-game shouts, both games | correct as files; one of the second game's heard clean on a console after the trailer fix, the rest **never heard in context** |
 | The second game's credits sequence | **never run by anyone**, but now uses Capcom's own untouched archives |
-| Installing and booting on a 3DS | **confirmed on hardware**, both games, v1.0 builds; the second game's v1.2 set was installed and played on hardware by the tester |
+| Installing and booting on a 3DS | **confirmed on hardware**, both games; installing v1.4 over v1.2 with existing files raised no save prompt on the tester's console |
 | The first game's Episode 1 on the patched build | watched screen by screen in an emulator up to the second trial (v1.2). That is how the statement widths were found |
 | The second game's Episode 1 on the patched build | first two cross-examinations and the evidence pop-ups checked the same way (v1.3); the rest of the game has not had the pass |
 | Courtroom crowd cues, second game (v1.4) | heard in play, English |
