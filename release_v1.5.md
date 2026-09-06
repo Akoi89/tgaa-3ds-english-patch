@@ -11,7 +11,7 @@ Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-p
 | 3 | `TGAA1-DLC-1.0.10.cia` / `TGAA2-DLC-1.0.9.cia` | the DLC |
 | 4 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional HOME menu banner, see the README |
 
-**Coming from v1.4?** Three of the four changed: both updates and the second game's DLC. The first game's DLC is the same file as v1.4's. Install the three over the old ones.
+**Coming from v1.4?** All four changed. The first game's DLC keeps its name and version but its cover now reads the real number, `DLC 1.0.10` instead of `DLC 1.0.8`, so it is a different file. Install all four over the old ones.
 
 ## How to tell it took
 
