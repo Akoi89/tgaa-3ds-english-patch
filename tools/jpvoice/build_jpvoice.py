@@ -72,8 +72,8 @@ REVERT_DIRS = {
     'TGAA2_dlc': {'sound'},
 }
 OUT_NAME = {
-    'TGAA1_upd': 'TGAA1-base-3.2.2-jpvoice.cia',
-    'TGAA2_upd': 'TGAA2-base-1.0.15-jpvoice.cia',
+    'TGAA1_upd': 'TGAA1-base-3.2.3-jpvoice.cia',
+    'TGAA2_upd': 'TGAA2-base-1.0.16-jpvoice.cia',
     'TGAA1_dlc': 'TGAA1-DLC-1.0.10-jpvoice.cia',
     'TGAA2_dlc': 'TGAA2-DLC-1.0.9-jpvoice.cia',
 }

@@ -21,6 +21,7 @@ import os, sys, io, json, hashlib, struct, subprocess, shutil, collections
 if not getattr(sys.stdout, '_utf8_wrapped', False):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace'); sys.stdout._utf8_wrapped = True
 ROOT = r'G:\Claude\TGAA 1-2'
+FINAL = os.environ.get('TGAA_FINAL', '_CURRENT')   # which Final\ folder holds OUR shipped/staged titles
 sys.path.insert(0, os.path.join(ROOT, 'testimony_pipeline'))
 from cia import Cia
 T3 = os.path.join(ROOT, '3dstool', '3dstool.exe')
@@ -30,14 +31,14 @@ os.makedirs(TREES, exist_ok=True)
 
 SRC = {
     'TGAA1': dict(
-        ours_upd=os.path.join(ROOT, r'Final\_CURRENT\TGAA1-base-3.2.2.cia'),
-        ours_dlc=os.path.join(ROOT, r'Final\_CURRENT\TGAA1-DLC-1.0.10.cia'),
+        ours_upd=os.path.join(ROOT, 'Final', FINAL, 'TGAA1-base-3.2.3.cia'),
+        ours_dlc=os.path.join(ROOT, 'Final', FINAL, 'TGAA1-DLC-1.0.10.cia'),
         jp_cart=os.path.join(ROOT, r'_sources\TGAA1 - Base-decrypted.cci'),
         jp_upd=os.path.join(ROOT, r'_sources\TGAA1-Official-Jap (Patch)-decrypted.cia'),
         jp_dlc=os.path.join(ROOT, r'_sources\TGAA1-Official-Jap (DLC)-decrypted.cia')),
     'TGAA2': dict(
-        ours_upd=os.path.join(ROOT, r'Final\_CURRENT\TGAA2-base-1.0.15.cia'),
-        ours_dlc=os.path.join(ROOT, r'Final\_CURRENT\TGAA2-DLC-1.0.9.cia'),
+        ours_upd=os.path.join(ROOT, 'Final', FINAL, 'TGAA2-base-1.0.16.cia'),
+        ours_dlc=os.path.join(ROOT, 'Final', FINAL, 'TGAA2-DLC-1.0.9.cia'),
         jp_cart=os.path.join(ROOT, r'_sources\DGS2 - Base-decrypted.cci'),
         jp_upd=os.path.join(ROOT, r'_sources\DGS2-Official-Jap-v2.3.3 (Patch)-decrypted.cia'),
         jp_dlc=os.path.join(ROOT, r'_sources\DGS2-Jap-DLC (DLC)-decrypted.cia')),

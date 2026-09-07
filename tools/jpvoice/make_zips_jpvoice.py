@@ -11,11 +11,11 @@ if not getattr(sys.stdout, '_utf8_wrapped', False):
 ROOT = r'G:\Claude\TGAA 1-2'
 sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
 from make_zips_v15 import META
-P15 = os.path.join(ROOT, '_rhdn_work', '_out15'); PJ = os.path.join(ROOT, 'jpvoice', '_patches')
+P15 = os.path.join(ROOT, '_rhdn_work', '_out16'); PJ = os.path.join(ROOT, 'jpvoice', '_patches')
 OUT = os.path.join(ROOT, 'jpvoice', '_zips'); os.makedirs(OUT, exist_ok=True)
 XD = os.path.join(ROOT, 'patches', 'xdelta3.exe')
-TAG = 'v1.5'; JTAG = 'v1.5-jpvoice'
-UPD_OUT = {'TGAA1': 'TGAA1-base-3.2.2-jpvoice.cia', 'TGAA2': 'TGAA2-base-1.0.15-jpvoice.cia'}
+TAG = 'v1.6'; JTAG = 'v1.6-jpvoice'
+UPD_OUT = {'TGAA1': 'TGAA1-base-3.2.3-jpvoice.cia', 'TGAA2': 'TGAA2-base-1.0.16-jpvoice.cia'}
 
 README = """{en} ({jp}), Nintendo 3DS
 English patch {tag}, JAPANESE VOICE edition, as xdelta patches for your own Japanese dump
@@ -130,9 +130,10 @@ TESTING
 This edition was built from the tested {tag} files by putting Capcom's Japanese
 audio back and changing nothing else, and every file in it was checked against
 both: text and art byte-identical to the main release, every audio file
-byte-identical to the Japanese original. The author installed and ran this
-edition, both games with their DLC, before posting it; the main release it was
-made from has had far more play, so anything odd is still worth a note.
+byte-identical to the Japanese original. The author installed and ran the v1.5
+form of this edition, both games with their DLC; v1.6 changes only the shout
+lettering, the same eight textures as the main release. The main release has
+had far more play, so anything odd is still worth a note.
 
 REPORT
 
