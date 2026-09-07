@@ -83,17 +83,21 @@ def etc1_port(jp, pcb, thresh=20):
     m2 = mask.copy(); m2[1:] |= mask[:-1]; m2[:-1] |= mask[1:]; m2[:, 1:] |= mask[:, :-1]; m2[:, :-1] |= mask[:, 1:]
     # etcpak (differential mode, full search) encodes the whole PC image in linear 4x4 block order,
     # standard big-endian blocks; the 3DS wants 8x8 tiles of four blocks, each a little-endian u64
-    import etcpak
+    # ENCODER = 'search' (default since 2026-09-07): etc1_enc.encode_rgba_search, a base-colour search with
+    # etcpak's block kept as a candidate; benched on these 15 textures at +0.7..+2.0 dB over plain etcpak
+    # (jpvoice/etc1_bench_v16.log). v1.6 shipped with ENCODER = 'etcpak'. Both write ETC1A4 (16-byte
+    # blocks); the ETC1 texture takes the colour u64 of each block.
+    ENCODER = os.environ.get('TGAA_ETC1', 'search')
     rgba = np.dstack([np.clip(rgb_pc, 0, 255).astype(np.uint8), np.full((h, w), 255, np.uint8)])
-    lin = etcpak.compress_etc1_rgb(rgba.tobytes(), w, h); bw = w // 4
-    out = bytearray(pay); p = 0; n = 0
+    pix = np.kron(m2, np.ones((4, 4), bool))
+    a4 = (etc1_enc.encode_rgba_search if ENCODER == 'search' else etc1_enc.encode_rgba_etcpak)(rgba, bytes(w * h), w, h, touch_mask=pix)
+    out = bytearray(pay); p = 0; n = 0; q = 0
     for ty in range(0, h, 8):
         for tx in range(0, w, 8):
             for by, bx in ((0, 0), (0, 4), (4, 0), (4, 4)):
                 if m2[(ty + by) // 4, (tx + bx) // 4]:
-                    i = ((ty + by) // 4) * bw + (tx + bx) // 4
-                    out[p:p + 8] = lin[i * 8:i * 8 + 8][::-1]; n += 1
-                p += 8
+                    out[p:p + 8] = a4[q + 8:q + 16]; n += 1
+                p += 8; q += 16
     new = jp[:20] + bytes(out)
     rgb_new, _ = etc1a4.decode(bytes(out), w, h, alpha=False)
     return new, rgb_jp, rgb_new, n, int(m2.sum())

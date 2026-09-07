@@ -20,8 +20,8 @@ for r in rep:
 NEWTEX = {hashlib.sha256(open(os.path.join(ROOT, 'jpvoice', '_cutin', 'new', 'bigfont_%s_GSM_NOMIP.tex' % n), 'rb').read()).hexdigest()
           for n in ['default', 'gift', 'hay', 'here', 'say', 'uk_default', 'uk_wait', 'wait']}
 ok_all = True
-for g, old, new, ver in (('TGAA1', r'Final\_CURRENT\TGAA1-base-3.2.2.cia', r'jpvoice\_v16\TGAA1-base-3.2.3.cia', (3, 2, 3)),
-                         ('TGAA2', r'Final\_CURRENT\TGAA2-base-1.0.15.cia', r'jpvoice\_v16\TGAA2-base-1.0.16.cia', (3, 1, 0))):
+for g, old, new, ver in (('TGAA1', r'Final\_superseded\TGAA1-base-3.2.2.cia', r'jpvoice\_v16\TGAA1-base-3.2.3.cia', (3, 2, 3)),
+                         ('TGAA2', r'Final\_superseded\TGAA2-base-1.0.15.cia', r'jpvoice\_v16\TGAA2-base-1.0.16.cia', (3, 1, 0))):
     n = Cia(os.path.join(ROOT, new)); o = Cia(os.path.join(ROOT, old))
     problems = []
     if n.version() != ver: problems.append('version %s' % (n.version(),))
