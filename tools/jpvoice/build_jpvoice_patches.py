@@ -17,12 +17,12 @@ sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
 import build_rhdn_patches_v15 as B
 from build_rhdn_patches import digest
 
-TAG = 'v1.5-jpvoice'
+TAG = 'v1.6-jpvoice'
 OUT = os.path.join(ROOT, 'jpvoice', '_patches'); WORK = os.path.join(ROOT, 'jpvoice', '_pwork')
 os.makedirs(OUT, exist_ok=True); os.makedirs(WORK, exist_ok=True)
 GAMES = {
-    'TGAA1': dict(B.GAMES['TGAA1'], update=r'jpvoice\_out\TGAA1-base-3.2.2-jpvoice.cia', dlc=r'jpvoice\_out\TGAA1-DLC-1.0.10-jpvoice.cia'),
-    'TGAA2': dict(B.GAMES['TGAA2'], update=r'jpvoice\_out\TGAA2-base-1.0.15-jpvoice.cia', dlc=r'jpvoice\_out\TGAA2-DLC-1.0.9-jpvoice.cia'),
+    'TGAA1': dict(B.GAMES['TGAA1'], update=r'jpvoice\_out\TGAA1-base-3.2.3-jpvoice.cia', dlc=r'jpvoice\_out\TGAA1-DLC-1.0.10-jpvoice.cia'),
+    'TGAA2': dict(B.GAMES['TGAA2'], update=r'jpvoice\_out\TGAA2-base-1.0.16-jpvoice.cia', dlc=r'jpvoice\_out\TGAA2-DLC-1.0.9-jpvoice.cia'),
 }
 rows = []
 for g, cfg in GAMES.items():

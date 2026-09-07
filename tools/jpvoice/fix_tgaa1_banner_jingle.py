@@ -65,12 +65,13 @@ print('spliced: banner == composed, every other ExeFS file (icon with English ti
 # base xdelta with the full proof, into the jpvoice patch folder
 os.makedirs(WORK, exist_ok=True)
 cfg = dict(B.GAMES['TGAA1'], enbanner=os.path.relpath(NEW_CCI, ROOT))
-src, tgt, xd = B.build_base('TGAA1', cfg, WORK, PJ, 'v1.5-jpvoice')
+TAGJ = os.environ.get('TGAA_JTAG', 'v1.6-jpvoice')
+src, tgt, xd = B.build_base('TGAA1', cfg, WORK, PJ, TAGJ)
 rows = []
 for label, p in (('source', src), ('result', tgt), ('patch', xd)):
     s, c, n = digest(p); rows.append(('TGAA1', 'base', label, os.path.basename(p), n, c, s))
     print('TGAA1 base   %-6s %-44s %12d crc32=%s sha256=%s' % (label, os.path.basename(p), n, c, s))
-with open(os.path.join(PJ, 'HASHES_v1.5-jpvoice.txt'), 'a') as f:
+with open(os.path.join(PJ, 'HASHES_%s.txt' % TAGJ), 'a') as f:
     for r in rows:
         f.write('%s\t%s\t%s\t%s\t%d\t%s\t%s\n' % r)
 

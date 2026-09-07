@@ -57,9 +57,9 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.2.2.cia` / `TGAA2-base-1.0.15.cia` | the update |
+| 2 | `TGAA1-base-3.2.3.cia` / `TGAA2-base-1.0.16.cia` | the update |
 | 3 | `TGAA1-DLC-1.0.10.cia` / `TGAA2-DLC-1.0.9.cia` | the DLC |
-| 4 | `TGAA1-3DS-English-v1.5-xdelta.zip` / `TGAA2-3DS-English-v1.5-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted Japanese dump, plus the HOME banner patch, with a readme. See [Patch files](#patch-files) |
+| 4 | `TGAA1-3DS-English-v1.6-xdelta.zip` / `TGAA2-3DS-English-v1.6-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted Japanese dump, plus the HOME banner patch, with a readme. See [Patch files](#patch-files) |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the HOME banner patch on its own, see below |
 
 There is no longer a separate no-credits build. The second game's end credits now run
@@ -97,13 +97,13 @@ From v1.1 on, the versions on screen are the real ones. They match the filenames
 
 | | reads |
 |---|---|
-| TGAA1 title screen, top right | `ENG 3.2.2` |
+| TGAA1 title screen, top right | `ENG 3.2.3` |
 | TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.10`, top left |
-| TGAA2 title screen, top right | `ENG 1.0.15` |
+| TGAA2 title screen, top right | `ENG 1.0.16` |
 | TGAA2 DLC, costume pack banner | `DLC 1.0.9`, bottom right |
 
-An older number on a title screen means an older update is still installed: `ENG 3.2.0`
-or `ENG 1.0.14` is v1.4 (v1.4's first game showed `3.2.0` although the file was named
+An older number on a title screen means an older update is still installed: `ENG 3.2.2`
+or `ENG 1.0.15` is v1.5, `ENG 3.2.0` or `ENG 1.0.14` is v1.4 (v1.4's first game showed `3.2.0` although the file was named
 3.2.1; that is fixed), `ENG 1.0.19` or `ENG 1.0.13` is v1.3, `ENG 1.0.18` or `ENG 1.0.12`
 is v1.1 or v1.2, `ENG 1.0.2` or `ENG 1.0.4` is v1.0. An older number on a DLC page means
 the old DLC is still installed.
@@ -120,8 +120,9 @@ above 15, so `1.0.16` and up were never real versions: the files were named `1.0
 while the console was told something else, and the two had drifted apart. From v1.4
 the first game's number on the screen, in the filename and in the console are the same
 number. The second game keeps `1.0.x` on screen and in the filename, but from v1.5 the
-console is told `3.0.x`, for the reason in the box above: Capcom's own update for it is
-`1.3.0`, and a lower number is what made consoles offer that update over the patch.
+console is told `3.x`, for the reason in the box above: Capcom's own update for it is
+`1.3.0`, and a lower number is what made consoles offer that update over the patch. v1.5
+was `3.0.15` to the console; v1.6 is `3.1.0`, because the last part cannot go above 15.
 
 Both title screens now show Capcom's own *Adventures* and *Resolve* logos instead of the
 fan-drawn ones, so the logo alone tells you the update took. If you want a text check as
@@ -337,6 +338,8 @@ screen agrees with what the dialogue says.
 | **2** | title screens showing their real version number, and a "D L C" label on the title card that was blank |
 | **1** | Japanese anti-piracy notice on the first game's boot, now blank exactly as the second game already shipped |
 | **1** | HOME menu icon for the first game, which showed the Scarlet Study pipe logo; now the cartridge's own picture, with the English title text kept (v1.4) |
+| **8** | shout atlases, the big lettering that flashes on a shout, now Capcom's *Chronicles* atlases converted to the exact format of Capcom's Japanese 3DS files, in both games. The fan set both games had shipped left the rotated second variant of the two British-court atlases in Japanese, and the first game draws that variant. Two words change to Capcom's wording with it: "Yes!" for "Sir!", "'Scuse me!" for "Hang on!" (v1.6) |
+| **15** | textures Capcom localised for *Chronicles* that no 3DS patch had used: the second game's last chapter title card, and text painted onto character costumes, evidence objects and two backgrounds in both games (6 in the first, 9 in the second). Found by cross-referencing every English texture in *Chronicles* against the two cartridges; each was ported in its 3DS format with only the changed blocks re-encoded, with the etcpak compressor,, the rest of every texture staying Capcom's own bytes. Still unported, on purpose: the handwritten narration strokes in the episode openings (40 textures whose alpha carries stroke timing the PC files lack), two evidence textures whose PC format does not decode reliably, and one item that is Russian on both platforms (v1.6) |
 
 These were found by decoding every texture Capcom localised for *Chronicles* and looking
 at each one next to the 3DS build, rather than trusting filenames.
@@ -484,8 +487,8 @@ at all.
 
 ### Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.5-xdelta.zip`
-and `TGAA2-3DS-English-v1.5-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.6-xdelta.zip`
+and `TGAA2-3DS-English-v1.6-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -510,8 +513,8 @@ to happen.
 ### Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.5-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.5-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.6-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.6-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are

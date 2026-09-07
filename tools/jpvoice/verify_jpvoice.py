@@ -18,7 +18,7 @@ import os, sys, io, json, struct, shutil
 if not getattr(sys.stdout, '_utf8_wrapped', False):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace'); sys.stdout._utf8_wrapped = True
 ROOT = r'G:\Claude\TGAA 1-2'
-sys.path.insert(0, os.path.join(ROOT, 'testimony_pipeline')); sys.path.insert(0, os.path.join(ROOT, 'jpvoice'))
+sys.path.insert(0, os.path.join(ROOT, 'testimony_pipeline')); sys.path.insert(0, os.path.join(ROOT, 'jpvoice')); sys.path.insert(0, os.path.join(ROOT, 'dlc_icons', 'tgaa2-en-patch'))
 from cia import Cia
 from inventory import SRC, TREES, extract_romfs, romfs_of_ncch, walk, h
 from build_jpvoice import OUT_NAME, REVERT_DIRS
@@ -74,14 +74,25 @@ def verify(title):
             if not (top in REVERT_DIRS[title] or rel.endswith('.arc')):
                 problems.append('c%d CHANGED outside audio: %s' % (ci, rel)); continue
             p, lab = jp_file(g, kind, ci, rel)
-            if p is None or h(p) != hj:
-                problems.append('c%d differs from ours but is NOT the JP file: %s' % (ci, rel)); continue
-            stats['reverted'] += 1
+            if p is not None and h(p) == hj:
+                stats['reverted'] += 1; continue
+            if rel.endswith('.arc') and p is not None:
+                # member-level revert: every voice member (type 79C47B59) must equal the JP archive's,
+                # every other member must equal our English build's
+                from dgs2tool.arc import parse_arc
+                mj = {e.name: bytes(e.data) for e in parse_arc(open(tj[rel], 'rb').read())['entries']}
+                me = {e.name: bytes(e.data) for e in parse_arc(open(te[rel], 'rb').read())['entries']}
+                mp = {e.name: bytes(e.data) for e in parse_arc(open(p, 'rb').read())['entries']}
+                ok = set(mj) == set(me) == set(mp) and all(mj[k] == (mp[k] if k.endswith('79C47B59') else me[k]) for k in mj)
+                if ok:
+                    stats['reverted'] += 1; stats['arcs with voice members reverted, other members ours'] = stats.get('arcs with voice members reverted, other members ours', 0) + 1; continue
+            problems.append('c%d differs from ours but is NOT the JP file: %s' % (ci, rel)); continue
     lines = ['%s: %s' % (title, 'PASS' if not problems else 'FAIL'), '  file %s' % os.path.basename(out),
              '  sha256 %s' % h(out), '  version %d.%d.%d, contents %d' % (jp.version() + (jp.count,)),
              '  files identical to the English build: %d' % stats['identical'],
              '  files reverted to the Japanese original: %d' % stats['reverted'],
-             '  files deleted so the cartridge copy plays: %d' % stats['deleted']]
+             '  files deleted so the cartridge copy plays: %d' % stats['deleted'],
+             '  archives with voice members reverted and our textures kept: %d' % stats.get('arcs with voice members reverted, other members ours', 0)]
     lines += ['  PROBLEM ' + p for p in problems]
     io.open(os.path.join(OUT, 'VERIFY_%s.txt' % title), 'w', encoding='utf-8').write('\n'.join(lines) + '\n')
     print('\n'.join(lines))
