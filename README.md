@@ -59,7 +59,8 @@ Download from [Releases](../../releases). **Order matters.**
 | 1 | *the Japanese base game* | not distributed, bring your own |
 | 2 | `TGAA1-base-3.2.2.cia` / `TGAA2-base-1.0.15.cia` | the update |
 | 3 | `TGAA1-DLC-1.0.10.cia` / `TGAA2-DLC-1.0.9.cia` | the DLC |
-| 4 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, see below |
+| 4 | `TGAA1-3DS-English-v1.5-xdelta.zip` / `TGAA2-3DS-English-v1.5-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted Japanese dump, plus the HOME banner patch, with a readme. See [Patch files](#patch-files) |
+| 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the HOME banner patch on its own, see below |
 
 There is no longer a separate no-credits build. The second game's end credits now run
 entirely in Japanese, exactly as Capcom shipped them, so the rollback it existed for is
@@ -69,15 +70,17 @@ the normal build.
 
 The animated banner and the title text the console shows on the HOME menu live inside the
 base game itself, not in the update, so the normal install leaves them Japanese. If you
-want them in English, the two `.xdelta` files patch your own decrypted cartridge dump.
+want them in English, the two `.xdelta` files patch your own decrypted dump of the game.
 They change nothing but the banner picture, its jingle in the first game, and the title
 text; the game code and data are byte for byte what Capcom shipped, and the update and
 DLC install over the result exactly as before. Cosmetic, and entirely optional.
 
-1. Dump your cartridge **decrypted and untrimmed**. The patch checks the input: the first
-   game's dump is 689,790,976 bytes, the second game's is 844,902,400. A trimmed or still
-   encrypted dump is refused, and that refusal is the diagnosis.
-2. Apply the patch with xdelta3, which is in the `patches` download.
+1. Dump the game as a CIA with GodMode9 and run it through Batch CIA 3DS Decryptor. The
+   `.cci` it writes is the input; the patch checks it: the first game's is 689,790,976 bytes,
+   the second game's 844,902,400. A trimmed, still encrypted or differently decrypted file
+   is refused, and that refusal is the diagnosis. A raw `.3ds` cartridge dump has not been
+   tested and will most likely be refused too; dump the title as a CIA instead.
+2. Apply the patch with xdelta3, which is inside the xdelta zip on the release.
 3. Convert the patched `.cci` to a CIA and install it with GodMode9 on the console. It
    replaces the base title in place and your saves stay, because saves belong to the
    title id and that does not change.
@@ -479,18 +482,27 @@ English assets substituted, which is the same class of artifact
 very good, it is on every current platform, and it is the reason this project can exist
 at all.
 
-### Why these are CIAs and not patch files
+### Patch files
 
-A delta against senyarom's release would be the tidier thing to ship, and for three of
-the four builds it can be made. It just does not save much any more: measured against
-the v1.1 builds, the first game's update patch comes to 53 MB against an 84 MB CIA, the
-second game's to 43 against 76, and the second game's DLC to 30 against 38, because the
-voice and art work touched most of what is inside. The only patch files attached to the
-release are the two optional HOME banner deltas, which patch the base game rather than
-the update; the CIAs are the download for everything else.
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.5-xdelta.zip`
+and `TGAA2-3DS-English-v1.5-xdelta.zip`, holding three xdelta3 patches that apply to files
+you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
-It does not work for the first game's DLC. Its contents are encrypted, and the audio
-work shifted every offset inside them, so the delta comes to **310 MB against a 326 MB
-target**. It shares almost nothing with the source. That is not a patch; it is the
-whole DLC with extra steps. Since the DLC extras are where most of this work lives, and
-testers who cannot reach them cannot report on them, the CIA ships instead.
+| patch | applies to | produces |
+|---|---|---|
+| `-update.xdelta` | your decrypted game `.cci` | the update CIA, byte for byte the one in rows 2 above |
+| `-DLC.xdelta` | your decrypted DLC `.cia` | the DLC CIA, same contents as row 3, stored unencrypted |
+| `-base.xdelta` | your decrypted game `.cci` | the same game with the English HOME banner, as above |
+
+The zip has xdelta3.exe and a readme with the exact commands, the sizes to expect and the
+output hashes. The decryptor writes a few random bytes into every file it makes, so your
+source will not hash-match the readme's and the patches are built so that does not
+matter; the outputs must match exactly. The update patch is 27 to 35 MB because most of
+the update is files that already exist in the game image; the first game's DLC patch is
+about 170 MB because the subtitled videos are genuinely new data. The patches were proven
+on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
+not been tested. Same install order afterwards: base, update, DLC.
+
+The CIAs stay on the release because they are what the hardware testing was done on, and
+because a patch against a file most people dump differently is a support thread waiting
+to happen.
