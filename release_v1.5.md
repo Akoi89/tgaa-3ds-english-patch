@@ -13,6 +13,8 @@ Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-p
 
 **Prefer patch files?** `TGAA1-3DS-English-v1.5-xdelta.zip` and `TGAA2-3DS-English-v1.5-xdelta.zip` hold rows 2 and 3 as xdelta patches against your own decrypted Japanese dump, plus the HOME banner patch, with a readme that has the commands and hashes. Same result, same install order. Added 6th Sept.
 
+**Japanese voices?** `TGAA1-3DS-English-JPvoice-v1.5-xdelta.zip` and `TGAA2-3DS-English-JPvoice-v1.5-xdelta.zip` are the same patches with every audio file put back to Capcom's Japanese, text and art unchanged. Same title versions as the main files, so install one edition or the other. See the README. Added 6th Sept.
+
 **Coming from v1.4?** All four changed. The first game's DLC keeps its name and version but its cover now reads the real number, `DLC 1.0.10` instead of `DLC 1.0.8`, so it is a different file. Install all four over the old ones.
 
 ## How to tell it took

@@ -506,3 +506,20 @@ not been tested. Same install order afterwards: base, update, DLC.
 The CIAs stay on the release because they are what the hardware testing was done on, and
 because a patch against a file most people dump differently is a support thread waiting
 to happen.
+
+### Japanese voice edition
+
+Some people want Capcom's English text over the original Japanese cast. From v1.5 the
+release also carries `TGAA1-3DS-English-JPvoice-v1.5-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.5-xdelta.zip`: the same three patches as the zips above,
+producing the same update and DLC with one difference. Every audio file is Capcom's
+Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
+the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are
+byte for byte the main release, and that was checked file by file rather than assumed:
+everything outside the sound files and the character archives is identical, and every
+reverted file equals the Japanese one. The first game's banner patch in that zip also keeps
+the Japanese HOME menu jingle, which the main release's banner replaces.
+
+The edition declares the same title versions as the main release, so install one or the
+other, not both; the title screens read the same `ENG` stamps. Both games and their DLC were
+installed and run before posting. The build and its check are `jpvoice/` in the tools.
