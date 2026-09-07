@@ -502,9 +502,13 @@ output hashes. The decryptor writes a few random bytes into every file it makes,
 source will not hash-match the readme's and the patches are built so that does not
 matter; the outputs must match exactly. The update patch is 27 to 35 MB because most of
 the update is files that already exist in the game image; the first game's DLC patch is
-about 170 MB because the subtitled videos are genuinely new data. The patches were proven
+about 178 MB because the subtitled videos are genuinely new data. The patches were proven
 on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
 not been tested. Same install order afterwards: base, update, DLC.
+
+The same readme text is also on the release on its own, as `TGAA1-README-v1.6.txt` and
+`TGAA2-README-v1.6.txt`, because romhacking.net wants the readme as a separate link rather
+than only inside the zip.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
 because a patch against a file most people dump differently is a support thread waiting
