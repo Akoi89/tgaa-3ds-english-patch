@@ -54,9 +54,10 @@ You do **not** need senyarom's release installed first. These builds supersede i
 
 Download from [Releases](../../releases). **Order matters.**
 
-The first game is also listed on romhacking.net as
-[translations/7719](https://www.romhacking.net/translations/7719/), which links back to the
-patch files here. The second game gets its own entry.
+Both games are also listed on romhacking.net, at
+[translations/7719](https://www.romhacking.net/translations/7719/) for the first and
+[translations/7720](https://www.romhacking.net/translations/7720/) for the second. Both link
+back to the patch files here.
 
 | order | file | what it is |
 |---|---|---|
