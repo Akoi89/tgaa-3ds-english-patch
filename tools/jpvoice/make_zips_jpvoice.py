@@ -131,9 +131,11 @@ This edition was built from the tested {tag} files by putting Capcom's Japanese
 audio back and changing nothing else, and every file in it was checked against
 both: text and art byte-identical to the main release, every audio file
 byte-identical to the Japanese original. The author installed and ran the v1.5
-form of this edition, both games with their DLC; v1.6 changes only the shout
-lettering, the same eight textures as the main release. The main release has
-had far more play, so anything odd is still worth a note.
+form of this edition, both games with their DLC. The v1.6 form has not been run
+on a console; against v1.5 it carries the same changes as the main release, the
+shout lettering, fifteen more of Capcom's textures and, in the second game, the
+restored title logo. The main release has had far more play, so anything odd is
+still worth a note.
 
 REPORT
 
