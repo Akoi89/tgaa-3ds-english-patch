@@ -54,6 +54,10 @@ You do **not** need senyarom's release installed first. These builds supersede i
 
 Download from [Releases](../../releases). **Order matters.**
 
+The first game is also listed on romhacking.net as
+[translations/7719](https://www.romhacking.net/translations/7719/), which links back to the
+patch files here. The second game gets its own entry.
+
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
