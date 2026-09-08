@@ -166,6 +166,13 @@ def main():
         assert fj('update', 'result')[0] == UPD_OUT[g], fj('update', 'result')[0]
         # TGAA1's English banner carries an English HOME jingle, so its JAP Dub base patch is its own
         # (Japanese jingle, English picture and title); TGAA2's banner never touched the jingle.
+        # TGAA1's English banner carries an ENGLISH HOME jingle, so this edition must ship its own
+        # banner patch. The fallback below is only correct for TGAA2, whose banner never touched the
+        # jingle. On 2026-09-07 a partial re-run left no TGAA1 base rows in the hash table, the
+        # fallback fired silently, and the zip shipped the English-jingle patch under a readme
+        # claiming the opposite. Refuse instead: re-run fix_tgaa1_banner_jingle.py.
+        assert g != 'TGAA1' or (g, 'base', 'patch') in hj, (
+            'no TGAA1 jpvoice base rows in %s: run jpvoice\\fix_tgaa1_banner_jingle.py first' % os.path.basename(PJ))
         if (g, 'base', 'patch') in hj:
             fb, btag = fj, JTAG
             base_note = '(this edition\'s own banner patch: the English picture and\n                                   title, but the Japanese HOME menu jingle)'

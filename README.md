@@ -57,7 +57,8 @@ Download from [Releases](../../releases). **Order matters.**
 Both games are also listed on romhacking.net, at
 [translations/7719](https://www.romhacking.net/translations/7719/) for the first and
 [translations/7720](https://www.romhacking.net/translations/7720/) for the second. Both link
-back to the patch files here.
+back to the patch files here. There is a thread for the patch on
+[r/AceAttorney](https://www.reddit.com/r/AceAttorney/comments/1waaj4q/capcoms_official_english_great_ace_attorney/).
 
 | order | file | what it is |
 |---|---|---|
