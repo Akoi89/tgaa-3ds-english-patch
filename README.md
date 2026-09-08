@@ -111,12 +111,12 @@ The full testing status, written honestly, is in [DETAILS.md](DETAILS.md).
 Their layout pipeline, their font handling, their port of Capcom's script onto the 3DS
 builds. Without it there's nothing here.
 
-**Scarlet Study** and **Fan Translators International** are further back down the same
-chain, and not just as a reference point. They made the first playable English 3DS builds
-years earlier, and did the font, rendering and reverse engineering work those builds rest
-on. senyarom's own README says their project builds on Scarlet Study's work, and their
-importer takes Scarlet Study's TGAA1 v2.4.1 and TGAA2 v2.1.0 CIAs as build inputs, so that
-work is structurally underneath this patch as well.
+**Scarlet Study / Fan Translators International**, as senyarom's README credits them, are
+further back down the same chain, and not just as a reference point. They made the first
+playable English 3DS builds years earlier, along with the font, rendering and reverse
+engineering work those builds rest on. senyarom's README says their project builds on that
+work, and their importer takes the Scarlet Study TGAA1 v2.4.1 and TGAA2 v2.1.0 CIAs as
+build inputs, so it is structurally underneath this patch too.
 
 The title logos, evidence cards, end card and Dance of Deduction wording are Capcom's own
 artwork and text from *Chronicles*, carried over rather than redrawn. The three banners in
