@@ -79,8 +79,16 @@ def romfs_of_ncch(blob):
 
 
 def extract_romfs(raw, outdir):
-    if os.path.isdir(outdir) and os.path.exists(os.path.join(outdir, '.done')):
-        return
+    # The marker records WHICH romfs this tree came from. It used to say only 'ok', so a tree
+    # extracted from an older build of the same title was reused silently: that is how the
+    # 2026-09-07 title-logo fix failed to reach the Japanese-voice build, which is assembled by
+    # copying this tree. A tree whose marker does not match the romfs in hand is thrown away.
+    stamp = hashlib.sha256(raw).hexdigest()
+    marker = os.path.join(outdir, '.done')
+    if os.path.isdir(outdir) and os.path.exists(marker):
+        if open(marker).read().strip() == stamp:
+            return
+        print('  stale tree, re-extracting: %s' % os.path.relpath(outdir, TREES), flush=True)
     if os.path.isdir(outdir):
         shutil.rmtree(outdir)
     os.makedirs(os.path.dirname(outdir), exist_ok=True)
@@ -88,7 +96,7 @@ def extract_romfs(raw, outdir):
     open(tmp, 'wb').write(raw)
     run(T3, '-xtf', 'romfs', tmp, '--romfs-dir', outdir)
     os.remove(tmp)
-    open(os.path.join(outdir, '.done'), 'w').write('ok')
+    open(marker, 'w').write(stamp)
 
 
 def extract_cia(path, label):
