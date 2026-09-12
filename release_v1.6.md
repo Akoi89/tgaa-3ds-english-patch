@@ -31,6 +31,8 @@ The first game's title screen reads `ENG 3.2.3`, the second game's `ENG 1.0.16`.
 
 One more honest note for the Japanese-voice edition. The Japanese-voice zips uploaded with that fix at 23:54 UTC were built from a stale copy of the second game's update and still carried the old logo, and the first game's zip in that upload had the main release's banner patch instead of its own Japanese-jingle one. Both were replaced again early on 8 September (UTC), and their readmes now say plainly that the v1.6 form of this edition has not been run on a console. If you took a Japanese-voice zip in that window, download it again; nothing else about the edition changed.
 
+**Patch files replaced on 11 September.** All four xdelta zips and the two loose banner patches were replaced. The patches inside the zips lost a small header that named folders on my PC; everything after it is unchanged and they produce exactly the same files, so if you already have them there is nothing to redo. The loose `TGAA1-Base-enbanner.xdelta` and `TGAA2-Base-enbanner.xdelta` are a different matter: the old ones only applied to my own decrypted dump and failed on anyone else's with a checksum error. The replacements are the same banner patches the zips carry, and they apply to any decrypted dump. The same two files were replaced on v1.4 and v1.5 as well.
+
 **Version bookkeeping.** The second game's console-facing version moves from 3.0.15 to 3.1.0, because that field's last part cannot go above 15; the screen and filename say 1.0.16. The first game is 3.2.3 everywhere.
 
 ## Still true from v1.5
