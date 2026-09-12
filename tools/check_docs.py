@@ -34,6 +34,9 @@ ROOT = os.environ.get('TGAA_ROOT', os.path.dirname(os.path.dirname(
 BUILDS = os.environ.get('TGAA_BUILDS', os.path.join(ROOT, 'Final', '_new'))
 REPO = os.environ.get('TGAA_REPO', 'Akoi89/tgaa-3ds-english-patch')
 DOCS = [os.path.join(ROOT, 'public_repo', 'README.md'),
+        # DETAILS.md took the per-file tables from README.md on 2026-09-07; without it the
+        # two README-v1.6.txt release assets read as undocumented.
+        os.path.join(ROOT, 'public_repo', 'DETAILS.md'),
         os.path.join(ROOT, 'CONTINUE_HERE.md'),
         # The Reddit drafts are gitignored, but they name CIAs and are aimed
         # at a public audience, so they go stale exactly like the README did

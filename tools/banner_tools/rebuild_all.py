@@ -24,7 +24,11 @@ for g, GG, ban, cci, logo, ref in G:
     src = os.path.join(R, cci); occi = os.path.join(OUT, GG + '-Base-enbanner.cci'); ocia = os.path.join(OUT, GG + '-Base-enbanner.cia'); oxd = os.path.join(OUT, GG + '-Base-enbanner.xdelta')
     run('python', 'exefs_splice.py', src, occi, 'banner=' + nb, 'icon=' + ic)
     run('python', 'cci_to_cia.py', occi, os.path.join(R, r'Final\_CURRENT', ref), ocia)
-    run(XD, '-e', '-f', '-s', src, occi, oxd)
+    # -a -A: no armor (xdelta 3.2.0 would lock the patch to this one decrypted dump's BLAKE3) and no
+    # app header (local paths). This xdelta still copies the dump's random card seed, so it is NOT
+    # the one to release: the shipped banner patch is build_rhdn_patches_v15.py's -base.xdelta,
+    # which zeroes the seed in the target and is proven on perturbed sources (2026-09-11).
+    run(XD, '-e', '-f', '-a', '-A', '-s', src, occi, oxd)
     # verify: banner+icon out of the CIA
     tmp = os.path.join(OUT, '_v_' + GG); shutil.rmtree(tmp, ignore_errors=True); os.makedirs(tmp)
     subprocess.run([CT, '--contents=' + os.path.join(tmp, 'c'), ocia], capture_output=True)
