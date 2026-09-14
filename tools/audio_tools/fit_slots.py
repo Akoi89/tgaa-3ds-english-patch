@@ -155,6 +155,7 @@ def rebuild(job):
     struct.pack_into('<4h', d, 0x58, ch['gain'], ch['ps'], 0, 0)
     d += adpcm + bytes(size - len(adpcm))
     d += bytes(len(cap) - len(d))                # pad back to Capcom's exact size
+    assert len(d) % 32 == 0, ('slot is not 32-aligned, donor is not Capcom\'s file', job['cap'], len(d))
     return bytes(d), len(pcm)
 
 

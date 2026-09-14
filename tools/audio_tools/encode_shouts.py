@@ -94,6 +94,7 @@ def rebuild_mca(original, pcm):
     struct.pack_into('<16h', d, 0x38, *coefs)
     struct.pack_into('<4h', d, 0x58, h['gain'], h['ps'], 0, 0)
     d += adpcm + bytes(size - len(adpcm))
+    d += bytes((-len(d)) % 32)   # Capcom's zero trailer: files must be 32-aligned or hardware clicks at the end (pad32 rule, 2026-09-06)
     # prove it reads back as what we meant
     chk = mca.parse_bytes(bytes(d))
     assert chk['samples'] == len(pcm) and chk['rate'] == h['rate']

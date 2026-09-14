@@ -136,6 +136,7 @@ def convert(jp_path, out_path, log=print):
         struct.pack_into('<4h', d, b + 32, 0, c['ps'], 0, 0)
         struct.pack_into('<4h', d, b + 40, c['loop'][0], c['loop'][1], c['loop'][2], 0)
     out = bytes(d) + bytes(body)
+    out += bytes((-len(out)) % 32)   # Capcom's zero trailer: 32-aligned or hardware clicks at the end (pad32 rule)
 
     # verify: reparse + spot-decode both channels of the finished file
     assert out[:4] == b'MADP' and out[8] == 2
