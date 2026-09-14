@@ -245,7 +245,9 @@ def build(donor_path, chans, rate, layout):
             struct.pack_into('<4h', d, b + 40, loop_ps, lh1, lh2, 0)
         else:
             struct.pack_into('<4h', d, b + 40, 0, 0, 0, 0)
-    return bytes(d) + bytes(body), enc, n
+    out = bytes(d) + bytes(body)
+    out += bytes((-len(out)) % 32)   # Capcom's zero trailer: 32-aligned or hardware clicks at the end (pad32 rule)
+    return out, enc, n
 
 
 def sync_index(stqr_path, sound_dir):

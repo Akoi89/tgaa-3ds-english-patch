@@ -24,6 +24,10 @@ from dgs2tool.arc import parse_arc, build_arc_bytes
 import tex_view, pctex_rgba, tex_rgba8, etc1a4, etc1_enc
 PC = os.path.join(ROOT, 'TGAAC Steam', 'nativeDX11x64', 'archive')
 TREES = os.path.join(ROOT, 'jpvoice', '_trees'); V16 = os.path.join(ROOT, 'jpvoice', '_v16')
+# 2026-09-14: the output tree is selectable so a v1.7 re-encode does not overwrite the shipped v1.6
+# reference trees. TGAA_PORT_OUT names the folder holding <game>/c0 (default: the v1.6 trees, as before);
+# TGAA_PORT_TAG suffixes the preview PNGs (default '' = the v1.6 names).
+OUT = os.environ.get('TGAA_PORT_OUT', V16); TAG = os.environ.get('TGAA_PORT_TAG', '')
 
 # (game, 3DS relpath [::member], PC arc, PC member, method)
 T = [
@@ -85,7 +89,9 @@ def etc1_port(jp, pcb, thresh=20):
     # standard big-endian blocks; the 3DS wants 8x8 tiles of four blocks, each a little-endian u64
     # ENCODER = 'search' (default since 2026-09-07): etc1_enc.encode_rgba_search, a base-colour search with
     # etcpak's block kept as a candidate; benched on these 15 textures at +0.7..+2.0 dB over plain etcpak
-    # (jpvoice/etc1_bench_v16.log). v1.6 shipped with ENCODER = 'etcpak'. Both write ETC1A4 (16-byte
+    # (jpvoice/etc1_bench_v16.log). The shipped v1.6 CIAs carry the SEARCH encoding for all 15 (the trees
+    # were re-run at 02:31 on 2026-09-07 before TGAA1 3.2.3 was built at 02:38; checked member by member
+    # against Final/_CURRENT on 2026-09-14, jpvoice/_v17/shipped_v16_encoder_check.txt). Both write ETC1A4 (16-byte
     # blocks); the ETC1 texture takes the colour u64 of each block.
     ENCODER = os.environ.get('TGAA_ETC1', 'search')
     rgba = np.dstack([np.clip(rgb_pc, 0, 255).astype(np.uint8), np.full((h, w), 255, np.uint8)])
@@ -128,7 +134,7 @@ def flat_rgba(rgb, al):
 report = []; previews = {'TGAA1': [], 'TGAA2': []}
 for game, loc, parc, pmem, method in T:
     rel, member = (loc.split('::') + [None])[:2]
-    src_tree = os.path.join(TREES, game + '_jp_cart', 'c0'); dst_tree = os.path.join(V16, game, 'c0')
+    src_tree = os.path.join(TREES, game + '_jp_cart', 'c0'); dst_tree = os.path.join(OUT, game, 'c0')
     if member:
         a_jp = parse_arc(open(os.path.join(src_tree, rel.replace('/', os.sep)), 'rb').read())
         jp = [bytes(e.data) for e in a_jp['entries'] if e.name == member][0]
@@ -166,7 +172,7 @@ for game, loc, parc, pmem, method in T:
     report.append(dict(game=game, loc=loc, pc=parc + '::' + pmem, method=method, note=note, added_to_update=added, new_sha256=hashlib.sha256(new).hexdigest()))
     previews[game].append((loc.split('/')[-1].replace('_BM_NOMIP', ''), bim, aim, note))
     print('%s %-60s %s%s' % (game, loc.split('::')[-1].split('/')[-1], note, '  [file added to the update]' if added else ''))
-json.dump(report, io.open(os.path.join(V16, 'port_report.json'), 'w', encoding='utf-8'), indent=1)
+json.dump(report, io.open(os.path.join(OUT, 'port_report.json'), 'w', encoding='utf-8'), indent=1)
 for game, tiles in previews.items():
     if not tiles: continue
     W = 256; sheet = Image.new('RGB', (W * len(tiles), 2 * W + 40), (0, 0, 0)); dr = ImageDraw.Draw(sheet)
@@ -174,4 +180,4 @@ for game, tiles in previews.items():
         b = b.copy(); a = a.copy(); b.thumbnail((W, W)); a.thumbnail((W, W))
         dr.text((i * W + 2, 2), n[:36], fill=(255, 255, 0)); dr.text((i * W + 2, 14), note[:36], fill=(180, 180, 180))
         sheet.paste(b, (i * W, 40)); sheet.paste(a, (i * W, 40 + W))
-    sheet.save(os.path.join(ROOT, 'jpvoice', '_notported', 'port_preview_%s.png' % game)); print(game, 'preview', sheet.size)
+    sheet.save(os.path.join(ROOT, 'jpvoice', '_notported', 'port_preview_%s%s.png' % (game, TAG))); print(game, 'preview', sheet.size)

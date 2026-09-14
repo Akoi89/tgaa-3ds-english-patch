@@ -95,6 +95,7 @@ def encode(donor, pcm, rate):
     struct.pack_into('<16h', d, 0x38, *coefs)
     struct.pack_into('<4h', d, 0x58, h['gain'], h['ps'], 0, 0)
     d += adpcm + bytes(size - len(adpcm))
+    d += bytes((-len(d)) % 32)   # Capcom's zero trailer: files must be 32-aligned or hardware clicks at the end (pad32 rule, 2026-09-06)
     return bytes(d)
 
 
@@ -141,6 +142,7 @@ def main():
     fail = False
     for j in jobs:
         need = 104 + (len(j['pcm']) // 14 * 8 + 63) // 64 * 64
+        need += (-need) % 32                    # the 32-byte trailer encode() appends
         j['will'] = need
         flag = ''
         if need > j['was']:

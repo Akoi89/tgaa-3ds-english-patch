@@ -45,8 +45,9 @@ def main(root, apply=False):
             # some originals carry trailing bytes after the data region; keep them
             tail = orig[hc['data_off'] + hc['data_size']:]
             d += tail
+            d += bytes((-len(d)) % 32)   # 32-aligned or hardware clicks at the end (pad32 rule, 2026-09-06)
             if len(d) != len(orig):
-                print('  NOTE idx%d %s: new %d vs orig %d (data_off %d/%d tail %d)'
+                print('  WARNING idx%d %s: new %d vs orig %d (data_off %d/%d tail %d); this tool does not sync the .stqr row, run fit_slots.sync_index or stqr.sync after'
                       % (i, base, len(d), len(orig), ho['data_off'], hc['data_off'], len(tail)))
             chk = mca.parse_bytes(bytes(d))
             assert chk['samples'] == ho['samples'] and chk['data_size'] == hc['data_size']
