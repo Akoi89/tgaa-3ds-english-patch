@@ -1,3 +1,5 @@
+**Superseded by [v1.7](../../releases/tag/v1.7)**, which changes the first game's update and both DLC files; the second game's update is the same file. The files here still install and work.
+
 Capcom's official English text on the Japanese 3DS releases, **including all the DLC**, and Capcom's art. Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch). You need the Japanese base games; they aren't distributed here.
 
 ## Install, in this order
