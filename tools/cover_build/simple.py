@@ -11,8 +11,10 @@ One exception, flagged to the user: Episode 0's banner carries
 Japanese text and a '_ENG' placeholder where the others carry an
 English title, so that line is erased and replaced.
 """
+import os
 import sys, os
 sys.path.insert(0, 'lib')
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'dlc_picturebook'))
 import numpy as np, cv2
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from covers import COVERS
@@ -72,6 +74,30 @@ def erase_ep0_text(pc):
     return out
 
 
+def erase_ep0_text_lama(pc):
+    """COVER_ERASE=lama (2026-09-15, user OK): the same glyph-core mask grown 19 px so the letters'
+    dark outline and soft shadow go too, filled with the LaMa model (G:/Claude/_models/big-lama.pt via
+    dlc_picturebook/lama_inpaint.py). The Telea fill left a smear of the rose strapline left of the
+    English title and blotches on the sword; LaMa rebuilds the guard and scabbard line cleanly.
+    Local only: the model is not a dependency of anything public."""
+    import lama_inpaint as LI
+    a = pc[:, :, :3].astype(int)
+    r, g, b = a[:, :, 0], a[:, :, 1], a[:, :, 2]
+    lum = a @ np.array([0.299, 0.587, 0.114])
+    sat = a.max(2) - a.min(2)
+    rose = (r - g > 35) & (r - b > 35) & (np.abs(g - b) <= 16) & (r > 150)
+    white = (lum > 195) & (sat < 38)
+    m = np.zeros(a.shape[:2], bool)
+    band = np.zeros_like(m); band[356:391, 120:660] = True
+    m |= rose & band
+    band = np.zeros_like(m); band[393:442, 240:815] = True
+    m |= white & band
+    m = cv2.dilate(m.astype(np.uint8), np.ones((19, 19), np.uint8))
+    out = pc.copy()
+    out[:, :, :3] = LI.inpaint(pc[:, :, :3].copy(), m, (100, 340, 840, 460), scale=1)
+    return out
+
+
 CARD = (95, 47, 930, 465)          # the banner card's opaque bounds (835x418, 2:1)
 
 # Screen geometry, SOLVED by template-matching a render against an
@@ -111,7 +137,7 @@ def full_bleed(pc):
 def build(n):
     pc = np.array(Image.open('pc_banners/pc%02d.png' % n).convert('RGBA'))
     if n == 0:
-        pc = erase_ep0_text(pc)
+        pc = erase_ep0_text_lama(pc) if os.environ.get('COVER_ERASE') == 'lama' else erase_ep0_text(pc)
     pc = full_bleed(pc)
     base = Image.fromarray(pc, 'RGBA')
     big = base.resize((base.width * SS, base.height * SS), Image.LANCZOS)

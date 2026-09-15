@@ -40,9 +40,9 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.2.3.cia` / `TGAA2-base-1.0.16.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.10.cia` / `TGAA2-DLC-1.0.9.cia` | the DLC |
-| 4 | `TGAA1-3DS-English-v1.6-xdelta.zip` / `TGAA2-3DS-English-v1.6-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
+| 2 | `TGAA1-base-3.2.4.cia` / `TGAA2-base-1.0.16.cia` | the update |
+| 3 | `TGAA1-DLC-1.0.11.cia` / `TGAA2-DLC-1.0.10.cia` | the DLC |
+| 4 | `TGAA1-3DS-English-v1.7-xdelta.zip` / `TGAA2-3DS-English-v1.7-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
@@ -51,10 +51,10 @@ You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
 | | reads |
 |---|---|
-| TGAA1 title screen, top right | `ENG 3.2.3` |
-| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.10`, top left |
+| TGAA1 title screen, top right | `ENG 3.2.4` |
+| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.11`, top left |
 | TGAA2 title screen, top right | `ENG 1.0.16` |
-| TGAA2 DLC, costume pack banner | `DLC 1.0.9`, bottom right |
+| TGAA2 DLC, costume pack banner | `DLC 1.0.10`, bottom right |
 
 An older number means an older update is still installed. Both title screens should also
 show Capcom's own *Adventures* and *Resolve* logos rather than fan-drawn ones.
@@ -73,7 +73,8 @@ covered in [DETAILS.md](DETAILS.md). Install one edition or the other, not both.
 Capcom's English shouts and story voices in both games, the cutscenes and the episode
 narration, where before this both games shouted Japanese over English text. Both of the
 second game's mini-episodes and the first game's DLC magazine, including the playable demo
-it carries, which was translated from the Japanese by hand. Capcom's own title logos,
+it carries, which was translated from the Japanese by hand, and its Picture Book, theme
+titles and Editor's Notes, which open now and are in English. Capcom's own title logos,
 evidence cards and shout lettering in place of the fan-drawn art. And a lot of layout work:
 dialogue re-broken at corrected font metrics, captions rewritten to fit, glyph advances
 fixed.
@@ -90,8 +91,6 @@ along with what stays Japanese and why.
 - **Some English lines are shorter than the Japanese were.** The performance is shorter.
   A line that ends cleanly is complete.
 - **The DLC card on the title screen reads "D L C"**, one letter per slot. Cosmetic.
-- **"Editor's Notes" bounces to the title** in the first game's DLC, along with the Picture
-  Book and Theme buttons. Known upstream bug.
 - **Two shouts in the second game's DLC stay Japanese.** Capcom never recorded them.
 - **38 dialogue pages in the second game still run under the arrow**, and four pages in the
   first game are still wider than the box. Both listed in DETAILS.
@@ -123,9 +122,13 @@ artwork and text from *Chronicles*, carried over rather than redrawn. The three 
 the second game's DLC are new artwork made for this patch and aren't Capcom's.
 
 The tooling was written with LLM assistance (Claude, through Claude Code). That's stated
-here rather than buried. No generated text or audio ships in the patch: what's in it is
-Capcom's own files and senyarom's carry of their script, and `tools/` is there so you can
-check that rather than take it from me.
+here rather than buried. Most of what ships is Capcom's own files and senyarom's carry of
+their script. Two things in the first game's DLC aren't, because Capcom never made them in
+English: the Picture Book commentary, sketch notes, theme titles and Editor's Notes were
+translated with Claude's help, checked against a second model and against Capcom's
+spelling of every name; and where that Japanese sat over artwork, the covered part of the
+art was filled in with an image inpainting model (LaMa). No generated audio ships.
+`tools/` is there so you can check all of it rather than take it from me.
 
 *The Great Ace Attorney* and *Chronicles* are © Capcom.
 

@@ -53,7 +53,9 @@ So this is the part that did not exist anywhere before:
 | **11** | commentary videos in the first game's DLC, subtitled and re-encoded to Capcom's own container spec |
 | **14** | magazine covers in the first game's DLC: 9 rebuilt from the official *Chronicles* banner art, 5 relabelled so you can tell the empty issues from the playable one |
 | **3** | DLC banners and the icon labels redrawn; the two story banners re-titled on new artwork (v1.4) |
-| **4** | event pictures in the second game's DLC that were still Japanese: the opening "work of fiction" card and a handwritten score sheet in three views, re-typeset in English at the photograph's own angle and focus (v1.4) |
+| **4** | event pictures in the second game's DLC that were still Japanese: the opening "work of fiction" card and a handwritten score sheet in three views, re-typeset in English at the photograph's own angle and focus (v1.4); the score sheet's paper cleaned of a dark band and leftover brush specks (v1.7) |
+| **76** | pages in the first game's DLC that were still Japanese images: 66 Picture Book pages of the art director's commentary with the handwritten notes on the design sheets, 8 theme preview titles and 2 Editor's Notes pages, all now in English (v1.7, see below) |
+| **1** | DLC list icon sheet redrawn from Capcom's Japanese plate, because the earlier English sheet cut off the bottom of all 18 icons; the Episode 0 cover and the five empty-issue covers got a cleaner fill behind their titles (v1.7) |
 
 **The playable sample was translated by hand.** The first game's DLC magazine carries a
 playable demo as issue No. 13: Episode 1's opening, the Court Record tutorial and a
@@ -62,6 +64,28 @@ translated it. It was done from the Japanese by hand for this release, and it is
 part of this project that is an original translation rather than a port of Capcom's work.
 Issues 9 to 12 turned out to be empty stubs that open and immediately exit, so their
 covers are now labelled as such and No. 13 is labelled as the playable one.
+
+**The Picture Book, theme titles and Editor's Notes are new translations too (v1.7).** Their
+buttons used to throw you back to the title, so nobody had seen them in English; once they
+opened, every page turned out to be a Japanese image. *Chronicles* has no Picture Book, so
+there was nothing of Capcom's to port. The English was translated from the Japanese with
+Claude's help, reviewed against a second model, and every character name checked against
+Capcom's spelling. The commentary is set in one condensed sans serif, the handwritten notes
+in a handwriting face, the theme titles in the serif of the Japanese titles. On the 29
+pages where the Japanese sat on a see-through panel over the artwork, the covered part of
+the art was filled in with an image inpainting model (LaMa) and only those pixels were
+changed; everywhere else the page is Capcom's image untouched. Brush-written name tags and
+tiny production scribbles on the sketches were left in Japanese.
+
+**Why the buttons bounced.** The DLC screen checks a DLC status byte before it opens the
+Picture Book, Theme or Editor's Notes, and turns back to the title if the byte isn't zero.
+Traced live in an emulator, the byte read 5, set by a background DLC request that comes back
+with an error code. senyarom's offline DLC patch skips that check in the two places the rest
+of the DLC list goes through; the same check sits in three more places, and those are the
+ones these three screens use. v1.7 skips it there the same way: three branch instructions
+in the update's code, nothing else. Capcom's Japanese update has the same code in this
+area, so the check itself is Capcom's; as far as I can tell it only trips when the DLC
+runs without Nintendo's servers behind it.
 
 **And where Capcom localised a piece of the DLC, this matches Capcom word for word.** One
 scene exists in *Chronicles* as official English, which makes an exact check possible:
@@ -251,14 +275,14 @@ Two pull requests went back to senyarom rather than being kept here:
 overflow the box, and **[#4](https://github.com/senyarom/tgaa2-en-patch/pull/4)** stops
 adapted advances running into the next glyph.
 
-Three further issues were filed there and **remain unfixed**, in this build and upstream:
+Three further issues were filed there. **[#6](https://github.com/senyarom/tgaa2-en-patch/issues/6)**
+(the first game's DLC Picture Book and Theme buttons bouncing to the title) is fixed here
+from v1.7, as described above. Two **remain unfixed**, in this build and upstream:
 **[#5](https://github.com/senyarom/tgaa2-en-patch/issues/5)** (the second game's Japanese
-end credits), **[#6](https://github.com/senyarom/tgaa2-en-patch/issues/6)** (the first
-game's DLC Picture Book and Theme buttons bouncing to the title) and
-**[#7](https://github.com/senyarom/tgaa2-en-patch/issues/7)** (40 lines in the first game
-set in the serif face that overrun the box, because the wrapper measures them with the
-other font's metrics). The first two appear in the known issues below. They are listed here because a contribution section that only lists wins is
-not worth much.
+end credits) and **[#7](https://github.com/senyarom/tgaa2-en-patch/issues/7)** (40 lines in
+the first game set in the serif face that overrun the box, because the wrapper measures
+them with the other font's metrics). The first appears in the known issues below. They are
+listed here because a contribution section that only lists wins is not worth much.
 
 ---
 
@@ -281,6 +305,8 @@ not worth much.
 | The dialogue re-wrap, second game (v1.4) | three of the changed pages seen on screen, the rest proven by the same tooling |
 | The page re-joins and the first game's widget pages (v1.4) | proven by measurement and by the after-run reporting the exact counts; a handful seen on screen, none on hardware |
 | The optional HOME banner | seen on a console and on an emulator with a HOME menu, both games |
+| The first game's DLC Picture Book, Theme and Editor's Notes (v1.7) | all 66 Picture Book pages, the eight theme previews and both Editor's Notes pages opened and read in an emulator; **not yet on a 3DS** |
+| The second game's cleaned score sheet (v1.7) | checked in the built files; not seen in play, it sits deep in the DLC story |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. They load by a different route than the
@@ -292,8 +318,8 @@ verdict or a press that stops part-way is the single most useful thing to listen
 
 ### Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.6-xdelta.zip`
-and `TGAA2-3DS-English-v1.6-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.7-xdelta.zip`
+and `TGAA2-3DS-English-v1.7-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -307,12 +333,12 @@ output hashes. The decryptor writes a few random bytes into every file it makes,
 source will not hash-match the readme's and the patches are built so that does not
 matter; the outputs must match exactly. The update patch is 27 to 35 MB because most of
 the update is files that already exist in the game image; the first game's DLC patch is
-about 178 MB because the subtitled videos are genuinely new data. The patches were proven
+about 180 MB because the subtitled videos are genuinely new data. The patches were proven
 on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
 not been tested. Same install order afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.6.txt` and
-`TGAA2-README-v1.6.txt`, because romhacking.net wants the readme as a separate link rather
+The same readme text is also on the release on its own, as `TGAA1-README-v1.7.txt` and
+`TGAA2-README-v1.7.txt`, because romhacking.net wants the readme as a separate link rather
 than only inside the zip.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
@@ -322,8 +348,8 @@ to happen.
 ### Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.6-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.6-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.7-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.7-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are

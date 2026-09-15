@@ -11,11 +11,11 @@ if not getattr(sys.stdout, '_utf8_wrapped', False):
 ROOT = r'G:\Claude\TGAA 1-2'
 sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
 from make_zips_v15 import META
-P15 = os.path.join(ROOT, '_rhdn_work', '_out16'); PJ = os.path.join(ROOT, 'jpvoice', '_patches')
+P15 = os.path.join(ROOT, '_rhdn_work', '_out17'); PJ = os.path.join(ROOT, 'jpvoice', '_patches')
 OUT = os.path.join(ROOT, 'jpvoice', '_zips'); os.makedirs(OUT, exist_ok=True)
 XD = os.path.join(ROOT, 'patches', 'xdelta3.exe')
-TAG = 'v1.6'; JTAG = 'v1.6-jpvoice'
-UPD_OUT = {'TGAA1': 'TGAA1-base-3.2.3-jpvoice.cia', 'TGAA2': 'TGAA2-base-1.0.16-jpvoice.cia'}
+TAG = 'v1.7'; JTAG = 'v1.7-jpvoice'
+UPD_OUT = {'TGAA1': 'TGAA1-base-3.2.4-jpvoice.cia', 'TGAA2': 'TGAA2-base-1.0.16-jpvoice.cia'}
 
 README = """{en} ({jp}), Nintendo 3DS
 English patch {tag}, JAPANESE VOICE edition, as xdelta patches for your own Japanese dump
@@ -131,11 +131,13 @@ This edition was built from the tested {tag} files by putting Capcom's Japanese
 audio back and changing nothing else, and every file in it was checked against
 both: text and art byte-identical to the main release, every audio file
 byte-identical to the Japanese original. The author installed and ran the v1.5
-form of this edition, both games with their DLC. The v1.6 form has not been run
-on a console; against v1.5 it carries the same changes as the main release, the
-shout lettering, fifteen more of Capcom's textures and, in the second game, the
-restored title logo. The main release has had far more play, so anything odd is
-still worth a note.
+form of this edition, both games with their DLC. The v1.7 form has not been run
+on a console; against v1.5 it carries the same changes as the main release: the
+shout lettering, fifteen more of Capcom's textures, the restored title logo in the
+second game, and in the first game the fix for the DLC Picture Book, Theme and
+Editor's Notes screens (they sent you back to the main menu) along with English
+Picture Book pages, theme titles and Editor's Notes. The main release has had far
+more play, so anything odd is still worth a note.
 
 REPORT
 
