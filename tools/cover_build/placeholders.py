@@ -13,6 +13,7 @@ unlike issues 0-8 the 3DS texture itself is edited: mask the glyphs and
 their dark outline, inpaint, and redraw. Style sampled off the plate --
 cream #faf1e6 core, #423834 outline, 35px cap height, baseline 163.
 """
+import os
 import sys, os
 import numpy as np, cv2
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
@@ -48,7 +49,15 @@ def retitle(tex_png, issue):
     m = np.zeros(rgb.shape[:2], np.uint8)
     m[y0:y1, x0:x1] = (glyph | (halo & (lum < 110))).astype(np.uint8)
     m = cv2.dilate(m, np.ones((3, 3), np.uint8))
-    rgb = cv2.inpaint(rgb, m, 6, cv2.INPAINT_TELEA)
+    if os.environ.get('PH_ERASE') == 'lama':
+        # 2026-09-15 (user OK): LaMa rebuilds the building facade behind the number; Telea left pink and
+        # blue smears. Same mask. Model: G:/Claude/_models/big-lama.pt via dlc_picturebook/lama_inpaint.py
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'dlc_picturebook'))
+        import lama_inpaint as LI
+        ys, xs = np.nonzero(m)
+        rgb = LI.inpaint(rgb, m, (int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1), scale=2)
+    else:
+        rgb = cv2.inpaint(rgb, m, 6, cv2.INPAINT_TELEA)
     out = a.copy(); out[:, :, :3] = rgb
     base = Image.fromarray(out, 'RGBA')
 

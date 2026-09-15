@@ -31,14 +31,14 @@ os.makedirs(TREES, exist_ok=True)
 
 SRC = {
     'TGAA1': dict(
-        ours_upd=os.path.join(ROOT, 'Final', FINAL, 'TGAA1-base-3.2.3.cia'),
-        ours_dlc=os.path.join(ROOT, 'Final', FINAL, 'TGAA1-DLC-1.0.10.cia'),
+        ours_upd=os.path.join(ROOT, 'Final', FINAL, 'TGAA1-base-3.2.4.cia'),
+        ours_dlc=os.path.join(ROOT, 'Final', FINAL, 'TGAA1-DLC-1.0.11.cia'),
         jp_cart=os.path.join(ROOT, r'_sources\TGAA1 - Base-decrypted.cci'),
         jp_upd=os.path.join(ROOT, r'_sources\TGAA1-Official-Jap (Patch)-decrypted.cia'),
         jp_dlc=os.path.join(ROOT, r'_sources\TGAA1-Official-Jap (DLC)-decrypted.cia')),
     'TGAA2': dict(
         ours_upd=os.path.join(ROOT, 'Final', FINAL, 'TGAA2-base-1.0.16.cia'),
-        ours_dlc=os.path.join(ROOT, 'Final', FINAL, 'TGAA2-DLC-1.0.9.cia'),
+        ours_dlc=os.path.join(ROOT, 'Final', FINAL, 'TGAA2-DLC-1.0.10.cia'),
         jp_cart=os.path.join(ROOT, r'_sources\DGS2 - Base-decrypted.cci'),
         jp_upd=os.path.join(ROOT, r'_sources\DGS2-Official-Jap-v2.3.3 (Patch)-decrypted.cia'),
         jp_dlc=os.path.join(ROOT, r'_sources\DGS2-Jap-DLC (DLC)-decrypted.cia')),

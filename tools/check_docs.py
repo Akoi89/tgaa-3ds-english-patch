@@ -19,10 +19,10 @@ What counts as a defect here: a CIA named in a doc that is neither present in th
 build directory nor attached to the release. Names that are historical by
 intent -- a superseded build being discussed as history -- go in ALLOW.
 """
-import os
 import argparse
 import glob
 import json
+import os
 import re
 import subprocess
 import sys
@@ -65,7 +65,7 @@ def current():
 def released():
     try:
         out = subprocess.run(
-            ['gh', 'release', 'view', os.environ.get('TGAA_RELEASE_TAG', 'v1.5'), '--repo', REPO, '--json',
+            ['gh', 'release', 'view', os.environ.get('TGAA_RELEASE_TAG', 'v1.7'), '--repo', REPO, '--json',
              'assets,body'], capture_output=True, text=True, timeout=60)
         if out.returncode:
             return None, None

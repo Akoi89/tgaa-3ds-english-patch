@@ -18,17 +18,17 @@ SETS = {
                   # the first game's English banner carries an English HOME jingle; the JAP Dub set gets
                   # a banner image with the Japanese jingle instead (fix_tgaa1_banner_jingle.py)
                   extra=[(r'jpvoice\_out\TGAA1-Base-enbanner-jpjingle.cia', 'TGAA1-Base-enbanner-jpjingle.cia'),
-                         (r'jpvoice\_patches\TGAA1-v1.6-jpvoice-base.xdelta', 'TGAA1-Base-enbanner-jpjingle.xdelta')],
-                  upd=(r'jpvoice\_out\TGAA1-base-3.2.3-jpvoice.cia', 'TGAA1-base-3.2.3-jpvoice.cia'),
-                  dlc=(r'jpvoice\_patches\TGAA1-v1.6-jpvoice-DLC.cia', 'TGAA1-DLC-1.0.10-jpvoice.cia'),
-                  zip_=(r'jpvoice\_zips\TGAA1-3DS-English-JPvoice-v1.6-xdelta.zip', 'TGAA1-3DS-English-JPvoice-v1.6-xdelta.zip'),
-                  stamp='ENG 3.2.3', dlcstamp='DLC 1.0.10'),
+                         (r'jpvoice\_patches\TGAA1-v1.7-jpvoice-base.xdelta', 'TGAA1-Base-enbanner-jpjingle.xdelta')],
+                  upd=(r'jpvoice\_out\TGAA1-base-3.2.4-jpvoice.cia', 'TGAA1-base-3.2.4-jpvoice.cia'),
+                  dlc=(r'jpvoice\_patches\TGAA1-v1.7-jpvoice-DLC.cia', 'TGAA1-DLC-1.0.11-jpvoice.cia'),
+                  zip_=(r'jpvoice\_zips\TGAA1-3DS-English-JPvoice-v1.7-xdelta.zip', 'TGAA1-3DS-English-JPvoice-v1.7-xdelta.zip'),
+                  stamp='ENG 3.2.4', dlcstamp='DLC 1.0.11'),
     'TGAA2': dict(parent=os.path.join(NAS, 'The Great Ace Attorney 2 Resolve'),
                   jp_base='TGAA2 - Base.cia', enb_cia='TGAA2-Base-enbanner.cia', enb_xd='TGAA2-Base-enbanner.xdelta',
                   upd=(r'jpvoice\_out\TGAA2-base-1.0.16-jpvoice.cia', 'TGAA2-base-1.0.16-jpvoice.cia'),
-                  dlc=(r'jpvoice\_patches\TGAA2-v1.6-jpvoice-DLC.cia', 'TGAA2-DLC-1.0.9-jpvoice.cia'),
-                  zip_=(r'jpvoice\_zips\TGAA2-3DS-English-JPvoice-v1.6-xdelta.zip', 'TGAA2-3DS-English-JPvoice-v1.6-xdelta.zip'),
-                  stamp='ENG 1.0.16', dlcstamp='DLC 1.0.9'),
+                  dlc=(r'jpvoice\_patches\TGAA2-v1.7-jpvoice-DLC.cia', 'TGAA2-DLC-1.0.10-jpvoice.cia'),
+                  zip_=(r'jpvoice\_zips\TGAA2-3DS-English-JPvoice-v1.7-xdelta.zip', 'TGAA2-3DS-English-JPvoice-v1.7-xdelta.zip'),
+                  stamp='ENG 1.0.16', dlcstamp='DLC 1.0.10'),
 }
 
 
@@ -55,12 +55,12 @@ for g, s in SETS.items():
     else:
         readme_banner = ['Files here that are NOT audio-specific are copies of the parent folder: the JP base CIA,',
                          'the English-banner base CIA and its xdelta (its jingle is already the Japanese one).']
-    readme = ['%s, Japanese voice edition of the v1.6 English patch (built 2026-09-07)' % g, '',
-              'Same text, art and layout as the main v1.6 files in the parent folder; ALL audio is',
+    readme = ['%s, Japanese voice edition of the v1.7 English patch (built 2026-09-15)' % g, '',
+              'Same text, art and layout as the main v1.7 files in the parent folder; ALL audio is',
               "Capcom's original Japanese (cartridge and Japanese DLC takes). Same title IDs and the",
               'same version numbers as the main files: install these INSTEAD of them, not as well.',
-              'Title screen still reads %s, DLC page %s. Installed and run by the author,' % (s['stamp'], s['dlcstamp']),
-              'both games with their DLC (2026-09-06).', '',
+              'Title screen still reads %s, DLC page %s. The v1.5 form was installed and run by the' % (s['stamp'], s['dlcstamp']),
+              'author, both games with their DLC (2026-09-06); this v1.7 form has not been run on a console.', '',
               'Install order: JP base (or the enbanner base), then the -jpvoice update, then the -jpvoice DLC.',
               'The xdelta zip rebuilds the update and DLC from your own decrypted dumps (readme inside).', '',
               ] + readme_banner + ['', 'sha256:']
