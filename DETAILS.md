@@ -55,6 +55,7 @@ So this is the part that did not exist anywhere before:
 | **3** | DLC banners and the icon labels redrawn; the two story banners re-titled on new artwork (v1.4) |
 | **4** | event pictures in the second game's DLC that were still Japanese: the opening "work of fiction" card and a handwritten score sheet in three views, re-typeset in English at the photograph's own angle and focus (v1.4); the score sheet's paper cleaned of a dark band and leftover brush specks (v1.7) |
 | **76** | pages in the first game's DLC that were still Japanese images: 66 Picture Book pages of the art director's commentary with the handwritten notes on the design sheets, 8 theme preview titles and 2 Editor's Notes pages, all now in English (v1.7, see below) |
+| **29** | of those Picture Book pages where the commentary sits on a see-through panel over the artwork, redone so the artwork under and around the panel is Capcom's own rather than a blurred repaint (v1.8, see below) |
 | **1** | DLC list icon sheet redrawn from Capcom's Japanese plate, because the earlier English sheet cut off the bottom of all 18 icons; the Episode 0 cover and the five empty-issue covers got a cleaner fill behind their titles (v1.7) |
 
 **The playable sample was translated by hand.** The first game's DLC magazine carries a
@@ -76,6 +77,20 @@ pages where the Japanese sat on a see-through panel over the artwork, the covere
 the art was filled in with an image inpainting model (LaMa) and only those pixels were
 changed; everywhere else the page is Capcom's image untouched. Brush-written name tags and
 tiny production scribbles on the sketches were left in Japanese.
+
+**Those 29 pages were redone in v1.8, and no model paints them any more.** The mask grown
+around each Japanese character ended up covering about three quarters of the panel, because
+the characters sit two to four pixels apart and the mask closed the gaps between them, so
+the inpainting model was repainting the whole panel and inventing the picture behind it.
+That showed as a smeared band along the top of each panel and as characters' legs turned
+into pale smudges. Nothing is repainted now. What the panel looks like without the writing
+is estimated from the pixels that are not writing, and each pixel is faded towards that
+estimate in proportion to how much darker than it it is, so the ink lifts out and the
+drawing stays. The English also sits on the row Capcom's Japanese started on rather than a
+few rows lower, which is what left the pale band. Every row above the first line of text on
+those pages is now byte-identical to Capcom's own page. One page is still not right: on the
+rough sketches page in issue 6 the tips of the pencil hair share pixels with the writing,
+and every rule that kept the hair also left readable Japanese, so the tips stay clipped.
 
 **Why the buttons bounced.** The DLC screen checks a DLC status byte before it opens the
 Picture Book, Theme or Editor's Notes, and turns back to the title if the byte isn't zero.
@@ -306,6 +321,7 @@ listed here because a contribution section that only lists wins is not worth muc
 | The page re-joins and the first game's widget pages (v1.4) | proven by measurement and by the after-run reporting the exact counts; a handful seen on screen, none on hardware |
 | The optional HOME banner | seen on a console and on an emulator with a HOME menu, both games |
 | The first game's DLC Picture Book, Theme and Editor's Notes (v1.7) | all 66 Picture Book pages, the eight theme previews and both Editor's Notes pages opened and read in an emulator; **not yet on a 3DS** |
+| The redone see-through Picture Book pages (v1.8) | all 66 pages opened and read again in an emulator on the v1.8 build; the theme previews, Editor's Notes and covers are byte-identical to v1.7 and were not re-checked on screen; **not yet on a 3DS** |
 | The second game's cleaned score sheet (v1.7) | checked in the built files; not seen in play, it sits deep in the DLC story |
 | Playing through on a 3DS | not yet |
 
@@ -318,8 +334,8 @@ verdict or a press that stops part-way is the single most useful thing to listen
 
 ### Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.7-xdelta.zip`
-and `TGAA2-3DS-English-v1.7-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.8-xdelta.zip`
+and `TGAA2-3DS-English-v1.8-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -337,8 +353,8 @@ about 180 MB because the subtitled videos are genuinely new data. The patches we
 on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
 not been tested. Same install order afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.7.txt` and
-`TGAA2-README-v1.7.txt`, because romhacking.net wants the readme as a separate link rather
+The same readme text is also on the release on its own, as `TGAA1-README-v1.8.txt` and
+`TGAA2-README-v1.8.txt`, because romhacking.net wants the readme as a separate link rather
 than only inside the zip.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
@@ -348,8 +364,8 @@ to happen.
 ### Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.7-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.7-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.8-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.8-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are

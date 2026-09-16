@@ -15,13 +15,14 @@
   "boxes": [
    [
     210,
-    196,
+    191,
     420,
     247
    ]
   ],
-  "area_top": 201,
-  "panel_bottom": 241
+  "area_top": 195,
+  "panel_bottom": 241,
+  "erase_top": 190
  },
  "aoc01_design_00": {
   "mode": "overlay",
@@ -33,7 +34,8 @@
     247
    ]
   ],
-  "area_top": 149
+  "area_top": 147,
+  "erase_top": 144
  },
  "aoc01_design_03": {
   "mode": "cream",
@@ -77,7 +79,9 @@
     262,
     247
    ]
-  ]
+  ],
+  "area_top": 178,
+  "erase_top": 173
  },
  "aoc02_design_05": {
   "mode": "cream",
@@ -100,7 +104,9 @@
     246
    ]
   ],
-  "area_top": 205
+  "area_top": 206,
+  "erase_top": 200,
+  "erase_bottom": 242
  },
  "aoc03_design_00": {
   "mode": "overlay",
@@ -112,7 +118,8 @@
     247
    ]
   ],
-  "area_top": 170
+  "area_top": 168,
+  "erase_top": 164
  },
  "aoc03_design_02": {
   "mode": "cream",
@@ -135,7 +142,8 @@
     246
    ]
   ],
-  "area_top": 205
+  "area_top": 203,
+  "erase_top": 200
  },
  "aoc03_design_05": {
   "mode": "overlay",
@@ -147,7 +155,8 @@
     246
    ]
   ],
-  "area_top": 189
+  "area_top": 188,
+  "erase_top": 184
  },
  "aoc03_design_06": {
   "mode": "cream",
@@ -170,7 +179,8 @@
     247
    ]
   ],
-  "area_top": 191
+  "area_top": 190,
+  "erase_top": 187
  },
  "aoc04_design_00": {
   "mode": "overlay",
@@ -182,7 +192,8 @@
     247
    ]
   ],
-  "area_top": 168
+  "area_top": 168,
+  "erase_top": 165
  },
  "aoc04_design_01": {
   "mode": "overlay",
@@ -194,7 +205,8 @@
     246
    ]
   ],
-  "area_top": 181
+  "area_top": 172,
+  "erase_top": 172
  },
  "aoc04_design_03": {
   "mode": "overlay",
@@ -206,7 +218,8 @@
     245
    ]
   ],
-  "area_top": 178
+  "area_top": 179,
+  "erase_top": 177
  },
  "aoc04_design_06": {
   "mode": "overlay",
@@ -217,7 +230,9 @@
     254,
     246
    ]
-  ]
+  ],
+  "area_top": 192,
+  "erase_top": 192
  },
  "aoc04_design_07": {
   "mode": "overlay",
@@ -229,7 +244,8 @@
     244
    ]
   ],
-  "area_top": 187
+  "area_top": 180,
+  "erase_top": 180
  },
  "aoc05_design_00": {
   "mode": "overlay",
@@ -241,7 +257,8 @@
     247
    ]
   ],
-  "area_top": 172
+  "area_top": 173,
+  "erase_top": 167
  },
  "aoc05_design_03": {
   "mode": "overlay",
@@ -253,7 +270,8 @@
     247
    ]
   ],
-  "area_top": 194
+  "area_top": 192,
+  "erase_top": 189
  },
  "aoc05_design_04": {
   "mode": "overlay",
@@ -264,7 +282,9 @@
     330,
     246
    ]
-  ]
+  ],
+  "area_top": 202,
+  "erase_top": 198
  },
  "aoc05_design_05": {
   "mode": "overlay",
@@ -276,7 +296,8 @@
     246
    ]
   ],
-  "area_top": 211
+  "area_top": 211,
+  "erase_top": 208
  },
  "aoc05_design_06": {
   "mode": "overlay",
@@ -288,7 +309,8 @@
     246
    ]
   ],
-  "area_top": 212
+  "area_top": 211,
+  "erase_top": 207
  },
  "aoc05_design_07": {
   "mode": "overlay",
@@ -300,7 +322,8 @@
     247
    ]
   ],
-  "area_top": 181
+  "area_top": 180,
+  "erase_top": 177
  },
  "aoc06_design_00": {
   "mode": "overlay",
@@ -311,7 +334,9 @@
     266,
     247
    ]
-  ]
+  ],
+  "area_top": 167,
+  "erase_top": 165
  },
  "aoc06_design_01": {
   "mode": "cream",
@@ -334,7 +359,8 @@
     247
    ]
   ],
-  "area_top": 178
+  "area_top": 178,
+  "erase_top": 175
  },
  "aoc06_design_04": {
   "mode": "cream",
@@ -358,7 +384,8 @@
     247
    ]
   ],
-  "area_top": 168
+  "area_top": 167,
+  "erase_top": 164
  },
  "aoc06_design_06": {
   "mode": "overlay",
@@ -370,8 +397,9 @@
     246
    ]
   ],
-  "area_top": 199,
-  "panel_bottom": 242
+  "area_top": 198,
+  "panel_bottom": 242,
+  "erase_top": 194
  },
  "aoc06_design_07": {
   "mode": "overlay",
@@ -383,7 +411,8 @@
     247
    ]
   ],
-  "area_top": 171
+  "area_top": 169,
+  "erase_top": 167
  },
  "aoc07_design_02": {
   "mode": "cream",
@@ -433,9 +462,16 @@
     178,
     419,
     247
+   ],
+   [
+    280,
+    161,
+    384,
+    169
    ]
   ],
-  "area_top": 170
+  "area_top": 168,
+  "erase_top": 167
  },
  "aoc08_design_00": {
   "mode": "overlay",
@@ -447,7 +483,8 @@
     247
    ]
   ],
-  "area_top": 126
+  "area_top": 125,
+  "erase_top": 122
  },
  "aoc08_design_01": {
   "mode": "overlay",
@@ -459,7 +496,8 @@
     247
    ]
   ],
-  "area_top": 181
+  "area_top": 178,
+  "erase_top": 176
  },
  "aoc08_design_03": {
   "mode": "overlay",
@@ -471,7 +509,8 @@
     247
    ]
   ],
-  "area_top": 179
+  "area_top": 177,
+  "erase_top": 174
  },
  "aoc08_design_04": {
   "mode": "overlay",
@@ -483,7 +522,8 @@
     247
    ]
   ],
-  "area_top": 173
+  "area_top": 170,
+  "erase_top": 168
  },
  "aoc08_design_05": {
   "mode": "cream",

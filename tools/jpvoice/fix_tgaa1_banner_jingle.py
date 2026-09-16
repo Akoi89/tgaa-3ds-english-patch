@@ -65,7 +65,7 @@ print('spliced: banner == composed, every other ExeFS file (icon with English ti
 # base xdelta with the full proof, into the jpvoice patch folder
 os.makedirs(WORK, exist_ok=True)
 cfg = dict(B.GAMES['TGAA1'], enbanner=os.path.relpath(NEW_CCI, ROOT))
-TAGJ = os.environ.get('TGAA_JTAG', 'v1.7-jpvoice')
+TAGJ = os.environ.get('TGAA_JTAG', 'v1.8-jpvoice')
 src, tgt, xd = B.build_base('TGAA1', cfg, WORK, PJ, TAGJ)
 rows = []
 for label, p in (('source', src), ('result', tgt), ('patch', xd)):
