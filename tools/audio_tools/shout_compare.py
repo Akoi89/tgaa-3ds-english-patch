@@ -1,7 +1,8 @@
 """Compare every shout clip (MADP entries) between Capcom's Japanese DLC tree and
 our shipped tree: duration, first/last sample level, peak. Prints one row per entry."""
 import os, sys, struct
-ROOT = 'G:/Claude/TGAA 1-2/dlc_story_audit'
+TGAA_ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
+ROOT = os.path.join(TGAA_ROOT, 'dlc_story_audit')
 sys.path.insert(0, ROOT + '/arc_tools')
 sys.path.insert(0, ROOT + '/audio_tools')
 import arc, mca

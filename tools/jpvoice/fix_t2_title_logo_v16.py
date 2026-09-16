@@ -16,7 +16,7 @@ import os, sys, io, shutil, subprocess, hashlib, filecmp
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 import numpy as np
 from PIL import Image, ImageDraw
-ROOT = r'G:\Claude\TGAA 1-2'
+ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(ROOT, 'testimony_pipeline'))
 from cia import Cia
 import stamp_title_versions as stv

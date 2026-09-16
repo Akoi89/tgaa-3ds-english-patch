@@ -16,7 +16,7 @@ import os
 import re
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(os.environ.get('TGAA_ROOT', os.environ.get('TGAA_ROOT', r'G:\Claude\TGAA 1-2')), r'dlc_icons\tgaa2-en-patch'))
+sys.path.insert(0, os.path.join(os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder'), r'dlc_icons\tgaa2-en-patch'))
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 from dgs2tool.gmd import parse_gmd_bytes            # noqa: E402
 import pxwidth as P                                  # noqa: E402

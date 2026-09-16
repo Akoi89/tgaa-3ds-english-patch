@@ -2,7 +2,7 @@
 -> CIA -> xdelta -> verify by extraction. Usage: python rebuild_all.py <stretch1[,stretch2]> [scale]"""
 import os, subprocess, sys, hashlib, filecmp, shutil
 
-R = os.environ.get('TGAA_ROOT', r'G:\Claude\TGAA 1-2'); BT = os.path.join(R, 'banner_tools'); HB = os.path.join(R, r'dlc_story_audit\_validation\home_banner')
+R = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder'); BT = os.path.join(R, 'banner_tools'); HB = os.path.join(R, r'dlc_story_audit\_validation\home_banner')
 OUT = os.path.join(BT, '_out'); CT = os.path.join(R, 'ctrtool.exe'); XD = os.path.join(R, r'patches\xdelta3.exe')
 st = sys.argv[1].split(','); stretches = {'tgaa1': st[0], 'tgaa2': st[-1]}; scale = sys.argv[2] if len(sys.argv) > 2 else '1.0'
 G = [('tgaa1', 'TGAA1', 'TGAA1_-_Base_base_banner.bin', r'_sources\TGAA1 - Base-decrypted.cci', 'The_Great_Ace_Attorney_1_logo_English.webp', 'TGAA1 - Base.cia'),

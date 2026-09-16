@@ -45,6 +45,9 @@ Nothing is hardcoded to a machine any more. Set what a given script needs:
 | `TGAAC_STEAM` | the Chronicles PC install, at `.../nativeDX11x64` |
 | `AZAHAR` | the Azahar emulator binary (the driving rig only) |
 | `BANNER_ART`, `BANNER_OUT`, `SWEEP_OUT` | input and output folders for specific scripts |
+| `TGAA_ROOT` | the project folder these scripts were written against |
+| `MODELS_ROOT` | the folder holding downloaded ML models (the LaMa inpainting weights) |
+| `TGAA_NAS` | the NAS destination folder used by `jpvoice/stage_and_nas.py` |
 
 ## What is here
 

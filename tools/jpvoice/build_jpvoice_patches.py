@@ -12,7 +12,7 @@ Output: jpvoice/_patches/  plus HASHES_v1.5-jpvoice.txt.   Usage: python jpvoice
 import os, sys, io
 if not getattr(sys.stdout, '_utf8_wrapped', False):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace'); sys.stdout._utf8_wrapped = True
-ROOT = r'G:\Claude\TGAA 1-2'
+ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
 import build_rhdn_patches_v15 as B
 from build_rhdn_patches import digest

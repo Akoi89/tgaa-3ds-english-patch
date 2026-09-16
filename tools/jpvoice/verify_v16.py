@@ -7,7 +7,7 @@ Exit 1 on anything else. Usage: python jpvoice\verify_v16.py"""
 import os, sys, io, json, hashlib, shutil
 if not getattr(sys.stdout, '_utf8_wrapped', False):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace'); sys.stdout._utf8_wrapped = True
-ROOT = r'G:\Claude\TGAA 1-2'
+ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(ROOT, 'testimony_pipeline')); sys.path.insert(0, os.path.join(ROOT, 'jpvoice')); sys.path.insert(0, os.path.join(ROOT, 'dlc_icons', 'tgaa2-en-patch'))
 from cia import Cia
 from inventory import romfs_of_ncch, extract_romfs, walk, h

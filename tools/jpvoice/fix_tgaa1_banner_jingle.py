@@ -15,7 +15,7 @@ Outputs: jpvoice/_out/TGAA1-Base-enbanner-jpjingle.{cci,cia}, jpvoice/_patches/T
 import os, sys, io, struct, hashlib, shutil, subprocess
 if not getattr(sys.stdout, '_utf8_wrapped', False):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace'); sys.stdout._utf8_wrapped = True
-ROOT = r'G:\Claude\TGAA 1-2'
+ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(ROOT, 'banner_tools')); sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
 import exefs_banner
 import build_rhdn_patches_v15 as B

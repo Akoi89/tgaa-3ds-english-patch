@@ -12,7 +12,8 @@ import struct
 import sys
 import time
 
-sys.path.insert(0, r'G:\Claude\TGAA 1-2\testimony_pipeline')
+TGAA_ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
+sys.path.insert(0, os.path.join(TGAA_ROOT, 'testimony_pipeline'))
 from cia import Cia  # noqa: E402
 
 cia_path, tid = sys.argv[1], sys.argv[2]

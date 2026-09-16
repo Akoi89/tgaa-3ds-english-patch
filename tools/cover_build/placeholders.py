@@ -51,7 +51,7 @@ def retitle(tex_png, issue):
     m = cv2.dilate(m, np.ones((3, 3), np.uint8))
     if os.environ.get('PH_ERASE') == 'lama':
         # 2026-09-15 (user OK): LaMa rebuilds the building facade behind the number; Telea left pink and
-        # blue smears. Same mask. Model: G:/Claude/_models/big-lama.pt via dlc_picturebook/lama_inpaint.py
+        # blue smears. Same mask. Model: <MODELS_ROOT>/big-lama.pt via dlc_picturebook/lama_inpaint.py
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'dlc_picturebook'))
         import lama_inpaint as LI
         ys, xs = np.nonzero(m)

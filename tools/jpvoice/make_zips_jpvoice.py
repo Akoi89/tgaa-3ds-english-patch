@@ -8,7 +8,7 @@ Usage: python jpvoice\make_zips_jpvoice.py
 import os, sys, io, zipfile, hashlib
 if not getattr(sys.stdout, '_utf8_wrapped', False):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace'); sys.stdout._utf8_wrapped = True
-ROOT = r'G:\Claude\TGAA 1-2'
+ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
 from make_zips_v15 import META
 P15 = os.path.join(ROOT, '_rhdn_work', '_out18'); PJ = os.path.join(ROOT, 'jpvoice', '_patches')

@@ -13,7 +13,7 @@ in the CBMD header is unchanged (models untouched).
 """
 import math, os, struct, sys, wave
 import numpy as np
-R = os.environ.get('TGAA_ROOT', r'G:\Claude\TGAA 1-2')
+R = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(R, r'dlc_story_audit\audio_tools'))
 import dsp, mca
 from banner_cwav import resample, rms, limiter
