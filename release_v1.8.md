@@ -40,3 +40,4 @@ What stays Japanese on purpose is in the README under "Known, and not worth repo
 **Back up your save before installing.** The second game wipes its slots if you confirm its corrupted-save prompt. Decline it and report it.
 
 **[Report anything wrong in issue #1](../../issues/1)**, especially anything in the Picture Book on real hardware.
+

@@ -26,3 +26,4 @@ The first game's title screen now reads `3.2.2` (v1.4 showed `ENG 3.2.0` althoug
 **Back up your save before installing.** The second game wipes its slots if you confirm its corrupted-save prompt. Decline it and report it.
 
 **[Report anything wrong in issue #1](../../issues/1)**.
+

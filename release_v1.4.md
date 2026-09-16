@@ -30,3 +30,4 @@ Cosmetic: the first game's HOME menu icon is the cartridge art instead of a pipe
 **Back up your save before installing.** The second game wipes its slots if you confirm its corrupted-save prompt, which switching builds can trigger. Decline it and report it.
 
 **[Report anything wrong in issue #1](../../issues/1)**.
+

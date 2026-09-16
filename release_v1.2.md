@@ -1,3 +1,5 @@
+> **Superseded.** This is an older release; install the [latest release](https://github.com/Akoi89/tgaa-3ds-english-patch/releases/latest) instead.
+
 Capcom's official English text on the Japanese 3DS releases, **including all the DLC**, and Capcom's art.
 
 Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch). You need the Japanese base games. They aren't distributed here.
@@ -39,3 +41,4 @@ Nothing else changed: same art, same voices, same second game, same DLC.
 **Back up your save before installing.** The second game wipes its slots if you confirm its corrupted-save prompt, which switching builds can trigger. Decline it and report it.
 
 **[Report anything wrong in issue #1](../../issues/1)**.
+

@@ -1,3 +1,5 @@
+**Superseded by [v1.8](../../releases/tag/v1.8).** The see-through pages of the first game's DLC Picture Book were repainted by a model in this release and came out blurred; v1.8 redoes them. Only the first game's DLC changed, so if you are on v1.7 you only need `TGAA1-DLC-1.0.12.cia`.
+
 Capcom's official English text on the Japanese 3DS releases, **including all the DLC**, and Capcom's art. Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch). You need the Japanese base games; they aren't distributed here.
 
 ## Install, in this order
@@ -36,3 +38,5 @@ Everything new in the first game was installed and checked in Azahar: all 66 Pic
 **Back up your save before installing.** The second game wipes its slots if you confirm its corrupted-save prompt. Decline it and report it.
 
 **[Report anything wrong in issue #1](../../issues/1)**, especially anything in the Picture Book on real hardware.
+
+

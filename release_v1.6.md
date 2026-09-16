@@ -40,3 +40,4 @@ This build was installed and launched on a New 3DS XL and on an original 3DS, an
 **Back up your save before installing.** The second game wipes its slots if you confirm its corrupted-save prompt. Decline it and report it.
 
 **[Report anything wrong in issue #1](../../issues/1)**.
+
