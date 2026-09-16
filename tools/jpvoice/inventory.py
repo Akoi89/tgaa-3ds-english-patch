@@ -32,7 +32,7 @@ os.makedirs(TREES, exist_ok=True)
 SRC = {
     'TGAA1': dict(
         ours_upd=os.path.join(ROOT, 'Final', FINAL, 'TGAA1-base-3.2.4.cia'),
-        ours_dlc=os.path.join(ROOT, 'Final', FINAL, 'TGAA1-DLC-1.0.11.cia'),
+        ours_dlc=os.path.join(ROOT, 'Final', FINAL, 'TGAA1-DLC-1.0.12.cia'),
         jp_cart=os.path.join(ROOT, r'_sources\TGAA1 - Base-decrypted.cci'),
         jp_upd=os.path.join(ROOT, r'_sources\TGAA1-Official-Jap (Patch)-decrypted.cia'),
         jp_dlc=os.path.join(ROOT, r'_sources\TGAA1-Official-Jap (DLC)-decrypted.cia')),

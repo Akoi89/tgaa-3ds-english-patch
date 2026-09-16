@@ -91,6 +91,32 @@ def art_entering(g, box, thr=12, reach=6, pad=8):
     return cv2.dilate(out, np.ones((3, 3), np.uint8))
 
 
+def art_through(g, box, pad=10, thr=12, min_h=18, min_str=20):
+    """Art that runs through a see-through text box (Iris's legs, a cane, a coat edge): dark-stroke
+    components that reach outside the box, stand at least min_h tall, are taller than they are wide and are
+    drawn firmly. Japanese glyphs are at most 14 px tall and sit wholly inside the box, so they never match.
+    Returns those pixels inside the box, which the erase must leave alone."""
+    x0, y0, x1, y1 = box
+    H, W = g.shape
+    wx0, wy0, wx1, wy1 = max(0, x0 - pad), max(0, y0 - pad), min(W, x1 + pad), min(H, y1 + pad)
+    sub = g[wy0:wy1, wx0:wx1].astype(np.uint8)
+    res = cv2.medianBlur(sub, 9).astype(int) - sub.astype(int)
+    dark = (res > thr).astype(np.uint8)
+    inside = np.zeros_like(dark)
+    inside[y0 - wy0:y1 - wy0, x0 - wx0:x1 - wx0] = 1
+    n, lab, st, _ = cv2.connectedComponentsWithStats(dark, 8)
+    out_ids = set(np.unique(lab[(inside == 0) & (dark == 1)]).tolist())
+    keep = np.zeros(n, bool)
+    for i in range(1, n):
+        keep[i] = (i in out_ids and st[i, 3] >= min_h and st[i, 3] >= 1.2 * st[i, 2]
+                   and res[lab == i].mean() >= min_str)
+    o = np.zeros(g.shape, np.uint8)
+    o[wy0:wy1, wx0:wx1] = (keep[lab] & (inside == 1)).astype(np.uint8)
+    o = cv2.dilate(o, np.ones((3, 3), np.uint8))
+    nk, lk, stk, _ = cv2.connectedComponentsWithStats(o, 8)
+    return np.isin(lk, [i for i in range(1, nk) if stk[i, 3] >= 12]).astype(np.uint8)
+
+
 LHF = [1.22]
 
 
@@ -167,8 +193,8 @@ def do_page(page, spec, en):
             n, lab = cv2.connectedComponents(cand, connectivity=8)
             protect = art_entering(g, b) if spec.get('erase_fused') else np.zeros_like(cand)
             glyph = np.zeros_like(cand)
-            for i in range(1, n):
-                comp = lab == i
+            for i_ in range(1, n):
+                comp = lab == i_
                 ys = np.nonzero(comp)[0]
                 # a Japanese glyph lies wholly inside the box (1 px slack); anything continuing outside is art
                 out_px = int((comp & (inbox == 0)).sum())
@@ -179,9 +205,13 @@ def do_page(page, spec, en):
                         glyph[comp] = 1
                 else:
                     # art fused with a glyph (a hair strand touching a character): erase the part inside the
-                    # box, except the art's last 6 px where it enters (art_entering keeps those)
-                    if spec.get('erase_fused'):     # letters fused with art (hair strands): erase them,
-                        glyph[comp & (inbox == 1) & ink_grey(a)] = 1   # art keeps its entry zone
+                    # box, except the art's last 6 px where it enters (art_entering keeps those). This does
+                    # cost the tips of the pencil hair on aoc06_design_04, which share pixels with the
+                    # writing; rules that kept them (near a recognised glyph, or by stroke strength: the
+                    # Japanese averages a residual of 86 there and the hair 50, but the two overlap) each
+                    # left readable kana behind, so the tips stay clipped (user review, 2026-09-15).
+                    if spec.get('erase_fused'):
+                        glyph[comp & (inbox == 1) & ink_grey(a)] = 1
             # punctuation the hand-drawn box just missed: small shapes lying wholly within 6 px outside
             # the box (full stops, corner brackets), not connected to anything else
             near = np.zeros_like(cand); near[max(0, y0 - 6):y1 + 6, max(0, x0 - 6):x1 + 6] = 1
@@ -212,6 +242,92 @@ def do_page(page, spec, en):
             m2 = m2 & (1 - cv2.dilate(seams, np.ones((3, 3), np.uint8)))
             m2 = cv2.dilate(m2, np.ones((3, 3), np.uint8))
             clean = cv2.cvtColor(cv2.inpaint(cv2.cvtColor(clean, cv2.COLOR_RGB2BGR), m2 * 255, 3, cv2.INPAINT_TELEA), cv2.COLOR_BGR2RGB)
+    if os.environ.get('ERASE') == 'see' and spec['mode'] == 'overlay':
+        # Keep the see-through panel. Nothing in the box is repainted and nothing is invented, so nothing
+        # can smear: the Japanese is simply lifted out of it. The ink is whatever is darker than its own
+        # surroundings, so a per-channel median-7 of the page is what the panel looks like without it;
+        # each pixel is blended towards that estimate in proportion to how much darker than it the pixel
+        # is. Two passes, the second gentler, so the glyphs' pale outline goes as well. Flat art keeps its
+        # colour (its inside is not darker than its surroundings) and art that runs through the box is
+        # protected outright. Replaces ERASE=lama2, whose 5x5 mask covered 74% of a box and made LaMa
+        # repaint the whole panel (user, 2026-09-15: blurred band, smeared legs, grey lumps).
+        clean = a.copy()
+        sel = np.zeros(a.shape[:2], np.float32)
+        protect = np.zeros(a.shape[:2], np.uint8)
+        g0 = cv2.cvtColor(a, cv2.COLOR_RGB2GRAY)
+        for b in spec['boxes']:
+            bx0, by0, bx1, by1 = b
+            # Never reach above the panel's own top edge, measured on the page (erase_top). The four
+            # rows above the marked box exist for glyph tops that poke out of it, but on most pages
+            # they sit on full-strength artwork instead, and lifting there smudged it (user, three
+            # rounds of this). Above the panel there is no Japanese to remove.
+            ty0 = max(VIS[1], by0 - 4, spec.get('erase_top', 0))
+            # erase_bottom bounds the ERASE only. panel_bottom also bounds where the text may sit, and
+            # using it to keep the erase off aoc02_design_07's dark bottom band cost that page two
+            # pixels of type size.
+            ty1 = min(VIS[3], by1 + 3, spec.get('erase_bottom', spec.get('panel_bottom', 999)))
+            top = max(by0, ty0)          # the full lift starts at the panel, not at the marked box
+            sel[top:ty1, bx0:bx1] = 1.0
+            # Above the marked box, only the tops of the first line's strokes may be lifted. Taking the whole
+            # strip faded the drawing out over those rows wherever it is grey, which the colour ramp cannot
+            # catch (aoc05_design_06's pencil sketch). A glyph top is joined to a stroke inside the box.
+            if top > ty0:
+                cand = (((cv2.medianBlur(g0, 9).astype(int) - g0.astype(int)) > 12) & ink_grey(a)).astype(np.uint8)
+                win = np.zeros(g0.shape, np.uint8)
+                win[ty0:top + 3, bx0:bx1] = 1
+                # Grow up from the ink inside the box a step at a time, never past the strip, instead of
+                # taking whole components: a pencil line that crosses a glyph top is one component with it,
+                # and taking the whole thing smudged the sketch above the first line (user, 2026-09-15).
+                cand = (cand * win).astype(np.uint8)
+                tops = np.zeros(g0.shape, np.uint8)
+                tops[top:top + 2, bx0:bx1] = cand[top:top + 2, bx0:bx1]
+                for _ in range(top - ty0):
+                    tops = cv2.dilate(tops, np.ones((3, 3), np.uint8)) & cand
+                tops = cv2.dilate(tops, np.ones((3, 3), np.uint8))
+                # accumulate: where a page's box is split, the lower half's strip sits inside the
+                # upper half's box, and a plain assignment wiped out the full lift asked for there
+                # (aoc07_design_07 left a whole line of Japanese standing)
+                sel[ty0:top, bx0:bx1] = np.maximum(sel[ty0:top, bx0:bx1], tops[ty0:top, bx0:bx1])
+            # SEE_KEEP=1 also protects art that runs through the box. It is OFF: the lift already leaves
+            # broad art alone (the inside of a dark shape is not darker than its surroundings), and the
+            # protection kept specks of Japanese fused to thin strokes (aoc02_design_07, aoc05_design_07)
+            if os.environ.get('SEE_KEEP', '0') == '1':
+                protect |= art_through(g0, (bx0, ty0, bx1, ty1))
+        # Japanese that fuses with a firm stroke behind it makes a tall narrow component too and was
+        # being protected as art (aoc05_design_07 kept a whole word): nothing in the ink's own neutral
+        # grey is ever protected
+        protect = (protect & (~ink_grey(a)).astype(np.uint8))
+        protect = cv2.morphologyEx(protect, cv2.MORPH_OPEN, np.ones((2, 2), np.uint8))
+        nk, lk, stk, _ = cv2.connectedComponentsWithStats(protect, 8)
+        protect = np.isin(lk, [i for i in range(1, nk) if stk[i, 3] >= 12]).astype(np.uint8)
+        sig = float(os.environ.get('SEE_SIG', '3.5'))
+        for t0, t1 in ((float(os.environ.get("SEE_T0", "2.0")), float(os.environ.get("SEE_T1", "11.0"))),):
+            g = cv2.cvtColor(clean, cv2.COLOR_RGB2GRAY)
+            # a median-7 of a dense line of Japanese is itself darkened by the ink, which left speckles of
+            # the heaviest glyphs behind; estimate the panel from the pixels that are NOT ink instead
+            # (normalised convolution), so the estimate does not know about the strokes at all
+            rough = (cv2.medianBlur(g, 9).astype(np.float32) - g.astype(np.float32)) > 2.5
+            w = (~rough).astype(np.float32)
+            num = cv2.GaussianBlur(clean.astype(np.float32) * w[..., None], (0, 0), sig)
+            den = cv2.GaussianBlur(w, (0, 0), sig)[..., None]
+            bg = num / np.maximum(den, 1e-3)
+            res = (bg @ np.array([0.299, 0.587, 0.114], np.float32)) - g.astype(np.float32)
+            # Where nearly everything nearby is ink-dark the estimate has almost nothing to work from and
+            # comes out far too light: on aoc02_design_07 that wiped the dark band along the bottom of the
+            # box, 150 grey levels across its whole width. Fade the lift out with the estimate's support.
+            support = np.clip((den[..., 0] - 0.20) / 0.30, 0, 1)
+            # Only the ink's own colour family may be lifted. Without this the estimate, which is pulled
+            # bright by the panel just below, fades the coloured art out over the last rows before the
+            # panel begins: that is the blurred band along the panel's top edge (user, 2026-09-15).
+            # A hard neutral-grey test leaves crumbs where the art tints the ink, so ramp it: fully neutral
+            # ink lifts completely, and anything as colourful as the coats and uniforms not at all.
+            c = a[..., :3].astype(np.int16)
+            sat = (c.max(-1) - c.min(-1)).astype(np.float32)
+            grey = np.clip((float(os.environ.get('SEE_SAT', '58')) - sat) / 26.0, 0, 1)
+            grey = cv2.dilate(grey, np.ones((3, 3), np.uint8))
+            alpha = np.clip((res - t0) / (t1 - t0), 0, 1) * sel * (1 - protect) * support * grey
+            clean = (clean.astype(np.float32) * (1 - alpha[..., None])
+                     + bg * alpha[..., None]).clip(0, 255).astype(np.uint8)
     if spec['mode'] == 'panel':
         # a flat panel: fill with its own most common colour, never with the art beside it
         from collections import Counter
@@ -242,7 +358,7 @@ def do_page(page, spec, en):
         if best:
             ux0, uy0, ux1, uy1 = best[1]
             LHF[0] = best[2]
-    if os.environ.get('ERASE') == 'lama2' and spec['mode'] == 'overlay':
+    if os.environ.get('ERASE') in ('lama2', 'see') and spec['mode'] == 'overlay':
         # English capitals are denser than the thin tops of Japanese strokes, so starting where the Japanese
         # started reads as pressed against the panel's top edge (user, 2026-09-15): start TOP_PAD rows lower.
         # Over art, tighter line spacing beats growing into the picture; if it still does not fit, give back
@@ -270,7 +386,7 @@ def do_page(page, spec, en):
         area = [ux0, uy0 - grow_up, ux1, uy1]
         if T.render(en, area, FONT, T.MIN_PX, LHF[0])[0] is not None:
             break
-    if os.environ.get('ERASE') in ('lama', 'lama2'):
+    if os.environ.get('ERASE') in ('lama', 'lama2', 'see'):
         wash = 0.35 if grow_up else 0.0     # LaMa needs no wash; an upward extension over art still gets one
     if wash > 0 and (spec['mode'] == 'overlay' or grow_up):
         # a light cream wash over the text area, feathered over 5 px, to even out fill blotches;
