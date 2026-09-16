@@ -18,7 +18,7 @@ if not getattr(sys.stdout, '_utf8_wrapped', False):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace'); sys.stdout._utf8_wrapped = True
 import numpy as np
 from PIL import Image, ImageDraw
-ROOT = r'G:\Claude\TGAA 1-2'
+ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(ROOT, 'dlc_icons', 'tgaa2-en-patch')); sys.path.insert(0, os.path.join(ROOT, 'testimony_pipeline'))
 from dgs2tool.arc import parse_arc, build_arc_bytes
 import tex_view, pctex_rgba, tex_rgba8, etc1a4, etc1_enc

@@ -7,8 +7,8 @@ installed and ran on the console today), renamed to the folder convention."""
 import os, sys, io, shutil, hashlib
 if not getattr(sys.stdout, '_utf8_wrapped', False):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace'); sys.stdout._utf8_wrapped = True
-ROOT = r'G:\Claude\TGAA 1-2'
-NAS = r'Z:\Main Files\Games\Emulators and ROMs\DS-DSi-3DS\3DS Games\hshop backup\Extras\Translated Games\The Great Ace Attorney Chronicles'
+ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
+NAS = os.environ.get('TGAA_NAS') or sys.exit('set TGAA_NAS to the NAS destination folder')
 STAGE = os.path.join(ROOT, 'Final', '_CURRENT', 'jpvoice'); os.makedirs(STAGE, exist_ok=True)  # nas_backup.ps1 mirrors this into the NAS 'JAP Dub' folders
 sha = lambda p: hashlib.sha256(open(p, 'rb').read()).hexdigest()
 

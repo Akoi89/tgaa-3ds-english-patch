@@ -2,7 +2,7 @@
 Japanese and English Naruhodo 'igiari' shouts, and report lengths/correlation."""
 import os, struct, sys, wave
 import numpy as np
-R = os.environ.get('TGAA_ROOT', r'G:\Claude\TGAA 1-2')
+R = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(R, r'dlc_story_audit\audio_tools')); sys.path.insert(0, os.path.join(R, 'dlc_ai_voice'))
 import mca, msadpcm
 HB = os.path.join(R, r'dlc_story_audit\_validation\home_banner')

@@ -1,7 +1,8 @@
 """Dump MADP header fields (samples, loop_start, loop_end, data_size vs actual) for
 shout entries in a set of arc files. Usage: shout_headers.py <arc or dir>..."""
 import os, sys, struct
-ROOT = 'G:/Claude/TGAA 1-2/dlc_story_audit'
+TGAA_ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
+ROOT = os.path.join(TGAA_ROOT, 'dlc_story_audit')
 sys.path.insert(0, ROOT + '/arc_tools')
 import arc
 

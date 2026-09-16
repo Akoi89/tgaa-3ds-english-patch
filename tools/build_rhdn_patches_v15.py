@@ -59,7 +59,7 @@ def encode_and_prove(src, target, xd, work, scrub_off, scrub_len, pert_off, pert
     prove the patch reproduces target from the real source AND from two sources whose
     variable region differs (a different decryption run)."""
     enc_src = scrubbed_copy(src, os.path.join(work, 'enc_src.bin'), scrub_off, scrub_len)
-    # -A: no application header. Without it xdelta3 writes both file paths (G:\Claude\...) into
+    # -A: no application header. Without it xdelta3 writes both file paths (<TGAA_ROOT>\...) into
     # the patch; found in every v1.5/v1.6 patch on 2026-09-11 and stripped after the fact.
     run(XD, '-e', '-f', '-a', '-A', '-9', '-S', 'djw', '-B', BIG, '-s', enc_src, target, xd)
     os.remove(enc_src)

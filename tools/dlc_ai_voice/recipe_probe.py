@@ -9,7 +9,7 @@ import os
 import re
 import sys
 
-ROOT = os.environ.get('TGAA_ROOT', r'G:\Claude\TGAA 1-2')
+ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(ROOT, 'dlc_icons', 'tgaa2-en-patch'))
 from dgs2tool.gmd import parse_gmd_bytes
 

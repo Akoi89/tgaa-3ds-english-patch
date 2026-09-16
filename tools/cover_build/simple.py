@@ -76,7 +76,7 @@ def erase_ep0_text(pc):
 
 def erase_ep0_text_lama(pc):
     """COVER_ERASE=lama (2026-09-15, user OK): the same glyph-core mask grown 19 px so the letters'
-    dark outline and soft shadow go too, filled with the LaMa model (G:/Claude/_models/big-lama.pt via
+    dark outline and soft shadow go too, filled with the LaMa model (<MODELS_ROOT>/big-lama.pt via
     dlc_picturebook/lama_inpaint.py). The Telea fill left a smear of the rose strapline left of the
     English title and blotches on the sword; LaMa rebuilds the guard and scabbard line cleanly.
     Local only: the model is not a dependency of anything public."""

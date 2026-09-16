@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""LaMa (big-lama TorchScript, G:/Claude/_models/big-lama.pt, 205,803,670 B, sha256 7ba7aa7ac37a4d41...)
+"""LaMa (big-lama TorchScript, <MODELS_ROOT>/big-lama.pt, 205,803,670 B, sha256 7ba7aa7ac37a4d41...)
 inpainting for the see-through Picture Book pages. Downloaded 2026-09-15 with the user's OK from the
 simple-lama-inpainting v0.1.0 release; called directly with torch (the pip wrapper pins old Pillow/NumPy).
 
@@ -7,12 +7,14 @@ inpaint(rgb, mask, box, scale): crop the box plus CONTEXT px of surroundings, op
 multiple of 8, run the model on CPU, scale back, and paste ONLY the masked pixels into a copy of rgb.
 """
 import os
+import sys
 
 import cv2
 import numpy as np
 import torch
 
-MODEL = r'G:\Claude\_models\big-lama.pt'
+MODELS_ROOT = os.environ.get('MODELS_ROOT') or sys.exit('set MODELS_ROOT to the models folder')
+MODEL = os.path.join(MODELS_ROOT, 'big-lama.pt')
 CONTEXT = 48
 _model = None
 

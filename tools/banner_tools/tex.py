@@ -16,7 +16,7 @@ import os
 import struct, sys
 import numpy as np
 from PIL import Image
-sys.path.insert(0, os.path.join(os.environ.get('TGAA_ROOT', os.environ.get('TGAA_ROOT', r'G:\Claude\TGAA 1-2')), r'testimony_pipeline'))
+sys.path.insert(0, os.path.join(os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder'), r'testimony_pipeline'))
 import etc1a4, etc1_enc
 import comp
 
