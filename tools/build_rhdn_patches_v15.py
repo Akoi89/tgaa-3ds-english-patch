@@ -46,19 +46,43 @@ GAMES = {
 BIG = '1073741824'
 
 
-def scrubbed_copy(src, path, off, n):
+def scrubbed_copy(src, path, regions):
+    """regions is a list of (offset, length) to overwrite with random bytes."""
     shutil.copyfile(src, path)
     with open(path, 'r+b') as f:
-        f.seek(off)
-        f.write(os.urandom(n))
+        for off, n in regions:
+            f.seek(off)
+            f.write(os.urandom(n))
     return path
 
 
-def encode_and_prove(src, target, xd, work, scrub_off, scrub_len, pert_off, pert_len, label):
+# NCCH header 0x200 + exheader 0x800. A CIA built from a card image with GodMode9's
+# "Build CIA from file" differs from a CIA dump of the installed title only in the NCSD
+# card info block and the first bytes of each partition's NCCH header and exheader:
+# measured 2026-09-17 on a reporter's own TGAA1 card dump, 2,708 bytes in three runs,
+# no game data at all.
+NCCH_MARGIN = 0xA00
+
+
+def cci_tolerant_regions(cci):
+    """NCSD header plus the head of every populated partition, so a patch encoded against
+    this scrub applies to a card-sourced dump as well as to a CIA dump."""
+    with open(cci, 'rb') as f:
+        f.seek(0x120)
+        t = f.read(0x40)
+    regs = [(0, 0x4000)]
+    for i in range(8):
+        off, size = struct.unpack_from('<II', t, i * 8)
+        if size:
+            regs.append((off * 0x200, min(NCCH_MARGIN, size * 0x200)))
+    return regs
+
+
+def encode_and_prove(src, target, xd, work, scrub, pert, label):
     """xdelta src->target with the source's variable region scrubbed at encode time; then
     prove the patch reproduces target from the real source AND from two sources whose
     variable region differs (a different decryption run)."""
-    enc_src = scrubbed_copy(src, os.path.join(work, 'enc_src.bin'), scrub_off, scrub_len)
+    enc_src = scrubbed_copy(src, os.path.join(work, 'enc_src.bin'), scrub)
     # -A: no application header. Without it xdelta3 writes both file paths (<TGAA_ROOT>\...) into
     # the patch; found in every v1.5/v1.6 patch on 2026-09-11 and stripped after the fact.
     run(XD, '-e', '-f', '-a', '-A', '-9', '-S', 'djw', '-B', BIG, '-s', enc_src, target, xd)
@@ -67,10 +91,10 @@ def encode_and_prove(src, target, xd, work, scrub_off, scrub_len, pert_off, pert
     run(XD, '-d', '-f', '-B', BIG, '-s', src, xd, chk)
     assert same(chk, target), label + ': patch does not reproduce the target from the real source'
     for _ in range(2):
-        pert = scrubbed_copy(src, os.path.join(work, 'pert_src.bin'), pert_off, pert_len)
-        run(XD, '-d', '-f', '-B', BIG, '-s', pert, xd, chk)
+        pert_src = scrubbed_copy(src, os.path.join(work, 'pert_src.bin'), pert)
+        run(XD, '-d', '-f', '-B', BIG, '-s', pert_src, xd, chk)
         assert same(chk, target), label + ': patch FAILS against a source with a different random region'
-        os.remove(pert)
+        os.remove(pert_src)
     os.remove(chk)
     print('  %s: %s reproduces the target from the real source and from two perturbed sources' % (label, os.path.basename(xd)))
 
@@ -101,7 +125,10 @@ def build_base(g, cfg, work, out, tag):
     shutil.rmtree(w)
     print('  %s: banner image = cartridge with only the exefs changed (manual, exheader, romfs, logo identical)' % g)
     xd = os.path.join(out, '%s-%s-base.xdelta' % (g, tag))
-    encode_and_prove(src, target, xd, work, 0, 0x4000, SEED_OFF, SEED_LEN, g + ' base')
+    # NOT widened to the NCCH headers on purpose: this patch's output IS the user's own image
+    # with the ExeFS swapped, so scrubbing those would hand a card-dump user the builder's
+    # exheader and manual header instead of their own. The zip README says so.
+    encode_and_prove(src, target, xd, work, [(0, 0x4000)], [(SEED_OFF, SEED_LEN)], g + ' base')
     return src, target, xd
 
 
@@ -114,7 +141,8 @@ def build_update(g, cfg, work, out, tag):
     info = run(CT, '-i', target)
     assert 'Crypto Key           None' in info and 'Crypto Key           Secure' not in info, 'update CIA is not plaintext'
     xd = os.path.join(out, '%s-%s-update.xdelta' % (g, tag))
-    encode_and_prove(src, target, xd, work, 0, 0x4000, SEED_OFF, SEED_LEN, g + ' update')
+    regs = cci_tolerant_regions(src)
+    encode_and_prove(src, target, xd, work, regs, regs, g + ' update')
     return src, target, xd
 
 
@@ -131,7 +159,8 @@ def build_dlc(g, cfg, work, out, tag):
     tik_off = a64(hsz) + a64(csz)
     coff = tik_off + a64(tsz) + a64(msz)
     xd = os.path.join(out, '%s-%s-DLC.xdelta' % (g, tag))
-    encode_and_prove(src, nc, xd, work, 0, coff, tik_off, tsz, g + ' DLC')
+    # DLC source is an eShop-only download: there is no card route, so the CIA header scrub stands.
+    encode_and_prove(src, nc, xd, work, [(0, coff)], [(tik_off, tsz)], g + ' DLC')
     return src, nc, xd
 
 

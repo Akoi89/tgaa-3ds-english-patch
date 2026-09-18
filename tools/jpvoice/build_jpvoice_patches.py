@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
 import build_rhdn_patches_v15 as B
 from build_rhdn_patches import digest
 
-TAG = 'v1.8-jpvoice'
+TAG = 'v1.8a-jpvoice'
 OUT = os.path.join(ROOT, 'jpvoice', '_patches'); WORK = os.path.join(ROOT, 'jpvoice', '_pwork')
 os.makedirs(OUT, exist_ok=True); os.makedirs(WORK, exist_ok=True)
 GAMES = {
