@@ -1,3 +1,5 @@
+**Superseded by [v1.8a](../../releases/tag/v1.8a).** The games are identical; only the xdelta patches changed, so that a dump converted from a game cartridge is accepted. The files here still install and work, and if you patched from a CIA dump of an installed title you don't need v1.8a.
+
 Capcom's official English text on the Japanese 3DS releases, **including all the DLC**, and Capcom's art. Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch). You need the Japanese base games; they aren't distributed here.
 
 ## Install, in this order
