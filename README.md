@@ -47,6 +47,29 @@ Download from [Releases](../../releases). **Order matters.**
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
+**If you're using the xdelta zips**, the patches apply to the files Batch CIA 3DS Decryptor
+writes from your own Japanese dumps, and they're strict about it.
+
+> **Dump the title as an encrypted CIA and decrypt it on the PC.** In GodMode9, dump the title
+> to CIA with no decrypt and no trim option, copy that to your computer, and run Batch CIA 3DS
+> Decryptor on it there. GodMode9's own decrypt gives you a file of the **right size** that is
+> not the same bytes, and the patch will refuse it. That has caught a few people, so a size
+> that matches the table below is not proof the file is right. A raw `.3ds` cartridge image
+> is a different file again.
+
+Check the sizes before you spend time on it:
+
+| | title ID | decrypted size |
+|---|---|---:|
+| TGAA1 game `.cci` | `000400000014AD00` | 689,790,976 |
+| TGAA1 DLC `.cia` | `0004008C0014AD00` | 335,531,008 |
+| TGAA2 game `.cci` | `00040000001AE200` | 844,902,400 |
+| TGAA2 DLC `.cia` | `0004008C001AE200` | 39,676,288 |
+
+Your files won't match my hashes, and that's fine: the decryptor writes random bytes into the
+card header and the ticket. The patches are built so those bytes don't matter. Everything else
+has to match, so a checksum error means the source is the wrong file, not the wrong luck.
+
 **Check it took:**
 
 | | reads |
