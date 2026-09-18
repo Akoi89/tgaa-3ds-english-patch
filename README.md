@@ -42,7 +42,7 @@ Download from [Releases](../../releases). **Order matters.**
 | 1 | *the Japanese base game* | not distributed, bring your own |
 | 2 | `TGAA1-base-3.2.4.cia` / `TGAA2-base-1.0.16.cia` | the update |
 | 3 | `TGAA1-DLC-1.0.12.cia` / `TGAA2-DLC-1.0.10.cia` | the DLC |
-| 4 | `TGAA1-3DS-English-v1.8-xdelta.zip` / `TGAA2-3DS-English-v1.8-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
+| 4 | `TGAA1-3DS-English-v1.8a-xdelta.zip` / `TGAA2-3DS-English-v1.8a-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.

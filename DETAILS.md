@@ -334,8 +334,8 @@ verdict or a press that stops part-way is the single most useful thing to listen
 
 ### Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.8-xdelta.zip`
-and `TGAA2-3DS-English-v1.8-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.8a-xdelta.zip`
+and `TGAA2-3DS-English-v1.8a-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -364,8 +364,8 @@ to happen.
 ### Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.8-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.8-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.8a-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.8a-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are

@@ -56,18 +56,30 @@ WHAT YOU NEED
 
 1. Your own dump of the Japanese game (title ID 00040000{tid}) as a .cia, and
    your own dump of its Japanese DLC (title ID 0004008C{tid}) as a .cia.
-   GodMode9 dumps an installed cartridge or title as a CIA. The DLC was a free
-   eShop download; if it is installed on your console, GodMode9 dumps it too.
-   These patches were proven on the .cci the decryptor writes from a CIA of the
-   game. A raw .3ds cartridge dump has not been tested; if the patch refuses
-   it, dump the title as a CIA instead.
+   Dump each title to CIA in GodMode9 with NO decrypt and NO trim option, so
+   what you copy to your PC is still encrypted. The DLC was a free eShop
+   download; if it is installed on your console, GodMode9 dumps it too.
+
+   THIS IS WHERE PEOPLE GET STUCK. GodMode9 will also hand you a dump it has
+   decrypted or trimmed for you, and that file comes out the RIGHT SIZE but is
+   not the same bytes. The patch refuses it, and running the decryptor on it
+   afterwards does not rescue it. So a size matching the list further down is
+   NOT proof your file is the right one. If a patch is refused, redump the title
+   encrypted before you change anything else.
+
+   If you own the cartridge rather than a digital copy, you can dump the card to
+   .3ds instead and convert it with GodMode9's NCSD image options, Build CIA
+   from file. That route works from v1.8a on. A file made that way differs from
+   a CIA dump of an installed title in about 2,700 bytes of header and in no
+   game data at all, and the update and DLC patches now ignore those bytes. The
+   optional base patch does not, and still wants a CIA dump of an installed
+   title.
 
 2. "Batch CIA 3DS Decryptor" (matif's batch script around decrypt.exe and
-   makerom). Put the dumps in its folder and run the .bat. The game comes out as
-   "<name>-decrypted.cci", the DLC as "<name> (DLC)-decrypted.cia". THOSE two
-   files are what the patches apply to. A dump decrypted any other way (GodMode9's
-   own decrypt option, another tool) has a different header layout and the patch
-   will refuse it.
+   makerom). Put the encrypted dumps in its folder and run the .bat. The game
+   comes out as "<name>-decrypted.cci", the DLC as "<name> (DLC)-decrypted.cia".
+   THOSE two files are what the patches apply to. Which build of the decryptor
+   you use makes no difference; what matters is that its input was encrypted.
 
 3. xdelta3. xdelta3.exe (3.2.0, Windows) is in this zip; any xdelta3 build works.
 
@@ -77,7 +89,8 @@ APPLY
 
   xdelta3.exe -d -s "<your DLC> (DLC)-decrypted.cia" {g}-{tag}-DLC.xdelta {g}-EN-DLC-{tag}.cia
 
-  optional, for the English HOME menu banner:
+  optional, for the English HOME menu banner (this one needs a CIA dump of an
+  installed title; it will not take a converted cartridge image):
   xdelta3.exe -d -s "<your game>-decrypted.cci" {g}-{tag}-base.xdelta {g}-EN-base-{tag}.cci
 
 Yes, the update patch reads your whole game image and writes a 40 to 90 MB
@@ -158,6 +171,11 @@ onto the 3DS builds. Scarlet Study made the first playable English 3DS build
 years earlier and was used as a reference throughout. Tools and scripts are
 GPL-3.0 on the GitHub page. If you want Capcom's translation properly, buy
 The Great Ace Attorney Chronicles.
+
+The tooling behind this patch was written with LLM assistance (Claude, through
+Claude Code), and so was some of the first game's DLC text that Capcom never
+made in English. The full statement, including what was generated and what was
+not, is in the README on the GitHub page. No generated audio ships.
 """
 
 
