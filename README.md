@@ -47,6 +47,16 @@ Download from [Releases](../../releases). **Order matters.**
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
+**On an emulator, take the plain DLC instead.** If the DLC card shows a padlock and the game
+returns to the title, or your emulator refuses to install the DLC at all, use
+`TGAA1-EN-DLC-v1.8a.cia` or `TGAA2-EN-DLC-v1.8a.cia` in place of row 3. Same DLC, same version,
+same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
+AES keys of its own to read it. A console reads either form. Install one or the other, not both.
+
+`TGAA1-README-v1.8a.txt` and `TGAA2-README-v1.8a.txt` on the release page are the readmes from
+inside the xdelta zips, there so you can read the commands and the hashes without downloading
+the zip first.
+
 **If you're using the xdelta zips**, the patches apply to the files Batch CIA 3DS Decryptor
 writes from your own Japanese dumps, and they're strict about it.
 

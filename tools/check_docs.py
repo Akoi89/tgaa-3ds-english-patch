@@ -58,14 +58,44 @@ ALLOW = {'Base.cia', 'file.cia', 'dlc.cia', 'TGAA1 - Base.cia', 'TGAA2 - Base.ci
 
 
 def current():
-    """Filenames that actually exist to be installed."""
-    return set(os.path.basename(p) for p in glob.glob(os.path.join(BUILDS, '*.cia')))
+    """Filenames that actually exist to be installed.
+
+    Recursive, and _CURRENT counts as well as the staged folder: after a release
+    _new holds a per-version subfolder rather than loose CIAs, and the released
+    builds sit in _CURRENT with the Japanese-voice edition under jpvoice/. Those
+    files exist and docs may name them; only a name matching NOTHING is a defect.
+    """
+    roots = [BUILDS, os.path.join(ROOT, 'Final', '_CURRENT')]
+    out = set()
+    for r in roots:
+        out |= set(os.path.basename(p)
+                   for p in glob.glob(os.path.join(r, '**', '*.cia'), recursive=True))
+    return out
+
+
+def release_tag():
+    """The tag to check. Hardcoding one meant a stale default silently checked the
+    wrong release and invented stale names; ask GitHub for the latest instead."""
+    tag = os.environ.get('TGAA_RELEASE_TAG')
+    if tag:
+        return tag
+    try:
+        out = subprocess.run(['gh', 'release', 'view', '--repo', REPO, '--json', 'tagName'],
+                             capture_output=True, text=True, timeout=60)
+        if not out.returncode:
+            return json.loads(out.stdout)['tagName']
+    except Exception:
+        pass
+    return None
 
 
 def released():
     try:
+        tag = release_tag()
+        if tag is None:
+            return None, None
         out = subprocess.run(
-            ['gh', 'release', 'view', os.environ.get('TGAA_RELEASE_TAG', 'v1.8'), '--repo', REPO, '--json',
+            ['gh', 'release', 'view', tag, '--repo', REPO, '--json',
              'assets,body'], capture_output=True, text=True, timeout=60)
         if out.returncode:
             return None, None
@@ -92,7 +122,7 @@ def main():
         if assets is None:
             print('  WARNING: could not read the release; skipping that check')
         else:
-            print('  release assets: %d' % len(assets))
+            print('  release %s: %d asset(s)' % (release_tag(), len(assets)))
 
     valid = set(built) | (assets or set())
     bad = 0
