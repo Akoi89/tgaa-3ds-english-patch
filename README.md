@@ -115,31 +115,45 @@ fixed.
 Counts, sources and the reasoning for every one of those are in [DETAILS.md](DETAILS.md),
 along with what stays Japanese and why.
 
-## Known, and not worth reporting
+## If something looks or sounds wrong
 
+Tell me, even if you're sure I already know. **[Report it in issue #1](../../issues/1).**
+The episode and chapter is enough to go on, and a photo of the screen beats any description
+I could ask you for. A duplicate costs me nothing. A report somebody talked themselves out
+of costs me a defect, and that has already happened once.
+
+[DETAILS.md](DETAILS.md) opens with a list of everything I know about, sorted by what it
+looks like on screen rather than by what I did about it. It's there if you're curious about
+something specific. It isn't a checklist you have to clear before you're allowed to tell me
+something.
+
+These are the ones you're most likely to meet:
+
+- **Some lines are still spoken in Japanese.** Capcom never recorded an English take for
+  54 of them. For another 18 the English take is too long for the slot the 3DS streams it
+  from, and squeezing it in makes the delivery sound rushed. Four courtroom shouts belong
+  to two minor characters Capcom skipped, and a gallery chant in the second game runs
+  nearly twice its slot. DETAILS has each group and the reasoning.
 - **The second game's end credits are in Japanese.** All 75 cards, deliberately. The PC
   release lays them out differently and can't be ported, and a misspelled credit is worse
   than an untranslated one. This is the largest known gap and it's reported upstream.
-- **Some voice lines sound slightly duller than others.** Deliberate, see DETAILS.
-- **Some English lines are shorter than the Japanese were.** The performance is shorter.
-  A line that ends cleanly is complete.
+- **Some text still runs past its box.** 38 dialogue pages in the second game end under the
+  page arrow. Four widget pages in the first game sit right on the edge. And some lines in
+  the first game that are set in the second, fancier face overrun it, because the wrapper
+  measures them with the wrong font's metrics. That last one is an upstream bug and it
+  isn't fixed here or there yet.
+- **A few voices sound duller than the rest, and some English lines are shorter than the
+  Japanese were.** Both deliberate. Dropping the sample rate a little was the alternative
+  to losing the end of a line, and a line that ends cleanly is complete.
+- **There's still Japanese inside the first game's DLC Picture Book.** The brush-written
+  name tags and the small production scribbles on the design sheets were left alone on
+  purpose. On the rough sketches page in issue 6, the tips of the pencil hair are clipped,
+  because every rule that kept them also left readable Japanese behind.
 - **The DLC card on the title screen reads "D L C"**, one letter per slot. Cosmetic.
-- **Two shouts in the second game's DLC stay Japanese.** Capcom never recorded them.
-- **Some pages of dialogue still run wide**, so the last word or two can end up under the
-  arrow at the bottom of the box or past its right edge. 38 of them in the second game and
-  a handful in the first, all in DETAILS with the reason each one was left. Don't go
-  checking that list before you report one, though. If a page looks wrong to you, tell me.
-  I don't mind hearing about the same one twice, and I'd much rather have a duplicate than
-  miss something.
 
-## What is worth reporting
-
-- Any voice that's silent, cut off mid-word, or in Japanese.
-- Anything that fails to load: a scene, a movie, the credits.
-- Text that overflows, clips, or renders at the wrong size.
-- **Anything at all on real hardware**, good or bad.
-
-The full testing status, written honestly, is in [DETAILS.md](DETAILS.md).
+Nobody has played either main game the whole way through on a console yet, so the later
+chapters of both are the least tested thing here. The full testing status, written honestly,
+is in [DETAILS.md](DETAILS.md).
 
 ## Credits
 

@@ -1,8 +1,43 @@
 # The Great Ace Attorney 3DS patch: the detail
 
-Everything the README used to carry inline. Nothing here has been reworded; the figures
-and their sources are exactly as they were.
+Everything the README used to carry inline, plus the reasoning and the sources behind every
+figure in it.
 
+---
+
+## Something looks wrong. Is it known?
+
+Start here. This is everything I know about that you might actually notice while playing,
+sorted by what it looks like on screen rather than by which job it came out of. The rest of
+this document is a record of the work, which is a different thing and not much use for
+looking something up.
+
+If what you're seeing isn't on this list, please tell me about it in
+[issue #1](../../issues/1). If it is on this list, I still don't mind hearing about it, and
+I'd much rather have a duplicate than miss something.
+
+| What you're seeing or hearing | Where | What it is |
+|---|---|---|
+| A line is spoken in Japanese while the text is English | both games, story scenes | 54 lines have no English recording at all. Capcom never made one, and that was checked exhaustively rather than assumed |
+| The same, on a line that feels like it should exist | both games, story scenes | 18 more have an English take that runs 1.4x to 3x longer than the slot the 3DS streams it from. Fitting it would mean a rushed delivery or cut words, and neither is worth it |
+| An *Objection!* or *Hold it!* comes out in Japanese | second game, two minor characters | 4 shouts Capcom never re-recorded, for `chr104_mrs` and `chr210_mmm`. Their archives were checked member by member: 100 of the 104 shouts have an English master, these four don't |
+| A gallery chant is in Japanese | second game | 1 chant whose English is 8.9 seconds against a 5.05 second slot, which would need the rate cut to 57% |
+| No narration plays over an episode opening | second game, two pages | The display window on those two pages is shorter than Capcom's own audio, so the Japanese never played there either |
+| Narration cuts mid-word with a short fade | second game, three splits | The English takes span two pages each and had to be split. A clean break exists for all three but only at around 65% quality, which is more noticeable than the seam |
+| One voice clip sounds duller than the rest | first game's DLC | Deliberate. The rate was lowered so the complete take would fit rather than losing the end of the line |
+| The last word or two of a page sits under the page arrow | second game, 38 pages | 13 are a single scream that overflows in Japanese too, and 25 end without a wait marker, so they can't be split without inventing a pause Capcom didn't write |
+| A centred banner or heading looks tight against the box edge | first game, 4 pages | One single-word page at 357 units and three identical widget pages at exactly 365. The widget box's own width was never confirmed on screen, so these may not be overflowing at all |
+| A line in the fancier, more decorative face runs past the box | first game | The wrapper measures those lines with the other font's metrics, so it wraps them too late. This is [senyarom issue #7](https://github.com/senyarom/tgaa2-en-patch/issues/7), it is still open, and it is not fixed here either |
+| The end credits are entirely in Japanese | second game, all 75 cards | Deliberate. The PC release lays them out differently and can't be ported, and a misspelled credit is worse than an untranslated one |
+| Japanese writing on the artwork inside the Picture Book | first game's DLC | Brush-written name tags and small production scribbles on the design sheets were left as they are |
+| The tips of the pencil hair look clipped on a sketches page | first game's DLC, issue 6 | They share pixels with the Japanese writing. Every rule that kept the hair also left readable Japanese, so the tips stay clipped |
+| The title card reads "D L C", one letter per slot | first game | Cosmetic, and it used to be blank |
+
+**Not on this list and worth knowing:** nobody has played either main game the whole way
+through on a console. 32 of the first game's shouts, the jury verdicts and the pressing
+voices, have never been heard by anyone in any build on any platform. If you play the first
+game, a verdict or a press that stops part way is the single most useful thing to listen
+for. The full picture is in the testing status table further down.
 
 ---
 
