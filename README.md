@@ -125,8 +125,12 @@ along with what stays Japanese and why.
   A line that ends cleanly is complete.
 - **The DLC card on the title screen reads "D L C"**, one letter per slot. Cosmetic.
 - **Two shouts in the second game's DLC stay Japanese.** Capcom never recorded them.
-- **38 dialogue pages in the second game still run under the arrow**, and four pages in the
-  first game are still wider than the box. Both listed in DETAILS.
+- **Some pages of dialogue still run wide**, so the last word or two can end up under the
+  arrow at the bottom of the box or past its right edge. 38 of them in the second game and
+  a handful in the first, all in DETAILS with the reason each one was left. Don't go
+  checking that list before you report one, though. If a page looks wrong to you, tell me.
+  I don't mind hearing about the same one twice, and I'd much rather have a duplicate than
+  miss something.
 
 ## What is worth reporting
 
