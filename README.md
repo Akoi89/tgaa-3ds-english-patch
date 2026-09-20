@@ -78,7 +78,8 @@ Check the sizes before you spend time on it:
 
 Your files won't match my hashes, and that's fine: the decryptor writes random bytes into the
 card header and the ticket. The patches are built so those bytes don't matter. Everything else
-has to match, so a checksum error means the source is the wrong file, not the wrong luck.
+has to match, so a checksum error means the source is the wrong file, not the wrong
+luck. The wording xdelta3 gives you is `target window checksum mismatch`.
 
 **Check it took:**
 
