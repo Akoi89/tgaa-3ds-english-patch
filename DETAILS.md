@@ -32,6 +32,9 @@ I'd much rather have a duplicate than miss something.
 | Japanese writing on the artwork inside the Picture Book | first game's DLC | Brush-written name tags and small production scribbles on the design sheets were left as they are |
 | The tips of the pencil hair look clipped on a sketches page | first game's DLC, issue 6 | They share pixels with the Japanese writing. Every rule that kept the hair also left readable Japanese, so the tips stay clipped |
 | The title card reads "D L C", one letter per slot | first game | Cosmetic, and it used to be blank |
+| A Court Record profile or caption is drawn small and soft, and thin strokes drop out | both games | The panel shrinks the type rather than clipping it when a caption is too long, so this is what a caption that doesn't fit looks like. A lot of them were rewritten to fit at full size, but that work was done caption by caption and it is NOT a guarantee that none are left. If you're looking at one now, I want to know which character |
+| A full-screen document or report page has text running off the edge | first game | Reported on hardware in September 2026 and being looked at now. It is a different text box from ordinary dialogue and it was never measured on screen, so I don't yet know how many pages are affected. Not fixed, and worth reporting with a photo if you hit one |
+| A crackle or buzz over the voice in the opening video | first game | Reported on hardware and UNEXPLAINED. The movie file is the same one three separate builds ship and it carries no audio track at all, so the noise is coming from somewhere else and I have not found it. A phone recording of it is the most useful thing anyone could send me |
 
 **Not on this list and worth knowing:** nobody has played either main game the whole way
 through on a console. 32 of the first game's shouts, the jury verdicts and the pressing
