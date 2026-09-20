@@ -113,7 +113,8 @@ dialogue re-broken at corrected font metrics, captions rewritten to fit, glyph a
 fixed.
 
 Counts, sources and the reasoning for every one of those are in [DETAILS.md](DETAILS.md),
-along with what stays Japanese and why.
+along with what stays Japanese and why. [RELEASE_NOTES.md](RELEASE_NOTES.md) has a short
+entry for each version, newest first, if you want to know what changed and when.
 
 ## If something looks or sounds wrong
 
