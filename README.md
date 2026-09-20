@@ -153,8 +153,9 @@ These are the ones you're most likely to meet:
 - **The DLC card on the title screen reads "D L C"**, one letter per slot. Cosmetic.
 
 Nobody has played either main game the whole way through on a console yet, so the later
-chapters of both are the least tested thing here. The full testing status, written honestly,
-is in [DETAILS.md](DETAILS.md).
+chapters of both are the least tested thing here. [TESTING.md](TESTING.md) is the full
+account of what has been played, watched and listened to, and what has only been checked in
+the files.
 
 ## Credits
 
