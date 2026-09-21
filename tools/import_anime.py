@@ -27,6 +27,7 @@ file size. ADPCM is fixed-bitrate and the durations match, so it fits.
 """
 import os
 import argparse
+import collections
 import shutil
 import struct
 import subprocess
@@ -43,7 +44,12 @@ import mca                                                     # noqa: E402
 from stereo_bgm import dec_channel                             # noqa: E402
 
 SCRATCH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-JP = os.path.join(SCRATCH, 'tut', 't1jap', 'romfs', 'sound', 'stream', 'anime')
+# Capcom's untouched Japanese tree, the donor whose header and slot size every
+# built file keeps. Overridable because the original path was a scratch folder
+# that no longer exists, which left this script unrunnable; the live copy is
+# dlc_story_audit\basegame\rom\sound\stream\anime.
+JP = os.environ.get('ANIME_JP') or os.path.join(
+    SCRATCH, 'tut', 't1jap', 'romfs', 'sound', 'stream', 'anime')
 PC = os.path.join(os.environ.get('TGAAC_STEAM',
                                  os.environ.get('TGAAC_STEAM', '')),
                   'nativeDX11x64', 'sound', 'stream', 'anime', 'wav')
@@ -55,7 +61,17 @@ INTERLEAVE = int(os.environ.get('MCA_INTERLEAVE', '256'))
 
 
 def mix(name, rate):
-    """MUSIC + SE + VOICE_eng, summed without amix's automatic attenuation."""
+    """MUSIC + SE + VOICE_eng, summed without amix's automatic attenuation.
+
+    FLOAT, and that is the whole of the crackle fix. This asked ffmpeg for
+    `-f s16le` until 2026-09-20, which meant ffmpeg hard clipped the sum on
+    the way out: the three stems together run up to +5.2 dB past full scale,
+    each one of them under it on its own. build() then measured the peak of
+    what came back, which can never read over full scale, and scaled the
+    track DOWN to match the Japanese RMS, so nothing downstream could see it.
+    That is 615 chopped samples in 126 separate bursts in the opening alone,
+    and a hardware tester heard every one of them.
+    """
     ins = []
     for s in STEMS:
         p = os.path.join(PC, name + s + '.sngw')
@@ -65,12 +81,61 @@ def mix(name, rate):
     r = subprocess.run(
         [FFMPEG, '-hide_banner', '-loglevel', 'error'] + ins +
         ['-filter_complex', 'amix=inputs=%d:duration=longest:normalize=0' % len(STEMS),
-         '-ac', '2', '-ar', str(rate), '-f', 's16le', '-'],
+         '-ac', '2', '-ar', str(rate), '-f', 'f32le', '-'],
         capture_output=True)
     if r.returncode or not r.stdout:
         raise RuntimeError(r.stderr.decode('utf8', 'replace')[:200])
-    p = np.frombuffer(r.stdout, np.int16).reshape(-1, 2)
+    p = np.frombuffer(r.stdout, np.float32).reshape(-1, 2).astype(np.float64) * 32768.0
     return p[:, 0].copy(), p[:, 1].copy()
+
+
+def limit(x, ceiling, rate, look=0.003, release=0.060):
+    """Hold |x| under `ceiling` by riding the gain instead of chopping peaks.
+
+    Instant attack with a 3 ms lookahead so the gain is already down before
+    the peak arrives, and a 60 ms release so it comes back slowly enough not
+    to be heard. Returns the limited signal and the gain curve.
+    """
+    need = np.minimum(1.0, ceiling / np.maximum(np.abs(x).max(axis=1), 1e-9))
+    L = max(1, int(look * rate))
+    # running minimum over the lookahead window, monotonic deque
+    pad = np.concatenate([need, np.ones(L)])
+    run = np.empty(len(need))
+    dq = collections.deque()
+    for i in range(len(pad)):
+        while dq and pad[dq[-1]] >= pad[i]:
+            dq.pop()
+        dq.append(i)
+        j = i - L
+        if j >= 0:
+            while dq[0] < j:
+                dq.popleft()
+            run[j] = pad[dq[0]]
+    a = np.exp(-1.0 / (release * rate))
+    g = np.empty(len(run))
+    cur = 1.0
+    for i, v in enumerate(run):
+        cur = v if v < cur else a * cur + (1 - a) * v
+        g[i] = cur
+    return x * g[:, None], g
+
+
+def v18a_level(clean, jp_ref):
+    """The loudness the clipped builds landed on, reproduced without clipping.
+
+    Up to v1.8a the level was an accident: ffmpeg chopped the peaks, which
+    raised the RMS, then the RMS match and the peak cap set the gain from
+    that. Aiming the limiter at the same number keeps every release sounding
+    the same as the one before it, which is the point. Matching Capcom's RMS
+    outright would need 45% of samples pulled down by up to 9 dB and is a
+    different decision about how the patch sounds.
+    """
+    clipped = np.clip(clean, -32768, 32767)
+    g = jp_ref / float(np.sqrt((clipped[:, 0] ** 2).mean()))
+    peak = float(np.abs(clipped).max()) * g
+    if peak > 32000:
+        g *= 32000.0 / peak
+    return float(np.sqrt(((clipped[:, 0] * g) ** 2).mean()))
 
 
 def jp_rms(path, h, secs=30):
@@ -99,17 +164,25 @@ def build(jp_path, log=print):
     n = min(h['samples'], len(L))
 
     # Capcom's finished mix is mastered; a raw stem sum lands about 3 dB
-    # quieter and sounds thin next to it. Match the Japanese track's RMS, then
-    # cap so nothing clips.
+    # quieter and sounds thin next to it. Capcom's own English mix is no help
+    # here, go_anime_1a.sngw correlates 0.9903 with MUSIC + SE + VOICE_jpn, so
+    # it is the Japanese master. Aim at the loudness the earlier builds
+    # reached and get there by limiting the peaks rather than losing them.
     jp_ref = jp_rms(jp_path, h)
-    ours = float(np.sqrt((L[:n].astype(np.float64) ** 2).mean()))
-    gain = (jp_ref / ours) if (ours and jp_ref) else 1.0
-    peak = float(max(np.abs(L[:n]).max(), np.abs(R[:n]).max())) * gain
-    if peak > 32000:
-        gain *= 32000.0 / peak
+    clean = np.stack([L[:n], R[:n]], axis=1)
+    target = v18a_level(clean, jp_ref) if jp_ref else float(np.sqrt((L[:n] ** 2).mean()))
+    ours = float(np.sqrt((clean[:, 0] ** 2).mean()))
+    y, gred = limit(clean * ((target / ours) if ours else 1.0), 32000.0, h['rate'])
+    got_rms = float(np.sqrt((y[:, 0] ** 2).mean()))
+    if got_rms:
+        y *= target / got_rms                  # give back what the limiter shaved
+    if np.abs(y).max() > 32000:                # and hold the ceiling anyway
+        y, g2 = limit(y, 32000.0, h['rate'])
+        gred = gred * g2
+    assert np.abs(y).max() <= 32767, 'limiter let a sample past full scale'
     chans = []
-    for tag, pcm in (('L', L), ('R', R)):
-        x = np.clip(pcm[:n].astype(np.float64) * gain, -32768, 32767).astype(np.int16)
+    for tag, pcm in (('L', y[:, 0]), ('R', y[:, 1])):
+        x = np.clip(pcm[:n], -32768, 32767).astype(np.int16)
         adpcm, coefs = dsp.encode(list(x))
         dec = dec_channel(adpcm, coefs, n)
         a, b = dec.astype(np.float64), x.astype(np.float64)
@@ -153,8 +226,11 @@ def build(jp_path, log=print):
     if len(out) > len(jp):
         return None, 'overruns Capcom\'s slot by %d bytes' % (len(out) - len(jp))
     out += bytes(len(jp) - len(out))          # back to Capcom's exact size
-    log('  %-20s %6.1fs  corr L %.4f R %.4f  %d bytes'
-        % (name, n / h['rate'], chans[0]['corr'], chans[1]['corr'], len(out)))
+    log('  %-20s %6.1fs  corr L %.4f R %.4f  limiter %4.1f%% of samples, most'
+        ' %.2f dB  %d bytes'
+        % (name, n / h['rate'], chans[0]['corr'], chans[1]['corr'],
+           100.0 * float((gred < 0.9944).mean()), -20 * np.log10(float(gred.min())),
+           len(out)))
     return out, None
 
 

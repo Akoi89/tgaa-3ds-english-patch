@@ -151,6 +151,10 @@ These are the ones you're most likely to meet:
   name tags and the small production scribbles on the design sheets were left alone on
   purpose. On the rough sketches page in issue 6, the tips of the pencil hair are clipped,
   because every rule that kept them also left readable Japanese behind.
+- **The animated cutscenes have a fine grain over them.** The 3DS stores that audio at about four bits a sample, and anything re-encoded into it picks up a background grain. Capcom's own cutscenes don't have it because they were encoded once from their master;
+  ours are encoded again from Capcom's PC audio, and that second pass is what you can hear.
+  It isn't fixable without a sound format the game doesn't offer. A separate crackle over
+  the same scenes, which was a real defect, is fixed in v1.8b.
 - **The DLC card on the title screen reads "D L C"**, one letter per slot. Cosmetic.
 
 Nobody has played either main game the whole way through on a console yet, so the later

@@ -5,6 +5,19 @@ release onto the Japanese 3DS versions of The Great Ace Attorney 1 and 2, includ
 games' DLC. It builds on senyarom's earlier fan patch and ships a base patch and a DLC
 patch for each game. Entries below are newest first.
 
+## v1.8b
+
+This release fixes the sound in the first game's animated cutscenes. Capcom ships that
+sound as three separate pieces, the music, the effects and the voice, and the patch adds
+them together to make one track. The total was coming out louder than the file can hold,
+so the loudest instants had their tops chopped flat. In the opening that happens 126 times
+in a little over a minute, and all seven cutscenes had it. On a console you heard it as a
+crackle over the narration. The finished track is the same volume as before, within a tenth
+of a decibel. Only the first game's base file changed, so the second game and both DLC
+files can stay as they are. There is a separate, fainter grain over the same scenes that
+this does not fix. That one is the console's own audio format, and it is written down in
+the known issues now rather than left as a mystery.
+
 ## v1.8a
 
 This release does not change either game. It only fixes the patch files for people who
