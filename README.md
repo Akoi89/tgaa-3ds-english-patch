@@ -53,7 +53,7 @@ returns to the title, or your emulator refuses to install the DLC at all, use
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
-`TGAA1-README-v1.8a.txt` and `TGAA2-README-v1.8a.txt` on the release page are the readmes from
+`TGAA1-README-v1.8b.txt` and `TGAA2-README-v1.8b.txt` on the release page are the readmes from
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
