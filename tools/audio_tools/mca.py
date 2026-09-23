@@ -7,11 +7,22 @@ Header, verified against TGAA/DGS files:
     0x0C u32 sample count
     0x10 u32 sample rate
     0x14 u32 loop start      0x18 u32 loop end
-    0x1C u32 data offset     0x20 u32 data size
+    0x1C u32 hdr_end (end of the channel headers: 0x68 mono, 0x98 stereo)
+    0x20 u32 data size
     0x24 f32 volume?
+    0x34 u32 data offset (o3; typically 0x80 mono, 0xA0 stereo, but read per-file --
+         the bytes between hdr_end and here are zero)
     0x38 16x s16 DSP coefficients (8 predictor pairs)
     0x58 s16 gain, s16 initial ps, s16 hist1, s16 hist2
 Sanity check that pins it: ceil(samples/14)*8 == the ADPCM byte count.
+
++0x1C is NOT the data offset -- it is where the channel headers end. The real
+data offset is the u32 at +0x34. Every writer that copied donor[:data_off]
+using the old +0x1C value wrote its replacement audio 24-40 bytes early (the
+cutscene grain / old DLC pop). See memory note mca-data-starts-at-0x34.md.
+`data_off` below is kept as the real (+0x34) offset so existing callers do the
+right thing automatically; `hdr_end` is exposed separately for the few things
+that need the channel-header end itself.
 """
 import struct
 import numpy as np
@@ -25,7 +36,9 @@ def parse(path):
     h['channels'] = d[8]
     h['samples'], h['rate'] = struct.unpack_from('<II', d, 0x0C)
     h['loop_start'], h['loop_end'] = struct.unpack_from('<II', d, 0x14)
-    h['data_off'], h['data_size'] = struct.unpack_from('<II', d, 0x1C)
+    h['hdr_end'] = struct.unpack_from('<I', d, 0x1C)[0]
+    h['data_size'] = struct.unpack_from('<I', d, 0x20)[0]
+    h['data_off'] = struct.unpack_from('<I', d, 0x34)[0]
     h['coef'] = list(struct.unpack_from('<16h', d, 0x38))
     h['gain'], h['ps'], h['h1'], h['h2'] = struct.unpack_from('<4h', d, 0x58)
     h['raw'] = d
@@ -71,7 +84,9 @@ def parse_bytes(d):
     h['channels'] = d[8]
     h['samples'], h['rate'] = struct.unpack_from('<II', d, 0x0C)
     h['loop_start'], h['loop_end'] = struct.unpack_from('<II', d, 0x14)
-    h['data_off'], h['data_size'] = struct.unpack_from('<II', d, 0x1C)
+    h['hdr_end'] = struct.unpack_from('<I', d, 0x1C)[0]
+    h['data_size'] = struct.unpack_from('<I', d, 0x20)[0]
+    h['data_off'] = struct.unpack_from('<I', d, 0x34)[0]
     h['coef'] = list(struct.unpack_from('<16h', d, 0x38))
     h['gain'], h['ps'], h['h1'], h['h2'] = struct.unpack_from('<4h', d, 0x58)
     h['raw'] = d

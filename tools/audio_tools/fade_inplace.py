@@ -53,7 +53,7 @@ def main():
         assert len(out) <= target, (rel, len(out), target)
         out = bytearray(out + bytes(target - len(out)))
         out[:0x38] = d[:0x38]
-        out[0x60:h['data_off']] = d[0x60:h['data_off']]
+        out[0x60:h['hdr_end']] = d[0x60:h['hdr_end']]   # header tail only, not the +0x34 zero gap
         out = bytes(out)
         assert len(out) == target and len(out) % 32 == 0
         h2 = mca.parse_bytes(out)

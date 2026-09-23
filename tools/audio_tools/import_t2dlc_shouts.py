@@ -109,6 +109,7 @@ def plan():
                 jobs.append(dict(arc=path, name=e.name, short=e.name.split('/')[-1],
                                  donor=e.data, src=src, pcm=pcm, rate=rate,
                                  base_rate=h['rate'], was=len(e.data),
+                                 data_off=h['data_off'],
                                  jp=h['samples'] / h['rate'],
                                  en=len(pcm) / h['rate']))
     return jobs
@@ -122,7 +123,7 @@ def main():
     apply_ = '--apply' in sys.argv
     cut = [j for j in jobs if j['rate'] != j['base_rate']]
     grew = {j['short']: j for j in jobs
-            if (len(j['pcm']) // 14 * 8 + 63) // 64 * 64 + 104 > j['was']}
+            if (len(j['pcm']) // 14 * 8 + 63) // 64 * 64 + j['data_off'] > j['was']}
     print('%d shout entries to replace (%d distinct clips)'
           % (len(jobs), len({j['short'] for j in jobs})))
     print('%d at full rate; %d rate-reduced to fit\n'

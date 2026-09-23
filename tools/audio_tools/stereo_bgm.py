@@ -8,8 +8,23 @@ the voice pipeline cannot touch them. They are STEREO MADP with loop points:
         +0  16x s16 DSP coefficients
         +32 s16 gain, s16 initial ps, s16 hist1, s16 hist2
         +40 s16 loop ps, s16 loop hist1, s16 loop hist2, s16 pad
-    data at 0x38 + channels*0x30, frames (8 bytes / 14 samples)
-    interleaved per-frame L,R,L,R (proven: L/R corr .52 vs -.09 split-halves)
+    data at the header's own +0x34 offset (0xA0 typically for a stereo file;
+        read per-file, never assumed -- the bytes from the end of the channel
+        headers at +0x1C/0x98 up to there are zero), 256-byte blocks per
+        channel, ch0 block / ch1 block / ch0 block / ...
+
+CORRECTED 2026-09-22 (was: data hardcoded at +0x98, the channel-header end, not
+the real +0x34 offset; per-frame L,R,L,R interleave, "proven" by an L/R corr of
+.52 vs -.09 split-halves). Both were wrong. The +0x98 offset skipped Capcom's
+own zero gap and wrote data 8 bytes early, the same class of bug across every
+.mca writer here -- see memory note mca-data-starts-at-0x34.md. The per-frame
+correlation "proof" is not trustworthy either: decoding real block data as
+per-frame still correlates, because every "L" then holds even frames of BOTH
+real channels and every "R" holds the odd frames of both. The corpus check (653
+loose .mca under dgs2_base_romfs/sound) found no Capcom file using per-frame
+stereo -- always 256-byte blocks -- and import_anime.py independently confirmed
+the same thing by ear (a frame-interleaved build played garbled; 256-byte
+blocks did not).
 
 Chronicles ships the English mixes as .sngw (Ogg) with official LoopStart/
 LoopEnd vorbis comments at the native 48 kHz; scaled to the 3DS 32728 Hz they
@@ -78,11 +93,32 @@ def dec_channel(frames, coef, n):
     return out.astype(np.int16)
 
 
+def interleave_blocks(streams):
+    """Per-channel ADPCM byte strings (already 256-padded, equal length) ->
+    one interleaved payload: ch0 block, ch1 block, ch0 block, ... ."""
+    n = len(streams[0])
+    assert all(len(s) == n for s in streams)
+    out = bytearray()
+    for i in range(0, n, 256):
+        for s in streams:
+            out += s[i:i + 256]
+    return bytes(out)
+
+
+def deinterleave_blocks(data, nch):
+    """Inverse of interleave_blocks: one interleaved payload -> per-channel bytes."""
+    per_ch = len(data) // nch
+    return [b''.join(data[i * 256 * nch + c * 256:i * 256 * nch + (c + 1) * 256]
+                     for i in range(-(-per_ch // 256)))
+            for c in range(nch)]
+
+
 def convert(jp_path, out_path, log=print):
     name = os.path.splitext(os.path.basename(jp_path))[0]
     jp = open(jp_path, 'rb').read()
     assert jp[:4] == b'MADP' and jp[8] == 2, (name, jp[8])
     rate = struct.unpack_from('<I', jp, 0x10)[0]
+    o3 = struct.unpack_from('<I', jp, 0x34)[0]     # real data offset, read per-file
     jp_peak = 30000  # conservative reference; measured below if needed
 
     src = os.path.join(STEAM, name + '.sngw')
@@ -118,15 +154,15 @@ def convert(jp_path, out_path, log=print):
                           loop=(loop_ps, lh1, lh2), corr=corr))
         log('  %s ch%s: %d frames, corr %.4f' % (name, ch, len(adpcm) // 8, corr))
 
-    nfr = (n + 13) // 14
-    body = bytearray()
-    for f in range(nfr):
-        for c in chans:
-            body += c['adpcm'][f * 8:(f + 1) * 8]
-    size = (len(body) + 255) // 256 * 256
-    body += bytes(size - len(body))
+    # Capcom's own size rule (measured on the seven stereo crowd streams too):
+    # each channel's ADPCM is padded to 256 bytes on its own, THEN interleaved,
+    # so the data size is channels * ceil(per_channel/256)*256.
+    per_ch = max((len(c['adpcm']) + 255) // 256 * 256 for c in chans)
+    streams = [c['adpcm'] + bytes(per_ch - len(c['adpcm'])) for c in chans]
+    body = interleave_blocks(streams)
+    size = len(body)
 
-    d = bytearray(jp[:0x98])
+    d = bytearray(jp[:o3])          # keeps Capcom's own header AND zero gap verbatim
     struct.pack_into('<I', d, 0x0C, n)
     struct.pack_into('<II', d, 0x14, loop_s, loop_e)
     struct.pack_into('<I', d, 0x20, size)
@@ -138,15 +174,13 @@ def convert(jp_path, out_path, log=print):
     out = bytes(d) + bytes(body)
     out += bytes((-len(out)) % 32)   # Capcom's zero trailer: 32-aligned or hardware clicks at the end (pad32 rule)
 
-    # verify: reparse + spot-decode both channels of the finished file
+    # verify: reparse + spot-decode both channels of the finished file, from o3
     assert out[:4] == b'MADP' and out[8] == 2
     got_n, got_rate = struct.unpack_from('<II', out, 0x0C)
     assert got_n == n and got_rate == rate
-    dat = out[0x98:0x98 + size]
-    a = bytearray(); b2 = bytearray()
-    for f in range(2 * min(nfr, 40000)):
-        (a if f % 2 == 0 else b2).extend(dat[f * 8:(f + 1) * 8])
-    la = dec_channel(bytes(a), chans[0]['coefs'], min(n, 40000 * 14))
+    dat = out[o3:o3 + size]
+    a, _ = deinterleave_blocks(dat, 2)
+    la = dec_channel(a, chans[0]['coefs'], min(n, 40000 * 14))
     x = np.clip(L[:len(la)].astype(np.float64) * gain, -32768, 32767)
     corr = float(np.dot(la.astype(np.float64), x) /
                  (np.linalg.norm(la.astype(np.float64)) * np.linalg.norm(x) + 1e-9))

@@ -6,7 +6,8 @@ when a stream file is smaller than the original, and other issues' players cut
 off. Files LARGER than the original play fine. So: where our re-encode shrank a
 file, extend the ADPCM region with zero frames (DSP decodes them as silence) to
 the original data_size; where it grew, leave it alone. File length is always
-104 + data_size, so padded files come out byte-length identical to Capcom's.
+data_off (header +0x34) + data_size, so padded files come out byte-length
+identical to Capcom's.
 """
 import os, sys, glob, struct, shutil
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__))))

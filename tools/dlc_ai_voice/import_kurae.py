@@ -111,6 +111,7 @@ def plan(tree):
         job = dict(name=name, path=dst, donor=donor, rate=h['rate'],
                    was=len(donor), jp=h['samples'] / h['rate'],
                    ref_peak=int(np.abs(mca.decode(h)).max()),
+                   data_off=h['data_off'],
                    src=os.path.join(SYNTH, wav))
         if os.path.exists(job['src']):
             pcm, srate = read_wav(job['src'])
@@ -141,7 +142,7 @@ def main():
 
     fail = False
     for j in jobs:
-        need = 104 + (len(j['pcm']) // 14 * 8 + 63) // 64 * 64
+        need = j['data_off'] + (len(j['pcm']) // 14 * 8 + 63) // 64 * 64
         need += (-need) % 32                    # the 32-byte trailer encode() appends
         j['will'] = need
         flag = ''

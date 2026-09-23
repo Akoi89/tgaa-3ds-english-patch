@@ -3,7 +3,9 @@
 
 Found 2026-09-06 from the user's own 3DS recording: the click sits exactly at the end of our
 stream. Every Capcom .mca (234 checked, DLC and base) ends in a zero trailer that pads the
-total length to a multiple of 32 bytes (104-byte header + 64-aligned data + 24). Every stream
+total length to a multiple of 32 bytes (data starts at header +0x34 -- 0x80/128 bytes for
+mono, 0xA0/160 for stereo, not the 0x68/104-byte end of the channel headers at +0x1C -- plus
+64-aligned data plus a trailer; see mca-data-starts-at-0x34.md). Every stream
 we or senyarom wrote is 8 mod 32 with no trailer. A console reading in 32-byte units takes
 24 bytes of whatever follows the file and decodes them as the last frames. Azahar reads exact
 sizes and never hears it. This tool changes NOTHING but the trailer: header, sample count,

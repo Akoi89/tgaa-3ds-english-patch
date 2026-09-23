@@ -19,8 +19,11 @@ English track is MUSIC + SE + VOICE_eng summed. Durations agree with the 3DS
 track to a hundredth of a second, so this is mixing, not resynchronisation.
 
 STEREO, so the mono voice pipeline does not apply: per-channel 48-byte blocks at
-0x38 + ch*0x30, frames interleaved L,R,L,R. That is the layout stereo_bgm.py
-established for the music-baked shouts, and its encoder is reused here.
+0x38 + ch*0x30, data at the header's own +0x34 offset (not the +0x1C/0x98
+channel-header end -- see the CHANNEL INTERLEAVE note below and memory note
+mca-data-starts-at-0x34.md), 256-byte blocks per channel. That is the layout
+this project confirmed by ear for stereo .mca; stereo_bgm.py's encoder is
+reused here (and was itself corrected to the same offset and layout 2026-09-22).
 
 Streamed, so the slot rule applies: the result is padded back to Capcom's exact
 file size. ADPCM is fixed-bitrate and the durations match, so it fits.
@@ -41,7 +44,7 @@ sys.path.insert(0, AUDIO)
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 import dsp                                                     # noqa: E402
 import mca                                                     # noqa: E402
-from stereo_bgm import dec_channel                             # noqa: E402
+from stereo_bgm import dec_channel, deinterleave_blocks        # noqa: E402
 
 SCRATCH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Capcom's untouched Japanese tree, the donor whose header and slot size every
@@ -58,6 +61,27 @@ STEMS = ('_MUSIC', '_SE', '_VOICE_eng')
 # 256-byte block interleave. CONFIRMED BY EAR 2026-08-31 after a frame-
 # interleaved build played garbled. Overridable only for further experiments.
 INTERLEAVE = int(os.environ.get('MCA_INTERLEAVE', '256'))
+
+# KEEP THE SHIPPED LOUDNESS. jp_rms() was corrected 2026-09-22 to read from the
+# real +0x34 offset in 256-byte blocks (it is right to be honest about what a
+# fresh measurement of Capcom's track now shows), but feeding that corrected
+# number into v18a_level() would move the release's level by up to +0.70 /
+# -0.61 dB per track and fail verify_anime_fix.py's 0.25 dB check -- an
+# audible, unintended change nobody asked for. These seven values are v1.8a's
+# actual calibration target: jp_rms() computed with the PRE-2026-09-22 reader
+# (off = 0x38 + channels*0x30, per-8-byte-frame split -- the same +0x1C-class
+# bug the rest of this job fixed). They are kept here deliberately so already
+# shipped levels do not move; changing them is a sound decision for the user,
+# not a bug fix. See memory note mca-data-starts-at-0x34.md.
+V18A_JP_REF = {
+    'go_anime_1a': 8388.033621012835,
+    'go_anime_1b': 7241.6101531427685,
+    'go_anime_2a': 4898.441154948754,
+    'go_anime_2b': 8599.641204089896,
+    'go_anime_3': 3793.8505860462483,
+    'go_anime_5': 6450.742263059082,
+    'go_anime_ed': 6078.321175070444,
+}
 
 
 def mix(name, rate):
@@ -139,15 +163,23 @@ def v18a_level(clean, jp_ref):
 
 
 def jp_rms(path, h, secs=30):
-    """RMS of Capcom's own track, as the level to match."""
+    """RMS of Capcom's own track, as the level to match.
+
+    CORRECTED 2026-09-22 (was: read from off = 0x38 + channels*0x30 == 0x98,
+    the channel-header end, and split per-8-byte-frame -- the same +0x1C-class
+    bug as the writers, plus the per-frame assumption this project has since
+    shown is wrong for every Capcom .mca). Now reads from the header's own
+    +0x34 offset and deinterleaves 256-byte blocks, the way the game does.
+    """
     d = open(path, 'rb').read()
     coef = list(struct.unpack_from('<16h', d, 0x38))
-    off = 0x38 + h['channels'] * 0x30
+    off = h['data_off']            # +0x34, not the +0x1C/0x98 channel-header end
     n = min(int(h['rate'] * secs), h['samples'])
-    need = int(np.ceil(n / 14)) * 8 * h['channels']
-    raw = np.frombuffer(d[off:off + need], np.uint8)
-    blk = raw[:len(raw) // 16 * 16].reshape(-1, 16)
-    x = dec_channel([int(v) for v in blk[:, :8].reshape(-1)], coef, n)
+    nblocks = -(-(int(np.ceil(n / 14)) * 8) // 256)     # ceil to whole 256-byte blocks
+    need = nblocks * 256 * h['channels']
+    raw = d[off:off + need]
+    ch0 = deinterleave_blocks(raw, h['channels'])[0]
+    x = dec_channel(ch0, coef, n)
     return float(np.sqrt((x.astype(np.float64) ** 2).mean()))
 
 
@@ -168,7 +200,12 @@ def build(jp_path, log=print):
     # here, go_anime_1a.sngw correlates 0.9903 with MUSIC + SE + VOICE_jpn, so
     # it is the Japanese master. Aim at the loudness the earlier builds
     # reached and get there by limiting the peaks rather than losing them.
-    jp_ref = jp_rms(jp_path, h)
+    # Calibration target: v1.8a's own reference (V18A_JP_REF), not a fresh
+    # jp_rms() -- see the comment on V18A_JP_REF. jp_rms() (corrected, honest)
+    # is only the fallback for a track that has no recorded v1.8a reference.
+    jp_ref = V18A_JP_REF.get(name)
+    if jp_ref is None:
+        jp_ref = jp_rms(jp_path, h)
     clean = np.stack([L[:n], R[:n]], axis=1)
     target = v18a_level(clean, jp_ref) if jp_ref else float(np.sqrt((L[:n] ** 2).mean()))
     ours = float(np.sqrt((clean[:, 0] ** 2).mean()))
@@ -195,8 +232,8 @@ def build(jp_path, log=print):
     # sounded garbled: every offline check shares whatever assumption is made
     # here, so none of them can detect it being wrong. Selectable so it can be
     # decided by listening, which is the only ground truth available.
-    #   8   L,R per 8-byte ADPCM frame -- what stereo_bgm.py assumes. WRONG.
-    #       A build using it played garbled in game.
+    #   8   L,R per 8-byte ADPCM frame -- what stereo_bgm.py assumed before it
+    #       was corrected 2026-09-22. WRONG. A build using it played garbled.
     #   256 L,R per 256-byte block. CORRECT, confirmed by ear. It also explains
     #       why Capcom's data_size is always a multiple of 256, and it makes our
     #       file reproduce Capcom's own per-track L/R pattern (+0.876 vs +0.874
@@ -215,7 +252,7 @@ def build(jp_path, log=print):
             body += st[o:o + blk]
     size = (len(body) + 255) // 256 * 256
     body += bytes(size - len(body))
-    d = bytearray(jp[:0x98])
+    d = bytearray(jp[:h['data_off']])   # Capcom's own header AND zero gap, verbatim (+0x34, not +0x1C/0x98)
     struct.pack_into('<I', d, 0x0C, n)
     struct.pack_into('<I', d, 0x20, size)
     for i, c in enumerate(chans):

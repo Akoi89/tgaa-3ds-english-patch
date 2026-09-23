@@ -32,9 +32,9 @@ for p in walk([a for a in sys.argv[1:] if not a.startswith('--')]):
             continue
         samples, rate = struct.unpack_from('<II', d, 0x0C)
         ls, le = struct.unpack_from('<II', d, 0x14)
-        doff, dsize = struct.unpack_from('<II', d, 0x1C)
-        f20 = struct.unpack_from('<I', d, 0x20)[0]
+        hdr_end, dsize = struct.unpack_from('<II', d, 0x1C)
+        doff = struct.unpack_from('<I', d, 0x34)[0]
         hdr = d[0x24:0x38].hex()
-        print('%-16s %-30s smp=%6d rate=%5d loop=%6d..%6d doff=%3d dsize=%6d @20=%6d len=%6d exp=%6d %s' % (
-            os.path.basename(p)[:16], short[:30], samples, rate, ls, le, doff, dsize, f20, len(d),
+        print('%-16s %-30s smp=%6d rate=%5d loop=%6d..%6d hdr_end=%3d doff=%3d dsize=%6d len=%6d exp=%6d %s' % (
+            os.path.basename(p)[:16], short[:30], samples, rate, ls, le, hdr_end, doff, dsize, len(d),
             doff + (-(-samples // 14)) * 8, 'LOOP>SMP' if le > samples else ''))

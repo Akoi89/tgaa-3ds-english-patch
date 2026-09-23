@@ -167,31 +167,21 @@ def interleave(streams, layout):
 
 
 def donor_layout(h, n=120000):
-    """Which interleave does THIS donor use? Capcom's crowd streams are not one
-    layout: the two short courtroom stings are per-frame L,R, the murmur, the
-    chant and both Dance-outcome cues are 256-byte blocks per channel. Nothing
-    in the header says which. Decoding both ways and asking which gives a sane
-    left/right correlation does (+0.6..+0.9 right, ~0 or negative wrong)."""
-    if h['channels'] == 1:
-        return 'mono'
-    n = min(n, h['samples'])
-    scores = {}
-    for layout in ('frame', 'block'):
-        L, R = deinterleave(h['adpcm'], 2, layout)
-        a = dec_channel(L, list(struct.unpack_from('<16h', h['raw'], 0x38)), n)
-        b = dec_channel(R, list(struct.unpack_from('<16h', h['raw'], 0x68)), n)
-        scores[layout] = corr(a.astype(np.float64), b.astype(np.float64))
-    pick = max(scores, key=scores.get)
-    other = min(scores, key=scores.get)
-    # The choice must be unambiguous, or the encode/verify pair is merely
-    # self-consistent: a wrong pick would still verify against itself. The
-    # MARGIN is the signal: the seven real donors decide by 0.40 to 0.95
-    # (+0.62 vs +0.12, +0.93 vs -0.02, and a wide-stereo chant at +0.43 vs
-    # +0.01). Refuse a coin-flip rather than guess.
-    if scores[pick] < 0.35 or scores[pick] - scores[other] < 0.25:
-        raise SystemExit('stereo layout ambiguous for this donor: frame %+.3f, block %+.3f'
-                         % (scores['frame'], scores['block']))
-    return pick
+    """Which interleave does THIS donor use? SUPERSEDED 2026-09-22: this used to
+    decode both ways and pick whichever gave a sane left/right correlation, and
+    picked 'frame' for the two courtroom stings. That correlation test is not
+    trustworthy -- decoding real 256-byte-block data as per-frame puts even
+    frames of BOTH real channels into "L" and odd frames of both into "R", so
+    the two halves still correlate with each other whatever the true stereo
+    image is, and a wrong per-frame pick can look like a confident match. The
+    corpus check (653 loose .mca under dgs2_base_romfs/sound; see memory note
+    mca-data-starts-at-0x34.md) found NO Capcom file using per-frame stereo:
+    every one is 256-byte blocks per channel, always. import_anime.py
+    independently confirmed the same thing by ear (a frame-interleaved build
+    played garbled; 256-byte blocks did not). Kept as a function, and kept
+    returning a string, so every caller (build(), plan(), listening_kit.py,
+    check_stereo.py) keeps working unchanged; it just no longer guesses."""
+    return 'mono' if h['channels'] == 1 else 'block'
 
 
 def build(donor_path, chans, rate, layout):
