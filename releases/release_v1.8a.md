@@ -1,6 +1,13 @@
-Capcom's official English text on the Japanese 3DS releases, **including all the DLC**, and Capcom's art. Built on top of [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch). You need the Japanese base games; they aren't distributed here.
+**Superseded by [v1.8b](../../releases/tag/v1.8b).** v1.8b fixes a crackle in the first game's animated cutscenes. Only the first game's update changed.
 
-**If you already installed v1.8, you don't need this.** The games are identical. v1.8a exists only because the xdelta patches refused a dump made from a game cartridge, and now they don't.
+Capcom's official English text on the Japanese 3DS releases, **including all the DLC**, and Capcom's art. Built on [senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch). You need the Japanese base games; they aren't distributed here.
+
+**If you already installed v1.8, you don't need this.** The games are identical.
+
+- **The patches now accept a cartridge dump.** If you own the card rather than a digital copy, you can dump it to `.3ds` and convert it with GodMode9. Until now the update and DLC patches refused the result with `target window checksum mismatch`.
+- **That was my fault, not yours.** Someone sent me their dump: it differs from mine in 2,708 bytes out of 689,790,976, and every one of them is header. GodMode9 just writes those fields differently when it converts a card image. Not one byte of game code or game data differs. My patches were being strict about bytes they had no reason to care about.
+- **Nothing in the games changed.** The patch files are between 337 bytes smaller and 714 bytes larger, and that's the whole cost.
+- **The optional HOME banner patch is still strict** and still wants a CIA dump of an installed title. Its output is your own game image with the icon swapped, so making it tolerant would mean writing my headers into your file instead of yours, and I won't ship that untested on a console.
 
 ## Install, in this order
 
@@ -9,36 +16,15 @@ Capcom's official English text on the Japanese 3DS releases, **including all the
 | 1 | *the Japanese base game* | yours, not distributed |
 | 2 | `TGAA1-base-3.2.4.cia` / `TGAA2-base-1.0.16.cia` | the update |
 | 3 | `TGAA1-DLC-1.0.12.cia` / `TGAA2-DLC-1.0.10.cia` | the DLC |
-| 4 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional HOME menu banner, see the README |
+| 4 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional HOME menu banner |
 
-Prefer patch files? `TGAA1-3DS-English-v1.8a-xdelta.zip` and `TGAA2-3DS-English-v1.8a-xdelta.zip` hold rows 2 and 3 as xdelta patches against your own decrypted Japanese dump, plus the HOME banner patch, with a readme that has the commands and hashes. Same result, same install order.
+- **Prefer patch files?** The `-xdelta.zip` downloads hold rows 2 and 3 as patches against your own decrypted Japanese dump, plus the banner patch, with the commands and hashes in a readme. Same result, same order.
+- **Want Japanese voices?** The `-JPvoice-` zips are the same patches with every audio file put back to Capcom's Japanese. Text and art unchanged. Install one edition or the other.
+- **On an emulator, if the DLC shows a padlock** or won't install, use `TGAA1-EN-DLC-v1.8a.cia` or `TGAA2-EN-DLC-v1.8a.cia` in place of row 3. Same DLC, with Capcom's encryption taken off the filesystem inside so the emulator doesn't need its own AES keys. A console reads either. Install one form, not both.
+- **To check it took:** the title screens read `ENG 3.2.4` and `ENG 1.0.16`, the DLC pages `DLC 1.0.12` and `DLC 1.0.10`. Same numbers as v1.8, because nothing in the games changed.
 
-Japanese voices? `TGAA1-3DS-English-JPvoice-v1.8a-xdelta.zip` and `TGAA2-3DS-English-JPvoice-v1.8a-xdelta.zip` are the same patches with every audio file put back to Capcom's Japanese, text and art unchanged. Same title versions as the main files, so install one edition or the other. See the README.
-
-## On an emulator, use the plain DLC files
-
-If the DLC card shows a padlock and the game returns to the title, or your emulator refuses to install the DLC at all, take `TGAA1-EN-DLC-v1.8a.cia` or `TGAA2-EN-DLC-v1.8a.cia` in place of row 3. Same DLC, same version, same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need AES keys of its own to read it. A console reads either one. The xdelta zips already produce these exact files; these are just the ready made copies. Install one form or the other, not both.
-
-## How to tell it took
-
-The first game's title screen reads `ENG 3.2.4`, the second game's `ENG 1.0.16`. The DLC pages read `DLC 1.0.12` and `DLC 1.0.10`. These are the same numbers as v1.8, because nothing in the games changed.
-
-## What's fixed in v1.8a
-
-If you own the cartridge rather than a digital copy, you can dump the card to `.3ds` and convert it with GodMode9's NCSD image options, Build CIA from file. Until now the update and DLC patches refused the result with `target window checksum mismatch`, and the readme told you that route was untested. Both patches now take it.
-
-Someone hit this, sent me their dump, and it turned out to be my fault rather than theirs. Their decrypted image differs from mine in 2,708 bytes out of 689,790,976, and all of it is header: the card info block in the NCSD header, the game partition's NCCH header and the start of its exheader, and the manual partition's NCCH header. Not one byte of game code or game data is different. GodMode9 just writes those fields differently when it converts a card image, and my patches were being strict about bytes they had no reason to care about. They already ignored a 44 byte random block in the first header for exactly this reason; the window simply wasn't wide enough.
-
-The patch files are between 337 bytes smaller and 714 bytes larger than v1.8's. That's the whole cost.
-
-One thing is deliberately not fixed. The optional HOME banner patch is still strict, and wants a CIA dump of an installed title. Its output is your own game image with the icon swapped, so making it tolerant would mean writing my headers into your file instead of yours, and I'm not shipping that without testing it on a console first. The readme in each zip says so.
-
-## What's been tested
-
-Every patch in this release reproduces its target from my own dump and from two sources with those regions randomised. The first game's two update patches were additionally checked against the reporter's real cartridge-sourced image, and both produce the release file byte for byte. The second game has no cartridge-sourced dump I can test against, so its patches are tolerant by construction rather than by demonstration; if you patch the second game from a card dump, I'd like to hear how it went.
-
-The games themselves are the v1.8 builds and carry v1.8's testing, which is written up in that release.
+Every patch here reproduces its target from my own dump and from two sources with those header regions randomised. The first game's update patches were also checked against the reporter's real cartridge image and match byte for byte. The second game has no cartridge dump I can test against, so if you patch it from a card dump, I'd like to hear how it went.
 
 **Back up your save before installing.** The second game wipes its slots if you confirm its corrupted-save prompt. Decline it and report it.
 
-**[Report anything wrong in issue #1](../../issues/1)**, especially anything on real hardware.
+**[Report anything wrong in issue #1](../../issues/1)**, especially on real hardware.
