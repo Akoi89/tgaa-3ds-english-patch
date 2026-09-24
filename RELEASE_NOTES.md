@@ -7,6 +7,10 @@ patch for each game.
 
 ## What this build fixes
 
+- Lowercase t and e on the first game's DLC menu headings. They came out broken on
+  screen, so "Picture Book" read "Picturc Book". The menu font's crossbars were one
+  pixel thin and vanished when the game drew it slightly shrunk; those two letters are
+  thicker now in both games. Checked on the emulator against the tester's photo.
 - The grain over the first game's animated cutscenes. Not a format limit after all: our
   tools wrote every English sound track a few bytes out of position, so the console read
   each one slightly late, and that misread was the grain. Checked on a console before
@@ -48,6 +52,9 @@ patch for each game.
 
 Newest first. A version's changes are listed here and nowhere else.
 
+- v1.9b: the broken t and e on the DLC menu headings, in both games; the second game's
+  title screen and DLC banner show their real version numbers again. Every update
+  changed, and the second game's DLC.
 - v1.9a: the first game's Episode 2 opening narration reads straight through on each
   page instead of pausing mid-sentence, and no longer splits a word in three places.
   First game's update only.
@@ -92,7 +99,6 @@ Newest first. A version's changes are listed here and nowhere else.
 - Japanese remains in the first game's DLC Picture Book (name tags, production
   scribbles), and the galleries for DLC issues 9 to 13 show Japanese placeholder text I
   haven't decided whether to translate.
-- The tester saw a lowercase t that looked odd; I'm waiting on a photo.
 - The DLC card on the title screen reads "D L C". Cosmetic.
 - Nobody has played either main game through on a console yet. The English lines added
   to the second game's last two episodes, and the crowd loops, were checked offline only.
@@ -101,16 +107,16 @@ Newest first. A version's changes are listed here and nowhere else.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.3.cia` / `TGAA2-base-1.0.17.cia`: the update.
-- `TGAA1-DLC-1.0.16.cia` / `TGAA2-DLC-1.0.11.cia`: the DLC. `TGAA1-EN-DLC-v1.9.cia` /
-  `TGAA2-EN-DLC-v1.9.cia`: the same DLC decrypted inside, for emulators. One or the
+- `TGAA1-base-3.3.4.cia` / `TGAA2-base-1.0.18.cia`: the update.
+- `TGAA1-DLC-1.0.16.cia` / `TGAA2-DLC-1.0.12.cia`: the DLC. `TGAA1-EN-DLC-v1.9.cia` /
+  `TGAA2-EN-DLC-v1.9b.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9a-xdelta.zip` / `TGAA2-3DS-English-v1.9a-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9b-xdelta.zip` / `TGAA2-3DS-English-v1.9b-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the HOME banner patch
   (`TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`, also posted on its own)
-  and a readme (`TGAA1-README-v1.9a.txt` / `TGAA2-README-v1.9a.txt`, also posted on their
+  and a readme (`TGAA1-README-v1.9b.txt` / `TGAA2-README-v1.9b.txt`, also posted on their
   own).
-- `TGAA1-3DS-English-JPvoice-v1.9-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9-xdelta.zip`:
+- `TGAA1-3DS-English-JPvoice-v1.9b-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9b-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
 
 Sizes, hashes, apply steps and troubleshooting are in the README.

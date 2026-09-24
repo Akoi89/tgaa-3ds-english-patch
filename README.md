@@ -40,20 +40,20 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.3.3.cia` / `TGAA2-base-1.0.17.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.16.cia` / `TGAA2-DLC-1.0.11.cia` | the DLC |
-| 4 | `TGAA1-3DS-English-v1.9a-xdelta.zip` / `TGAA2-3DS-English-v1.9a-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
+| 2 | `TGAA1-base-3.3.4.cia` / `TGAA2-base-1.0.18.cia` | the update |
+| 3 | `TGAA1-DLC-1.0.16.cia` / `TGAA2-DLC-1.0.12.cia` | the DLC |
+| 4 | `TGAA1-3DS-English-v1.9b-xdelta.zip` / `TGAA2-3DS-English-v1.9b-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
 **On an emulator, take the plain DLC instead.** If the DLC card shows a padlock and the game
 returns to the title, or your emulator refuses to install the DLC at all, use
-`TGAA1-EN-DLC-v1.9.cia` or `TGAA2-EN-DLC-v1.9.cia` in place of row 3. Same DLC, same version,
+`TGAA1-EN-DLC-v1.9.cia` or `TGAA2-EN-DLC-v1.9b.cia` in place of row 3. Same DLC, same version,
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
-`TGAA1-README-v1.9a.txt` and `TGAA2-README-v1.9a.txt` on the release page are the readmes from
+`TGAA1-README-v1.9b.txt` and `TGAA2-README-v1.9b.txt` on the release page are the readmes from
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
@@ -85,10 +85,10 @@ luck. The wording xdelta3 gives you is `target window checksum mismatch`.
 
 | | reads |
 |---|---|
-| TGAA1 title screen, top right | `ENG 3.3.3` |
+| TGAA1 title screen, top right | `ENG 3.3.4` |
 | TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.16`, top left |
-| TGAA2 title screen, top right | `ENG 1.0.17` |
-| TGAA2 DLC, costume pack banner | `DLC 1.0.11`, bottom right |
+| TGAA2 title screen, top right | `ENG 1.0.18` |
+| TGAA2 DLC, costume pack banner | `DLC 1.0.12`, bottom right |
 
 An older number means an older update is still installed. Both title screens should also
 show Capcom's own *Adventures* and *Resolve* logos rather than fan-drawn ones.

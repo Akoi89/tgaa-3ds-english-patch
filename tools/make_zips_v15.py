@@ -14,17 +14,17 @@ R = os.path.join(HERE, '..')
 XD = os.path.join(R, 'patches', 'xdelta3.exe')
 
 META = {
-    # dlc_tag is the DLC's OWN tag, separate from --tag: the DLC CIA content did not change in
-    # v1.9a (only the TGAA1 update did), so the DLC output filename the README tells the user to
-    # create must still read v1.9, matching the actual TGAA*-EN-DLC-v1.9.cia release asset, even
-    # though the xdelta patch itself is rebuilt and named with the current --tag like everything else.
+    # dlc_tag is the DLC's OWN tag, separate from --tag: TGAA1's DLC CIA content did not change
+    # in v1.9b, so its README output filename must still read v1.9, matching the actual
+    # TGAA1-EN-DLC-v1.9.cia release asset; TGAA2's DLC changed in v1.9b (1.0.11 -> 1.0.12), so
+    # its dlc_tag advances to v1.9b to match the new TGAA2-EN-DLC-v1.9b.cia release asset.
     'TGAA1': dict(jp='Dai Gyakuten Saiban: Naruhodou Ryuunosuke no Bouken', en='The Great Ace Attorney: Adventures',
-                  tid='0014AD00', card_delta='2,708', ver='ENG 3.3.3', upd='TGAA1-base-3.3.3.cia',
+                  tid='0014AD00', card_delta='2,708', ver='ENG 3.3.4', upd='TGAA1-base-3.3.4.cia',
                   dlc_where='the Episode 0 magazine cover, top left', dlc_stamp='DLC 1.0.16', dlc_tag='v1.9',
                   dlc_note="The first game's DLC is a big one: it holds the voice galleries, eleven subtitled commentary videos, the rebuilt magazine covers and a playable extra episode. The videos had to be re-encoded with English subtitles, which is why this DLC patch is about 170 MB: that part is genuinely new data, not a repack."),
     'TGAA2': dict(jp='Dai Gyakuten Saiban 2: Naruhodou Ryuunosuke no Kakugo', en='The Great Ace Attorney 2: Resolve',
-                  tid='001AE200', card_delta='1,075', ver='ENG 1.0.17', upd='TGAA2-base-1.0.17.cia',
-                  dlc_where='the costume pack banner, bottom right', dlc_stamp='DLC 1.0.11', dlc_tag='v1.9',
+                  tid='001AE200', card_delta='1,075', ver='ENG 1.0.18', upd='TGAA2-base-1.0.18.cia',
+                  dlc_where='the costume pack banner, bottom right', dlc_stamp='DLC 1.0.12', dlc_tag='v1.9b',
                   dlc_note="The second game's DLC holds the two mini episodes and the costumes. Both episodes are fully in English, including their voiced shouts."),
 }
 
