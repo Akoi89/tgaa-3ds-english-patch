@@ -11,7 +11,7 @@ patch for each game.
   screen, so "Picture Book" read "Picturc Book". The menu font's crossbars were one
   pixel thin and vanished when the game drew it slightly shrunk; those two letters are
   thicker now in both games. Checked on the emulator against the tester's photo.
-- The grain over the first game's animated cutscenes. Not a format limit after all: our
+- The grain over the first game's animated cutscenes. Not a format limit after all: my
   tools wrote every English sound track a few bytes out of position, so the console read
   each one slightly late, and that misread was the grain. Checked on a console before
   and after.
@@ -41,7 +41,7 @@ patch for each game.
   are re-broken, not a word changed; Court Record captions the game had been shrinking
   small and soft draw at full size, a few with a word or comma trimmed.
 - Gasps and cries in the second game's Dance of Deduction, distorted by a decoding
-  mistake of ours, come out as Capcom made them. Checked by decoding, not yet heard in
+  mistake of mine, come out as Capcom made them. Checked by decoding, not yet heard in
   the scene.
 - The first game's DLC galleries: four "Bonus voice recital" tracks now in Capcom's
   English; Music and Sound titles that ran past their plate; small Picture Book text,
