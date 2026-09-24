@@ -18,7 +18,7 @@ that used to be hardcoded are now environment variables, but nothing here has be
 hardened for anyone else's machine.
 
 It is published so that anyone can verify or rebuild what the releases contain. That is
-the standard the GPL sets, and it is the honest one.
+the standard the GPL sets, and the one this project follows.
 
 **No game data is included here, and none will be.** Every script expects you to supply
 your own extracted content.

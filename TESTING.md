@@ -1,4 +1,4 @@
-# Testing status, honestly
+# Testing status
 
 What has actually been played, watched or listened to, and what has only been checked in
 the files. If a row says something has never been seen or heard, that is not modesty, it
