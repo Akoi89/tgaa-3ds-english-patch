@@ -3,14 +3,13 @@
 
 An .xsew is a plain RIFF/WAVE whose 'fmt ' tag is 2 -- MS-ADPCM -- which
 Python's own `wave` module refuses. The rest of the project shells out to
-ffmpeg for this; ffmpeg is not installed on this machine, and the format is
-small enough to decode directly.
+ffmpeg for this, but the format is small enough to decode directly.
 
     chr100_asg_v_matta_eng.xsew  ->  mono int16 @ 47890 Hz
 
 Block layout, per channel, blockAlign bytes:
     u8  predictor index      s16 initial delta
-    s16 sample2              s16 sample1
+    s16 sample1              s16 sample2
     then one 4-bit nibble per following sample, high nibble first.
 """
 import struct
@@ -21,6 +20,17 @@ ADAPT = [230, 230, 230, 230, 307, 409, 512, 614,
          768, 614, 512, 409, 307, 230, 230, 230]
 COEF1 = [256, 512, 0, 192, 240, 460, 392]
 COEF2 = [0, -256, 0, 64, 0, -208, -232]
+
+
+def _trunc_div(x, y):
+    """C-style integer division (truncates toward zero), not Python's // (floors
+    toward -inf). The MS-ADPCM reference divides with C `/`; using // left a
+    silent one-off error on negative predictor sums that compounds through the
+    recursive predictor -- invisible on loud clips (corr .9999x) but measurable
+    on quiet ones (v_asg_surprise_mask fell to .999050 with // and only the
+    header-order fix). With this, decode is bit-exact against ffmpeg."""
+    q = abs(x) // y
+    return -q if (x < 0) != (y < 0) else q
 
 
 def _chunks(d):
@@ -63,7 +73,7 @@ def decode(path):
     for b in range(0, len(data) - align + 1, align):
         blk = data[b:b + align]
         pred = blk[0]
-        delta, s2, s1 = struct.unpack_from('<hhh', blk, 1)
+        delta, s1, s2 = struct.unpack_from('<hhh', blk, 1)
         if pred >= len(c1):
             raise ValueError('%s: predictor %d out of range' % (path, pred))
         a1, a2 = c1[pred], c2[pred]
@@ -72,11 +82,11 @@ def decode(path):
         for byte in blk[7:]:
             for nib in ((byte >> 4) & 0xF, byte & 0xF):
                 n = nib - 16 if nib >= 8 else nib
-                s = (s1 * a1 + s2 * a2) // 256 + n * delta
+                s = _trunc_div(s1 * a1 + s2 * a2, 256) + n * delta
                 s = max(-32768, min(32767, s))
                 out.append(s)
                 s2, s1 = s1, s
-                delta = max(16, (ADAPT[nib] * delta) // 256)
+                delta = max(16, _trunc_div(ADAPT[nib] * delta, 256))
     return np.array(out, dtype=np.int16), rate
 
 

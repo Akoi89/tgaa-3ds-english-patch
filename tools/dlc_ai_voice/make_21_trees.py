@@ -23,6 +23,7 @@ ROOT = os.path.abspath(os.path.join(HERE, '..'))
 sys.path.insert(0, HERE)
 
 from import_21 import CROWD, DANCE, find_one
+import mca
 
 SHIPPED = os.path.join(HERE, '_shipped')
 OUT = os.path.join(HERE, '_tree21')
@@ -77,7 +78,37 @@ def stage(game, build, jp_root):
     if r.returncode != 0:
         raise SystemExit('import_21 failed for %s' % game)
 
-    # A cue import_21 refused (sprechchor_02_st in TGAA2) would otherwise be
+    # import_21 refuses any cue whose Japanese donor has a non-zero loop
+    # (sprechchor_01_st, sprechchor_02_st, bsi_zawameki_st) rather than write
+    # a length-scaled loop -- see the MUST fix in
+    # BUILD_SCRIPT_EDITS_20260923.md. Those cues are left as unchanged
+    # Japanese copies at this point; fix_loop_from_tags.py takes their loop
+    # points from the English master's own tags instead. Detected the same
+    # way import_21 detects them (non-zero loop on the Japanese donor), so
+    # the two stay in sync without a hardcoded cue list here.
+    loop_cues = []
+    for name in CROWD + DANCE:
+        jp = find_one(jp_root, name + '.mca')
+        if not jp:
+            continue
+        dst = os.path.join(dest, os.path.relpath(jp, jp_root))
+        if not os.path.exists(dst):
+            continue
+        h = mca.parse(jp)
+        if h['loop_start'] or h['loop_end']:
+            loop_cues.append(name)
+    if loop_cues:
+        cmd = [sys.executable, os.path.join(HERE, 'fix_loop_from_tags.py'),
+               '--tree', dest, '--game', game]
+        for name in loop_cues:
+            cmd += ['--cue', name]
+        r = subprocess.run(cmd)
+        if r.returncode != 0:
+            raise SystemExit('fix_loop_from_tags failed for %s' % game)
+        print('   fixed loop points from tags for: %s' % ', '.join(loop_cues))
+
+    # A cue import_21 refused (sprechchor_02_st in TGAA2, and the looping
+    # cues above before fix_loop_from_tags.py rewrote them) would otherwise be
     # left behind as an unchanged Japanese copy. An update romfs should carry
     # only what actually changed, so drop anything identical to the base.
     dropped = 0

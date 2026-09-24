@@ -19,12 +19,20 @@ I'd much rather have a duplicate than miss something.
 | What you're seeing or hearing | Where | What it is |
 |---|---|---|
 | A line is spoken in Japanese while the text is English | both games, story scenes | 54 lines have no English recording at all. Capcom never made one, and that was checked exhaustively rather than assumed |
-| The same, on a line that feels like it should exist | both games, story scenes | 18 more have an English take that runs 1.4x to 3x longer than the slot the 3DS streams it from. Fitting it would mean a rushed delivery or cut words, and neither is worth it |
+| The same, on a line that feels like it should exist | both games, story scenes | FIXED in v1.9. 18 lines had been left in Japanese because Capcom's English take was longer than the Japanese one and a longer clip was believed to get cut off. That cut-off was the misplacement bug described under the cutscene grain: a clip written where the game actually reads it plays to the end whatever its length. All 18 now play Capcom's English. One line in each game was heard in-game; the rest were checked against the recordings offline, and the ones in the second game's last two episodes have not been reached on a console |
 | An *Objection!* or *Hold it!* comes out in Japanese | second game, two minor characters | 4 shouts Capcom never re-recorded, for `chr104_mrs` and `chr210_mmm`. Their archives were checked member by member: 100 of the 104 shouts have an English master, these four don't |
-| A gallery chant is in Japanese | second game | 1 chant whose English is 8.9 seconds against a 5.05 second slot, which would need the rate cut to 57% |
+| A gallery chant is in Japanese | second game | FIXED in v1.9. The one chant that had stayed Japanese, in Episode 5, was held back because Capcom's English is much longer than the Japanese and a longer clip was believed to get cut off. That was the misplacement bug, not a size limit, so it plays Capcom's English now, at full length and looped where Capcom's recording says. Checked on the PC only; the test save doesn't reach it, so a report from anyone who hears it in-game would help |
 | No narration plays over an episode opening | second game, two pages | The display window on those two pages is shorter than Capcom's own audio, so the Japanese never played there either |
 | Narration cuts mid-word with a short fade | second game, three splits | The English takes span two pages each and had to be split. A clean break exists for all three but only at around 65% quality, which is more noticeable than the seam |
-| One voice clip sounds duller than the rest | first game's DLC | Deliberate. The rate was lowered so the complete take would fit rather than losing the end of the line |
+| A DLC voice clip sounds duller than the rest, or stops before the line is finished | first game's DLC | FIXED in v1.9. The quality had been lowered on 16 lines, and 3 more trimmed, to keep each clip inside the space Capcom's Japanese clip took, because a bigger clip was cut off in-game. The cut-off was the misplacement bug, not a size rule, so all 19 are re-encoded at full quality and full length. Every one was heard playing to the end on a console |
+| A voice line in the second game sounds hurried, with the breath between phrases missing | second game, story scenes | FIXED in v1.9. 27 lines had pauses cut out of the middle to make them fit the space, a workaround for the same misplacement bug. The pauses are back, and every second-game voice that had been stored at reduced quality for the same reason is at full quality again: a scan of the finished build found no replaced voice below Capcom's sample rate in either game or either DLC |
+| The parchment narration at the start of Episode 2 sounds rushed | first game | FIXED in v1.9. Each page of that opening turns on a timer set for the Japanese takes, and the longer English takes had been sped up, by up to about a third, to finish in time. The page timing is now lengthened to fit the English and the narration plays at its natural pace. Heard in-game: every line plays to the end and each finishes before the next page |
+| A gasp, effort or cry during the third episode's Dance of Deduction sounds distorted | second game | FIXED in v1.9. Those 14 reactions went through a converter of ours that read part of the source format wrong. Fixed at source; they now decode exactly like the reference decoder. Checked by decoding, not yet heard in the scene |
+| A DLC Music and Sound gallery title runs past its plate | first game's DLC, issues 1 to 8 | FIXED in v1.9 |
+| A "Bonus voice recital" track in the DLC Music gallery plays in Japanese | first game's DLC | FIXED in v1.9 for four of the eight. Capcom's English recordings exist for them and are in now, checked on the rig |
+| A closing quote mark or a punctuation mark shows as a blank space | first game and its DLC | FIXED in v1.9. A handful of characters, mostly curly closing quotes in the DLC gallery text plus a few punctuation marks in the first game's own text, aren't in any of the game's fonts. Replaced with characters the fonts do carry |
+| A "Take that!" comes out in Japanese | second game's DLC, two shouts | No English recording exists for these two. Same class as the four base-game shouts above |
+| The gallery text for DLC issues 9 to 13 is Japanese | first game's DLC | Capcom's own placeholder wording, as far as I can tell; the retail Japanese game shows the same. Whether to translate it is undecided |
 | The last word or two of a page sits under the page arrow | second game, 38 pages | 13 are a single scream that overflows in Japanese too, and 25 end without a wait marker, so they can't be split without inventing a pause Capcom didn't write |
 | A centred banner or heading looks tight against the box edge | first game, 4 pages | One single-word page at 357 units and three identical widget pages at exactly 365. The widget box's own width was never confirmed on screen, so these may not be overflowing at all |
 | A line in the fancier, more decorative face runs past the box | first game | The wrapper measures those lines with the other font's metrics, so it wraps them too late. This is [senyarom issue #7](https://github.com/senyarom/tgaa2-en-patch/issues/7), it is still open, and it is not fixed here either |
@@ -32,10 +40,13 @@ I'd much rather have a duplicate than miss something.
 | Japanese writing on the artwork inside the Picture Book | first game's DLC | Brush-written name tags and small production scribbles on the design sheets were left as they are |
 | The tips of the pencil hair look clipped on a sketches page | first game's DLC, issue 6 | They share pixels with the Japanese writing. Every rule that kept the hair also left readable Japanese, so the tips stay clipped |
 | The title card reads "D L C", one letter per slot | first game | Cosmetic, and it used to be blank |
-| A Court Record profile or caption is drawn small and soft, and thin strokes drop out | both games | The panel shrinks the type rather than clipping it when a caption is too long, so this is what a caption that doesn't fit looks like. A lot of them were rewritten to fit at full size, but that work was done caption by caption and it is NOT a guarantee that none are left. If you're looking at one now, I want to know which character |
-| A full-screen document or report page has text running off the edge | first game | Reported on hardware in September 2026 and being looked at now. It is a different text box from ordinary dialogue and it was never measured on screen, so I don't yet know how many pages are affected. Not fixed, and worth reporting with a photo if you hit one |
+| A Court Record profile or caption is drawn small and soft, and thin strokes drop out | both games | The panel shrinks the type rather than clipping it when a caption is too long, so this is what a caption that doesn't fit looks like. FIXED in v1.9 for the first game: every one of its captions was re-measured in the font the panel actually uses, which is not the dialogue font, and the ones over the line were re-wrapped or given a small wording trim, so they all fit at full size now. The second game's captions haven't had that pass yet. If you're looking at a shrunk one, in either game, I want to know which character |
+| A full-screen document or report page has text running off the edge | first game | FIXED in v1.9. Sixteen pop-up pages had a line too long for the box; re-wrapped, not a word changed, and checked on the rig. If you hit another one, a photo would help |
 | A crackle over the voice in the animated cutscenes | first game, all seven cutscenes | FIXED in v1.8b. Capcom ships the cutscene sound as three separate pieces, the music, the effects and the voice, and our build adds them together. The total came out louder than the file can hold, so the loudest instants had their tops chopped flat: 126 times in the 61 second opening, and in all seven cutscenes. Found in September 2026 from a phone recording made on a console, after three offline checks had passed the broken build |
-| A fine grain, like faint static, over the animated cutscenes | first game, all seven cutscenes | KNOWN, and not fixable. The 3DS stores this audio at about 4 bits a sample, and anything encoded into it picks up a grain. Capcom's own cutscene files are clean because they were encoded once, from their studio master; ours go through a second pass, from Capcom's PC audio. Proved by building the game with Capcom's files and with ours and listening to both on the same console. The standard independent encoder for this format gives the same result as ours to two decimal places, so it is not our tool. Shaping the noise moves it between frequencies but cannot reduce it |
+| A fine grain, like faint static, over the animated cutscenes | first game, all seven cutscenes | FIXED in v1.9. This was written down here as an unfixable format limit, and that was wrong. Our own audio tools were writing every English track into the file a few bytes out of position, so the console read each one slightly late, and the grain was the sound of that misread. The tracks now start where Capcom's do. Confirmed by recording the opening on a console before and after; the second recording has no grain. Same root cause as the crowd sounds, the voice-line click and the cut-off voice lines below, and nothing to do with the crackle fixed in v1.8b, which was a separate bug |
+| A courtroom crowd sound, like the murmur around the closing arguments, plays back scrambled | both games | FIXED in v1.9. Same misalignment as the cutscene grain, and two crowd sounds in each game were also stored in the wrong channel layout, which is what made those ones scramble rather than just hiss. Every replaced sound in both games and their DLC has been moved back into position |
+| A crowd chant or the courtroom murmur goes quiet for a stretch, then jumps back in as it repeats | both games | FIXED in v1.9. Two looping crowd sounds in each game had their loop points set wrong since earlier releases, so each repeat played a silent stretch and then jumped; the chant also had a couple of tiny clipped peaks. Both now loop where Capcom's English recordings say to, and so does the second game's Episode 5 chant, which is new in this release. The murmur dips a little at the start of each cycle; that is in Capcom's recording, not a defect. Checked by decoding, not yet heard in-game |
+| A faint click at the end of a replaced voice line | both games and their DLC | FIXED at the root in v1.9. v1.5 stopped the click by giving every replaced clip a silent tail, which worked, but the real reason the console was reading past the end of the clip was that the clip had been written a few bytes early. The clips are written where Capcom writes them now |
 
 **Not on this list and worth knowing:** nobody has played either main game the whole way
 through on a console. 32 of the first game's shouts, the jury verdicts and the pressing
@@ -181,6 +192,11 @@ Japanese are now English. Pauses are never cut below 150 ms: shorter than that s
 the breath marks in a fast delivery and the read sounds spliced, which was confirmed by
 listening rather than assumed.
 
+v1.9 reverses this. The "fit" was never real: a clip written where the game reads it
+plays in full at any size. The 27 second-game lines whose pauses had been shortened have
+their pauses back, and the lines that had been stored at reduced quality are at full
+quality again.
+
 **The second game was the gap, and it is now closed.** It shipped with ten English clips
 covering two characters, while every other voice in it, shouts and story lines alike,
 stayed Japanese over English text. There were two separate systems to fix and finding the
@@ -191,9 +207,9 @@ What is still Japanese, and why:
 | | |
 |---|---|
 | **54** | Capcom never recorded an English take. Verified exhaustively rather than assumed: *Chronicles* ships 288 English voice files and every one of them matches a 3DS clip name, with none left over, so there is no alternate naming convention hiding a recording. |
-| **18** | An English take exists but runs 1.4x to 3x longer than the 3DS slot. Shortening the pauses and lowering the rate together cannot close that without the delivery sounding rushed, and a mangled English line is worse than a clean Japanese one. Words were never cut to make something fit. |
+| **18** | Were left Japanese through v1.8b because the English take runs 1.4x to 3x longer than the Japanese one and a longer clip was believed to get cut off in-game. English since v1.9: the cut-off was our file misplacement bug, not a size limit. |
 | **4** | Courtroom shouts for two minor characters, an *Objection!* and a *Hold it!* each, that Capcom never re-recorded in English. Their archives were checked member by member: 104 shouts live inside the character archives, 100 have a *Chronicles* master, these four do not. |
-| **1** | A second gallery chant in the second game. Capcom's English is 8.9 seconds of speech against a 5.05 second slot, which would need the rate cut to 57%, far below the 75% floor. It stays Japanese (v1.4). |
+| **1** | A second gallery chant in the second game, left Japanese through v1.8b because Capcom's English runs far longer than the Japanese and a longer clip was believed to get cut off. English since v1.9: the cut-off was our file misplacement bug, not a size limit. Checked offline only. |
 
 
 The episode openings needed their own approach. Capcom re-recorded the narration for
@@ -207,6 +223,12 @@ either.
 Three splits land mid-word and carry a short fade. A clean break exists for each, but
 only by pushing a half to around 65% of full quality, which is more noticeable than the
 seam it would fix.
+
+v1.9 changes this for the first game's Episode 2 opening. Instead of squeezing the takes,
+the page timings themselves are lengthened, only as far as each uncompressed half needs,
+and the halves play at natural speed and full quality. The one pair that was split in the
+middle of a clause is now split in the silence between its clauses. Checked in-game: all
+twenty halves play to the end, each before its page turns.
 
 If you play the second game and hear Japanese where you expected English, that is this,
 and it is expected rather than a broken install.
@@ -236,6 +258,14 @@ unchanged and the cost is treble rather than words.
 Eleven of seventeen kept 90% or more of full rate. **One clip is noticeably duller.** That
 is deliberate, and it is the alternative to losing the end of the line.
 
+v1.9 retracts the rule above. The cut-off was real, but its cause was the misplacement
+bug described under the cutscene grain, not the clip's size: the tools wrote every clip a
+few bytes before where the game reads, and how far into the clip the read went wrong
+depended on the audio, which is why the cut point looked unpredictable. A clip written at
+Capcom's position plays to the end at any size; one 61% larger than Capcom's was played
+three times on a console and was complete each time. All 16 rate-reduced clips and the 3
+trimmed ones are back at full quality and full length.
+
 **The pop at the end of shouts (found v1.4, fixed v1.5).** The hardware tester heard a
 click at the end of some shouts in the second game's DLC. v1.4 gave every imported clip
 a fade and a silent tail like Capcom's, which was correct but was not the cause: the
@@ -252,6 +282,22 @@ had played them there to know. The first game's DLC was already aligned. A secon
 recording on the same console, same shout, same spot, shows nothing at the clip's end.
 The recording also showed which file the DLC's scripted shouts play: the base game's
 copy, not the DLC's own, which is why fixing the DLC alone had changed nothing.
+
+v1.9 found why the clips were past the boundary in the first place: the tools were writing
+every imported stream a few bytes early in the file, so the console's read ran past the
+true end. The streams are written at Capcom's position now, and the silent tail stays as a
+belt and braces.
+
+v1.9 also fixed where three crowd sounds loop: the courtroom murmur and a long crowd chant in
+both games, plus the second game's Episode 5 chant, which is English for the first time. The
+old import took each loop point from the Japanese recording and stretched it to the English
+one's length, so every repeat ran into a stretch of silence and then jumped back in. The loop
+points now come straight from Capcom's English recordings, and each stream ends where Capcom
+ends its own. The murmur is also about 1 dB louder than before, back at the level of Capcom's
+English file, and the long chant lost a couple of tiny clipped peaks. Capcom's English murmur
+starts its loop inside a short fade-in, so it dips a little each time round; that's in the
+original recording. These were checked by decoding them on a PC. The loops haven't been heard
+on a console yet, and the Episode 5 chant can't be reached on the test save.
 
 ### 3. Text that fits the box, and a font that behaves
 

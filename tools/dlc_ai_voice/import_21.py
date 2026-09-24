@@ -12,10 +12,12 @@ leaves the Japanese bare (`name.sngw`), so a `_jpn` search finds nothing.
 TWO FAMILIES, TWO RULES.
 
   sound/stream/se/wav/*_st.mca   Streamed and named by bb_se.stqr. A stream
-                                 larger than Capcom's is cut off in-game at an
-                                 unpredictable point (fit_slots.py), and the
-                                 index must be re-synced or the cue plays
-                                 silence -- the v33 bug. Both are enforced here.
+                                 larger than Capcom's plays in full when its
+                                 audio starts at +0x34, the real data offset
+                                 (mca-data-starts-at-0x34.md); the old "cut off
+                                 at an unpredictable point" slot rule is
+                                 disproven. The index must still be re-synced
+                                 or the cue plays silence -- the v33 bug.
   sound/se/bb_se_ep03_dm_*/wav/  SE bank entries (.sbkr/.srqr). No stream index
                                  names them, so the proven failure mode does not
                                  apply; growth is still refused by default,
@@ -29,9 +31,21 @@ Edges are trimmed ONLY when a take overruns: the 14 Dance clips are synced to
 animation and match their Japanese length to the sample, so shifting their
 onset would desync them, and they never reach that branch because they fit.
 
-All 20 land at Capcom's own rate. `sprechchor_02_st` in TGAA2 is the one
-refusal: 8.86s of speech against a 5.05s slot, which needs 57% even after
-trimming, against a 75% floor.
+All 21 land at Capcom's own rate. `sprechchor_02_st` in TGAA2 is oversized
+against its 5.05s Japanese slot even after edge-trimming, and ships whole
+anyway (see FULL_TAKE_NO_FIT below): a stream bigger than Capcom's slot,
+written with its audio at +0x34, plays in full.
+
+LOOPING CUES ARE NOT HANDLED HERE. build() used to scale the Japanese donor's
+own loop points by the take-length ratio; that formula lands the loop end past
+the real audio (inside the trailing digital-silence pad) whenever the take's
+length changes under resampling, which is exactly what happens to every one of
+these cues. build() now REFUSES any cue whose Japanese donor has a non-zero
+loop, naming the cue and pointing at `fix_loop_from_tags.py`, which takes the
+loop from the English master's own LoopStart/LoopEnd tags instead. `plan()`
+marks such a cue 'looping' and `main()` skips it before `build()` is ever
+called, so a normal `--apply` run finishes with the cue left as an unchanged
+Japanese copy; `make_21_trees.py` then calls `fix_loop_from_tags.py` on it.
 """
 import argparse
 import math
@@ -59,6 +73,16 @@ RATE_FLOOR = 0.75       # matches the project's floor for rate reduction
 
 CROWD = ['bb_benron_kaishi_st', 'bb_ronkoku_st', 'bsi_zawameki_st',
          'ks_complete_st', 'ks_failed_st', 'sprechchor_01_st', 'sprechchor_02_st']
+
+# The slot rule this refusal was built on is DISPROVEN (mca-data-starts-at-0x34.md;
+# tgaa-dlc-audio-slot-rule.md marked OVERTURNED 2026-09-23): a stream larger than
+# Capcom's slot, written with the audio at +0x34, plays in full. sprechchor_02_st
+# ships its edge-trimmed take whole at Capcom's own rate, oversized, same as every
+# other oversized cue now does. Narrow to this one cue by name AND by game (TGAA1
+# has no cue by this name, but keying by game keeps the exemption from silently
+# reaching across games if TGAA1 ever gets a same-named cue); every other cue's
+# growth/floor gate is unchanged.
+FULL_TAKE_NO_FIT = {'TGAA2': {'sprechchor_02_st'}, 'TGAA1': set()}
 DANCE = ['v_asg_cloak', 'v_asg_katana', 'v_asg_surprise_eye', 'v_asg_surprise_mask',
          'v_asg_umeki', 'v_dbb_cage', 'v_dbb_excite', 'v_dbb_lever', 'v_dbb_panic',
          'v_dbb_skip', 'v_nhd_surprise', 'v_nhd_surprise2', 'v_sst_run',
@@ -184,16 +208,17 @@ def donor_layout(h, n=120000):
     return 'mono' if h['channels'] == 1 else 'block'
 
 
-def build(donor_path, chans, rate, layout):
+def build(donor_path, chans, rate, layout, name=None):
     """Rebuild one .mca around Capcom's header, in the DONOR'S OWN layout.
 
     Stereo: each channel padded to 256 on its own, then interleaved per-frame
     or per-256-byte-block to match the donor (see donor_layout). Mono: 64-pad.
-    Loops: Capcom's loop starts sit on frame boundaries (18704 and 37576 are
-    both multiples of 14), and a looping stream needs the decoder's restart
-    state -- predictor byte at the loop frame plus the two samples before it --
-    written per channel at +40, exactly as stereo_bgm.py does. Leaving those
-    as the donor's values describes a stream that no longer exists.
+    Loops: a donor with a non-zero loop is REFUSED here (see the module
+    docstring) -- scaling Capcom's loop points by the take-length ratio lands
+    the loop end past the real audio once resampling changes the take's
+    length, which is exactly what happens to every looping cue in CROWD.
+    Use fix_loop_from_tags.py for those instead, which takes the loop from
+    the English master's own LoopStart/LoopEnd tags.
     """
     jp = open(donor_path, 'rb').read()
     h = mca.parse_bytes(jp)
@@ -218,10 +243,13 @@ def build(donor_path, chans, rate, layout):
 
     loop_s = loop_e = 0
     if h['loop_start'] or h['loop_end']:
-        f = n / float(h['samples'])
-        loop_s = int(h['loop_start'] * f) // 14 * 14           # frame-aligned, like Capcom's
-        loop_e = min(int(h['loop_end'] * f), n - 1)
-        struct.pack_into('<II', d, 0x14, loop_s, loop_e)
+        raise SystemExit(
+            '%s: Japanese donor has a loop (%d..%d) -- import_21.build() no '
+            'longer scales a loop by take length (that formula lands the loop '
+            'end past the real audio once resampling changes the take length). '
+            'Run fix_loop_from_tags.py --tree <tree> --game <TGAA1|TGAA2> '
+            '--cue %s instead.' % (name or donor_path, h['loop_start'], h['loop_end'],
+                                    name or donor_path))
 
     for i, (adpcm, coefs) in enumerate(enc):
         b = 0x38 + i * 0x30
@@ -309,8 +337,11 @@ def plan(tree, game, fit):
                         out = [c[a:b] for c in out]
                         trimmed = True
 
-            # Step 2, only if trimming was not enough: lower the rate.
-            if adpcm_bytes(len(out[0]), ch, pad) > room and fit:
+            # Step 2, only if trimming was not enough: lower the rate. Never
+            # for a FULL_TAKE_NO_FIT cue -- --fit must not undo the whole
+            # point of the exemption by shrinking the cue it names.
+            no_fit = name in FULL_TAKE_NO_FIT.get(game, set())
+            if adpcm_bytes(len(out[0]), ch, pad) > room and fit and not no_fit:
                 rate = int(rate * room / adpcm_bytes(len(out[0]), ch, pad))
                 out = [resample(c, h['rate'], rate) for c in out]
 
@@ -324,7 +355,8 @@ def plan(tree, game, fit):
                              trimmed=trimmed, layout=donor_layout(h),
                              need=h['data_off'] + adpcm_bytes(len(out[0]), ch, pad),
                              jp=h['samples'] / h['rate'],
-                             en=len(out[0]) / rate))
+                             en=len(out[0]) / rate,
+                             looping=bool(h['loop_start'] or h['loop_end'])))
     return jobs
 
 
@@ -342,6 +374,7 @@ def main():
     if not jobs:
         raise SystemExit('no target cues found under %s' % a.tree)
 
+    no_fit = FULL_TAKE_NO_FIT.get(a.game, set())
     skip = []
     print('%-22s %-7s %2s %8s %8s %9s %9s  %s'
           % ('cue', 'group', 'ch', 'jp', 'english', 'slot', 'needed', 'note'))
@@ -354,8 +387,12 @@ def main():
                 skip.append(j)
         if j['need'] > j['slot']:
             note = 'OVER by %d bytes' % (j['need'] - j['slot'])
-            if not a.allow_growth:
+            if not a.allow_growth and j['name'] not in no_fit:
                 skip.append(j)
+        if j.get('looping'):
+            note = ('LOOPING donor -- refusing scaled loop; run '
+                     'fix_loop_from_tags.py --cue %s' % j['name'])
+            skip.append(j)
         print('%-22s %-7s %2d %7.2fs %7.2fs %8d %8d  %s'
               % (j['name'], j['group'], j['ch'], j['jp'], j['en'],
                  j['slot'], j['need'], note))
@@ -369,9 +406,9 @@ def main():
 
     print()
     for j in jobs:
-        blob, enc, n = build(j['path'], j['chans'], j['rate'], j['layout'])
+        blob, enc, n = build(j['path'], j['chans'], j['rate'], j['layout'], j['name'])
         assert blob[:4] == b'MADP'
-        assert len(blob) <= j['slot'] or a.allow_growth
+        assert len(blob) <= j['slot'] or a.allow_growth or j['name'] in no_fit
         open(j['path'], 'wb').write(blob)
         # verify off the written file, per channel, against what we meant to write
         h = mca.parse(j['path'])

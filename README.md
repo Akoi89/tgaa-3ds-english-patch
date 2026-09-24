@@ -40,20 +40,20 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.2.4.cia` / `TGAA2-base-1.0.16.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.12.cia` / `TGAA2-DLC-1.0.10.cia` | the DLC |
-| 4 | `TGAA1-3DS-English-v1.8a-xdelta.zip` / `TGAA2-3DS-English-v1.8a-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
+| 2 | `TGAA1-base-3.3.2.cia` / `TGAA2-base-1.0.17.cia` | the update |
+| 3 | `TGAA1-DLC-1.0.16.cia` / `TGAA2-DLC-1.0.11.cia` | the DLC |
+| 4 | `TGAA1-3DS-English-v1.9-xdelta.zip` / `TGAA2-3DS-English-v1.9-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
 **On an emulator, take the plain DLC instead.** If the DLC card shows a padlock and the game
 returns to the title, or your emulator refuses to install the DLC at all, use
-`TGAA1-EN-DLC-v1.8a.cia` or `TGAA2-EN-DLC-v1.8a.cia` in place of row 3. Same DLC, same version,
+`TGAA1-EN-DLC-v1.9.cia` or `TGAA2-EN-DLC-v1.9.cia` in place of row 3. Same DLC, same version,
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
-`TGAA1-README-v1.8b.txt` and `TGAA2-README-v1.8b.txt` on the release page are the readmes from
+`TGAA1-README-v1.9.txt` and `TGAA2-README-v1.9.txt` on the release page are the readmes from
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
@@ -85,10 +85,10 @@ luck. The wording xdelta3 gives you is `target window checksum mismatch`.
 
 | | reads |
 |---|---|
-| TGAA1 title screen, top right | `ENG 3.2.4` |
-| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.12`, top left |
-| TGAA2 title screen, top right | `ENG 1.0.16` |
-| TGAA2 DLC, costume pack banner | `DLC 1.0.10`, bottom right |
+| TGAA1 title screen, top right | `ENG 3.3.2` |
+| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.16`, top left |
+| TGAA2 title screen, top right | `ENG 1.0.17` |
+| TGAA2 DLC, costume pack banner | `DLC 1.0.11`, bottom right |
 
 An older number means an older update is still installed. Both title screens should also
 show Capcom's own *Adventures* and *Resolve* logos rather than fan-drawn ones.
@@ -132,10 +132,9 @@ something.
 These are the ones you're most likely to meet:
 
 - **Some lines are still spoken in Japanese.** Capcom never recorded an English take for
-  54 of them. For another 18 the English take is too long for the slot the 3DS streams it
-  from, and squeezing it in makes the delivery sound rushed. Four courtroom shouts belong
-  to two minor characters Capcom skipped, and a gallery chant in the second game runs
-  nearly twice its slot. DETAILS has each group and the reasoning.
+  54 of them. Four courtroom shouts belong to two minor characters Capcom skipped, and
+  two "Take that!" shouts in the second game's DLC have no English recording either.
+  DETAILS has each group and the reasoning.
 - **The second game's end credits are in Japanese.** All 75 cards, deliberately. The PC
   release lays them out differently and can't be ported, and a misspelled credit is worse
   than an untranslated one. This is the largest known gap and it's reported upstream.
@@ -144,21 +143,19 @@ These are the ones you're most likely to meet:
   the first game that are set in the second, fancier face overrun it, because the wrapper
   measures them with the wrong font's metrics. That last one is an upstream bug and it
   isn't fixed here or there yet.
-- **A few voices sound duller than the rest, and some English lines are shorter than the
-  Japanese were.** Both deliberate. Dropping the sample rate a little was the alternative
-  to losing the end of a line, and a line that ends cleanly is complete.
 - **There's still Japanese inside the first game's DLC Picture Book.** The brush-written
   name tags and the small production scribbles on the design sheets were left alone on
   purpose. On the rough sketches page in issue 6, the tips of the pencil hair are clipped,
   because every rule that kept them also left readable Japanese behind.
-- **The animated cutscenes have a fine grain over them.** The 3DS stores that audio at about four bits a sample, and anything re-encoded into it picks up a background grain. Capcom's own cutscenes don't have it because they were encoded once from their master;
-  ours are encoded again from Capcom's PC audio, and that second pass is what you can hear.
-  It isn't fixable without a sound format the game doesn't offer. A separate crackle over
-  the same scenes, which was a real defect, is fixed in v1.8b.
+- **The galleries for DLC issues 9 to 13 in the first game show Japanese placeholder
+  text.** It reads like Capcom's own placeholder wording and the retail Japanese game
+  shows the same, so I haven't decided whether to translate it.
 - **The DLC card on the title screen reads "D L C"**, one letter per slot. Cosmetic.
 
 Nobody has played either main game the whole way through on a console yet, so the later
-chapters of both are the least tested thing here. [TESTING.md](TESTING.md) is the full
+chapters of both are the least tested thing here. The English voice lines added to the
+second game's last two episodes in v1.9 were checked against the recordings offline, not
+heard in-game. [TESTING.md](TESTING.md) is the full
 account of what has been played, watched and listened to, and what has only been checked in
 the files.
 
