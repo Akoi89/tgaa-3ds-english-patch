@@ -118,6 +118,8 @@ Per game, on the release page:
   own).
 - `TGAA1-3DS-English-JPvoice-v1.9b-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9b-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
+- `HASHES_v1.9b.txt`: size, CRC32 and sha256 of every source dump, patch and result, so
+  you can check a file before and after patching.
 
 Sizes, hashes, apply steps and troubleshooting are in the README.
 
