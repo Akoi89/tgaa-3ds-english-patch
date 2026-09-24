@@ -195,7 +195,7 @@ corresponding source for every build on the releases page is in [`tools/`](tools
 research code rather than a polished toolkit and it ships with no game data.
 
 The GPL covers this project's own work. It doesn't cover Capcom's content, which isn't
-ours to license.
+mine to license.
 
 ## Legal
 

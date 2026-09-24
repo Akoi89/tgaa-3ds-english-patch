@@ -3,7 +3,7 @@
 This release fixes the sound in the first game's animated cutscenes.
 
 - **The crackle over the opening narration.** Capcom ships the cutscene sound
-  as three pieces, the music, the effects and the voice, and our build adds
+  as three pieces, the music, the effects and the voice, and my build adds
   them together. The total came out louder than the file can hold, so the
   loudest instants had their tops chopped flat. In the opening that happens
   126 times in a minute.
