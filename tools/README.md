@@ -48,6 +48,8 @@ Nothing is hardcoded to a machine any more. Set what a given script needs:
 | `TGAA_ROOT` | the project folder these scripts were written against |
 | `MODELS_ROOT` | the folder holding downloaded ML models (the LaMa inpainting weights) |
 | `TGAA_NAS` | the NAS destination folder used by `jpvoice/stage_and_nas.py` |
+| `TGAA_QUALITY_TREE` | the folder holding the first game's pre-edit build tree, whose Episode 2 opening timing the Japanese-voice edition keeps (`jpvoice/build_jpvoice.py`, first game's update only) |
+| `JPVOICE_OUT_ROOT` | optional: a scratch output folder for `jpvoice/build_jpvoice.py`, so a fix can be proven without overwriting the real outputs |
 
 ## What is here
 

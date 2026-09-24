@@ -59,7 +59,10 @@ def revert_arc_audio(ours_path, jp_path, dst):
     return 'members', len(aud)
 
 HERE = os.path.join(ROOT, 'jpvoice')
-OUT = os.path.join(HERE, '_out')
+# JPVOICE_OUT_ROOT: scratch override for the CIA output folder only (proving a fix without
+# touching the real jpvoice/_out or Final/ trees). Everything else (source trees, _work,
+# inventory.json) still comes from the real jpvoice folder.
+OUT = os.environ.get('JPVOICE_OUT_ROOT') or os.path.join(HERE, '_out')
 os.makedirs(OUT, exist_ok=True)
 
 # Top-level romfs directories whose files are reverted. Filled in from inventory_summary.txt
@@ -72,10 +75,26 @@ REVERT_DIRS = {
     'TGAA2_dlc': {'sound'},
 }
 OUT_NAME = {
-    'TGAA1_upd': 'TGAA1-base-3.2.4-jpvoice.cia',
-    'TGAA2_upd': 'TGAA2-base-1.0.16-jpvoice.cia',
-    'TGAA1_dlc': 'TGAA1-DLC-1.0.12-jpvoice.cia',
-    'TGAA2_dlc': 'TGAA2-DLC-1.0.10-jpvoice.cia',
+    'TGAA1_upd': 'TGAA1-base-3.3.2-jpvoice.cia',
+    'TGAA2_upd': 'TGAA2-base-1.0.17-jpvoice.cia',
+    'TGAA1_dlc': 'TGAA1-DLC-1.0.16-jpvoice.cia',
+    'TGAA2_dlc': 'TGAA2-DLC-1.0.11-jpvoice.cia',
+}
+
+# SPECIAL CASE (v1.9): the English build's content0/archive/UI_opdemo01_jpn.arc carries a page
+# timeline LENGTHENED to fit the longer English Episode 2 opening narration takes. This JP-voice
+# edition plays Capcom's original (shorter) Japanese takes for that narration, so it must carry
+# the PRE-lengthening arc instead (same English text, Capcom's original timing), or the narration
+# would run past the end of the Japanese audio. Source: the quality-reviewed TGAA1-base-3.3.2 tree
+# from BEFORE the timeline edit. Keyed by (title, content index, romfs-relative path).
+# Only the TGAA1 update needs it; unset, the path below points nowhere and that one title fails
+# loudly (verify_jpvoice treats a missing reference as a FAIL), while the other titles still run.
+QUALITY_TREE = os.environ.get('TGAA_QUALITY_TREE', '<set TGAA_QUALITY_TREE>')
+SPECIAL_OVERRIDE = {
+    'TGAA1_upd': {
+        (0, 'archive/UI_opdemo01_jpn.arc'):
+            os.path.join(QUALITY_TREE, 'TGAA1-base-3.3.2-quality', 'content0', 'archive', 'UI_opdemo01_jpn.arc'),
+    },
 }
 
 
@@ -149,6 +168,14 @@ def build(title, rows):
                     rep['UNMATCHED kept'] += 1; unmatched.append((ci, rel))
                     continue
             touched = True
+        for (sci, srel), srcpath in SPECIAL_OVERRIDE.get(title, {}).items():
+            if sci != ci:
+                continue
+            dst = os.path.join(work, srel.replace('/', os.sep))
+            shutil.copyfile(srcpath, dst)
+            rep['special override (pre-lengthening narration timeline arc)'] += 1
+            changed_files.append((ci, srel, 'special-override'))
+            touched = True
         if not touched:
             continue
         # prune directories emptied by deletions
@@ -177,6 +204,21 @@ def build(title, rows):
     # read-back: every replaced content's romfs equals the work romfs
     for ci, blob in replace.items():
         assert romfs_of_ncch(chk.contents[ci]) == romfs_of_ncch(blob)
+    if kind == 'dlc':
+        # this build only ran nocrypto_cia on the CONTENTS it rebuilt (above), so any untouched
+        # DLC content stayed AES-encrypted inside the NCCH while the CIA/TMD layer said "not
+        # encrypted" -- a container that does not match what build_jpvoice_patches.py's xdelta
+        # produces (it runs nocrypto_cia over the WHOLE file). Fix: rewrite the whole CIA to
+        # NoCrypto here too, so this standalone CIA is byte-identical to the patch's output by
+        # construction. (PACKAGING_LOG.md, "DLC-CIA mismatch", found 2026-09-23.)
+        pre = [romfs_of_ncch(bl) for bl in chk.contents]
+        sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
+        import nocrypto_cia
+        nocrypto_cia.main(out, out)
+        chk = Cia(out)
+        assert chk.version() == c.version() and chk.count == c.count
+        assert [romfs_of_ncch(bl) for bl in chk.contents] == pre, 'nocrypto_cia changed romfs content'
+        rep['content made NoCrypto for the whole-CIA pass'] = chk.count
     sha = h(out)
     lines = ['%s -> %s' % (title, OUT_NAME[title]), '  version %d.%d.%d, %d contents, %d bytes, sha256 %s' % (chk.version() + (chk.count, os.path.getsize(out), sha)),
              '  revert dirs: %s' % sorted(REVERT_DIRS[title])]

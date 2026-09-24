@@ -66,7 +66,72 @@ print('spliced: banner == composed, every other ExeFS file (icon with English ti
 os.makedirs(WORK, exist_ok=True)
 cfg = dict(B.GAMES['TGAA1'], enbanner=os.path.relpath(NEW_CCI, ROOT))
 TAGJ = os.environ.get('TGAA_JTAG', 'v1.8a-jpvoice')
-src, tgt, xd = B.build_base('TGAA1', cfg, WORK, PJ, TAGJ)
+
+# STRICT THREE-SOURCE PROOF (added 2026-09-23, REWORK): build_base()'s own internal proof
+# only perturbs the 44-byte card seed (SEED_OFF/SEED_LEN), not the whole 0x0-0x4000 NCSD
+# header it scrubs at encode time. That gap let a real defect through: a bisected review found
+# TGAA1-v1.9-jpvoice-base.xdelta fails "target window checksum mismatch" when byte 0x3FFF (the
+# LAST byte of the scrubbed header) is randomised. printhdrs showed why: this build's window 0
+# copy started at source offset 0x3FFF (one byte INSIDE the scrubbed region) where the matching
+# English base patch's window 0 starts cleanly at 0x4000; xdelta occasionally finds a coincidental
+# 1-byte match against the random scrub bytes and extends a copy into the "armored" zone. The fix
+# is not a different method (build_base already scrubs 0-0x4000 with -a -A, the same tolerant
+# method as the English patches); it is a stronger, mandatory post-build check, retried with a
+# fresh random scrub (build_base draws new os.urandom bytes every call) until it truly passes.
+SECOND_DECRYPT = os.path.join(ROOT, r'_sources\TGAA1-Official-Jap-decrypted.cci')
+
+
+def _sha(p):
+    h = hashlib.sha256()
+    with open(p, 'rb') as f:
+        for b in iter(lambda: f.read(1 << 22), b''):
+            h.update(b)
+    return h.hexdigest()
+
+
+def _decode(xd_path, src_path, out_path):
+    r = subprocess.run([B.XD, '-d', '-f', '-B', B.BIG, '-s', src_path, xd_path, out_path], capture_output=True, text=True)
+    if r.returncode != 0:
+        return None, r.stderr[-300:]
+    return _sha(out_path), ''
+
+
+def strict_three_source_proof(xd_path, target_sha, real_src):
+    """Decode xd_path against (1) the real cartridge dump, (2) a copy of it with the WHOLE
+    0x0-0x4000 NCSD header randomised, (3) an independent second decrypt of the same cartridge.
+    All three must reproduce target_sha byte for byte."""
+    chk = os.path.join(WORK, '_strict_check.cci')
+    got, err = _decode(xd_path, real_src, chk)
+    if got != target_sha:
+        return False, 'real dump (%s)' % real_src, err
+    randcopy = os.path.join(WORK, '_strict_randheader.cci')
+    shutil.copyfile(real_src, randcopy)
+    with open(randcopy, 'r+b') as f:
+        f.seek(0); f.write(os.urandom(0x4000))
+    got, err = _decode(xd_path, randcopy, chk)
+    os.remove(randcopy)
+    if got != target_sha:
+        return False, 'whole-header-randomised copy', err
+    got, err = _decode(xd_path, SECOND_DECRYPT, chk)
+    if got != target_sha:
+        return False, 'second decrypt (%s)' % SECOND_DECRYPT, err
+    os.remove(chk)
+    return True, None, None
+
+
+MAX_TRIES = 25
+for attempt in range(1, MAX_TRIES + 1):
+    src, tgt, xd = B.build_base('TGAA1', cfg, WORK, PJ, TAGJ)
+    target_sha = _sha(tgt)
+    ok, bad_src, err = strict_three_source_proof(xd, target_sha, src)
+    if ok:
+        print('TGAA1 base: STRICT three-source proof passed on attempt %d of %d (real dump, '
+              'whole-header-randomised copy, second decrypt %s)' % (attempt, MAX_TRIES, os.path.basename(SECOND_DECRYPT)))
+        break
+    print('TGAA1 base: strict proof FAILED on attempt %d against %s (%s); retrying with a fresh random scrub' % (attempt, bad_src, err.strip()))
+else:
+    raise SystemExit('TGAA1 base xdelta failed the strict three-source proof after %d attempts' % MAX_TRIES)
+
 rows = []
 for label, p in (('source', src), ('result', tgt), ('patch', xd)):
     s, c, n = digest(p); rows.append(('TGAA1', 'base', label, os.path.basename(p), n, c, s))

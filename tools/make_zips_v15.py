@@ -14,13 +14,17 @@ R = os.path.join(HERE, '..')
 XD = os.path.join(R, 'patches', 'xdelta3.exe')
 
 META = {
+    # dlc_tag is the DLC's OWN tag, separate from --tag: the DLC CIA content did not change in
+    # v1.9a (only the TGAA1 update did), so the DLC output filename the README tells the user to
+    # create must still read v1.9, matching the actual TGAA*-EN-DLC-v1.9.cia release asset, even
+    # though the xdelta patch itself is rebuilt and named with the current --tag like everything else.
     'TGAA1': dict(jp='Dai Gyakuten Saiban: Naruhodou Ryuunosuke no Bouken', en='The Great Ace Attorney: Adventures',
-                  tid='0014AD00', ver='ENG 3.2.4', upd='TGAA1-base-3.2.4.cia',
-                  dlc_where='the Episode 0 magazine cover, top left', dlc_stamp='DLC 1.0.12',
+                  tid='0014AD00', card_delta='2,708', ver='ENG 3.3.3', upd='TGAA1-base-3.3.3.cia',
+                  dlc_where='the Episode 0 magazine cover, top left', dlc_stamp='DLC 1.0.16', dlc_tag='v1.9',
                   dlc_note="The first game's DLC is a big one: it holds the voice galleries, eleven subtitled commentary videos, the rebuilt magazine covers and a playable extra episode. The videos had to be re-encoded with English subtitles, which is why this DLC patch is about 170 MB: that part is genuinely new data, not a repack."),
     'TGAA2': dict(jp='Dai Gyakuten Saiban 2: Naruhodou Ryuunosuke no Kakugo', en='The Great Ace Attorney 2: Resolve',
-                  tid='001AE200', ver='ENG 1.0.16', upd='TGAA2-base-1.0.16.cia',
-                  dlc_where='the costume pack banner, bottom right', dlc_stamp='DLC 1.0.10',
+                  tid='001AE200', card_delta='1,075', ver='ENG 1.0.17', upd='TGAA2-base-1.0.17.cia',
+                  dlc_where='the costume pack banner, bottom right', dlc_stamp='DLC 1.0.11', dlc_tag='v1.9',
                   dlc_note="The second game's DLC holds the two mini episodes and the costumes. Both episodes are fully in English, including their voiced shouts."),
 }
 
@@ -60,17 +64,25 @@ WHAT YOU NEED
    what you copy to your PC is still encrypted. The DLC was a free eShop
    download; if it is installed on your console, GodMode9 dumps it too.
 
+   It has to be the plain Japanese release. Some download sites list an
+   already-translated build of these games next to the Japanese one, and a
+   file that has had a fan translation applied to it is a different game
+   image. No patch here will accept it, whatever you do to it afterwards.
+   If the page or the filename mentions an English patch, it is the wrong
+   file.
+
    THIS IS WHERE PEOPLE GET STUCK. GodMode9 will also hand you a dump it has
    decrypted or trimmed for you, and that file comes out the RIGHT SIZE but is
    not the same bytes. The patch refuses it, and running the decryptor on it
    afterwards does not rescue it. So a size matching the list further down is
-   NOT proof your file is the right one. If a patch is refused, redump the title
-   encrypted before you change anything else.
+   NOT proof your file is the right one. The wording xdelta3 gives you when it
+   refuses is "target window checksum mismatch". If you see that, redump the
+   title encrypted before you change anything else.
 
    If you own the cartridge rather than a digital copy, you can dump the card to
    .3ds instead and convert it with GodMode9's NCSD image options, Build CIA
    from file. That route works from v1.8a on. A file made that way differs from
-   a CIA dump of an installed title in about 2,700 bytes of header and in no
+   a CIA dump of an installed title in {card_delta} bytes of header and in no
    game data at all, and the update and DLC patches now ignore those bytes. The
    optional base patch does not, and still wants a CIA dump of an installed
    title.
@@ -87,14 +99,14 @@ APPLY
 
   xdelta3.exe -d -s "<your game>-decrypted.cci" {g}-{tag}-update.xdelta {upd}
 
-  xdelta3.exe -d -s "<your DLC> (DLC)-decrypted.cia" {g}-{tag}-DLC.xdelta {g}-EN-DLC-{tag}.cia
+  xdelta3.exe -d -s "<your DLC> (DLC)-decrypted.cia" {g}-{tag}-DLC.xdelta {g}-EN-DLC-{dlc_tag}.cia
 
   optional, for the English HOME menu banner (this one needs a CIA dump of an
   installed title; it will not take a converted cartridge image):
   xdelta3.exe -d -s "<your game>-decrypted.cci" {g}-{tag}-base.xdelta {g}-EN-base-{tag}.cci
 
-Yes, the update patch reads your whole game image and writes a 40 to 90 MB
-.cia. Most of the update is files that already exist in the game image, so the
+Yes, the update patch reads your whole game image and writes a .cia
+of {mb_range} MB. Most of the update is files that already exist in the game image, so the
 patch itself stays small; the output is the same file the GitHub release ships.
 
 WHAT YOU SHOULD HAVE, AND WHAT I HAD
@@ -112,7 +124,7 @@ WHAT YOU SHOULD HAVE, AND WHAT I HAD
 
   Results, which DO have to match exactly:
     {upd}  {res_upd_size} bytes  sha256 {res_upd_sha}
-    {g}-EN-DLC-{tag}.cia  {res_dlc_size} bytes  sha256 {res_dlc_sha}
+    {g}-EN-DLC-{dlc_tag}.cia  {res_dlc_size} bytes  sha256 {res_dlc_sha}
     {g}-EN-base-{tag}.cci  {res_base_size} bytes  sha256 {res_base_sha}
 
   If xdelta3 stops with a checksum error, the source is not the decryptor's
@@ -121,7 +133,7 @@ WHAT YOU SHOULD HAVE, AND WHAT I HAD
 
 INSTALL
 
-Console (CFW): install {upd} and then {g}-EN-DLC-{tag}.cia with FBI, over the
+Console (CFW): install {upd} and then {g}-EN-DLC-{dlc_tag}.cia with FBI, over the
 Japanese game you already have. Base first, then update, then DLC. Your saves
 stay; they belong to the base title. For the English HOME banner, convert
 {g}-EN-base-{tag}.cci to a CIA in GodMode9 (NCSD image options, Build CIA from
@@ -186,11 +198,16 @@ def main():
     a = ap.parse_args()
     rows = [l.rstrip('\n').split('\t') for l in open(os.path.join(a.out, 'HASHES_%s.txt' % a.tag))]
     h = {(g, k, lab): (fn, int(n), c, s) for g, k, lab, fn, n, c, s in rows}
+    # computed from the real update CIA sizes rather than a fixed guess (a fixed "40 to 90 MB"
+    # went stale the moment a build passed 90 MB); rounded out to the nearest 10 MB so it does
+    # not need editing again for a few MB of drift either side.
+    upd_sizes_mb = [h[(g, 'update', 'result')][1] / 1e6 for g in META if (g, 'update', 'result') in h]
+    mb_range = '%d to %d' % (10 * (int(min(upd_sizes_mb)) // 10), 10 * -(-int(max(upd_sizes_mb)) // 10)) if upd_sizes_mb else '40 to 90'
     for g, m in META.items():
         if (g, 'update', 'patch') not in h:
             continue
         f = lambda k, lab: h[(g, k, lab)]  # noqa: E731
-        txt = README.format(g=g, tag=a.tag, jp=m['jp'], en=m['en'], tid=m['tid'], ver=m['ver'], upd=m['upd'],
+        txt = README.format(g=g, tag=a.tag, dlc_tag=m['dlc_tag'], jp=m['jp'], en=m['en'], tid=m['tid'], card_delta=m['card_delta'], ver=m['ver'], upd=m['upd'], mb_range=mb_range,
                             dlc_where=m['dlc_where'], dlc_stamp=m['dlc_stamp'], dlc_note=m['dlc_note'],
                             src_game_size='{:,}'.format(f('base', 'source')[1]), src_game_sha=f('base', 'source')[3],
                             src_dlc_size='{:,}'.format(f('DLC', 'source')[1]), src_dlc_sha=f('DLC', 'source')[3],

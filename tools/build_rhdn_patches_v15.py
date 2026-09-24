@@ -33,14 +33,14 @@ from build_rhdn_patches import R, T3, CT, XD, SEED_OFF, SEED_LEN, run, digest, s
 
 GAMES = {
     'TGAA1': dict(cci=r'_sources\TGAA1 - Base-decrypted.cci',
-                  update=r'Final\_CURRENT\TGAA1-base-3.2.4.cia',
+                  update=r'Final\_CURRENT\TGAA1-base-3.3.3.cia',
                   enbanner=r'banner_tools\_out\TGAA1-Base-enbanner.cci',
-                  dlc=r'Final\_CURRENT\TGAA1-DLC-1.0.12.cia',
+                  dlc=r'Final\_CURRENT\TGAA1-DLC-1.0.16.cia',
                   dlc_jp=r'_sources\TGAA1-Official-Jap (DLC)-decrypted.cia'),
     'TGAA2': dict(cci=r'_sources\DGS2 - Base-decrypted.cci',
-                  update=r'Final\_CURRENT\TGAA2-base-1.0.16.cia',
+                  update=r'Final\_CURRENT\TGAA2-base-1.0.17.cia',
                   enbanner=r'banner_tools\_out\TGAA2-Base-enbanner.cci',
-                  dlc=r'Final\_CURRENT\TGAA2-DLC-1.0.10.cia',
+                  dlc=r'Final\_CURRENT\TGAA2-DLC-1.0.11.cia',
                   dlc_jp=r'_sources\DGS2-Jap-DLC (DLC)-decrypted.cia'),
 }
 BIG = '1073741824'
@@ -79,9 +79,10 @@ def cci_tolerant_regions(cci):
 
 
 def encode_and_prove(src, target, xd, work, scrub, pert, label):
-    """xdelta src->target with the source's variable region scrubbed at encode time; then
+    """xdelta src->target with the source's variable regions scrubbed at encode time; then
     prove the patch reproduces target from the real source AND from two sources whose
-    variable region differs (a different decryption run)."""
+    variable regions differ (a different decryption run, or a card-sourced dump).
+    scrub and pert are lists of (offset, length)."""
     enc_src = scrubbed_copy(src, os.path.join(work, 'enc_src.bin'), scrub)
     # -A: no application header. Without it xdelta3 writes both file paths (<TGAA_ROOT>\...) into
     # the patch; found in every v1.5/v1.6 patch on 2026-09-11 and stripped after the fact.
@@ -102,7 +103,9 @@ def encode_and_prove(src, target, xd, work, scrub, pert, label):
 def build_base(g, cfg, work, out, tag):
     src = os.path.join(R, cfg['cci'])
     enb = os.path.join(R, cfg['enbanner'])
-    target = os.path.join(out, '%s-%s-base-enbanner.cci' % (g, tag))
+    # named to match what the zip README tells the user to call their own output
+    # (TGAA1-EN-base-v1.9.cci), so HASHES and the README agree without a manual rename
+    target = os.path.join(out, '%s-EN-base-%s.cci' % (g, tag))
     shutil.copyfile(enb, target)
     # zero the card seed in the target so the patch stores it literally (a user's source has
     # a different random seed there; the console never reads it from a CIA)
@@ -126,8 +129,9 @@ def build_base(g, cfg, work, out, tag):
     print('  %s: banner image = cartridge with only the exefs changed (manual, exheader, romfs, logo identical)' % g)
     xd = os.path.join(out, '%s-%s-base.xdelta' % (g, tag))
     # NOT widened to the NCCH headers on purpose: this patch's output IS the user's own image
-    # with the ExeFS swapped, so scrubbing those would hand a card-dump user the builder's
-    # exheader and manual header instead of their own. The zip README says so.
+    # with the ExeFS swapped, so scrubbing those would hand a card-dump user this machine's
+    # exheader and manual header instead of their own. Card dumps must use a CIA dump of the
+    # installed title for the banner patch; the zip README says so.
     encode_and_prove(src, target, xd, work, [(0, 0x4000)], [(SEED_OFF, SEED_LEN)], g + ' base')
     return src, target, xd
 
@@ -149,7 +153,9 @@ def build_update(g, cfg, work, out, tag):
 def build_dlc(g, cfg, work, out, tag):
     src = os.path.join(R, cfg['dlc_jp'])
     ours = os.path.join(R, cfg['dlc'])
-    nc = os.path.join(out, '%s-%s-DLC.cia' % (g, tag))
+    # named to match what the zip README tells the user to call their own output
+    # (TGAA1-EN-DLC-v1.9.cia), so HASHES and the README agree without a manual rename
+    nc = os.path.join(out, '%s-EN-DLC-%s.cia' % (g, tag))
     run(sys.executable, os.path.join(HERE, 'nocrypto_cia.py'), ours, nc)
     info = run(CT, '-i', nc)
     assert 'Crypto Key           None' in info and 'Crypto Key           Secure' not in info, 'DLC still encrypted'

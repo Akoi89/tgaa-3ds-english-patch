@@ -11,11 +11,15 @@ if not getattr(sys.stdout, '_utf8_wrapped', False):
 ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project folder')
 sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
 from make_zips_v15 import META
-P15 = os.path.join(ROOT, '_rhdn_work', '_out18a'); PJ = os.path.join(ROOT, 'jpvoice', '_patches')
+# optional game filter (v1.9: TGAA2 base is being rebuilt, ship the TGAA1 zip alone in the
+# meantime), same convention as build_rhdn_patches_v15.py's --only: python make_zips_jpvoice.py TGAA1
+if len(sys.argv) > 1:
+    META = {g: META[g] for g in sys.argv[1:] if g in META}
+P15 = os.path.join(ROOT, '_rhdn_work', '_out19'); PJ = os.path.join(ROOT, 'jpvoice', '_patches')
 OUT = os.path.join(ROOT, 'jpvoice', '_zips'); os.makedirs(OUT, exist_ok=True)
 XD = os.path.join(ROOT, 'patches', 'xdelta3.exe')
-TAG = 'v1.8a'; JTAG = 'v1.8a-jpvoice'
-UPD_OUT = {'TGAA1': 'TGAA1-base-3.2.4-jpvoice.cia', 'TGAA2': 'TGAA2-base-1.0.16-jpvoice.cia'}
+TAG = 'v1.9'; JTAG = 'v1.9-jpvoice'
+UPD_OUT = {'TGAA1': 'TGAA1-base-3.3.2-jpvoice.cia', 'TGAA2': 'TGAA2-base-1.0.17-jpvoice.cia'}
 
 README = """{en} ({jp}), Nintendo 3DS
 English patch {tag}, JAPANESE VOICE edition, as xdelta patches for your own Japanese dump
@@ -54,17 +58,25 @@ WHAT YOU NEED
    what you copy to your PC is still encrypted. The DLC was a free eShop
    download; if it is installed on your console, GodMode9 dumps it too.
 
+   It has to be the plain Japanese release. Some download sites list an
+   already-translated build of these games next to the Japanese one, and a
+   file that has had a fan translation applied to it is a different game
+   image. No patch here will accept it, whatever you do to it afterwards.
+   If the page or the filename mentions an English patch, it is the wrong
+   file.
+
    THIS IS WHERE PEOPLE GET STUCK. GodMode9 will also hand you a dump it has
    decrypted or trimmed for you, and that file comes out the RIGHT SIZE but is
    not the same bytes. The patch refuses it, and running the decryptor on it
    afterwards does not rescue it. So a size matching the list further down is
-   NOT proof your file is the right one. If a patch is refused, redump the title
-   encrypted before you change anything else.
+   NOT proof your file is the right one. The wording xdelta3 gives you when it
+   refuses is "target window checksum mismatch". If you see that, redump the
+   title encrypted before you change anything else.
 
    If you own the cartridge rather than a digital copy, you can dump the card to
    .3ds instead and convert it with GodMode9's NCSD image options, Build CIA
    from file. That route works from v1.8a on. A file made that way differs from
-   a CIA dump of an installed title in about 2,700 bytes of header and in no
+   a CIA dump of an installed title in {card_delta} bytes of header and in no
    game data at all, and the update and DLC patches now ignore those bytes. The
    optional base patch does not, and still wants a CIA dump of an installed
    title.
@@ -141,16 +153,12 @@ CHECK IT TOOK
 TESTING
 
 This edition was built from the tested {tag} files by putting Capcom's Japanese
-audio back and changing nothing else, and every file in it was checked against
-both: text and art byte-identical to the main release, every audio file
-byte-identical to the Japanese original. The author installed and ran the v1.5
-form of this edition, both games with their DLC. The v1.8 form has not been run
-on a console; against v1.5 it carries the same changes as the main release: the
-shout lettering, fifteen more of Capcom's textures, the restored title logo in the
-second game, and in the first game the fix for the DLC Picture Book, Theme and
-Editor's Notes screens (they sent you back to the main menu) along with English
-Picture Book pages, theme titles and Editor's Notes. The main release has had far
-more play, so anything odd is still worth a note.
+audio back and changing nothing else. Every file in it was checked by an
+independent re-extraction and comparison: text and art byte-identical to the
+main release, and every reverted file byte-identical to the Japanese original,
+on all four titles.{jp_exception} This build has not been run on a console
+or in an emulator. The main release has had far more testing, so please report
+anything that looks or sounds wrong.
 
 REPORT
 
@@ -173,6 +181,14 @@ made in English. The full statement, including what was generated and what was
 not, is in the README on the GitHub page. No generated audio ships, and every
 voice in this edition is Capcom's own Japanese recording.
 """
+
+
+# The one file that is neither the Japanese original nor the main release's
+# (build_jpvoice.SPECIAL_OVERRIDE): the TGAA1 opening narration keeps the page
+# timing cut for the Japanese recording. Keep this in step with that override.
+JP_EXCEPTION = {'TGAA1': '\nOne exception, by design: the Episode 2 opening narration keeps the page\n'
+                         'timing that fits the Japanese recording, not the main release\'s longer\n'
+                         'timing for the English one.'}
 
 
 def hashes(path):
@@ -204,7 +220,7 @@ def main():
             fb, btag = f15, TAG
             base_note = '(identical to the main release\'s base patch; its jingle\n                                   is already the Japanese one)'
             base_src = os.path.join(P15, '%s-%s-base.xdelta' % (g, TAG))
-        txt = README.format(g=g, tag=TAG, jtag=JTAG, btag=btag, base_note=base_note, jp=m['jp'], en=m['en'], tid=m['tid'], ver=m['ver'], upd=UPD_OUT[g],
+        txt = README.format(g=g, tag=TAG, jtag=JTAG, btag=btag, base_note=base_note, jp=m['jp'], en=m['en'], tid=m['tid'], card_delta=m['card_delta'], ver=m['ver'], upd=UPD_OUT[g], jp_exception=JP_EXCEPTION.get(g, ''),
                             dlc_where=m['dlc_where'], dlc_stamp=m['dlc_stamp'],
                             src_game_size='{:,}'.format(f15('base', 'source')[1]), src_game_sha=f15('base', 'source')[3],
                             src_dlc_size='{:,}'.format(f15('DLC', 'source')[1]), src_dlc_sha=f15('DLC', 'source')[3],

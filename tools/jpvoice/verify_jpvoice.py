@@ -21,7 +21,7 @@ ROOT = os.environ.get('TGAA_ROOT') or sys.exit('set TGAA_ROOT to the project fol
 sys.path.insert(0, os.path.join(ROOT, 'testimony_pipeline')); sys.path.insert(0, os.path.join(ROOT, 'jpvoice')); sys.path.insert(0, os.path.join(ROOT, 'dlc_icons', 'tgaa2-en-patch'))
 from cia import Cia
 from inventory import SRC, TREES, extract_romfs, romfs_of_ncch, walk, h
-from build_jpvoice import OUT_NAME, REVERT_DIRS
+from build_jpvoice import OUT_NAME, REVERT_DIRS, SPECIAL_OVERRIDE
 HERE = os.path.join(ROOT, 'jpvoice'); OUT = os.path.join(HERE, '_out')
 
 
@@ -71,6 +71,23 @@ def verify(title):
             if hj == he:
                 stats['identical'] += 1; continue
             top = rel.split('/')[0] if '/' in rel else '(root)'
+            # narrow exception (v1.9): TGAA1_upd content 0 archive/UI_opdemo01_jpn.arc is
+            # deliberately NOT the Japanese file (build_jpvoice.py's SPECIAL_OVERRIDE swaps in
+            # the pre-lengthening English narration timeline instead). Passes ONLY if this
+            # file's hash equals the named reference file's hash, computed here, not hardcoded.
+            # A missing reference file is a hard FAIL, not a silent pass.
+            special = SPECIAL_OVERRIDE.get(title, {}).get((ci, rel))
+            if special is not None:
+                if not os.path.exists(special):
+                    problems.append('c%d SPECIAL OVERRIDE reference file missing: %s' % (ci, special)); continue
+                ref_hash = h(special)
+                if hj == ref_hash:
+                    stats['reverted'] += 1
+                    stats['special override, matches named pre-edit source'] = stats.get('special override, matches named pre-edit source', 0) + 1
+                    print('  %s c%d %s: SPECIAL EXCEPTION used, matches sha256 %s' % (title, ci, rel, ref_hash))
+                    continue
+                problems.append('c%d SPECIAL OVERRIDE MISMATCH %s: expected sha256 %s (of %s), got %s' % (ci, rel, ref_hash, special, hj))
+                continue
             if not (top in REVERT_DIRS[title] or rel.endswith('.arc')):
                 problems.append('c%d CHANGED outside audio: %s' % (ci, rel)); continue
             p, lab = jp_file(g, kind, ci, rel)
@@ -92,7 +109,8 @@ def verify(title):
              '  files identical to the English build: %d' % stats['identical'],
              '  files reverted to the Japanese original: %d' % stats['reverted'],
              '  files deleted so the cartridge copy plays: %d' % stats['deleted'],
-             '  archives with voice members reverted and our textures kept: %d' % stats.get('arcs with voice members reverted, other members ours', 0)]
+             '  archives with voice members reverted and our textures kept: %d' % stats.get('arcs with voice members reverted, other members ours', 0),
+             '  special overrides matched (pre-edit source): %d' % stats.get('special override, matches named pre-edit source', 0)]
     lines += ['  PROBLEM ' + p for p in problems]
     io.open(os.path.join(OUT, 'VERIFY_%s.txt' % title), 'w', encoding='utf-8').write('\n'.join(lines) + '\n')
     print('\n'.join(lines))

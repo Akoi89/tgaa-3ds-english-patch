@@ -26,8 +26,13 @@ patch for each game.
   heard on a console; the story lines and the chant were mostly checked against the
   recordings offline.
 - The first game's parchment narration at the start of Episode 2 had been sped up, by
-  up to about a third, to finish before each page turned. The pages wait now and it
-  plays at natural pace. Heard in-game.
+  up to about a third, to finish before each page turned. v1.9 put it back to natural
+  pace but left the second half of each page waiting on a cue set for the Japanese
+  take, so five pages paused for half a second or more, three of them mid-sentence or
+  mid-word, and two felt rushed. From v1.9a each page reads straight through, the way
+  Capcom's PC release times this scene, with the page turns on Capcom's original
+  timing, and the three places where a page's two halves met in the middle of a word
+  now meet in a pause in the actor's delivery. Heard in-game.
 - Text in the first game: pop-up document and report pages that ran off the right edge
   are re-broken, not a word changed; Court Record captions the game had been shrinking
   small and soft draw at full size, a few with a word or comma trimmed.
@@ -43,6 +48,9 @@ patch for each game.
 
 Newest first. A version's changes are listed here and nowhere else.
 
+- v1.9a: the first game's Episode 2 opening narration reads straight through on each
+  page instead of pausing mid-sentence, and no longer splits a word in three places.
+  First game's update only.
 - v1.9: the cutscene grain, scrambled crowd sounds, crowd loops, the old click's root
   cause; every voice at full quality and length, the "too long" lines and the last crowd
   chant in English, pauses restored; Episode 2 narration at natural speed; pop-up pages
@@ -93,14 +101,14 @@ Newest first. A version's changes are listed here and nowhere else.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.2.cia` / `TGAA2-base-1.0.17.cia`: the update.
+- `TGAA1-base-3.3.3.cia` / `TGAA2-base-1.0.17.cia`: the update.
 - `TGAA1-DLC-1.0.16.cia` / `TGAA2-DLC-1.0.11.cia`: the DLC. `TGAA1-EN-DLC-v1.9.cia` /
   `TGAA2-EN-DLC-v1.9.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9-xdelta.zip` / `TGAA2-3DS-English-v1.9-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9a-xdelta.zip` / `TGAA2-3DS-English-v1.9a-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the HOME banner patch
   (`TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`, also posted on its own)
-  and a readme (`TGAA1-README-v1.9.txt` / `TGAA2-README-v1.9.txt`, also posted on their
+  and a readme (`TGAA1-README-v1.9a.txt` / `TGAA2-README-v1.9a.txt`, also posted on their
   own).
 - `TGAA1-3DS-English-JPvoice-v1.9-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.

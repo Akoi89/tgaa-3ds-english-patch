@@ -12,23 +12,28 @@ NAS = os.environ.get('TGAA_NAS') or sys.exit('set TGAA_NAS to the NAS destinatio
 STAGE = os.path.join(ROOT, 'Final', '_CURRENT', 'jpvoice'); os.makedirs(STAGE, exist_ok=True)  # nas_backup.ps1 mirrors this into the NAS 'JAP Dub' folders
 sha = lambda p: hashlib.sha256(open(p, 'rb').read()).hexdigest()
 
+# repointed for v1.9 (2026-09-23, REWORK item 3: this was still v1.8a, incl. line 21's base
+# xdelta name). TAG/BUILD_DATE drive the readme prose below so the next release only has to
+# change these two lines and the SETS dict, not the prose too.
+TAG = 'v1.9'
+BUILD_DATE = '2026-09-23'
 SETS = {
     'TGAA1': dict(parent=os.path.join(NAS, 'The Great Ace Attorney Adventures'),
                   jp_base='TGAA1 - Base.cia', enb_cia=None, enb_xd=None,
                   # the first game's English banner carries an English HOME jingle; the JAP Dub set gets
                   # a banner image with the Japanese jingle instead (fix_tgaa1_banner_jingle.py)
                   extra=[(r'jpvoice\_out\TGAA1-Base-enbanner-jpjingle.cia', 'TGAA1-Base-enbanner-jpjingle.cia'),
-                         (r'jpvoice\_patches\TGAA1-v1.8-jpvoice-base.xdelta', 'TGAA1-Base-enbanner-jpjingle.xdelta')],
-                  upd=(r'jpvoice\_out\TGAA1-base-3.2.4-jpvoice.cia', 'TGAA1-base-3.2.4-jpvoice.cia'),
-                  dlc=(r'jpvoice\_patches\TGAA1-v1.8-jpvoice-DLC.cia', 'TGAA1-DLC-1.0.12-jpvoice.cia'),
-                  zip_=(r'jpvoice\_zips\TGAA1-3DS-English-JPvoice-v1.8-xdelta.zip', 'TGAA1-3DS-English-JPvoice-v1.8-xdelta.zip'),
-                  stamp='ENG 3.2.4', dlcstamp='DLC 1.0.12'),
+                         (r'jpvoice\_patches\TGAA1-v1.9-jpvoice-base.xdelta', 'TGAA1-Base-enbanner-jpjingle.xdelta')],
+                  upd=(r'jpvoice\_out\TGAA1-base-3.3.2-jpvoice.cia', 'TGAA1-base-3.3.2-jpvoice.cia'),
+                  dlc=(r'jpvoice\_patches\TGAA1-EN-DLC-v1.9-jpvoice.cia', 'TGAA1-DLC-1.0.16-jpvoice.cia'),
+                  zip_=(r'jpvoice\_zips\TGAA1-3DS-English-JPvoice-v1.9-xdelta.zip', 'TGAA1-3DS-English-JPvoice-v1.9-xdelta.zip'),
+                  stamp='ENG 3.3.2', dlcstamp='DLC 1.0.16'),
     'TGAA2': dict(parent=os.path.join(NAS, 'The Great Ace Attorney 2 Resolve'),
                   jp_base='TGAA2 - Base.cia', enb_cia='TGAA2-Base-enbanner.cia', enb_xd='TGAA2-Base-enbanner.xdelta',
-                  upd=(r'jpvoice\_out\TGAA2-base-1.0.16-jpvoice.cia', 'TGAA2-base-1.0.16-jpvoice.cia'),
-                  dlc=(r'jpvoice\_patches\TGAA2-v1.8-jpvoice-DLC.cia', 'TGAA2-DLC-1.0.10-jpvoice.cia'),
-                  zip_=(r'jpvoice\_zips\TGAA2-3DS-English-JPvoice-v1.8-xdelta.zip', 'TGAA2-3DS-English-JPvoice-v1.8-xdelta.zip'),
-                  stamp='ENG 1.0.16', dlcstamp='DLC 1.0.10'),
+                  upd=(r'jpvoice\_out\TGAA2-base-1.0.17-jpvoice.cia', 'TGAA2-base-1.0.17-jpvoice.cia'),
+                  dlc=(r'jpvoice\_patches\TGAA2-EN-DLC-v1.9-jpvoice.cia', 'TGAA2-DLC-1.0.11-jpvoice.cia'),
+                  zip_=(r'jpvoice\_zips\TGAA2-3DS-English-JPvoice-v1.9-xdelta.zip', 'TGAA2-3DS-English-JPvoice-v1.9-xdelta.zip'),
+                  stamp='ENG 1.0.17', dlcstamp='DLC 1.0.11'),
 }
 
 
@@ -55,12 +60,12 @@ for g, s in SETS.items():
     else:
         readme_banner = ['Files here that are NOT audio-specific are copies of the parent folder: the JP base CIA,',
                          'the English-banner base CIA and its xdelta (its jingle is already the Japanese one).']
-    readme = ['%s, Japanese voice edition of the v1.8 English patch (built 2026-09-15)' % g, '',
-              'Same text, art and layout as the main v1.8 files in the parent folder; ALL audio is',
+    readme = ['%s, Japanese voice edition of the %s English patch (built %s)' % (g, TAG, BUILD_DATE), '',
+              'Same text, art and layout as the main %s files in the parent folder; ALL audio is' % TAG,
               "Capcom's original Japanese (cartridge and Japanese DLC takes). Same title IDs and the",
               'same version numbers as the main files: install these INSTEAD of them, not as well.',
-              'Title screen still reads %s, DLC page %s. The v1.5 form was installed and run by the' % (s['stamp'], s['dlcstamp']),
-              'author, both games with their DLC (2026-09-06); this v1.8 form has not been run on a console.', '',
+              'Title screen still reads %s, DLC page %s. This %s form has not been run on a console' % (s['stamp'], s['dlcstamp'], TAG),
+              'or in an emulator; every file was checked by an independent re-extraction and comparison instead.', '',
               'Install order: JP base (or the enbanner base), then the -jpvoice update, then the -jpvoice DLC.',
               'The xdelta zip rebuilds the update and DLC from your own decrypted dumps (readme inside).', '',
               ] + readme_banner + ['', 'sha256:']
@@ -72,11 +77,8 @@ for g, s in SETS.items():
     for name in (s['jp_base'], s['enb_cia'], s['enb_xd']):
         if name:
             print(copy(os.path.join(s['parent'], name), os.path.join(stage, name)), 'stage', name)
-    # the earlier pass copied the English-jingle banner files into TGAA1's JAP Dub folder; retire them
-    for stale in ('TGAA1-Base-enbanner.cia', 'TGAA1-Base-enbanner.xdelta') if s.get('extra') else ():
-        p = os.path.join(dst, stale)
-        if os.path.exists(p):
-            os.remove(p); print('removed', stale, '(English jingle) from the NAS JAP Dub folder')
+    # (2026-09-23: removed a one-off cleanup that deleted two English-jingle banner files from the
+    # NAS JAP Dub folder. They were already gone, and nothing here should delete from the NAS.)
     for name in os.listdir(stage):
         print(copy(os.path.join(stage, name), os.path.join(dst, name)), 'nas  ', name)
     print(g, 'NAS JAP Dub now holds:', sorted(os.listdir(dst)))

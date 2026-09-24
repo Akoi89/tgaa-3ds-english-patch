@@ -22,11 +22,11 @@ I'd much rather have a duplicate than miss something.
 | The same, on a line that feels like it should exist | both games, story scenes | FIXED in v1.9. 18 lines had been left in Japanese because Capcom's English take was longer than the Japanese one and a longer clip was believed to get cut off. That cut-off was the misplacement bug described under the cutscene grain: a clip written where the game actually reads it plays to the end whatever its length. All 18 now play Capcom's English. One line in each game was heard in-game; the rest were checked against the recordings offline, and the ones in the second game's last two episodes have not been reached on a console |
 | An *Objection!* or *Hold it!* comes out in Japanese | second game, two minor characters | 4 shouts Capcom never re-recorded, for `chr104_mrs` and `chr210_mmm`. Their archives were checked member by member: 100 of the 104 shouts have an English master, these four don't |
 | A gallery chant is in Japanese | second game | FIXED in v1.9. The one chant that had stayed Japanese, in Episode 5, was held back because Capcom's English is much longer than the Japanese and a longer clip was believed to get cut off. That was the misplacement bug, not a size limit, so it plays Capcom's English now, at full length and looped where Capcom's recording says. Checked on the PC only; the test save doesn't reach it, so a report from anyone who hears it in-game would help |
-| No narration plays over an episode opening | second game, two pages | The display window on those two pages is shorter than Capcom's own audio, so the Japanese never played there either |
-| Narration cuts mid-word with a short fade | second game, three splits | The English takes span two pages each and had to be split. A clean break exists for all three but only at around 65% quality, which is more noticeable than the seam |
+| No narration plays on two pages of an episode opening | first game, Episode 2 | FIXED in v1.9. Those two English lines used to be cut to fit a timer set for the Japanese takes; they play in full now. Heard in-game |
+| Narration cuts mid-word with a short fade | first game, Episode 2 opening, three places | FIXED in v1.9a. Each page's English plays as two halves, and three of the splits fell inside a word because the clean break used to cost about a third of the audio quality to fit a size limit that turned out to be our own bug. All three now split in a real pause, at full quality. Heard in-game |
 | A DLC voice clip sounds duller than the rest, or stops before the line is finished | first game's DLC | FIXED in v1.9. The quality had been lowered on 16 lines, and 3 more trimmed, to keep each clip inside the space Capcom's Japanese clip took, because a bigger clip was cut off in-game. The cut-off was the misplacement bug, not a size rule, so all 19 are re-encoded at full quality and full length. Every one was heard playing to the end on a console |
 | A voice line in the second game sounds hurried, with the breath between phrases missing | second game, story scenes | FIXED in v1.9. 27 lines had pauses cut out of the middle to make them fit the space, a workaround for the same misplacement bug. The pauses are back, and every second-game voice that had been stored at reduced quality for the same reason is at full quality again: a scan of the finished build found no replaced voice below Capcom's sample rate in either game or either DLC |
-| The parchment narration at the start of Episode 2 sounds rushed | first game | FIXED in v1.9. Each page of that opening turns on a timer set for the Japanese takes, and the longer English takes had been sped up, by up to about a third, to finish in time. The page timing is now lengthened to fit the English and the narration plays at its natural pace. Heard in-game: every line plays to the end and each finishes before the next page |
+| The parchment narration at the start of Episode 2 sounds rushed, or pauses in the middle of a sentence | first game | FIXED in v1.9 and v1.9a. Each page of that opening had been timed for the Japanese takes, and the longer English takes had been sped up, by up to about a third, to finish in time. v1.9 restored the natural pace, but each page's English is in two pieces and the second piece still waited on the cue for the Japanese second line, which left pauses of half a second to over a second on five pages, three of them mid-sentence or mid-word, while two pages felt rushed. v1.9a times each page the way Capcom's PC release does: one continuous read per page, the second piece following the first after the recording's own pause, with the page turns, art and music on Capcom's original timing. Heard in-game: nothing is cut off and nothing overlaps |
 | A gasp, effort or cry during the third episode's Dance of Deduction sounds distorted | second game | FIXED in v1.9. Those 14 reactions went through a converter of ours that read part of the source format wrong. Fixed at source; they now decode exactly like the reference decoder. Checked by decoding, not yet heard in the scene |
 | A DLC Music and Sound gallery title runs past its plate | first game's DLC, issues 1 to 8 | FIXED in v1.9 |
 | A "Bonus voice recital" track in the DLC Music gallery plays in Japanese | first game's DLC | FIXED in v1.9 for four of the eight. Capcom's English recordings exist for them and are in now, checked on the rig |
@@ -224,11 +224,22 @@ Three splits land mid-word and carry a short fade. A clean break exists for each
 only by pushing a half to around 65% of full quality, which is more noticeable than the
 seam it would fix.
 
-v1.9 changes this for the first game's Episode 2 opening. Instead of squeezing the takes,
-the page timings themselves are lengthened, only as far as each uncompressed half needs,
-and the halves play at natural speed and full quality. The one pair that was split in the
-middle of a clause is now split in the silence between its clauses. Checked in-game: all
-twenty halves play to the end, each before its page turns.
+v1.9 changed this for the first game's Episode 2 opening. Instead of squeezing the takes,
+the halves played at natural speed and full quality. That fixed the rush and introduced a
+smaller problem: each page's English is in two halves, and the second half was still
+started by the cue the game uses for the Japanese second line. The Japanese lines don't
+break where the English sentences do, so on five pages the second half sat waiting for
+half a second to over a second, three times in the middle of a sentence or a word, and two
+pages felt rushed for the same reason.
+
+Capcom's PC release has its own English timing for this scene: the same page timing as the
+Japanese, with one continuous read per page. v1.9a follows it. Each page's second half now
+follows the first after the recording's own natural pause, and the page turns, art and
+music are back on Capcom's original timing. The old and new timing were compared by ear
+before this went in, and it was then recorded in-game: nothing is cut off and nothing
+overlaps. The other episode openings in both games play one piece per page and already
+match the PC timing, so they didn't need this. The Japanese-voice edition keeps the
+Japanese timing on purpose, because it plays the Japanese recordings.
 
 If you play the second game and hear Japanese where you expected English, that is this,
 and it is expected rather than a broken install.
@@ -395,8 +406,8 @@ listened to, and what has only been checked in the files.
 
 ## Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.8a-xdelta.zip`
-and `TGAA2-3DS-English-v1.8a-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9a-xdelta.zip`
+and `TGAA2-3DS-English-v1.9a-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -414,8 +425,8 @@ about 180 MB because the subtitled videos are genuinely new data. The patches we
 on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
 not been tested. Same install order afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.8.txt` and
-`TGAA2-README-v1.8.txt`, because romhacking.net wants the readme as a separate link rather
+The same readme text is also on the release on its own, as `TGAA1-README-v1.9a.txt` and
+`TGAA2-README-v1.9a.txt`, because romhacking.net wants the readme as a separate link rather
 than only inside the zip.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
@@ -425,8 +436,8 @@ to happen.
 ## Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.8a-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.8a-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.9-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.9-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are

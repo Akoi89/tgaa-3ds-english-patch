@@ -17,13 +17,17 @@ sys.path.insert(0, os.path.join(ROOT, '_rhdn_work'))
 import build_rhdn_patches_v15 as B
 from build_rhdn_patches import digest
 
-TAG = 'v1.8a-jpvoice'
+TAG = 'v1.9-jpvoice'
 OUT = os.path.join(ROOT, 'jpvoice', '_patches'); WORK = os.path.join(ROOT, 'jpvoice', '_pwork')
 os.makedirs(OUT, exist_ok=True); os.makedirs(WORK, exist_ok=True)
 GAMES = {
-    'TGAA1': dict(B.GAMES['TGAA1'], update=r'jpvoice\_out\TGAA1-base-3.2.4-jpvoice.cia', dlc=r'jpvoice\_out\TGAA1-DLC-1.0.12-jpvoice.cia'),
-    'TGAA2': dict(B.GAMES['TGAA2'], update=r'jpvoice\_out\TGAA2-base-1.0.16-jpvoice.cia', dlc=r'jpvoice\_out\TGAA2-DLC-1.0.10-jpvoice.cia'),
+    'TGAA1': dict(B.GAMES['TGAA1'], update=r'jpvoice\_out\TGAA1-base-3.3.2-jpvoice.cia', dlc=r'jpvoice\_out\TGAA1-DLC-1.0.16-jpvoice.cia'),
+    'TGAA2': dict(B.GAMES['TGAA2'], update=r'jpvoice\_out\TGAA2-base-1.0.17-jpvoice.cia', dlc=r'jpvoice\_out\TGAA2-DLC-1.0.11-jpvoice.cia'),
 }
+# optional game filter (v1.9: TGAA2 base is being rebuilt, build TGAA1 alone in the meantime),
+# same convention as build_rhdn_patches_v15.py's --only: python build_jpvoice_patches.py TGAA1
+if len(sys.argv) > 1:
+    GAMES = {g: GAMES[g] for g in sys.argv[1:] if g in GAMES}
 rows = []
 for g, cfg in GAMES.items():
     for kind, fn in (('update', B.build_update), ('DLC', B.build_dlc)):
