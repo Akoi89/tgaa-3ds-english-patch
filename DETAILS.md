@@ -428,7 +428,8 @@ not been tested. Same install order afterwards: base, update, DLC.
 
 The same readme text is also on the release on its own, as `TGAA1-README-v1.9b.txt` and
 `TGAA2-README-v1.9b.txt`, because romhacking.net wants the readme as a separate link rather
-than only inside the zip.
+than only inside the zip. `HASHES_v1.9b.txt` on the release lists the size, CRC32 and sha256
+of every source dump, patch and result for both games.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
 because a patch against a file most people dump differently is a support thread waiting
