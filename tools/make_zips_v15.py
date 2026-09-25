@@ -3,9 +3,10 @@
 base, update and DLC xdeltas, xdelta3.exe and a README.txt filled from HASHES_<tag>.txt
 (written by build_rhdn_patches_v15.py).
 
-Usage: python make_zips_v15.py [--tag v1.5] [--out _out15]
+Usage: python make_zips_v15.py --tag v1.9d [--out _out15]
 """
 import argparse
+import json
 import os
 import zipfile
 
@@ -13,18 +14,15 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 R = os.path.join(HERE, '..')
 XD = os.path.join(R, 'patches', 'xdelta3.exe')
 
+# per-game text that does not change between releases. The version stamps, the update file
+# name and the DLC's own tag come from RELEASE_SET_<tag>.json, which build_rhdn_patches_v15.py
+# writes from the release folder (release_set.py); they used to be hand-edited here each release.
 META = {
-    # dlc_tag is the DLC's OWN tag, separate from --tag: TGAA1's DLC CIA content did not change
-    # in v1.9b, so its README output filename must still read v1.9, matching the actual
-    # TGAA1-EN-DLC-v1.9.cia release asset; TGAA2's DLC changed in v1.9b (1.0.11 -> 1.0.12), so
-    # its dlc_tag advances to v1.9b to match the new TGAA2-EN-DLC-v1.9b.cia release asset.
     'TGAA1': dict(jp='Dai Gyakuten Saiban: Naruhodou Ryuunosuke no Bouken', en='The Great Ace Attorney: Adventures',
-                  tid='0014AD00', card_delta='2,708', ver='ENG 3.3.4', upd='TGAA1-base-3.3.4.cia',
-                  dlc_where='the Episode 0 magazine cover, top left', dlc_stamp='DLC 1.0.16', dlc_tag='v1.9',
+                  card_delta='2,708', dlc_where='the Episode 0 magazine cover, top left',
                   dlc_note="The first game's DLC is a big one: it holds the voice galleries, eleven subtitled commentary videos, the rebuilt magazine covers and a playable extra episode. The videos had to be re-encoded with English subtitles, which is why this DLC patch is about 170 MB: that part is genuinely new data, not a repack."),
     'TGAA2': dict(jp='Dai Gyakuten Saiban 2: Naruhodou Ryuunosuke no Kakugo', en='The Great Ace Attorney 2: Resolve',
-                  tid='001AE200', card_delta='1,075', ver='ENG 1.0.18', upd='TGAA2-base-1.0.18.cia',
-                  dlc_where='the costume pack banner, bottom right', dlc_stamp='DLC 1.0.12', dlc_tag='v1.9b',
+                  card_delta='1,075', dlc_where='the costume pack banner, bottom right',
                   dlc_note="The second game's DLC holds the two mini episodes and the costumes. Both episodes are fully in English, including their voiced shouts."),
 }
 
@@ -193,20 +191,27 @@ not, is in the README on the GitHub page. No generated audio ships.
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--tag', default='v1.5')
+    ap.add_argument('--tag', required=True)
     ap.add_argument('--out', default=os.path.join(HERE, '_out15'))
     a = ap.parse_args()
     rows = [l.rstrip('\n').split('\t') for l in open(os.path.join(a.out, 'HASHES_%s.txt' % a.tag))]
     h = {(g, k, lab): (fn, int(n), c, s) for g, k, lab, fn, n, c, s in rows}
+    man = json.load(open(os.path.join(a.out, 'RELEASE_SET_%s.json' % a.tag)))
+    assert man['tag'] == a.tag, man['tag']
+    print('packing the set built from', man['folder'])
     # computed from the real update CIA sizes rather than a fixed guess (a fixed "40 to 90 MB"
     # went stale the moment a build passed 90 MB); rounded out to the nearest 10 MB so it does
     # not need editing again for a few MB of drift either side.
-    upd_sizes_mb = [h[(g, 'update', 'result')][1] / 1e6 for g in META if (g, 'update', 'result') in h]
+    upd_sizes_mb = [h[(g, 'update', 'result')][1] / 1e6 for g in man['games'] if (g, 'update', 'result') in h]
     mb_range = '%d to %d' % (10 * (int(min(upd_sizes_mb)) // 10), 10 * -(-int(max(upd_sizes_mb)) // 10)) if upd_sizes_mb else '40 to 90'
-    for g, m in META.items():
-        if (g, 'update', 'patch') not in h:
-            continue
+    assert sorted(man['games']) == sorted({k[0] for k in h}), ('HASHES and RELEASE_SET cover different games', sorted(man['games']))
+    for g, rs in man['games'].items():
+        m = dict(META[g], **rs)
         f = lambda k, lab: h[(g, k, lab)]  # noqa: E731
+        # the patches must reproduce exactly the files in the release folder the build resolved
+        assert f('update', 'result')[0] == m['upd'] and f('update', 'result')[3] == m['update_sha256'], (g, 'update', f('update', 'result'))
+        assert f('DLC', 'result')[0] == os.path.basename(m['en_dlc']) and f('DLC', 'result')[3] == m['en_dlc_sha256'], (g, 'DLC', f('DLC', 'result'))
+        assert os.path.basename(m['en_dlc']) == '%s-EN-DLC-%s.cia' % (g, m['dlc_tag'])
         txt = README.format(g=g, tag=a.tag, dlc_tag=m['dlc_tag'], jp=m['jp'], en=m['en'], tid=m['tid'], card_delta=m['card_delta'], ver=m['ver'], upd=m['upd'], mb_range=mb_range,
                             dlc_where=m['dlc_where'], dlc_stamp=m['dlc_stamp'], dlc_note=m['dlc_note'],
                             src_game_size='{:,}'.format(f('base', 'source')[1]), src_game_sha=f('base', 'source')[3],
@@ -214,7 +219,6 @@ def main():
                             res_upd_size='{:,}'.format(f('update', 'result')[1]), res_upd_sha=f('update', 'result')[3],
                             res_dlc_size='{:,}'.format(f('DLC', 'result')[1]), res_dlc_sha=f('DLC', 'result')[3],
                             res_base_size='{:,}'.format(f('base', 'result')[1]), res_base_sha=f('base', 'result')[3])
-        assert f('update', 'result')[0] == m['upd'], (f('update', 'result')[0], m['upd'])
         for ch in txt:
             assert ord(ch) < 128, 'non-ASCII in README: %r' % ch
         rp = os.path.join(a.out, 'README_%s.txt' % g)

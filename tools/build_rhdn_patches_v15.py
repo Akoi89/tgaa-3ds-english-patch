@@ -18,7 +18,12 @@ Everything build_rhdn_patches.py learned is kept: -a armor so the source's rando
 (0x1010..0x103B) and ticket bytes do not break the apply, whole-header scrub at encode time,
 apply-back check, and two perturbed-source applies per patch.
 
-Usage: python build_rhdn_patches_v15.py [--tag v1.5] [--only TGAA1|TGAA2] [--final _CURRENT]
+The update and DLC files are no longer written in here: release_set.py finds them in the
+release folder (Final\_new\<tag> by default, or --release Final\_CURRENT after promotion) and
+refuses a folder that is not that release. The DLC patch's output must equal the folder's
+own EN-DLC file byte for byte, and RELEASE_SET_<tag>.json records the set for make_zips_v15.py.
+
+Usage: python build_rhdn_patches_v15.py --tag v1.9d [--release Final\_CURRENT] [--only TGAA1|TGAA2]
 """
 import argparse
 import os
@@ -30,17 +35,16 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from build_rhdn_patches import R, T3, CT, XD, SEED_OFF, SEED_LEN, run, digest, same, rm  # noqa: E402
+import release_set  # noqa: E402
 
+# the Japanese sources and the banner images do not change between releases; the update and
+# DLC paths are filled in by release_set.resolve() in main()
 GAMES = {
     'TGAA1': dict(cci=r'_sources\TGAA1 - Base-decrypted.cci',
-                  update=r'Final\_CURRENT\TGAA1-base-3.3.3.cia',
                   enbanner=r'banner_tools\_out\TGAA1-Base-enbanner.cci',
-                  dlc=r'Final\_CURRENT\TGAA1-DLC-1.0.16.cia',
                   dlc_jp=r'_sources\TGAA1-Official-Jap (DLC)-decrypted.cia'),
     'TGAA2': dict(cci=r'_sources\DGS2 - Base-decrypted.cci',
-                  update=r'Final\_CURRENT\TGAA2-base-1.0.17.cia',
                   enbanner=r'banner_tools\_out\TGAA2-Base-enbanner.cci',
-                  dlc=r'Final\_CURRENT\TGAA2-DLC-1.0.11.cia',
                   dlc_jp=r'_sources\DGS2-Jap-DLC (DLC)-decrypted.cia'),
 }
 BIG = '1073741824'
@@ -153,12 +157,14 @@ def build_update(g, cfg, work, out, tag):
 def build_dlc(g, cfg, work, out, tag):
     src = os.path.join(R, cfg['dlc_jp'])
     ours = os.path.join(R, cfg['dlc'])
-    # named to match what the zip README tells the user to call their own output
-    # (TGAA1-EN-DLC-v1.9.cia), so HASHES and the README agree without a manual rename
-    nc = os.path.join(out, '%s-EN-DLC-%s.cia' % (g, tag))
+    # named after the release's own EN-DLC file (the DLC's tag, which stays older when a
+    # release leaves the DLC alone), so HASHES and the README agree without a manual rename
+    nc = os.path.join(out, os.path.basename(cfg['en_dlc']))
     run(sys.executable, os.path.join(HERE, 'nocrypto_cia.py'), ours, nc)
     info = run(CT, '-i', nc)
     assert 'Crypto Key           None' in info and 'Crypto Key           Secure' not in info, 'DLC still encrypted'
+    assert same(nc, cfg['en_dlc']), '%s: decrypting %s does not give the release folder\'s %s' % (
+        g, os.path.basename(ours), os.path.basename(cfg['en_dlc']))
     hdr = open(src, 'rb').read(0x20)
     hsz, _, _, csz, tsz, msz = struct.unpack_from('<IHHIII', hdr, 0)
     a64 = lambda x: (x + 63) // 64 * 64  # noqa: E731
@@ -174,14 +180,25 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--work', default=os.path.join(HERE, '_build15'))
     ap.add_argument('--out', default=os.path.join(HERE, '_out15'))
-    ap.add_argument('--tag', default='v1.5')
+    ap.add_argument('--tag', required=True)
+    ap.add_argument('--release', help=r'release folder, default Final\_new\<tag>; a relative path is '
+                                      r'taken from the project root (so Final\_CURRENT), not the current folder')
     ap.add_argument('--only', choices=['TGAA1', 'TGAA2'])
-    ap.add_argument('--final', default='_CURRENT')
     a = ap.parse_args()
-    for cfg in GAMES.values():
-        for k in ('update', 'dlc'):
-            cfg[k] = cfg[k].replace(r'Final\_CURRENT', r'Final' + '\\' + a.final)
+    folder, found = release_set.resolve(R, a.tag, a.release)
+    release_set.describe(folder, found)
+    for g, cfg in GAMES.items():
+        cfg.update(update=found[g]['update'], dlc=found[g]['dlc'], en_dlc=found[g]['en_dlc'])
     os.makedirs(a.work, exist_ok=True); os.makedirs(a.out, exist_ok=True)
+    # a partial (--only) run must not leave the other game's rows from an older run looking current
+    for stale in ('HASHES_%s.txt' % a.tag, 'RELEASE_SET_%s.json' % a.tag):
+        if os.path.exists(os.path.join(a.out, stale)):
+            os.remove(os.path.join(a.out, stale))
+    if a.only:
+        left = [f for f in os.listdir(a.out) if a.tag in f and not f.startswith(a.only)]
+        if left:
+            print('WARNING: %s still holds files from an earlier run of %s that this --only %s run '
+                  'does not rebuild or cover in its HASHES; do not upload them: %s' % (a.out, a.tag, a.only, left))
     rows = []
     for g, cfg in GAMES.items():
         if a.only and g != a.only:
@@ -195,6 +212,8 @@ def main():
     with open(os.path.join(a.out, 'HASHES_%s.txt' % a.tag), 'w') as f:
         for r_ in rows:
             f.write('%s\t%s\t%s\t%s\t%d\t%s\t%s\n' % r_)
+    built = {g: m for g, m in found.items() if not a.only or g == a.only}
+    release_set.write_manifest(os.path.join(a.out, 'RELEASE_SET_%s.json' % a.tag), a.tag, folder, built)
     print('done; hashes in', os.path.join(a.out, 'HASHES_%s.txt' % a.tag))
 
 
