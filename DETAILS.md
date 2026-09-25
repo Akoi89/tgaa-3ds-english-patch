@@ -30,7 +30,7 @@ I'd much rather have a duplicate than miss something.
 | A gasp, effort or cry during the third episode's Dance of Deduction sounds distorted | second game | FIXED in v1.9. Those 14 reactions went through a converter of mine that read part of the source format wrong. Fixed at source; they now decode exactly like the reference decoder. Checked by decoding, not yet heard in the scene |
 | A DLC Music and Sound gallery title runs past its plate | first game's DLC, issues 1 to 8 | FIXED in v1.9 |
 | A "Bonus voice recital" track in the DLC Music gallery plays in Japanese | first game's DLC | FIXED in v1.9 for four of the eight. Capcom's English recordings exist for them and are in now, checked on the rig |
-| A lowercase t looks broken, or "Picture" reads "Picturc", on a DLC menu heading | first game's DLC menus (the same letters in the second game) | FIXED in v1.9b. The headings use the fan patch's menu font, whose t and e crossbars are one pixel thin; the game draws the headings slightly shrunk and smoothed, and the thin bars vanished. Those two letters are thicker now, in both games' copies of the font, and nothing else in the font moved. Checked on the emulator against the tester's photo |
+| A lowercase t looks broken, or "Picture" reads "Picturc", on a DLC menu heading | first game's DLC menus (the same letters in the second game) | FIXED in v1.9b, redone in v1.9c. The headings use the fan patch's menu font, whose t and e crossbars are one pixel thin; the game draws the headings slightly shrunk and smoothed, and the thin bars vanished. v1.9b thickened both letters but pushed their bottoms a pixel below the line, so the e grew a small tail in lists and dialogue. From v1.9c only the crossbars get a light extra row, and the i, j and l, which read a shade heavier than their neighbours, are slightly lighter. Nothing else in the font moved. Checked on the emulator in the Sound gallery, the DLC headings and the music notes |
 | A closing quote mark or a punctuation mark shows as a blank space | first game and its DLC | FIXED in v1.9. A handful of characters, mostly curly closing quotes in the DLC gallery text plus a few punctuation marks in the first game's own text, aren't in any of the game's fonts. Replaced with characters the fonts do carry |
 | A "Take that!" comes out in Japanese | second game's DLC, two shouts | No English recording exists for these two. Same class as the four base-game shouts above |
 | The gallery text for DLC issues 9 to 13 is Japanese | first game's DLC | Capcom's own placeholder wording, as far as I can tell; the retail Japanese game shows the same. Whether to translate it is undecided |
@@ -38,6 +38,8 @@ I'd much rather have a duplicate than miss something.
 | A centred banner or heading looks tight against the box edge | first game, 4 pages | One single-word page at 357 units and three identical widget pages at exactly 365. The widget box's own width was never confirmed on screen, so these may not be overflowing at all |
 | A line in the fancier, more decorative face runs past the box | first game | The wrapper measures those lines with the other font's metrics, so it wraps them too late. This is [senyarom issue #7](https://github.com/senyarom/tgaa2-en-patch/issues/7), it is still open, and it is not fixed here either |
 | The end credits are entirely in Japanese | second game, all 75 cards | Deliberate. The PC release lays them out differently and can't be ported, and a misspelled credit is worse than an untranslated one |
+| The DLC menu icons have smudges under the pictures | first game's DLC list | FIXED in v1.9c. The clean icon sheet from v1.7 was replaced by the older one again in v1.8b, because that update was built from a copy of the game files that still held it. The v1.7 sheet is back |
+| Picture Book commentary is hard to read at its size | first game's DLC | FIXED in v1.9c on 51 of the 76 pages: the text is usually two sizes bigger, with the see-through panel behind it extended to fit, and faint Japanese that showed behind the English on several pages is gone. The other pages were already as large as their space allows |
 | Japanese writing on the artwork inside the Picture Book | first game's DLC | Brush-written name tags and small production scribbles on the design sheets were left as they are |
 | The tips of the pencil hair look clipped on a sketches page | first game's DLC, issue 6 | They share pixels with the Japanese writing. Every rule that kept the hair also left readable Japanese, so the tips stay clipped |
 | The title card reads "D L C", one letter per slot | first game | Cosmetic, and it used to be blank |
@@ -407,8 +409,8 @@ listened to, and what has only been checked in the files.
 
 ## Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9b-xdelta.zip`
-and `TGAA2-3DS-English-v1.9b-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9c-xdelta.zip`
+and `TGAA2-3DS-English-v1.9c-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -426,9 +428,9 @@ about 180 MB because the subtitled videos are genuinely new data. The patches we
 on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
 not been tested. Same install order afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.9b.txt` and
-`TGAA2-README-v1.9b.txt`, because romhacking.net wants the readme as a separate link rather
-than only inside the zip. `HASHES_v1.9b.txt` on the release lists the size, CRC32 and sha256
+The same readme text is also on the release on its own, as `TGAA1-README-v1.9c.txt` and
+`TGAA2-README-v1.9c.txt`, because romhacking.net wants the readme as a separate link rather
+than only inside the zip. `HASHES_v1.9c.txt` on the release lists the size, CRC32 and sha256
 of every source dump, patch and result for both games.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
@@ -438,8 +440,8 @@ to happen.
 ## Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.9b-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.9b-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.9c-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.9c-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are

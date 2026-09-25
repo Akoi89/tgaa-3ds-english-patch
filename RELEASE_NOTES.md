@@ -7,10 +7,16 @@ patch for each game.
 
 ## What this build fixes
 
-- Lowercase t and e on the first game's DLC menu headings. They came out broken on
-  screen, so "Picture Book" read "Picturc Book". The menu font's crossbars were one
-  pixel thin and vanished when the game drew it slightly shrunk; those two letters are
-  thicker now in both games. Checked on the emulator against the tester's photo.
+- Lowercase t and e. On the DLC menu headings they came out broken, so "Picture Book"
+  read "Picturc Book", and v1.9b's fix pushed them a pixel below the line so the e grew a
+  tail. Now only their crossbars get a light extra row, and i, j and l, which read a
+  shade heavier than the rest, are slightly lighter. Both games, checked on the emulator.
+- The first game's DLC. Picture Book commentary is usually two sizes bigger on 51 of its
+  76 pages, with the see-through panel behind it extended to fit, and the faint Japanese
+  behind the English on several pages is gone. The menu icons, which had slipped back to
+  an older sheet with smudges under the pictures in v1.8b, are the clean v1.7 ones again.
+  Four "Bonus voice recital" tracks play Capcom's English, gallery titles fit their
+  plates, and characters no font in the game can draw were swapped for ones it can.
 - The grain over the first game's animated cutscenes. Not a format limit after all: my
   tools wrote every English sound track a few bytes out of position, so the console read
   each one slightly late, and that misread was the grain. Checked on a console before
@@ -18,10 +24,8 @@ patch for each game.
 - Courtroom crowd sounds that came out scrambled, two in each game: the same misalignment
   plus a wrong channel layout. Every replaced sound in both games and their DLC is back
   in position, which also fixes at the root the click that v1.5 covered with silence.
-- Crowd noise that went quiet for a stretch and then jumped back in. Two looping crowd
-  sounds in each game repeated from the wrong spot, and one chant had a couple of tiny
-  clipped peaks. They now cycle where Capcom's English recordings say to. The murmur's
-  small dip at the start of each cycle is Capcom's own.
+  Crowd noise that went quiet and jumped back in now loops where Capcom's English
+  recordings say to.
 - Voice lines cut off, made duller or left in Japanese because the English take ran
   longer than the Japanese one. Same bug. Every replaced voice in both games and their
   DLC is at full quality and full length, the second-game lines with pauses cut from the
@@ -43,15 +47,14 @@ patch for each game.
 - Gasps and cries in the second game's Dance of Deduction, distorted by a decoding
   mistake of mine, come out as Capcom made them. Checked by decoding, not yet heard in
   the scene.
-- The first game's DLC galleries: four "Bonus voice recital" tracks now in Capcom's
-  English; Music and Sound titles that ran past their plate; small Picture Book text,
-  larger on ten pages; and a few characters no font in the game can draw, mostly closing
-  quote marks, swapped for ones the fonts carry.
 
 ## Version history
 
 Newest first. A version's changes are listed here and nowhere else.
 
+- v1.9c: v1.9b's t and e fix redone so the letters sit on the line, i, j and l a touch
+  lighter, in both games; bigger commentary on 51 Picture Book pages with the leftover
+  Japanese gone; the clean v1.7 DLC menu icons back. Every update and DLC changed.
 - v1.9b: the broken t and e on the DLC menu headings, in both games; the second game's
   title screen and DLC banner show their real version numbers again. Every update
   changed, and the second game's DLC.
@@ -107,18 +110,18 @@ Newest first. A version's changes are listed here and nowhere else.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.4.cia` / `TGAA2-base-1.0.18.cia`: the update.
-- `TGAA1-DLC-1.0.16.cia` / `TGAA2-DLC-1.0.12.cia`: the DLC. `TGAA1-EN-DLC-v1.9.cia` /
-  `TGAA2-EN-DLC-v1.9b.cia`: the same DLC decrypted inside, for emulators. One or the
+- `TGAA1-base-3.3.5.cia` / `TGAA2-base-1.0.19.cia`: the update.
+- `TGAA1-DLC-1.0.17.cia` / `TGAA2-DLC-1.0.13.cia`: the DLC. `TGAA1-EN-DLC-v1.9c.cia` /
+  `TGAA2-EN-DLC-v1.9c.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9b-xdelta.zip` / `TGAA2-3DS-English-v1.9b-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9c-xdelta.zip` / `TGAA2-3DS-English-v1.9c-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the HOME banner patch
   (`TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`, also posted on its own)
-  and a readme (`TGAA1-README-v1.9b.txt` / `TGAA2-README-v1.9b.txt`, also posted on their
+  and a readme (`TGAA1-README-v1.9c.txt` / `TGAA2-README-v1.9c.txt`, also posted on their
   own).
-- `TGAA1-3DS-English-JPvoice-v1.9b-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9b-xdelta.zip`:
+- `TGAA1-3DS-English-JPvoice-v1.9c-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9c-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9b.txt`: size, CRC32 and sha256 of every source dump, patch and result, so
+- `HASHES_v1.9c.txt`: size, CRC32 and sha256 of every source dump, patch and result, so
   you can check a file before and after patching.
 
 Sizes, hashes, apply steps and troubleshooting are in the README.
