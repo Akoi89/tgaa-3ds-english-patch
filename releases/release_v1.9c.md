@@ -1,9 +1,9 @@
 v1.9c: v1.9b's letter fix done properly, bigger Picture Book text, and a cleaner title screen.
 
-- **t and e, redone.** v1.9b pushed both letters a pixel below the line, giving the e a tail. Now only the crossbars get a light extra row, and i, j and l are a touch lighter. Both games.
-- **Picture Book commentary.** Bigger on 51 of 76 pages, with the see-through panel extended to fit and the faint leftover Japanese gone.
-- **"Extras" title card.** The DLC card read "D L C" on four diamonds and went dark when pressed. It now reads "Extras" like its neighbours and turns white. Both games.
-- **DLC menu icons.** The first game's menu had slipped back to an older, smudged sheet in v1.8b; the clean one is back.
+- **t and e, redone.** v1.9b pushed both letters below the line, giving the e a tail. Now only the crossbars are thickened, and i, j and l are a touch lighter. Both games.
+- **Picture Book commentary.** Bigger on 51 of 76 pages, with the leftover Japanese gone.
+- **"Extras" title card.** The DLC card read "D L C" on four diamonds and went dark when pressed. It now reads "Extras" and turns white. Both games.
+- **DLC menu icons.** v1.8b had brought back an older, smudged icon sheet; the clean one is back.
 - **Smaller fixes.** An Episode 2 line no longer runs onto the box frame, the post-mortem's last line no longer looks like a new paragraph, and issues 9 to 13's placeholder galleries are in English.
 
 On a 3DS, install `TGAA1-DLC` / `TGAA2-DLC`; the `-EN-DLC` files are the same DLC for emulators.
