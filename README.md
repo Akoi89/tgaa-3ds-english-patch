@@ -139,18 +139,13 @@ These are the ones you're most likely to meet:
   release lays them out differently and can't be ported, and a misspelled credit is worse
   than an untranslated one. This is the largest known gap and it's reported upstream.
 - **Some text still runs past its box.** 38 dialogue pages in the second game end under the
-  page arrow. Four widget pages in the first game sit right on the edge. And some lines in
-  the first game that are set in the second, fancier face overrun it, because the wrapper
-  measures them with the wrong font's metrics. That last one is an upstream bug and it
-  isn't fixed here or there yet.
+  page arrow. Four widget pages in the first game sit right on the edge. And two lines in
+  the first game's second Dance of Deduction, set in the fancier face, end slightly under
+  the page arrow.
 - **There's still Japanese inside the first game's DLC Picture Book.** The brush-written
   name tags and the small production scribbles on the design sheets were left alone on
   purpose. On the rough sketches page in issue 6, the tips of the pencil hair are clipped,
   because every rule that kept them also left readable Japanese behind.
-- **The galleries for DLC issues 9 to 13 in the first game show Japanese placeholder
-  text.** It reads like Capcom's own placeholder wording and the retail Japanese game
-  shows the same, so I haven't decided whether to translate it.
-- **The DLC card on the title screen reads "D L C"**, one letter per slot. Cosmetic.
 
 Nobody has played either main game the whole way through on a console yet, so the later
 chapters of both are the least tested thing here. The English voice lines added to the

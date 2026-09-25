@@ -15,6 +15,12 @@ patch for each game.
   76 pages, with the see-through panel behind it extended to fit, and the faint Japanese
   behind the English on several pages is gone. The menu icons, which had slipped back to
   an older sheet with smudges under the pictures in v1.8b, are the clean v1.7 ones again.
+  The galleries for the never-released issues 9 to 13 show Capcom's placeholder text in
+  English.
+- The title screen. The DLC card read "D L C" on four diamonds and went dark when
+  pressed; it now reads "Extras" sideways like its neighbours and turns white when
+  pressed, in both games. A line in the first game's second Dance of Deduction that ran
+  onto the box frame is re-broken.
   Four "Bonus voice recital" tracks play Capcom's English, gallery titles fit their
   plates, and characters no font in the game can draw were swapped for ones it can.
 - The grain over the first game's animated cutscenes. Not a format limit after all: my
@@ -32,7 +38,8 @@ patch for each game.
   middle are whole again, and the story lines that stayed Japanese for length, plus the
   second game's last Japanese crowd chant, play Capcom's English. Every DLC line was
   heard playing in full in an emulator; the story lines and the chant were mostly checked against the
-  recordings offline.
+  recordings offline. Gasps and cries in the second game's Dance of Deduction, distorted
+  by a decoding mistake of mine, are clean too (checked by decoding only).
 - The first game's parchment narration at the start of Episode 2 had been sped up, by
   up to about a third, to finish before each page turned. v1.9 put it back to natural
   pace but left the second half of each page waiting on a cue set for the Japanese
@@ -44,9 +51,6 @@ patch for each game.
 - Text in the first game: pop-up document and report pages that ran off the right edge
   are re-broken, not a word changed; Court Record captions the game had been shrinking
   small and soft draw at full size, a few with a word or comma trimmed.
-- Gasps and cries in the second game's Dance of Deduction, distorted by a decoding
-  mistake of mine, come out as Capcom made them. Checked by decoding, not yet heard in
-  the scene.
 
 ## Version history
 
@@ -54,7 +58,9 @@ Newest first. A version's changes are listed here and nowhere else.
 
 - v1.9c: v1.9b's t and e fix redone so the letters sit on the line, i, j and l a touch
   lighter, in both games; bigger commentary on 51 Picture Book pages with the leftover
-  Japanese gone; the clean v1.7 DLC menu icons back. Every update and DLC changed.
+  Japanese gone; the clean v1.7 DLC menu icons back; an "Extras" title card in both
+  games; decorative-font lines re-broken; issues 9 to 13 gallery text in English. Every
+  update and DLC changed.
 - v1.9b: the broken t and e on the DLC menu headings, in both games; the second game's
   title screen and DLC banner show their real version numbers again. Every update
   changed, and the second game's DLC.
@@ -97,12 +103,10 @@ Newest first. A version's changes are listed here and nowhere else.
 - The second game's end credits are Japanese on purpose; a misspelled credit is worse
   than an untranslated one.
 - Some text still runs past its box: a few dozen second-game dialogue pages end under
-  the page arrow, four first-game widget pages sit on the edge, and lines in the fancier
-  face can overrun through an upstream wrapper bug.
+  the page arrow, four first-game widget pages sit on the edge, and two lines in the
+  fancier face end slightly under the arrow.
 - Japanese remains in the first game's DLC Picture Book (name tags, production
-  scribbles), and the galleries for DLC issues 9 to 13 show Japanese placeholder text I
-  haven't decided whether to translate.
-- The DLC card on the title screen reads "D L C". Cosmetic.
+  scribbles).
 - Nobody has played either main game through on a console yet. The English lines added
   to the second game's last two episodes, and the crowd loops, were checked offline only.
 
