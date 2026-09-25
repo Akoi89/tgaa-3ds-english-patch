@@ -19,8 +19,8 @@ patch for each game.
   plates, and characters no font in the game can draw were swapped for ones it can.
 - The grain over the first game's animated cutscenes. Not a format limit after all: my
   tools wrote every English sound track a few bytes out of position, so the console read
-  each one slightly late, and that misread was the grain. Checked on a console before
-  and after.
+  each one slightly late, and that misread was the grain. Checked by recording the
+  emulator before and after; not yet heard on a 3DS.
 - Courtroom crowd sounds that came out scrambled, two in each game: the same misalignment
   plus a wrong channel layout. Every replaced sound in both games and their DLC is back
   in position, which also fixes at the root the click that v1.5 covered with silence.
@@ -31,7 +31,7 @@ patch for each game.
   DLC is at full quality and full length, the second-game lines with pauses cut from the
   middle are whole again, and the story lines that stayed Japanese for length, plus the
   second game's last Japanese crowd chant, play Capcom's English. Every DLC line was
-  heard on a console; the story lines and the chant were mostly checked against the
+  heard playing in full in an emulator; the story lines and the chant were mostly checked against the
   recordings offline.
 - The first game's parchment narration at the start of Episode 2 had been sped up, by
   up to about a third, to finish before each page turned. v1.9 put it back to natural

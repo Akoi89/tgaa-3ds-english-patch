@@ -32,9 +32,17 @@ is already on my list.
 | The first game's DLC Picture Book, Theme and Editor's Notes (v1.7) | all 66 Picture Book pages, the eight theme previews and both Editor's Notes pages opened and read in an emulator; **not yet on a 3DS** |
 | The redone see-through Picture Book pages (v1.8) | all 66 pages opened and read again in an emulator on the v1.8 build; the theme previews, Editor's Notes and covers are byte-identical to v1.7 and were not re-checked on screen; **not yet on a 3DS** |
 | The second game's cleaned score sheet (v1.7) | checked in the built files; not seen in play, it sits deep in the DLC story |
+| The cutscene grain fix (v1.9) | the first game's Episode 1 opening recorded in an emulator before and after, and the grain is gone from the after; **not yet heard on a 3DS**, where the grain was first reported |
+| The 19 DLC voice lines restored to full quality and length (v1.9) | every one heard playing to the end in an emulator; one clip 61% larger than Capcom's slot played three times, complete each time |
+| The four English "Bonus voice recital" tracks (v1.9) | heard in an emulator, all four in English and in full |
+| English story lines added to both games (v1.9) | one line in each game heard in play in an emulator; the rest **checked against the recordings only**, and the second game's Episodes 4 and 5 not reached |
+| The first game's Episode 2 opening narration (v1.9a) | heard in an emulator page by page; reads straight through with no mid-word breaks |
+| The t and e redraw and lighter i, j and l (v1.9c) | seen in an emulator in dialogue, the Sound gallery, the DLC headings and the small music notes of the first game; the second game's copy is the same edit on the same font |
+| The bigger Picture Book commentary (v1.9c) | all 51 changed pages compared against Capcom's originals as images, and a sample opened in an emulator; **not yet on a 3DS** |
+| The DLC menu icons (v1.9c) | the restored sheet checked as a file, byte for byte the v1.7 one; **not yet seen on screen in v1.9c** |
 | Playing through on a 3DS | not yet |
 
-The 32 unheard shouts are expected to be fine. They load by a different route than the
-clips that had the slot bug, and Capcom ships entries five times larger in the same
-archives. But that is reasoning, not listening. **If you play the first game, a jury
+The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a
+size limit turned out to be the misplaced-audio bug fixed in v1.9, and every shout is
+written at Capcom's position now. But that is reasoning, not listening. **If you play the first game, a jury
 verdict or a press that stops part-way is the single most useful thing to listen for.**
