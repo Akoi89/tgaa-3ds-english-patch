@@ -59,8 +59,8 @@ Newest first. A version's changes are listed here and nowhere else.
 - v1.9c: v1.9b's t and e fix redone so the letters sit on the line, i, j and l a touch
   lighter, in both games; bigger commentary on 51 Picture Book pages with the leftover
   Japanese gone; the clean v1.7 DLC menu icons back; an "Extras" title card in both
-  games; decorative-font lines re-broken; issues 9 to 13 gallery text in English. Every
-  update and DLC changed.
+  games; decorative-font lines re-broken; the post-mortem page re-broken at the sentence;
+  issues 9 to 13 gallery text in English. Every update and DLC changed.
 - v1.9b: the broken t and e on the DLC menu headings, in both games; the second game's
   title screen and DLC banner show their real version numbers again. Every update
   changed, and the second game's DLC.
