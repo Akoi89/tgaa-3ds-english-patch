@@ -42,6 +42,7 @@ is already on my list.
 | The DLC menu icons (v1.9c) | the restored sheet checked as a file, byte for byte the v1.7 one, and seen in an emulator |
 | The "Extras" title card (v1.9c) | seen in an emulator in both games, idle and pressed, and both open their DLC menus |
 | The re-broken decorative-font line in Episode 2's second Dance of Deduction (v1.9c) | seen in an emulator before and after; the two lines left under the page arrow were measured, not looked at |
+| The English Dance of Deduction note cards (v1.9d) | seen in an emulator in the first game's Episode 2 Dance, titles and a conclusion typing in and settling inside the card; the second game's fonts load without error but its cards were **not reached** on the test save |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a

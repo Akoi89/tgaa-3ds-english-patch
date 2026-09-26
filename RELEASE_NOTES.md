@@ -7,6 +7,11 @@ patch for each game.
 
 ## What this build fixes
 
+- The Dance of Deduction note cards. The card that sums up each topic types its title and
+  conclusion in two fonts that never had English letters, so a title like "Intruder's
+  Identity" showed a single stray I and the conclusions typed with the sound but left the
+  page blank. Both fonts now use Capcom's own English lettering from Chronicles, sized to
+  fit the card. Every Dance, both games; seen on the card in the first game in an emulator.
 - Lowercase t and e. On the DLC menu headings they came out broken, so "Picture Book"
   read "Picturc Book", and v1.9b's fix pushed them a pixel below the line so the e grew a
   tail. Now only their crossbars get a light extra row, and i, j and l, which read a
@@ -26,9 +31,8 @@ patch for each game.
 - The grain over the first game's animated cutscenes. Not a format limit after all: my
   tools wrote every English sound track a few bytes out of position, so the console read
   each one slightly late, and that misread was the grain. Checked by recording the
-  emulator before and after; not yet heard on a 3DS.
-- Courtroom crowd sounds that came out scrambled, two in each game: the same misalignment
-  plus a wrong channel layout. Every replaced sound in both games and their DLC is back
+  emulator before and after; not yet heard on a 3DS. Courtroom crowd sounds that came out
+  scrambled, two in each game, had the same misalignment plus a wrong channel layout. Every replaced sound in both games and their DLC is back
   in position, which also fixes at the root the click that v1.5 covered with silence.
   Crowd noise that went quiet and jumped back in now loops where Capcom's English
   recordings say to.
@@ -56,6 +60,8 @@ patch for each game.
 
 Newest first. A version's changes are listed here and nowhere else.
 
+- v1.9d: English text on the Dance of Deduction note cards, in both games. Both updates
+  changed; the DLCs are the same as v1.9c.
 - v1.9c: v1.9b's t and e fix redone so the letters sit on the line, i, j and l a touch
   lighter, in both games; bigger commentary on 51 Picture Book pages with the leftover
   Japanese gone; the clean v1.7 DLC menu icons back; an "Extras" title card in both
@@ -114,18 +120,18 @@ Newest first. A version's changes are listed here and nowhere else.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.5.cia` / `TGAA2-base-1.0.19.cia`: the update.
+- `TGAA1-base-3.3.6.cia` / `TGAA2-base-1.0.20.cia`: the update.
 - `TGAA1-DLC-1.0.17.cia` / `TGAA2-DLC-1.0.13.cia`: the DLC. `TGAA1-EN-DLC-v1.9c.cia` /
   `TGAA2-EN-DLC-v1.9c.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9c-xdelta.zip` / `TGAA2-3DS-English-v1.9c-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9d-xdelta.zip` / `TGAA2-3DS-English-v1.9d-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the HOME banner patch
   (`TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`, also posted on its own)
-  and a readme (`TGAA1-README-v1.9c.txt` / `TGAA2-README-v1.9c.txt`, also posted on their
+  and a readme (`TGAA1-README-v1.9d.txt` / `TGAA2-README-v1.9d.txt`, also posted on their
   own).
-- `TGAA1-3DS-English-JPvoice-v1.9c-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9c-xdelta.zip`:
+- `TGAA1-3DS-English-JPvoice-v1.9d-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9d-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9c.txt`: size, CRC32 and sha256 of every source dump, patch and result, so
+- `HASHES_v1.9d.txt`: size, CRC32 and sha256 of every source dump, patch and result, so
   you can check a file before and after patching.
 
 Sizes, hashes, apply steps and troubleshooting are in the README.
