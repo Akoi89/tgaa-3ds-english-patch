@@ -28,6 +28,7 @@ I'd much rather have a duplicate than miss something.
 | A voice line in the second game sounds hurried, with the breath between phrases missing | second game, story scenes | FIXED in v1.9. 27 lines had pauses cut out of the middle to make them fit the space, a workaround for the same misplacement bug. The pauses are back, and every second-game voice that had been stored at reduced quality for the same reason is at full quality again: a scan of the finished build found no replaced voice below Capcom's sample rate in either game or either DLC |
 | The parchment narration at the start of Episode 2 sounds rushed, or pauses in the middle of a sentence | first game | FIXED in v1.9 and v1.9a. Each page of that opening had been timed for the Japanese takes, and the longer English takes had been sped up, by up to about a third, to finish in time. v1.9 restored the natural pace, but each page's English is in two pieces and the second piece still waited on the cue for the Japanese second line, which left pauses of half a second to over a second on five pages, three of them mid-sentence or mid-word, while two pages felt rushed. v1.9a times each page the way Capcom's PC release does: one continuous read per page, the second piece following the first after the recording's own pause, with the page turns, art and music on Capcom's original timing. Heard in-game: nothing is cut off and nothing overlaps |
 | A gasp, effort or cry during the third episode's Dance of Deduction sounds distorted | second game | FIXED in v1.9. Those 14 reactions went through a converter of mine that read part of the source format wrong. Fixed at source; they now decode exactly like the reference decoder. Checked by decoding, not yet heard in the scene |
+| A line in the speech bubble on the bottom screen is cut off at the right edge, often mid-word | both games, partner talk while examining evidence and in the Dance of Deduction reviews | FIXED in v1.9e. That bubble is narrower than the dialogue box above it, and the width checks only ever measured the top box. Every line in bubble mode was measured with each game's own font and re-broken to fit with room to spare, not a word changed; where two lines weren't enough the page was split in two, the way the game's own continuation pages are built. Seen fixed in an emulator in the first game |
 | A Dance of Deduction note card shows one stray letter for its topic, and the conclusion stays blank while the typewriter sound plays | both games, every Dance | FIXED in v1.9d. The card types its title and conclusion in two fonts of its own, and neither had English letters: the title font had only capitals, the conclusion font only the Japanese characters the original needed, so "Intruder's Identity" drew as its capital I. Both fonts now carry Capcom's English lettering from Chronicles, scaled so the longest title and conclusion fit the card. Seen on the card in an emulator in the first game |
 | A DLC Music and Sound gallery title runs past its plate | first game's DLC, issues 1 to 8 | FIXED in v1.9 |
 | A "Bonus voice recital" track in the DLC Music gallery plays in Japanese | first game's DLC | FIXED in v1.9 for four of the eight. Capcom's English recordings exist for them and are in now, checked on the rig |
@@ -410,8 +411,8 @@ listened to, and what has only been checked in the files.
 
 ## Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9d-xdelta.zip`
-and `TGAA2-3DS-English-v1.9d-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9e-xdelta.zip`
+and `TGAA2-3DS-English-v1.9e-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -429,9 +430,9 @@ about 180 MB because the subtitled videos are genuinely new data. The patches we
 on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
 not been tested. Same install order afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.9d.txt` and
-`TGAA2-README-v1.9d.txt`, because romhacking.net wants the readme as a separate link rather
-than only inside the zip. `HASHES_v1.9d.txt` on the release lists the size, CRC32 and sha256
+The same readme text is also on the release on its own, as `TGAA1-README-v1.9e.txt` and
+`TGAA2-README-v1.9e.txt`, because romhacking.net wants the readme as a separate link rather
+than only inside the zip. `HASHES_v1.9e.txt` on the release lists the size, CRC32 and sha256
 of every source dump, patch and result for both games.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
@@ -441,8 +442,8 @@ to happen.
 ## Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.9d-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.9d-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.9e-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.9e-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are

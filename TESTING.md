@@ -43,6 +43,7 @@ is already on my list.
 | The "Extras" title card (v1.9c) | seen in an emulator in both games, idle and pressed, and both open their DLC menus |
 | The re-broken decorative-font line in Episode 2's second Dance of Deduction (v1.9c) | seen in an emulator before and after; the two lines left under the page arrow were measured, not looked at |
 | The English Dance of Deduction note cards (v1.9d) | seen in an emulator in the first game's Episode 2 Dance, titles and a conclusion typing in and settling inside the card; the second game's fonts load without error but its cards were **not reached** on the test save |
+| The re-broken speech-bubble lines (v1.9e) | seen in an emulator in the first game's Episode 2 Dance review and newspaper examination, including the two lines first seen cut off; every bubble line in both games measured against the bubble after the change; the second game's **not seen on screen** |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a

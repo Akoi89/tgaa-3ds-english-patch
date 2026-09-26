@@ -52,14 +52,20 @@ patch for each game.
   Capcom's PC release times this scene, with the page turns on Capcom's original
   timing, and the three places where a page's two halves met in the middle of a word
   now meet in a pause in the actor's delivery. Heard in-game.
-- Text in the first game: pop-up document and report pages that ran off the right edge
-  are re-broken, not a word changed; Court Record captions the game had been shrinking
+- Text that ran past its box. The speech bubble on the bottom screen, where your partner
+  talks while you examine evidence and during the Dance of Deduction reviews, chopped off
+  the end of long lines, often partway through a word, in hundreds of places across both
+  games. Those lines are re-broken, not a word changed, with a page added where two lines
+  weren't enough. In the first game, pop-up document and report pages that ran off the
+  right edge are re-broken too, and Court Record captions the game had been shrinking
   small and soft draw at full size, a few with a word or comma trimmed.
 
 ## Version history
 
 Newest first. A version's changes are listed here and nowhere else.
 
+- v1.9e: long lines in the bottom-screen speech bubble no longer get cut off, in both
+  games. Both updates changed; the DLCs are the same as v1.9c.
 - v1.9d: English text on the Dance of Deduction note cards, in both games. Both updates
   changed; the DLCs are the same as v1.9c.
 - v1.9c: v1.9b's t and e fix redone so the letters sit on the line, i, j and l a touch
@@ -120,18 +126,18 @@ Newest first. A version's changes are listed here and nowhere else.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.6.cia` / `TGAA2-base-1.0.20.cia`: the update.
+- `TGAA1-base-3.3.7.cia` / `TGAA2-base-1.0.21.cia`: the update.
 - `TGAA1-DLC-1.0.17.cia` / `TGAA2-DLC-1.0.13.cia`: the DLC. `TGAA1-EN-DLC-v1.9c.cia` /
   `TGAA2-EN-DLC-v1.9c.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9d-xdelta.zip` / `TGAA2-3DS-English-v1.9d-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9e-xdelta.zip` / `TGAA2-3DS-English-v1.9e-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the HOME banner patch
   (`TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`, also posted on its own)
-  and a readme (`TGAA1-README-v1.9d.txt` / `TGAA2-README-v1.9d.txt`, also posted on their
+  and a readme (`TGAA1-README-v1.9e.txt` / `TGAA2-README-v1.9e.txt`, also posted on their
   own).
-- `TGAA1-3DS-English-JPvoice-v1.9d-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9d-xdelta.zip`:
+- `TGAA1-3DS-English-JPvoice-v1.9e-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9e-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9d.txt`: size, CRC32 and sha256 of every source dump, patch and result, so
+- `HASHES_v1.9e.txt`: size, CRC32 and sha256 of every source dump, patch and result, so
   you can check a file before and after patching.
 
 Sizes, hashes, apply steps and troubleshooting are in the README.
