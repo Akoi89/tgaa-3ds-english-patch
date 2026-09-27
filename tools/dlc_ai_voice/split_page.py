@@ -10,12 +10,22 @@ verified on the rig, and its pre/post files are the recipe:
     page A = original prefix (every <E800 n>, animation cues, the <E041> box)
              + the first words, as two lines <= LIMIT
              + the original trailing tags (ending on the wait marker <E023>)
-    page B = CRLF + ONLY the tags after the last <E800 n> in the prefix
-             (the speaker/layout state: <E041 X Y>, <E042>, <CNTR>, <E025 N>)
+    page B = CRLF + the renderer state running at the split point
+             (the speaker box <E041 X Y> and <E042>/<CNTR> from the prefix,
+             the text speed <E025 N> in force at the split -- not the
+             page-start one --, the text mode <E007> thought / <E008>
+             testimony if one is active, and <E006> if a red span is open)
              + the remaining words + the same trailing tags
 
+<E041> resets the renderer, so whatever page A had switched on by the split
+point is lost on B unless B says it again (issue #3: 26 TGAA2 thought pages
+came out in white, 4 red spans broke, 104 pages changed speed). Same rule as
+upstream's dgs2tool/pagination.py `_continuation_styles`, except that red is
+open only while <E006> is the LAST colour tag (<E007>/<E008>/<E005>/<E014>
+end it: `(...<E006>Name<E007>.` is closed).
+
 No <E800> is invented or duplicated: those number voice/event streams and are
-dense and ascending through an entry, so B re-states layout only. Tags that sit
+dense and ascending through an entry, so B re-states state only. Tags that sit
 inside the text with no whitespace around them travel with their word.
 
     python split_page.py <gmd> <label> <page> [--limit 345] [--apply]
@@ -46,17 +56,65 @@ LAYOUT = re.compile(r'<(E041 \d+ \d+|E042|CNTR|E025 [0-9.]+)>')
 A_TRAILER = re.compile(r'<(E003 \d+|E025 [0-9.]+|E042|CNTR|E023|E024)>')
 
 
-def layout_prefix(prefix):
-    """The LAYOUT tags after the last <E800 n>: what page B must re-state.
+SPEED = re.compile(r'<E025 [0-9.]+>')
+COLOUR = re.compile(r'<(E005|E006|E007|E008|E014)>')
+
+
+def carried_styles(source):
+    """Text mode and red emphasis running at the end of `source`.
+
+    <E007> thought mode (blue) and <E008> testimony mode are STATE, not cues:
+    they hold until another colour tag. <E006> opens red; red is open only
+    while it is the last colour tag (<E005>, <E007>, <E008>, <E014> all end
+    it). Returns the tags page B must re-state, mode first."""
+    mode, red = None, False
+    for t in P.TAG.findall(source):
+        if t in ('<E007>', '<E008>'):
+            mode, red = t, False
+        elif t in ('<E005>', '<E014>'):
+            mode, red = None, False
+        elif t == '<E006>':
+            red = True
+    return (mode or '') + ('<E006>' if red else '')
+
+
+def layout_prefix(prefix, body_a=''):
+    """What page B must re-state: the renderer state at the split point.
+
+    `prefix` is the original page's tag prefix, `body_a` the words that stay
+    on page A (tags attached). From the tags after the last <E800 n>:
+    <E041 X Y>, <E042>, <CNTR> as the prefix has them; ONE <E025 N> set to the
+    speed in force at the end of page A's words (a speed change inside page A,
+    `...<E025 1.5>has been`, carries onto B; restating the page-start speed
+    changed pace mid-sentence on 104 TGAA2 pages); then <E007>/<E008> if that
+    mode is active and <E006> if red is open (carried_styles), counted from
+    the last <E041> since <E041> resets them.
 
     Whitelist, not 'everything after the last E800'. The batch dry run showed
-    108 pages whose prefix tail also carried <E330>, <E333>, <E007>, <E239>,
-    <E346>, <E341> -- animation/emote cues, not state. Re-stating one on page
-    B fires it a second time. rc21 re-stated only the speaker box, the
-    alignment and the text speed; so does this."""
+    108 pages whose prefix tail also carried <E330>, <E333>, <E239>, <E346>,
+    <E341> -- animation/emote cues. Re-stating one on page B fires it a second
+    time. <E007> was wrongly lumped with them until v1.9g: it is thought mode
+    (blue text), and dropping it turned 26 TGAA2 page Bs white."""
     tags = P.TAG.findall(prefix)
     last = max((i for i, t in enumerate(tags) if E800.match(t)), default=-1)
-    keep = [t for t in tags[last + 1:] if LAYOUT.fullmatch(t)]
+    tail = tags[last + 1:]
+    src = ''.join(tail) + body_a
+    speeds = SPEED.findall(src)
+    speed = speeds[-1] if speeds else None
+    keep, said = [], False
+    for t in tail:
+        if not LAYOUT.fullmatch(t):
+            continue
+        if SPEED.fullmatch(t):
+            if not said:
+                keep.append(speed)
+                said = True
+            continue
+        keep.append(t)
+    if speed and not said:
+        keep.append(speed)
+    e41 = [m.end() for m in re.finditer(r'<E041 [^>]*>', src)]
+    keep.append(carried_styles(src[e41[-1]:] if e41 else src))
     return ''.join(keep)
 
 
@@ -115,15 +173,14 @@ def plan_split(page, adv, limit):
         return None
     page_a = prefix + '\r\n'.join(ra[0]) + trailer_a
     body_b = '\r\n'.join(rb[0])
-    # do not re-state a layout tag the remainder already opens with
-    # (e.g. ` <E025 2.5>This is,` -- the tag travelled with its word)
-    lp = layout_prefix(prefix)
-    while True:
-        m = re.search(r'(<[^>]*>)$', lp)
-        if m and body_b.startswith(m.group(1)):
-            lp = lp[:-len(m.group(1))]
-        else:
-            break
+    # do not re-state a tag the remainder already carries before its first
+    # word (e.g. ` <E025 2.5>This is,` -- the tag travelled with its word).
+    # Checks the whole leading tag run, not only the last restated tag: the
+    # colour tag now sits last, so a last-tag-only check let a matching
+    # <E025> through twice (refuter should-fix, v1.9g).
+    lp = layout_prefix(prefix, '\r\n'.join(ra[0]))
+    lead = P.TAG.findall(re.match(r'(?:\s|<[^>]*>)*', body_b).group(0))
+    lp = ''.join(t for t in P.TAG.findall(lp) if t.startswith('<E041') or t not in lead)
     page_b = '\r\n' + lp + body_b + suffix
     return page_a, page_b, ra[1], rb[1], lp, trailer_a
 
@@ -188,7 +245,7 @@ def main():
 
     why = proofs(page, pa, pb, restated_lp, trailer_a)
     assert why is None, why
-    print('\nproofs: words identical; tags identical except the restated layout (%s) and what A kept of '
+    print('\nproofs: words identical; tags identical except the restated state (%s) and what A kept of '
           'the trailer (%s); <E800> sequence identical; A ends on a wait marker'
           % (restated_lp or '(nothing)', trailer_a))
 

@@ -1,3 +1,7 @@
+**Superseded by [v1.9g](../../releases/tag/v1.9g).** v1.9g fixes a line split onto a
+second page losing its thought color, its red text or its typing speed partway through.
+Redo only the update patch.
+
 v1.9f: text that ran off the edge is fixed across both games, plus some spacing fixes.
 
 - **Location cards.** The card shown when you arrive somewhere ran off the right edge in most places. Lines are re-broken, a few descriptions lightly trimmed, long names squeezed to fit.
