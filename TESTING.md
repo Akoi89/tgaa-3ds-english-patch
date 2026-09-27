@@ -53,10 +53,10 @@ is already on my list.
 | The first game's DLC menu headings drawn at full size (v1.9f) | seen on a 3DS: the t in "Picture Book" has its whole crossbar and the longest heading fits its ribbon, including with the 3D slider at max |
 | The capital T/V/W letter-spacing fix (v1.9f) | checked as files and renders against the game's own font, not seen on screen; the second game's DLC copy of it, `TGAA2-DLC-1.0.14.cia`, installed and ran on a 3DS with the right stamp, but the spacing itself was **not looked for** there |
 | The split-page thought color, red highlight and typing-speed fix (v1.9g) | confirmed in an emulator on `TGAA2-base-1.0.23.cia`: the second page of Ryutaro's "(Now that I'm standing in his shoes," thought early in the first trial now shows in blue, the same page issue #3 showed in white, and the title reads ENG 1.0.23. The red text and typing speed changes were checked as files against the original script, not seen on screen. Not run on a 3DS |
-| The version stamps and DLC cover stamps (v1.9h) | confirmed in an emulator: the title reads ENG 3.3.10 whole, and both DLC covers read DLC 1.0.19 / DLC 1.0.15 |
-| The centred-line fix, first game's Episode 5 opening page (v1.9h) | confirmed in an emulator: both lines of "Our first two months in / London passed by in a flash." read centred, where the second used to sit against the left edge |
-| The second game's first DLC story's opening caption, unaffected by the centring fix (v1.9h) | confirmed unchanged in an emulator |
-| The DLC's red centred "Telegraphic Supplement" headline, and the DLC newspaper headline's typing-speed fix (v1.9h) | not yet seen on screen. Not run on a 3DS |
+| The version stamps and DLC cover stamps (v1.9h) | confirmed in an emulator on the emulator forms of the DLCs (`TGAA1-EN-DLC-v1.9h.cia`, `TGAA2-EN-DLC-v1.9h.cia`): the title reads ENG 3.3.10 whole, the first game's DLC cover reads DLC 1.0.19 and the second game's costume pack banner reads DLC 1.0.15. Not run on a 3DS |
+| The centred-line fix, first game's Episode 5 opening page (v1.9h) | confirmed in an emulator: both lines of "Our first two months in / London passed by in a flash." read centred, where the second used to sit against the left edge. Not run on a 3DS |
+| The second game's first DLC story's opening caption, unaffected by the centring fix (v1.9h) | confirmed unchanged in an emulator. Not run on a 3DS |
+| The first game's DLC red centred "Telegraphic Supplement" headline, and the DLC newspaper headline's typing-speed fix (v1.9h) | not yet seen on screen. Not run on a 3DS |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a

@@ -133,7 +133,7 @@ to Claude, and each veto restores the official wording (it will render shrunk ag
   <span id="count"></span>
 </div>
 <div id="cards">%(items)s</div>
-<footer>Generated from <span class="mono">condensed2.py</span> by <span class="mono">build_review2.py</span> &#8212;
+<footer>Generated from <span class="mono">condensed2.py</span> by <span class="mono">build_review2.py</span>,
 widths measured with font03&#8217;s own advances; every entry verified &#8804;4 lines at 199&#8202;px full size.</footer>
 </div>
 <script>
