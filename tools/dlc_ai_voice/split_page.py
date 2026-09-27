@@ -43,7 +43,7 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 import pxwidth as P
 from dgs2tool.gmd import parse_gmd_bytes, build_gmd_bytes
-from fix_dlc_overflow import split_body, rewrap
+from fix_dlc_overflow import split_body, rewrap, centre_new_lines, centring_only_added
 from fix_dialogue_overflow import words_of
 
 E800 = re.compile(r'<E800 \d+>')
@@ -213,6 +213,14 @@ def proofs(page, pa, pb, lp, trailer_a):
     return None
 
 
+def centre_split(pa, pb):
+    """Run AFTER proofs(): on a centred page every line after the first that has no <CNTR> of its own gets
+    <E042><CNTR> at its start (fix_dlc_overflow.centre_new_lines; rig 2026-09-27: such a line renders LEFT).
+    proofs() checks the plain split; centring_only_added() proves this step inserted nothing else."""
+    ca, cb = centre_new_lines(pa), centre_new_lines(pb)
+    return ca, cb, centring_only_added(pa, ca) + centring_only_added(pb, cb)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('gmd'); ap.add_argument('label'); ap.add_argument('page', type=int)
@@ -248,6 +256,9 @@ def main():
     print('\nproofs: words identical; tags identical except the restated state (%s) and what A kept of '
           'the trailer (%s); <E800> sequence identical; A ends on a wait marker'
           % (restated_lp or '(nothing)', trailer_a))
+    pa, pb, n_centred = centre_split(pa, pb)
+    print('centring: <E042><CNTR> added at the start of %d line(s)%s'
+          % (n_centred, (': A %r / B %r' % (pa, pb)) if n_centred else ''))
 
     if not a.apply:
         print('\n--report only; --apply to write')

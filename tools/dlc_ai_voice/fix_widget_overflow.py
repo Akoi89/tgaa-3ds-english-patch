@@ -29,7 +29,7 @@ sys.path.insert(0, os.path.join(ROOT, 'dlc_icons', 'tgaa2-en-patch'))
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 import pxwidth as P                                             # noqa: E402
 from dgs2tool.gmd import parse_gmd_bytes, build_gmd_bytes        # noqa: E402
-from fix_dlc_overflow import split_body, rewrap                  # noqa: E402
+from fix_dlc_overflow import split_body, rewrap, centre_new_lines, centring_only_added  # noqa: E402
 from fix_dialogue_overflow import words_of                       # noqa: E402
 
 
@@ -94,7 +94,11 @@ def main():
                 kinds[(kind, 'fixed')] = kinds.get((kind, 'fixed'), 0) + 1
                 if a.verbose:
                     print('  %s -> %3d  %d->%d lines' % (tag, got[0][1], len(lines), got[1]))
-                pages[pi] = prefix + new_body + suffix
+                # hand-laid pages are mostly <CNTR> pages: every line this re-wrap starts must carry
+                # <E042><CNTR> or it renders off-centre (rig 2026-09-27; v1.9h fixed 29 such lines)
+                plain = prefix + new_body + suffix
+                pages[pi] = centre_new_lines(plain)
+                centring_only_added(plain, pages[pi])
                 touched = True
             if touched:
                 e['text'] = '<PAGE>'.join(pages)

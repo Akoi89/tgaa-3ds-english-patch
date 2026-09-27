@@ -27,7 +27,7 @@ import pxwidth as P
 from dgs2tool.gmd import parse_gmd_bytes, build_gmd_bytes
 from fix_dlc_overflow import split_body, rewrap
 from fix_dialogue_overflow import words_of
-from split_page import plan_split, proofs, E800
+from split_page import plan_split, proofs, E800, centre_split
 
 # tags that open something a later tag closes; a split between them is refused
 PAIRS = [(re.compile(r'<COL [0-9a-fA-F]+>'), '</COL>'),
@@ -109,6 +109,9 @@ def main():
                     counts['paired tag would straddle the split'] += 1
                     out.append(page)
                     continue
+                pa, pb, n_centred = centre_split(pa, pb)   # v1.9h: moved breaks on centred pages keep <CNTR>
+                if n_centred:
+                    counts['lines given <E042><CNTR> (centred page)'] += n_centred
                 counts['planned'] += 1
                 rows.append((os.path.relpath(f, a.tree).replace(os.sep, '/'), e['label'], pi,
                              [(P.px(l, adv), l) for l in P.lines(pa)],

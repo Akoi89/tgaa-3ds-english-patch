@@ -33,7 +33,7 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 import pxwidth as P
 from dgs2tool.gmd import parse_gmd_bytes, build_gmd_bytes
-from fix_dlc_overflow import split_body, rewrap
+from fix_dlc_overflow import split_body, rewrap, centre_new_lines, centring_only_added
 import re
 
 _TOK = re.compile(r'<[^>]*>|[^\s<]+|\s+')
@@ -146,7 +146,11 @@ def main():
                     continue
                 fixed += 1
                 grew += n > len(lines)
-                pages[pi] = prefix + new_body + suffix
+                # a moved break on a centred page starts its new line with <E042><CNTR> (v1.9h; this
+                # tool skips hand-laid <CNTR> pages, so this is a guard, not an expected change)
+                plain = prefix + new_body + suffix
+                pages[pi] = centre_new_lines(plain)
+                centring_only_added(plain, pages[pi])
                 touched = True
             if touched:
                 e['text'] = '<PAGE>'.join(pages)
