@@ -120,7 +120,7 @@ footer{color:var(--muted);font-size:13px;margin-top:28px;border-top:1px solid va
 <h1>Resolve Caption Vetoes</h1>
 <p class="sub">All 96 condensed Court Record captions shipped in TGAA2 v15, shown against Capcom&#8217;s official
 Chronicles text. Tick <b>Revert to official</b> on any you dislike, then <b>Copy veto list</b> and paste it back
-to Claude &#8212; each veto restores the official wording (it will render shrunk again, as upstream ships it).</p>
+to Claude, and each veto restores the official wording (it will render shrunk again, as upstream ships it).</p>
 <div class="gate" id="gate">
   <h2>Spoiler warning</h2>
   <p>These captions describe evidence and people from all five episodes of a game you haven&#8217;t played.
