@@ -1,6 +1,6 @@
 v1.9g fixes a bug in how a line splits onto a second page.
 
-- **Thought bubbles.** A thought (the blue text in brackets) that ran onto a second page
+- **Thoughts.** A thought (the blue text in brackets) that ran onto a second page
   showed the second half in plain white speech instead of blue. Both games, mostly the
   second.
 - **Red text.** A phrase in red that ran onto a second page lost its red on the second
