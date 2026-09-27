@@ -16,6 +16,11 @@ patch for each game.
   read "Picturc Book", and v1.9b's fix pushed them a pixel below the line so the e grew a
   tail. Now only their crossbars get a light extra row, and i, j and l, which read a
   shade heavier than the rest, are slightly lighter. Both games, checked on the emulator.
+  A different font's lowercase t, in the first game's DLC Picture Book commentary, read
+  as a stem with a foot instead of a proper crossbar; only that letter was redrawn, and
+  no descriptions or line breaks changed. The gap after a capital T, V or W is a pixel
+  tighter now in both games, and the second game's Court Record no longer crams its
+  evidence and profile names together.
 - The first game's DLC. Picture Book commentary is usually two sizes bigger on 51 of its
   66 pages, with the see-through panel behind it extended to fit, and the faint Japanese
   behind the English on several pages is gone. The menu icons, which had slipped back to
@@ -72,8 +77,10 @@ patch for each game.
 Newest first. A version's changes are listed here and nowhere else.
 
 - v1.9f: location cards, second-game autopsy reports and case documents, and a handful of
-  other overflowing or oversized lines re-broken or lightly trimmed across both games.
-  Both updates changed; the DLCs are the same as v1.9c.
+  other overflowing or oversized lines re-broken or lightly trimmed across both games; a
+  smaller gap after capital T, V and W, the second game's Court Record names no longer
+  crammed, and a clearer lowercase t in the first game's DLC Picture Book. Both updates
+  changed and the first game's DLC; the second game's DLC is the same as v1.9c.
 - v1.9e: long lines in the bottom-screen speech bubble no longer get cut off, in both
   games. Both updates changed; the DLCs are the same as v1.9c.
 - v1.9d: English text on the Dance of Deduction note cards, in both games. Both updates
@@ -137,7 +144,7 @@ Newest first. A version's changes are listed here and nowhere else.
 Per game, on the release page:
 
 - `TGAA1-base-3.3.8.cia` / `TGAA2-base-1.0.22.cia`: the update.
-- `TGAA1-DLC-1.0.17.cia` / `TGAA2-DLC-1.0.13.cia`: the DLC. `TGAA1-EN-DLC-v1.9c.cia` /
+- `TGAA1-DLC-1.0.18.cia` / `TGAA2-DLC-1.0.13.cia`: the DLC. `TGAA1-EN-DLC-v1.9f.cia` /
   `TGAA2-EN-DLC-v1.9c.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
 - `TGAA1-3DS-English-v1.9f-xdelta.zip` / `TGAA2-3DS-English-v1.9f-xdelta.zip`: both as
