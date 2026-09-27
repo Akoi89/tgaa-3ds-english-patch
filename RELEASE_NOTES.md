@@ -7,166 +7,123 @@ patch for each game.
 
 ## What this build fixes
 
-- The Dance of Deduction note cards. The card that sums up each topic types its title and
-  conclusion in two fonts that never had English letters, so a title like "Intruder's
-  Identity" showed a single stray I and the conclusions typed with the sound but left the
-  page blank. Both fonts now use Capcom's own English lettering from Chronicles, sized to
-  fit the card. Every Dance, both games; seen on the card in the first game in an emulator.
-- Lowercase t and e. On the DLC menu headings they came out broken, so "Picture Book"
-  read "Picturc Book", and v1.9b's fix pushed them a pixel below the line so the e grew a
-  tail. Now only their crossbars get a light extra row, and i, j and l, which read a
-  shade heavier than the rest, are slightly lighter. Both games, checked on the emulator.
-  A different font's lowercase t, in the first game's DLC Picture Book commentary, read
-  as a stem with a foot instead of a proper crossbar; only that letter was redrawn, and
-  no descriptions or line breaks changed. The DLC menu headings in the first game are
-  drawn at full size now instead of slightly shrunk, so the t in "Picture Book" keeps
-  its whole crossbar instead of reading almost like an f. The gap after a capital T, V or W is a pixel
-  tighter now in both games, and the second game's Court Record no longer crams its
-  evidence and profile names together.
-- The first game's DLC. Picture Book commentary is usually two sizes bigger on 51 of its
-  66 pages, with the see-through panel behind it extended to fit, and the faint Japanese
-  behind the English on several pages is gone. The menu icons, which had slipped back to
-  an older sheet with smudges under the pictures in v1.8b, are the clean v1.7 ones again.
-  The galleries for the never-released issues 9 to 13 show Capcom's placeholder text in
-  English.
-- The title screen. The DLC card read "D L C" on four diamonds and went dark when
+- **The Dance of Deduction note cards.** The card that sums up each topic showed a single
+  stray letter for its title and a blank conclusion, because its fonts had no English
+  letters. Both fonts now draw Capcom's own English lettering, in every Dance of Deduction
+  in both games.
+- **Broken letters and cramped names.** DLC menu headings no longer show broken letters
+  (like "Picturc Book"), the t in the first game's Picture Book commentary has a proper
+  crossbar, the gap after a capital T, V or W is tighter, and the second game's Court
+  Record no longer crams evidence and profile names together.
+- **The first game's DLC Picture Book.** Commentary is bigger on most pages, with the faint
+  leftover Japanese behind it gone. The smudged menu icons are clean again, and the
+  galleries for issues that were never released show Capcom's English placeholder text.
+- **The title screen's DLC card.** It read "D L C" on four diamonds and went dark when
   pressed; it now reads "Extras" sideways like its neighbours and turns white when
-  pressed, in both games. A line in the first game's second Dance of Deduction that ran
-  onto the box frame is re-broken.
-  Four "Bonus voice recital" tracks play Capcom's English, gallery titles fit their
-  plates, and characters no font in the game can draw were swapped for ones it can.
-- The grain over the first game's animated cutscenes. Not a format limit after all: my
-  tools wrote every English sound track a few bytes out of position, so the console read
-  each one slightly late, and that misread was the grain. Checked by recording the
-  emulator before and after; not yet heard on a 3DS. Courtroom crowd sounds that came out
-  scrambled, two in each game, had the same misalignment plus a wrong channel layout. Every replaced sound in both games and their DLC is back
-  in position, which also fixes at the root the click that v1.5 covered with silence.
-  Crowd noise that went quiet and jumped back in now loops where Capcom's English
-  recordings say to.
-- Voice lines cut off, made duller or left in Japanese because the English take ran
-  longer than the Japanese one. Same bug. Every replaced voice in both games and their
-  DLC is at full quality and full length, the second-game lines with pauses cut from the
-  middle are whole again, and the story lines that stayed Japanese for length, plus the
-  second game's last Japanese crowd chant, play Capcom's English. Every DLC line was
-  heard playing in full in an emulator; the story lines and the chant were mostly checked against the
-  recordings offline. Gasps and cries in the second game's Dance of Deduction, distorted
-  by a decoding mistake of mine, are clean too (checked by decoding only).
-- The first game's parchment narration at the start of Episode 2 had been sped up, by
-  up to about a third, to finish before each page turned. v1.9 put it back to natural
-  pace but left the second half of each page waiting on a cue set for the Japanese
-  take, so five pages paused for half a second or more, three of them mid-sentence or
-  mid-word, and two felt rushed. From v1.9a each page reads straight through, the way
-  Capcom's PC release times this scene, with the page turns on Capcom's original
-  timing, and the three places where a page's two halves met in the middle of a word
-  now meet in a pause in the actor's delivery. Heard in-game.
-- Text that ran past its box. The speech bubble on the bottom screen, where your partner
-  talks while you examine evidence and during the Dance of Deduction reviews, chopped off
-  the end of long lines, often partway through a word, in hundreds of places across both
-  games. Those lines are re-broken, not a word changed, with a page added where two lines
-  weren't enough. The location card that pops up when you arrive somewhere had its
-  description, and sometimes the place name, running off the right edge in most places in
-  both games; those lines are re-broken, a few descriptions are lightly trimmed, and long
-  place names are squeezed to fit. In the second game, long lines in autopsy reports and
-  case documents ran off the page mid-word and are re-broken too. In the first game, pop-up
-  document and report pages that ran off the right edge are re-broken too, and Court Record
-  captions the game had been shrinking small and soft draw at full size, a few with a word
-  or comma trimmed. Two evidence names, two Dance of Deduction questions and one of
-  Susato's remarks were shortened slightly, and a handful of dialogue pages, including the
-  first game's "Queen's English" tutorial page, are re-broken. A line split onto a second
-  page used to lose track of what the first half was doing: a thought's blue text turned
-  plain white, a phrase in red lost its red, and some pages picked up a different typing
-  speed partway through. Fixed in both games, mostly the second.
+  pressed, in both games.
+- **Grain over the first game's cutscenes, and scrambled courtroom crowd sounds.** My tools
+  wrote every replaced sound slightly out of position, so it played with a grain, and a
+  few crowd sounds also had the wrong channel layout. Every sound is back in position, the
+  click at the end of replaced voice lines is gone at the root, and crowd noise loops
+  where Capcom's recording says to.
+- **Voice lines cut short, dulled, or left in Japanese.** Every replaced voice now plays at
+  full quality and length, and the second game's lines with pauses cut from the middle
+  are whole again. Story lines that had stayed Japanese because the English ran long now
+  play Capcom's English recording, as do four bonus recital tracks in the first game's
+  DLC and the second game's last crowd chant, and the second game's Dance of Deduction
+  gasps and cries aren't distorted any more.
+- **The first game's Episode 2 opening narration.** It had been sped up to finish before
+  each page turned. It now reads straight through at a natural pace, with the page turns
+  on Capcom's own timing.
+- **Text that ran past its box.** The partner's speech bubble on the bottom screen cut
+  long lines off, often mid-word, and location cards, the second game's autopsy reports
+  and case documents, and the first game's pop-up pages ran off the edge. They're all
+  re-broken; only a few location descriptions, captions, evidence names, questions and one
+  remark were lightly trimmed. A line split onto a second page now keeps its thought
+  color, red highlight and typing speed, and a line further down a centred page now keeps
+  its centring instead of landing against the left edge.
 
 ## Version history
 
-Newest first. A version's changes are listed here and nowhere else.
-
-- v1.9g: a line split onto a second page keeps the first half's thought color, red
-  highlight and typing speed instead of losing them partway through, in both games. Both
-  updates changed; the DLCs and banners are the same as v1.9f.
-- v1.9f: location cards, second-game autopsy reports and case documents, and a handful of
-  other overflowing or oversized lines re-broken or lightly trimmed across both games; a
-  smaller gap after capital T, V and W (the DLC stories too), the second game's Court
-  Record names no longer crammed, and a clearer lowercase t in the first game's DLC
-  Picture Book and DLC menu headings. Every update and DLC changed.
-- v1.9e: long lines in the bottom-screen speech bubble no longer get cut off, in both
-  games. Both updates changed; the DLCs are the same as v1.9c.
-- v1.9d: English text on the Dance of Deduction note cards, in both games. Both updates
-  changed; the DLCs are the same as v1.9c.
-- v1.9c: v1.9b's t and e fix redone so the letters sit on the line, i, j and l a touch
-  lighter, in both games; bigger commentary on 51 Picture Book pages with the leftover
-  Japanese gone; the clean v1.7 DLC menu icons back; an "Extras" title card in both
-  games; decorative-font lines re-broken; the post-mortem page re-broken at the sentence;
-  issues 9 to 13 gallery text in English. Every update and DLC changed.
-- v1.9b: the broken t and e on the DLC menu headings, in both games; the second game's
-  title screen and DLC banner show their real version numbers again. Every update
-  changed, and the second game's DLC.
-- v1.9a: the first game's Episode 2 opening narration reads straight through on each
-  page instead of pausing mid-sentence, and no longer splits a word in three places.
-  First game's update only.
-- v1.9: the cutscene grain, scrambled crowd sounds, crowd loops, the old click's root
-  cause; every voice at full quality and length, the "too long" lines and the last crowd
-  chant in English, pauses restored; Episode 2 narration at natural speed; pop-up pages
-  and captions; Dance reactions; DLC gallery titles, Picture Book text, four recitals,
-  blank characters. Every patch changed.
-- v1.8b: the crackle over the first game's cutscenes. First game's update only.
+- v1.9h: a line further down a centred page keeps its centring instead of landing against
+  the left edge; a DLC newspaper headline types at the right speed all the way through.
+- v1.9g: a line split onto a second page keeps its color, red highlight and typing speed.
+- v1.9f: location cards, second-game autopsy reports and case documents, and other
+  overflowing lines re-broken or lightly trimmed; a tighter letter gap; the second game's
+  Court Record names no longer crammed; a clearer lowercase t in the first game's DLC
+  menu headings and Picture Book.
+- v1.9e: long lines in the bottom-screen speech bubble no longer get cut off.
+- v1.9d: English text on the Dance of Deduction note cards.
+- v1.9c: the DLC letter fix redone; bigger Picture Book commentary with the leftover
+  Japanese gone; the clean DLC menu icons back; an "Extras" title card; decorative-font
+  lines re-broken.
+- v1.9b: the broken t and e on the DLC menu headings fixed; the second game's title
+  screen and DLC banner show their real version numbers again.
+- v1.9a: the first game's Episode 2 opening narration reads straight through instead of
+  pausing mid-sentence.
+- v1.9: cutscene grain, scrambled crowd sounds, crowd loops and the click's root cause
+  fixed; every voice at full quality and length, second-game pauses restored, the too-long
+  story lines and the last crowd chant in English; clean Dance of Deduction gasps;
+  Episode 2 narration at natural speed; pop-up pages, captions, blank quote marks and
+  punctuation, four recitals, and DLC gallery and Picture Book text.
+- v1.8b: the crackle over the first game's cutscenes fixed.
 - v1.8a: no game change; the xdelta patches apply to cartridge dumps too.
-- v1.8: the blurred DLC art book pages from v1.7. First game's DLC only.
+- v1.8: the blurred DLC art book pages from v1.7 fixed.
 - v1.7: the first game's DLC art book, theme gallery and editor's notes in English; DLC
-  icons redrawn; a smudged score sheet in the second game's DLC. Both first-game files and
-  the second game's DLC.
+  icons redrawn; a smudged second-game DLC score sheet fixed.
 - v1.6: Capcom's own shout graphics and more of its textures; the second game's official
-  logo. Both updates.
-- v1.5: the click at the end of replaced voice lines; two cramped second-game menus; the
-  second game's patch outranks Capcom's update. All four files.
-- v1.4: the first hardware playthrough of the DLC stories; second-game dialogue no longer
-  cut off under the page arrow; more English voices; English HOME icon and banner. All
-  four files.
-- v1.3: the v1.2 fix for the second game and its DLC; over-long evidence pop-ups
-  shortened. Second game only.
-- v1.2: first-game cross-examination statements no longer run into the box edge; typos.
-  First game's update only.
+  logo.
+- v1.5: the click at the end of replaced voice lines covered with silence; two cramped
+  second-game
+  menus; the second game's patch now outranks Capcom's own update.
+- v1.4: first hardware playthrough of the DLC stories; second-game dialogue no longer
+  cut off under the page arrow; more English voices; English HOME icon and banner.
+- v1.3: the v1.2 fix carried to the second game and its DLC; over-long evidence pop-ups
+  shortened.
+- v1.2: first-game cross-examination statements no longer run into the box edge; typos
+  fixed.
 - v1.1: Capcom's real logos, evidence card names, deduction plates and ending card; real
-  version numbers; spellings. Both updates and the first game's DLC.
+  version numbers; spellings.
 - v1.0: first public release: Capcom's English text on both games and their DLC over
   senyarom's patch, plus English DLC voice clips, subtitled commentary videos, magazine
   covers, refitted captions and readable second-game menus.
 
 ## Known problems
 
-- Some lines are still spoken in Japanese because Capcom never recorded English for
-  them: four courtroom shouts, two "Take that!" shouts in the second game's DLC and a
-  run of story lines.
-- The second game's end credits are Japanese on purpose; a misspelled credit is worse
-  than an untranslated one.
-- Some text still runs past its box: a few dozen second-game dialogue pages end under
-  the page arrow, four first-game widget pages sit on the edge, and two lines in the
-  fancier face end slightly under the arrow.
-- Japanese remains in the first game's DLC Picture Book (name tags, production
-  scribbles).
-- Nobody has played either main game through on a console yet. The English lines added
-  to the second game's last two episodes, and the crowd loops, were checked offline only.
+- Some lines are still spoken in Japanese because Capcom never recorded English for them:
+  four courtroom shouts, two "Take that!" shouts in the second game's DLC and a run of
+  story lines.
+- The second game's end credits are Japanese on purpose; a misspelled credit is worse than
+  an untranslated one.
+- Some text still runs past its box: a few dozen second-game dialogue pages end under the
+  page arrow, four first-game widget pages sit on the edge, and two lines in the fancier
+  face end slightly under the arrow.
+- Japanese remains in the first game's DLC Picture Book (name tags, production scribbles).
+- Nobody has played either main game through on a console yet. The cutscene grain fix
+  hasn't been heard on a 3DS, and the English lines added to the second game's last two
+  episodes, and the crowd loops, were checked offline only.
+
+The full account of what has and hasn't been checked is in TESTING.md.
 
 ## Files
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.9.cia` / `TGAA2-base-1.0.23.cia`: the update.
-- `TGAA1-DLC-1.0.18.cia` / `TGAA2-DLC-1.0.14.cia`: the DLC. `TGAA1-EN-DLC-v1.9f.cia` /
-  `TGAA2-EN-DLC-v1.9f.cia`: the same DLC decrypted inside, for emulators. One or the
+- `TGAA1-base-3.3.10.cia` / `TGAA2-base-1.0.23.cia`: the update.
+- `TGAA1-DLC-1.0.19.cia` / `TGAA2-DLC-1.0.15.cia`: the DLC. `TGAA1-EN-DLC-v1.9h.cia` /
+  `TGAA2-EN-DLC-v1.9h.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9g-xdelta.zip` / `TGAA2-3DS-English-v1.9g-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9h-xdelta.zip` / `TGAA2-3DS-English-v1.9h-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the HOME banner patch
   (`TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`, also posted on its own)
-  and a readme (`TGAA1-README-v1.9g.txt` / `TGAA2-README-v1.9g.txt`, also posted on their
+  and a readme (`TGAA1-README-v1.9h.txt` / `TGAA2-README-v1.9h.txt`, also posted on their
   own).
-- `TGAA1-3DS-English-JPvoice-v1.9g-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9g-xdelta.zip`:
+- `TGAA1-3DS-English-JPvoice-v1.9h-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9h-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9g.txt`: size, CRC32 and sha256 of every source dump, patch and result.
+- `HASHES_v1.9h.txt`: size, CRC32 and sha256 of every source dump, patch and result.
 
-Sizes, apply steps and troubleshooting are in the README; the result hashes are in
-`HASHES_v1.9g.txt` and in the readme inside each zip. Your own source dump won't hash-match
-mine, and that's expected.
+The result hashes are in `HASHES_v1.9h.txt` and in the readme inside each zip. Your own
+source dump won't hash-match mine, and that's expected.
 
 ## Credits
 
