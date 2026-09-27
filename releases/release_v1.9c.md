@@ -1,7 +1,5 @@
 **Superseded by [v1.9d](../../releases/tag/v1.9d).** v1.9d adds English text to the Dance of Deduction note cards. Coming from v1.9c, redo both games' updates; the DLCs are unchanged.
 
----
-
 v1.9c: v1.9b's letter fix done properly, bigger Picture Book text, and a cleaner title screen.
 
 - **t and e, redone.** v1.9b pushed both letters below the line, giving the e a tail. Now only the crossbars are thickened, and i, j and l are a touch lighter. Both games.
