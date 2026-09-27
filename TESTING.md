@@ -52,7 +52,7 @@ is already on my list.
 | The first game's DLC Picture Book t redraw and the DLC 1.0.18 stamp (v1.9f) | confirmed in an emulator on the emulator form of the DLC: the cover reads DLC 1.0.18 and the commentary t has its full crossbar; the 3DS form of the DLC installed and ran on a 3DS with the right stamp |
 | The first game's DLC menu headings drawn at full size (v1.9f) | seen on a 3DS: the t in "Picture Book" has its whole crossbar and the longest heading fits its ribbon, including with the 3D slider at max |
 | The capital T/V/W letter-spacing fix (v1.9f) | checked as files and renders against the game's own font, not seen on screen; the second game's DLC copy of it, `TGAA2-DLC-1.0.14.cia`, installed and ran on a 3DS with the right stamp, but the spacing itself was **not looked for** there |
-| The split-page thought color, red highlight and typing-speed fix (v1.9g) | RIG CHECK PENDING |
+| The split-page thought color, red highlight and typing-speed fix (v1.9g) | confirmed in an emulator on `TGAA2-base-1.0.23.cia`: the second page of Ryutaro's "(Now that I'm standing in his shoes," thought early in the first trial now shows in blue, the same page issue #3 showed in white, and the title reads ENG 1.0.23. The red text and typing speed changes were checked as files against the original script, not seen on screen. Not run on a 3DS |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a
