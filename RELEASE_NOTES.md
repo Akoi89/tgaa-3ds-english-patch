@@ -18,7 +18,9 @@ patch for each game.
   shade heavier than the rest, are slightly lighter. Both games, checked on the emulator.
   A different font's lowercase t, in the first game's DLC Picture Book commentary, read
   as a stem with a foot instead of a proper crossbar; only that letter was redrawn, and
-  no descriptions or line breaks changed. The gap after a capital T, V or W is a pixel
+  no descriptions or line breaks changed. The DLC menu headings in the first game are
+  drawn at full size now instead of slightly shrunk, so the t in "Picture Book" keeps
+  its whole crossbar instead of reading almost like an f. The gap after a capital T, V or W is a pixel
   tighter now in both games, and the second game's Court Record no longer crams its
   evidence and profile names together.
 - The first game's DLC. Picture Book commentary is usually two sizes bigger on 51 of its
@@ -80,7 +82,7 @@ Newest first. A version's changes are listed here and nowhere else.
   other overflowing or oversized lines re-broken or lightly trimmed across both games; a
   smaller gap after capital T, V and W (the DLC stories too), the second game's Court
   Record names no longer crammed, and a clearer lowercase t in the first game's DLC
-  Picture Book. Every update and DLC changed.
+  Picture Book and DLC menu headings. Every update and DLC changed.
 - v1.9e: long lines in the bottom-screen speech bubble no longer get cut off, in both
   games. Both updates changed; the DLCs are the same as v1.9c.
 - v1.9d: English text on the Dance of Deduction note cards, in both games. Both updates
