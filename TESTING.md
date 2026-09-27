@@ -38,7 +38,8 @@ is already on my list.
 | English story lines added to both games (v1.9) | one line in each game heard in play in an emulator; the rest **checked against the recordings only**, and the second game's Episodes 4 and 5 not reached |
 | The first game's Episode 2 opening narration (v1.9a) | heard in an emulator page by page; reads straight through with no mid-word breaks |
 | The t and e redraw and lighter i, j and l (v1.9c) | seen in an emulator in dialogue, the Sound gallery, the DLC headings and the small music notes of the first game; the second game's copy is the same edit on the same font |
-| The bigger Picture Book commentary (v1.9c) | all 51 changed pages compared against Capcom's originals as images, and a sample opened in an emulator; **not yet on a 3DS** |
+| The bigger Picture Book commentary (v1.9c) | all 51 changed pages compared against Capcom's originals as images, and a sample opened in an emulator; read on a 3DS by a tester on v1.9e, who found it much easier to read but said the t still looked off (redrawn in v1.9f) |
+| The first game starting on a 3DS after the "SD card has been removed" error (v1.9e) | a tester who hit that error on v1.9c confirmed v1.9e starts normally on their console |
 | The DLC menu icons (v1.9c) | the restored sheet checked as a file, byte for byte the v1.7 one, and seen in an emulator |
 | The "Extras" title card (v1.9c) | seen in an emulator in both games, idle and pressed, and both open their DLC menus |
 | The re-broken decorative-font line in Episode 2's second Dance of Deduction (v1.9c) | seen in an emulator before and after; the two lines left under the page arrow were measured, not looked at |
