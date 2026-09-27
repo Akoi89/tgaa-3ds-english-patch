@@ -424,8 +424,8 @@ listened to, and what has only been checked in the files.
 
 ## Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9f-xdelta.zip`
-and `TGAA2-3DS-English-v1.9f-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9g-xdelta.zip`
+and `TGAA2-3DS-English-v1.9g-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -443,9 +443,9 @@ about 180 MB because the subtitled videos are genuinely new data. The patches we
 on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
 not been tested. Same install order afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.9f.txt` and
-`TGAA2-README-v1.9f.txt`, because romhacking.net wants the readme as a separate link rather
-than only inside the zip. `HASHES_v1.9f.txt` on the release lists the size, CRC32 and sha256
+The same readme text is also on the release on its own, as `TGAA1-README-v1.9g.txt` and
+`TGAA2-README-v1.9g.txt`, because romhacking.net wants the readme as a separate link rather
+than only inside the zip. `HASHES_v1.9g.txt` on the release lists the size, CRC32 and sha256
 of every source dump, patch and result for both games.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
@@ -455,8 +455,8 @@ to happen.
 ## Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.9f-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.9f-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.9g-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.9g-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are
