@@ -171,8 +171,8 @@ CREDIT
 The English text and art are Capcom's, from The Great Ace Attorney Chronicles;
 the voices are Capcom's Japanese cast. senyarom's patch did the hard part of
 carrying Capcom's script onto the 3DS builds. Scarlet Study made the first
-playable English 3DS build years earlier and was used as a reference throughout.
-Tools and scripts are GPL-3.0 on the GitHub page. If you want Capcom's
+playable English 3DS builds years earlier; senyarom's importer builds on them,
+so their work sits underneath this patch too. Tools and scripts are GPL-3.0 on the GitHub page. If you want Capcom's
 translation properly, buy The Great Ace Attorney Chronicles.
 
 The tooling behind this patch was written with LLM assistance (Claude, through

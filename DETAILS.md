@@ -28,6 +28,9 @@ I'd much rather have a duplicate than miss something.
 | A voice line in the second game sounds hurried, with the breath between phrases missing | second game, story scenes | FIXED in v1.9. 27 lines had pauses cut out of the middle to make them fit the space, a workaround for the same misplacement bug. The pauses are back, and every second-game voice that had been stored at reduced quality for the same reason is at full quality again: a scan of the finished build found no replaced voice below Capcom's sample rate in either game or either DLC |
 | The parchment narration at the start of Episode 2 sounds rushed, or pauses in the middle of a sentence | first game | FIXED in v1.9 and v1.9a. Each page of that opening had been timed for the Japanese takes, and the longer English takes had been sped up, by up to about a third, to finish in time. v1.9 restored the natural pace, but each page's English is in two pieces and the second piece still waited on the cue for the Japanese second line, which left pauses of half a second to over a second on five pages, three of them mid-sentence or mid-word, while two pages felt rushed. v1.9a times each page the way Capcom's PC release does: one continuous read per page, the second piece following the first after the recording's own pause, with the page turns, art and music on Capcom's original timing. Heard in-game: nothing is cut off and nothing overlaps |
 | A gasp, effort or cry during the third episode's Dance of Deduction sounds distorted | second game | FIXED in v1.9. Those 14 reactions went through a converter of mine that read part of the source format wrong. Fixed at source; they now decode exactly like the reference decoder. Checked by decoding, not yet heard in the scene |
+| The location card that pops up when you arrive somewhere has its description, or the place name, running off the right edge | both games, arriving anywhere | FIXED in v1.9f. That card's own width had never been checked: in the first game 14 of 33 titles and 36 of 44 descriptions ran past the proven width, and in the second game 28 of 45 titles and all 30 descriptions did. Descriptions are re-broken to fit with room to spare, not a word changed; where a description still didn't fit, it was given a small wording trim, and long place names are squeezed to fit rather than shortened. Seen fixed in an emulator on the ship in the first game; the second game's cards have not been reached on the test save |
+| A line in a second game's autopsy report or case document runs off the page, often mid-word | second game, post-mortem and case documents | FIXED in v1.9f. 24 lines in these full-screen document pages ran past the panel's real width, which had not been measured before; re-broken to fit, not a word changed. Seen fixed in an emulator on the first episode's autopsy report |
+| A first-game evidence name, a Dance of Deduction question, or a dialogue page runs past its box | both games, scattered | FIXED in v1.9f. Two evidence names and two Dance of Deduction questions in the first game, and one of Susato's remarks in the second, were shortened slightly to fit; a handful of dialogue pages, including the first game's "Queen's English" tutorial page, are re-broken. Not a fact changed |
 | A line in the speech bubble on the bottom screen is cut off at the right edge, often mid-word | both games, partner talk while examining evidence and in the Dance of Deduction reviews | FIXED in v1.9e. That bubble is narrower than the dialogue box above it, and the width checks only ever measured the top box. Every line in bubble mode was measured with each game's own font and re-broken to fit with room to spare, not a word changed; where two lines weren't enough the page was split in two, the way the game's own continuation pages are built. Seen fixed in an emulator in the first game |
 | A Dance of Deduction note card shows one stray letter for its topic, and the conclusion stays blank while the typewriter sound plays | both games, every Dance | FIXED in v1.9d. The card types its title and conclusion in two fonts of its own, and neither had English letters: the title font had only capitals, the conclusion font only the Japanese characters the original needed, so "Intruder's Identity" drew as its capital I. Both fonts now carry Capcom's English lettering from Chronicles, scaled so the longest title and conclusion fit the card. Seen on the card in an emulator in the first game |
 | A DLC Music and Sound gallery title runs past its plate | first game's DLC, issues 1 to 8 | FIXED in v1.9 |
@@ -41,7 +44,7 @@ I'd much rather have a duplicate than miss something.
 | A line in the fancier, more decorative face runs past the box | first game | Mostly FIXED in v1.9c. The wrapper measures those lines with the other font's metrics, so it wraps them too late ([senyarom issue #7](https://github.com/senyarom/tgaa2-en-patch/issues/7)). Measured across all 126 entries that use the face, four sentences ran over; the worst, in the second Dance of Deduction of Episode 2, put its "!" on the box frame and is re-broken, and a stray space is gone from three. Two lines in the same Dance still end a little under the page arrow; fixing those would need a page break Capcom didn't write |
 | The end credits are entirely in Japanese | second game, all 75 cards | Deliberate. The PC release lays them out differently and can't be ported, and a misspelled credit is worse than an untranslated one |
 | The DLC menu icons have smudges under the pictures | first game's DLC list | FIXED in v1.9c. The clean icon sheet from v1.7 was replaced by the older one again in v1.8b, because that update was built from a copy of the game files that still held it. The v1.7 sheet is back |
-| Picture Book commentary is hard to read at its size | first game's DLC | FIXED in v1.9c on 51 of the 76 pages: the text is usually two sizes bigger, with the see-through panel behind it extended to fit, and faint Japanese that showed behind the English on several pages is gone. The other pages were already as large as their space allows |
+| Picture Book commentary is hard to read at its size | first game's DLC | FIXED in v1.9c on 51 of the 66 pages: the text is usually two sizes bigger, with the see-through panel behind it extended to fit, and faint Japanese that showed behind the English on several pages is gone. The other pages were already as large as their space allows |
 | Japanese writing on the artwork inside the Picture Book | first game's DLC | Brush-written name tags and small production scribbles on the design sheets were left as they are |
 | The tips of the pencil hair look clipped on a sketches page | first game's DLC, issue 6 | They share pixels with the Japanese writing. Every rule that kept the hair also left readable Japanese, so the tips stay clipped |
 | The title card reads "D L C", one letter per slot | both games | FIXED in v1.9c. The card reads "Extras" sideways like Continue and Select Episode, without the diamonds, and turns white when pressed instead of going dark |
@@ -386,19 +389,22 @@ at each one next to the 3DS build, rather than trusting filenames.
 - **[#2](https://github.com/senyarom/tgaa2-en-patch/issues/2)**: the second game's DLC
   episodes showing blank character names, with every dialogue choice reading as invalid.
 
-Two pull requests went back to senyarom rather than being kept here:
+Three pull requests went back to senyarom rather than being kept here:
 **[#3](https://github.com/senyarom/tgaa2-en-patch/pull/3)** reflows centred pages that
-overflow the box, and **[#4](https://github.com/senyarom/tgaa2-en-patch/pull/4)** stops
-adapted advances running into the next glyph.
+overflow the box, **[#4](https://github.com/senyarom/tgaa2-en-patch/pull/4)** stops
+adapted advances running into the next glyph, and
+**[#8](https://github.com/senyarom/tgaa2-en-patch/pull/8)** offers concise wording for 93
+Court Record captions that overflow the 3DS panel.
 
 Three further issues were filed there. **[#6](https://github.com/senyarom/tgaa2-en-patch/issues/6)**
 (the first game's DLC Picture Book and Theme buttons bouncing to the title) is fixed here
-from v1.7, as described above. Two **remain unfixed**, in this build and upstream:
-**[#5](https://github.com/senyarom/tgaa2-en-patch/issues/5)** (the second game's Japanese
-end credits) and **[#7](https://github.com/senyarom/tgaa2-en-patch/issues/7)** (40 lines in
-the first game set in the serif face that overrun the box, because the wrapper measures
-them with the other font's metrics). The first appears in the known issues below. They are
-listed here because a contribution section that only lists wins is not worth much.
+from v1.7, as described above. **[#5](https://github.com/senyarom/tgaa2-en-patch/issues/5)**
+(the second game's Japanese end credits) remains open, in this build and upstream.
+**[#7](https://github.com/senyarom/tgaa2-en-patch/issues/7)** (40 lines in the first game set
+in the serif face that overrun the box, because the wrapper measures them with the other
+font's metrics) is mostly fixed here from v1.9c, and still open upstream. The first appears
+in the known issues at the top. They are listed here because a contribution section that
+only lists wins is not worth much.
 
 ---
 
@@ -411,8 +417,8 @@ listened to, and what has only been checked in the files.
 
 ## Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9e-xdelta.zip`
-and `TGAA2-3DS-English-v1.9e-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9f-xdelta.zip`
+and `TGAA2-3DS-English-v1.9f-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -430,9 +436,9 @@ about 180 MB because the subtitled videos are genuinely new data. The patches we
 on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
 not been tested. Same install order afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.9e.txt` and
-`TGAA2-README-v1.9e.txt`, because romhacking.net wants the readme as a separate link rather
-than only inside the zip. `HASHES_v1.9e.txt` on the release lists the size, CRC32 and sha256
+The same readme text is also on the release on its own, as `TGAA1-README-v1.9f.txt` and
+`TGAA2-README-v1.9f.txt`, because romhacking.net wants the readme as a separate link rather
+than only inside the zip. `HASHES_v1.9f.txt` on the release lists the size, CRC32 and sha256
 of every source dump, patch and result for both games.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
@@ -442,8 +448,8 @@ to happen.
 ## Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.9e-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.9e-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.9f-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.9f-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are

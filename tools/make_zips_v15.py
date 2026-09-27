@@ -23,7 +23,7 @@ META = {
                   dlc_note="The first game's DLC is a big one: it holds the voice galleries, eleven subtitled commentary videos, the rebuilt magazine covers and a playable extra episode. The videos had to be re-encoded with English subtitles, which is why this DLC patch is about 170 MB: that part is genuinely new data, not a repack."),
     'TGAA2': dict(jp='Dai Gyakuten Saiban 2: Naruhodou Ryuunosuke no Kakugo', en='The Great Ace Attorney 2: Resolve',
                   card_delta='1,075', dlc_where='the costume pack banner, bottom right',
-                  dlc_note="The second game's DLC holds the two mini episodes and the costumes. Both episodes are fully in English, including their voiced shouts."),
+                  dlc_note="The second game's DLC holds the two mini episodes and the costumes. Both episodes are in English; two \"Take that!\" shouts have no English recording and stay Japanese."),
 }
 
 README = """{en} ({jp}), Nintendo 3DS
@@ -177,8 +177,9 @@ CREDIT
 
 The English text, voices and art are Capcom's, from The Great Ace Attorney
 Chronicles. senyarom's patch did the hard part of carrying Capcom's script
-onto the 3DS builds. Scarlet Study made the first playable English 3DS build
-years earlier and was used as a reference throughout. Tools and scripts are
+onto the 3DS builds. Scarlet Study made the first playable English 3DS builds
+years earlier; senyarom's importer builds on them, so their work sits
+underneath this patch too. Tools and scripts are
 GPL-3.0 on the GitHub page. If you want Capcom's translation properly, buy
 The Great Ace Attorney Chronicles.
 

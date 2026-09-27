@@ -1,3 +1,7 @@
+**Superseded by [v1.9e](../../releases/tag/v1.9e).** v1.9e stops long lines in the bottom-screen speech bubble from being cut off. Coming from v1.9d, redo both games' updates; the DLCs are unchanged.
+
+---
+
 v1.9d: English text on the Dance of Deduction note cards.
 
 - **Dance of Deduction note cards.** The card that sums up each topic types its title and conclusion in two fonts that never had English letters. A title like "Intruder's Identity" showed a single stray I, and the conclusions typed away with the sound but left the page blank. Both fonts now use Capcom's own English lettering from the Chronicles release, sized to fit the card. Every Dance, both games.

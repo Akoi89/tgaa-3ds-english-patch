@@ -44,6 +44,9 @@ is already on my list.
 | The re-broken decorative-font line in Episode 2's second Dance of Deduction (v1.9c) | seen in an emulator before and after; the two lines left under the page arrow were measured, not looked at |
 | The English Dance of Deduction note cards (v1.9d) | seen in an emulator in the first game's Episode 2 Dance, titles and a conclusion typing in and settling inside the card; the second game's fonts load without error but its cards were **not reached** on the test save |
 | The re-broken speech-bubble lines (v1.9e) | seen in an emulator in the first game's Episode 2 Dance review and newspaper examination, including the two lines first seen cut off; every bubble line in both games measured against the bubble after the change; the second game's **not seen on screen** |
+| The re-broken location cards (v1.9f) | **RIG CHECK PENDING.** Every line re-measured against each game's own font as files, with room to spare; not yet confirmed on the cards aboard the ship in the first game's Episode 2, and the second game's cards **not seen on screen** |
+| The re-broken second-game autopsy report and case document lines (v1.9f) | **RIG CHECK PENDING.** Re-measured against the document panel's real width as files; the first episode's autopsy report has not yet been opened on screen to confirm |
+| The shortened evidence names, Dance of Deduction questions, Susato remark and re-broken dialogue pages, incl. the first game's "Queen's English" tutorial page (v1.9f) | checked as files against the game's own font; **not yet seen on screen** |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a

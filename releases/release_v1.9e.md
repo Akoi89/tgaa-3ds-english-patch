@@ -1,3 +1,7 @@
+**Superseded by [v1.9f](../../releases/tag/v1.9f).** v1.9f fixes location cards, second-game autopsy reports and case documents, and a handful of other lines that ran off the edge. Coming from v1.9e, redo both games' updates; the DLCs are unchanged.
+
+---
+
 v1.9e: long lines in the bottom-screen speech bubble no longer get cut off.
 
 - **Bottom-screen speech bubble.** When your partner talks while you examine evidence, and during the Dance of Deduction reviews, long lines ran past the bubble's right edge and were chopped off, often partway through a word. It happened in hundreds of places across both games. Those lines are re-broken, with a new page where two lines weren't enough, and not a word is changed.

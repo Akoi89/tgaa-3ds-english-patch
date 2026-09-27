@@ -17,7 +17,7 @@ patch for each game.
   tail. Now only their crossbars get a light extra row, and i, j and l, which read a
   shade heavier than the rest, are slightly lighter. Both games, checked on the emulator.
 - The first game's DLC. Picture Book commentary is usually two sizes bigger on 51 of its
-  76 pages, with the see-through panel behind it extended to fit, and the faint Japanese
+  66 pages, with the see-through panel behind it extended to fit, and the faint Japanese
   behind the English on several pages is gone. The menu icons, which had slipped back to
   an older sheet with smudges under the pictures in v1.8b, are the clean v1.7 ones again.
   The galleries for the never-released issues 9 to 13 show Capcom's placeholder text in
@@ -56,14 +56,24 @@ patch for each game.
   talks while you examine evidence and during the Dance of Deduction reviews, chopped off
   the end of long lines, often partway through a word, in hundreds of places across both
   games. Those lines are re-broken, not a word changed, with a page added where two lines
-  weren't enough. In the first game, pop-up document and report pages that ran off the
-  right edge are re-broken too, and Court Record captions the game had been shrinking
-  small and soft draw at full size, a few with a word or comma trimmed.
+  weren't enough. The location card that pops up when you arrive somewhere had its
+  description, and sometimes the place name, running off the right edge in most places in
+  both games; those lines are re-broken, a few descriptions are lightly trimmed, and long
+  place names are squeezed to fit. In the second game, long lines in autopsy reports and
+  case documents ran off the page mid-word and are re-broken too. In the first game, pop-up
+  document and report pages that ran off the right edge are re-broken too, and Court Record
+  captions the game had been shrinking small and soft draw at full size, a few with a word
+  or comma trimmed. Two evidence names, two Dance of Deduction questions and one of
+  Susato's remarks were shortened slightly, and a handful of dialogue pages, including the
+  first game's "Queen's English" tutorial page, are re-broken.
 
 ## Version history
 
 Newest first. A version's changes are listed here and nowhere else.
 
+- v1.9f: location cards, second-game autopsy reports and case documents, and a handful of
+  other overflowing or oversized lines re-broken or lightly trimmed across both games.
+  Both updates changed; the DLCs are the same as v1.9c.
 - v1.9e: long lines in the bottom-screen speech bubble no longer get cut off, in both
   games. Both updates changed; the DLCs are the same as v1.9c.
 - v1.9d: English text on the Dance of Deduction note cards, in both games. Both updates
@@ -111,7 +121,7 @@ Newest first. A version's changes are listed here and nowhere else.
 
 - Some lines are still spoken in Japanese because Capcom never recorded English for
   them: four courtroom shouts, two "Take that!" shouts in the second game's DLC and a
-  run of narration lines.
+  run of story lines.
 - The second game's end credits are Japanese on purpose; a misspelled credit is worse
   than an untranslated one.
 - Some text still runs past its box: a few dozen second-game dialogue pages end under
@@ -126,21 +136,22 @@ Newest first. A version's changes are listed here and nowhere else.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.7.cia` / `TGAA2-base-1.0.21.cia`: the update.
+- `TGAA1-base-3.3.8.cia` / `TGAA2-base-1.0.22.cia`: the update.
 - `TGAA1-DLC-1.0.17.cia` / `TGAA2-DLC-1.0.13.cia`: the DLC. `TGAA1-EN-DLC-v1.9c.cia` /
   `TGAA2-EN-DLC-v1.9c.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9e-xdelta.zip` / `TGAA2-3DS-English-v1.9e-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9f-xdelta.zip` / `TGAA2-3DS-English-v1.9f-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the HOME banner patch
   (`TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`, also posted on its own)
-  and a readme (`TGAA1-README-v1.9e.txt` / `TGAA2-README-v1.9e.txt`, also posted on their
+  and a readme (`TGAA1-README-v1.9f.txt` / `TGAA2-README-v1.9f.txt`, also posted on their
   own).
-- `TGAA1-3DS-English-JPvoice-v1.9e-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9e-xdelta.zip`:
+- `TGAA1-3DS-English-JPvoice-v1.9f-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9f-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9e.txt`: size, CRC32 and sha256 of every source dump, patch and result, so
-  you can check a file before and after patching.
+- `HASHES_v1.9f.txt`: size, CRC32 and sha256 of every source dump, patch and result.
 
-Sizes, hashes, apply steps and troubleshooting are in the README.
+Sizes, apply steps and troubleshooting are in the README; the result hashes are in
+`HASHES_v1.9f.txt` and in the readme inside each zip. Your own source dump won't hash-match
+mine, and that's expected.
 
 ## Credits
 

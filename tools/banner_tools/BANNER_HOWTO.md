@@ -85,7 +85,7 @@ is picked up from this folder or the project root.
 - Sound is DSP-ADPCM (TGAA1 1.34 s, TGAA2 3.00 s, 32728 Hz stereo); the PCM16
   CWAV swap does not apply and the jingle has no words, so it stays.
 - ExeFS slack is 0 bytes in both cartridges: the rebuilt banner must be <= the
-  original size rounded up to 0x200. Our LZ11 packs the untouched model 18 bytes
+  original size rounded up to 0x200. My LZ11 packs the untouched model 18 bytes
   smaller than Capcom's; the English logo has less detail so the model chunk
   shrank ~7 KB (TGAA1) / ~9.4 KB (TGAA2).
 - The base CIAs in `Final\_CURRENT` are title-key encrypted, so `cia.Cia` cannot
@@ -93,7 +93,7 @@ is picked up from this folder or the project root.
   partitions and runs `makerom -f cia -ignoresign -ver <ref TMD version>`;
   without -ignoresign makerom reports "Content 0 Is Corrupt".
 - The HOME title text comes from the base icon.bin (measured 2026-09-02), so
-  `patch_icon_strings.py` copies the 12 SMDH slots from our update's meta SMDH
+  `patch_icon_strings.py` copies the 12 SMDH slots from the patch's update meta SMDH
   into it; `exefs_splice.py` carries banner and icon in one pass.
 - Plane aspect: the Japanese glyphs are undistorted in the texture, so texels are
   square on the plane; the English logo is fitted to the same WIDTH (255 px) and
