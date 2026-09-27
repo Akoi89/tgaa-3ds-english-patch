@@ -7,4 +7,4 @@ v1.9f: text that ran off the edge is fixed across both games, plus some spacing 
 
 On a 3DS, install `TGAA1-DLC` / `TGAA2-DLC`; the `-EN-DLC` files are the same DLC for emulators.
 
-Coming from v1.9e, redo everything: both updates and both DLCs. The first game's code changed only in its version stamp.
+Coming from v1.9e, redo both updates and both DLCs. The only code change is the first game's version stamp.

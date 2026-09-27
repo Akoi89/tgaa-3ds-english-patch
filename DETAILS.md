@@ -74,7 +74,7 @@ above 15, so `1.0.16` and up were never real versions: the files were named `1.0
 while the console was told something else, and the two had drifted apart. From v1.4
 the first game's number on the screen, in the filename and in the console are the same
 number. The second game keeps `1.0.x` on screen and in the filename, but from v1.5 the
-console is told `3.x`, for the reason in the box above: Capcom's own update for it is
+console is told `3.x`, because Capcom's own update for it is
 `1.3.0`, and a lower number is what made consoles offer that update over the patch. v1.5
 was `3.0.15` to the console; v1.6 is `3.1.0`, because the last part cannot go above 15.
 
@@ -406,8 +406,8 @@ from v1.7, as described above. **[#5](https://github.com/senyarom/tgaa2-en-patch
 (the second game's Japanese end credits) remains open, in this build and upstream.
 **[#7](https://github.com/senyarom/tgaa2-en-patch/issues/7)** (40 lines in the first game set
 in the serif face that overrun the box, because the wrapper measures them with the other
-font's metrics) is mostly fixed here from v1.9c, and still open upstream. The first appears
-in the known issues at the top. They are listed here because a contribution section that
+font's metrics) is mostly fixed here from v1.9c, and still open upstream. Both of those two appear
+in the list at the top. They are listed here because a contribution section that
 only lists wins is not worth much.
 
 ---

@@ -1,4 +1,4 @@
-**Superseded by [v1.9f](../../releases/tag/v1.9f).** v1.9f fixes location cards, second-game autopsy reports and case documents, and a handful of other lines that ran off the edge. Coming from v1.9e, redo both games' updates; the DLCs are unchanged.
+**Superseded by [v1.9f](../../releases/tag/v1.9f).** v1.9f fixes location cards, second-game autopsy reports and case documents, and a handful of other lines that ran off the edge. Coming from v1.9e, redo both games' updates and both DLCs.
 
 ---
 
