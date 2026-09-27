@@ -41,7 +41,7 @@ Download from [Releases](../../releases). **Order matters.**
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
 | 2 | `TGAA1-base-3.3.8.cia` / `TGAA2-base-1.0.22.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.18.cia` / `TGAA2-DLC-1.0.13.cia` | the DLC |
+| 3 | `TGAA1-DLC-1.0.18.cia` / `TGAA2-DLC-1.0.14.cia` | the DLC |
 | 4 | `TGAA1-3DS-English-v1.9f-xdelta.zip` / `TGAA2-3DS-English-v1.9f-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
@@ -49,7 +49,7 @@ You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
 **On an emulator, take the plain DLC instead.** If the DLC card shows a padlock and the game
 returns to the title, or your emulator refuses to install the DLC at all, use
-`TGAA1-EN-DLC-v1.9f.cia` or `TGAA2-EN-DLC-v1.9c.cia` in place of row 3. Same DLC, same version,
+`TGAA1-EN-DLC-v1.9f.cia` or `TGAA2-EN-DLC-v1.9f.cia` in place of row 3. Same DLC, same version,
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
@@ -88,7 +88,7 @@ luck. The wording xdelta3 gives you is `target window checksum mismatch`.
 | TGAA1 title screen, top right | `ENG 3.3.8` |
 | TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.18`, top left |
 | TGAA2 title screen, top right | `ENG 1.0.22` |
-| TGAA2 DLC, costume pack banner | `DLC 1.0.13`, bottom right |
+| TGAA2 DLC, costume pack banner | `DLC 1.0.14`, bottom right |
 
 An older number means an older update is still installed. Both title screens should also
 show Capcom's own *Adventures* and *Resolve* logos rather than fan-drawn ones.

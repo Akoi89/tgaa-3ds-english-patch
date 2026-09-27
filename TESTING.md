@@ -47,6 +47,7 @@ is already on my list.
 | The re-broken location cards (v1.9f) | The first game's Episode 2 passageway card confirmed in an emulator, matching the reference render exactly. Every line was re-measured against each game's own font as files, with room to spare; the second game's cards **not seen on screen** |
 | The re-broken second-game autopsy report and case document lines (v1.9f) | The first episode's Post-Mortem Report, both pages, confirmed whole in an emulator. Re-measured against the document panel's real width as files otherwise; the three document blocks that needed an extra row to fit **not yet confirmed on screen** |
 | The shortened evidence names, Dance of Deduction questions, Susato remark and re-broken dialogue pages, incl. the first game's "Queen's English" tutorial page (v1.9f) | checked as files against the game's own font; **not yet seen on screen** |
+| The capital T/V/W letter-spacing fix, the second game's Court Record name spacing, and the first game's DLC Picture Book t redraw (v1.9f) | checked as files and renders, not seen in an emulator or on a console; the second game's DLC copy of the letter-spacing fix, `TGAA2-DLC-1.0.14.cia`, has **not been run on the emulator or on hardware** at all |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a

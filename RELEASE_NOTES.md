@@ -78,9 +78,9 @@ Newest first. A version's changes are listed here and nowhere else.
 
 - v1.9f: location cards, second-game autopsy reports and case documents, and a handful of
   other overflowing or oversized lines re-broken or lightly trimmed across both games; a
-  smaller gap after capital T, V and W, the second game's Court Record names no longer
-  crammed, and a clearer lowercase t in the first game's DLC Picture Book. Both updates
-  changed and the first game's DLC; the second game's DLC is the same as v1.9c.
+  smaller gap after capital T, V and W (the DLC stories too), the second game's Court
+  Record names no longer crammed, and a clearer lowercase t in the first game's DLC
+  Picture Book. Every update and DLC changed.
 - v1.9e: long lines in the bottom-screen speech bubble no longer get cut off, in both
   games. Both updates changed; the DLCs are the same as v1.9c.
 - v1.9d: English text on the Dance of Deduction note cards, in both games. Both updates
@@ -144,8 +144,8 @@ Newest first. A version's changes are listed here and nowhere else.
 Per game, on the release page:
 
 - `TGAA1-base-3.3.8.cia` / `TGAA2-base-1.0.22.cia`: the update.
-- `TGAA1-DLC-1.0.18.cia` / `TGAA2-DLC-1.0.13.cia`: the DLC. `TGAA1-EN-DLC-v1.9f.cia` /
-  `TGAA2-EN-DLC-v1.9c.cia`: the same DLC decrypted inside, for emulators. One or the
+- `TGAA1-DLC-1.0.18.cia` / `TGAA2-DLC-1.0.14.cia`: the DLC. `TGAA1-EN-DLC-v1.9f.cia` /
+  `TGAA2-EN-DLC-v1.9f.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
 - `TGAA1-3DS-English-v1.9f-xdelta.zip` / `TGAA2-3DS-English-v1.9f-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the HOME banner patch
