@@ -57,6 +57,7 @@ is already on my list.
 | The centred-line fix, first game's Episode 5 opening page (v1.9h) | confirmed in an emulator: both lines of "Our first two months in / London passed by in a flash." read centred, where the second used to sit against the left edge. Not run on a 3DS |
 | The second game's first DLC story's opening caption, unaffected by the centring fix (v1.9h) | confirmed unchanged in an emulator. Not run on a 3DS |
 | The first game's DLC red centred "Telegraphic Supplement" headline, and the DLC newspaper headline's typing-speed fix (v1.9h) | not yet seen on screen. Not run on a 3DS |
+| The lowercase w spacing fix, second game (v1.9i) | seen on the emulator, not yet on a 3DS |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a
