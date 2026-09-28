@@ -56,7 +56,9 @@ is already on my list.
 | The version stamps and DLC cover stamps (v1.9h) | confirmed in an emulator on the emulator forms of the DLCs (`TGAA1-EN-DLC-v1.9h.cia`, `TGAA2-EN-DLC-v1.9h.cia`): the title reads ENG 3.3.10 whole, the first game's DLC cover reads DLC 1.0.19 and the second game's costume pack banner reads DLC 1.0.15. Not run on a 3DS |
 | The centred-line fix, first game's Episode 5 opening page (v1.9h) | confirmed in an emulator: both lines of "Our first two months in / London passed by in a flash." read centred, where the second used to sit against the left edge. Not run on a 3DS |
 | The second game's first DLC story's opening caption, unaffected by the centring fix (v1.9h) | confirmed unchanged in an emulator. Not run on a 3DS |
-| The first game's DLC red centred "Telegraphic Supplement" headline, and the DLC newspaper headline's typing-speed fix (v1.9h) | not yet seen on screen. Not run on a 3DS |
+| The first game's DLC red centred "Telegraphic Supplement" headline (v1.9h) | seen in an emulator: both lines the same orange, both centred. Not run on a 3DS |
+| The DLC newspaper headline's typing-speed fix (v1.9h) | not yet seen on screen. Not run on a 3DS |
+| The item-added evidence plate, long names shown whole (TGAA1 Episode 3 trial, TGAA2 Episode 3) | seen in an emulator: "Autopsy Report", "Crime Scene Photograph" and "Defendant's Leather Gloves" in the first game, and "Great Exhibition Newspaper" in the second, all whole and clear of the plate's border. Emulator only |
 | The lowercase w spacing fix, second game (v1.9i) | seen on the emulator, not yet on a 3DS |
 | Playing through on a 3DS | not yet |
 
