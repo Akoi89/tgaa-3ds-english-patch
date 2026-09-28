@@ -37,8 +37,9 @@ Capcom's own English localisation from The Great Ace Attorney Chronicles (PC,
 which no English release ever had. It builds on senyarom's fan patch
 (https://github.com/senyarom/tgaa2-en-patch), which brought Capcom's script
 across; this adds the English voices, the DLC, the art and a long list of layout
-fixes. The full change list, the known issues and the testing status are in the
-README on the GitHub page. This file only covers patching.
+fixes. The change list and known issues are in RELEASE_NOTES.md and DETAILS.md
+on the GitHub page, the testing status in TESTING.md. This file only covers
+patching.
 
 Three patches are in this zip, and all three apply to files you make from your
 own dumps:
