@@ -52,6 +52,15 @@ CIA = re.compile(r'[A-Za-z0-9_.-]+\.cia')
 #     <!-- check_docs: historical -->  ...  <!-- check_docs: end -->
 HIST = re.compile(r'<!--\s*check_docs:\s*historical\s*-->.*?'
                   r'(?:<!--\s*check_docs:\s*end\s*-->|\Z)', re.DOTALL)
+# Everything after this marker is history (CONTINUE_HERE.md below the current
+# section): old build names there are the record, not a defect.
+#     <!-- check_docs: historical-below -->
+HIST_BELOW = re.compile(r'<!--\s*check_docs:\s*historical-below\s*-->.*\Z', re.DOTALL)
+
+
+def strip_hist(t):
+    return HIST.sub('', HIST_BELOW.sub('', t))
+
 # The Japanese originals the user supplies, and the placeholder in a shell
 # example. Neither is ours to ship and neither tracks a version.
 ALLOW = {'Base.cia', 'file.cia', 'dlc.cia', 'TGAA1 - Base.cia', 'TGAA2 - Base.cia', 't1.cia', 't2.cia'}
@@ -133,7 +142,7 @@ def main():
         sources.append(('<live release body>', body))
 
     for path, text in sources:
-        names = sorted(set(CIA.findall(HIST.sub('', text))) - ALLOW)
+        names = sorted(set(CIA.findall(strip_hist(text))) - ALLOW)
         stale = [n for n in names if n not in valid]
         label = path if path.startswith('<') else os.path.relpath(path, ROOT)
         print('\n  %s : %d CIA name(s), %d stale' % (label, len(names), len(stale)))
@@ -168,7 +177,7 @@ def main():
 
     # the other direction: something shipped that no doc tells anyone about
     if assets:
-        doc_text = ' '.join(HIST.sub('', t) for _, t in sources)
+        doc_text = ' '.join(strip_hist(t) for _, t in sources)
         missing = [n for n in sorted(assets) if n not in doc_text]
         for n in missing:
             print('     UNDOCUMENTED (attached to the release, named in no doc)  %s' % n)
