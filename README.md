@@ -45,6 +45,12 @@ Download from [Releases](../../releases). **Order matters.**
 | 4 | `TGAA1-3DS-English-v1.9i-xdelta.zip` / `TGAA2-3DS-English-v1.9i-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
+The row-3 DLC CIAs are 326,388,736 bytes (`TGAA1-DLC-1.0.19.cia`, sha256
+`24aca0ed2a56977311e5b076a8f73f23a5edbe559af3307b7d69e78189d2ef04`) and 39,500,160 bytes
+(`TGAA2-DLC-1.0.15.cia`, sha256
+`280b2de55bfda0603d1b2709964d577657af4524b92183fe2ed914bfd19a4a19`). The release page shows
+a sha256 for every posted file, so any of them can be checked the same way.
+
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
 **On an emulator, take the plain DLC instead.** If the DLC card shows a padlock and the game
@@ -63,9 +69,10 @@ writes from your own Japanese dumps, and they're strict about it.
 > **Dump the title as an encrypted CIA and decrypt it on the PC.** In GodMode9, dump the title
 > to CIA with no decrypt and no trim option, copy that to your computer, and run Batch CIA 3DS
 > Decryptor on it there. GodMode9's own decrypt gives you a file of the **right size** that is
-> not the same bytes, and the patch will refuse it. That has caught a few people, so a size
-> that matches the table below is not proof the file is right. A raw `.3ds` cartridge image
-> is a different file again.
+> not the same bytes, and the patch will refuse it; running the PC decryptor on that file
+> afterwards does not fix it either. That has caught a few people, so a size that matches the
+> table below is not proof the file is right. A raw `.3ds` cartridge image is a different file
+> again.
 
 Check the sizes before you spend time on it:
 
@@ -79,7 +86,9 @@ Check the sizes before you spend time on it:
 Your files won't match my hashes, and that's fine: the decryptor writes random bytes into the
 card header and the ticket. The patches are built so those bytes don't matter. Everything else
 has to match, so a checksum error means the source is the wrong file, not the wrong
-luck. The wording xdelta3 gives you is `target window checksum mismatch`.
+luck. The wording xdelta3 gives you is `target window checksum mismatch`. If you see it,
+redump the title encrypted and check the source against `HASHES_v1.9i.txt` before trying
+again.
 
 **Check it took:**
 
@@ -90,7 +99,8 @@ luck. The wording xdelta3 gives you is `target window checksum mismatch`.
 | TGAA2 title screen, top right | `ENG 1.0.24` |
 | TGAA2 DLC, costume pack banner | `DLC 1.0.15`, bottom right |
 
-An older number means an older update is still installed. Both title screens should also
+An older number means an older update is still installed; delete it and install again. Both
+title screens should also
 show Capcom's own *Adventures* and *Resolve* logos rather than fan-drawn ones.
 
 **Back up your saves first.** The second game throws a corrupted save prompt if it sees
@@ -139,7 +149,8 @@ These are the ones you're most likely to meet:
   release lays them out differently and can't be ported, and a misspelled credit is worse
   than an untranslated one. This is the largest known gap and it's reported upstream.
 - **Some text still runs past its box.** 38 dialogue pages in the second game end under the
-  page arrow. Four widget pages in the first game sit right on the edge. And two lines in
+  page arrow. One single-word page and three widget pages in the first game sit right on the
+  edge. And two lines in
   the first game's second Dance of Deduction, set in the fancier face, end slightly under
   the page arrow.
 - **There's still Japanese inside the first game's DLC Picture Book.** The brush-written

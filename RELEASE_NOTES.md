@@ -2,8 +2,8 @@
 
 This project brings Capcom's official English text, voices and art from the Chronicles
 release onto the Japanese 3DS versions of The Great Ace Attorney 1 and 2, including both
-games' DLC. It builds on senyarom's earlier fan patch and ships a base patch and a DLC
-patch for each game.
+games' DLC. It builds on senyarom's earlier fan patch and ships an installable update and
+DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## What this build fixes
 
@@ -99,7 +99,8 @@ patch for each game.
 - The second game's end credits are Japanese on purpose; a misspelled credit is worse than
   an untranslated one.
 - Some text still runs past its box: a few dozen second-game dialogue pages end under the
-  page arrow, four first-game widget pages sit on the edge, and two lines in the fancier
+  page arrow, one first-game single-word page and three widget pages sit on the edge, and
+  two lines in the fancier
   face end slightly under the arrow.
 - Japanese remains in the first game's DLC Picture Book (name tags, production scribbles).
 - Nobody has played either main game through on a console yet. The cutscene grain fix
@@ -117,13 +118,15 @@ Per game, on the release page:
   `TGAA2-EN-DLC-v1.9h.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
 - `TGAA1-3DS-English-v1.9i-xdelta.zip` / `TGAA2-3DS-English-v1.9i-xdelta.zip`: both as
-  xdelta patches against your own decrypted dump, with the HOME banner patch
-  (`TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`, also posted on its own)
-  and a readme (`TGAA1-README-v1.9i.txt` / `TGAA2-README-v1.9i.txt`, also posted on their
-  own).
+  xdelta patches against your own decrypted dump, with the banner patch inside the zip
+  (`TGAA1-v1.9i-base.xdelta` / `TGAA2-v1.9i-base.xdelta`, the same file as the posted
+  `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
+  inside the zip, also posted on its own as `TGAA1-README-v1.9i.txt` /
+  `TGAA2-README-v1.9i.txt`).
 - `TGAA1-3DS-English-JPvoice-v1.9i-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9i-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9i.txt`: size, CRC32 and sha256 of every source dump, patch and result.
+- `HASHES_v1.9i.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+  results.
 
 The result hashes are in `HASHES_v1.9i.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.

@@ -28,7 +28,7 @@ I'd much rather have a duplicate than miss something.
 | A voice line in the second game sounds hurried, with the breath between phrases missing | second game, story scenes | FIXED in v1.9. 27 lines had pauses cut out of the middle to make them fit the space, a workaround for the same misplacement bug. The pauses are back, and every second-game voice that had been stored at reduced quality for the same reason is at full quality again: a scan of the finished build found no replaced voice below Capcom's sample rate in either game or either DLC |
 | The parchment narration at the start of Episode 2 sounds rushed, or pauses in the middle of a sentence | first game | FIXED in v1.9 and v1.9a. Each page of that opening had been timed for the Japanese takes, and the longer English takes had been sped up, by up to about a third, to finish in time. v1.9 restored the natural pace, but each page's English is in two pieces and the second piece still waited on the cue for the Japanese second line, which left pauses of half a second to over a second on five pages, three of them mid-sentence or mid-word, while two pages felt rushed. v1.9a times each page the way Capcom's PC release does: one continuous read per page, the second piece following the first after the recording's own pause, with the page turns, art and music on Capcom's original timing. Heard in-game: nothing is cut off and nothing overlaps |
 | A gasp, effort or cry during the third episode's Dance of Deduction sounds distorted | second game | FIXED in v1.9. Those 14 reactions went through a converter of mine that read part of the source format wrong. Fixed at source; they now decode exactly like the reference decoder. Checked by decoding, not yet heard in the scene |
-| On some centred pages (narration, flashbacks, place and time cards, thoughts, a few choices), a line further down the page sits against the left edge while the line above it stays centred | first game, its DLC and the second game's DLC | FIXED in v1.9h. 18 pages in the first game, 5 in its DLC and 6 in the second game's DLC, the last six inherited from the earlier fan patch. Seen on the first game's Episode 5 opening page, in the line "Our first two months in / London passed by in a flash.", confirmed centred in an emulator. The first game's DLC "Telegraphic Supplement" headline, one of the 5, hasn't been seen on screen; not yet checked on a 3DS |
+| On some centred pages (narration, flashbacks, place and time cards, thoughts, a few choices), a line further down the page sits against the left edge while the line above it stays centred | first game, its DLC and the second game's DLC | FIXED in v1.9h. 18 pages in the first game, 5 in its DLC and 6 in the second game's DLC, the last six inherited from the earlier fan patch. Seen on the first game's Episode 5 opening page, in the line "Our first two months in / London passed by in a flash.", confirmed centred in an emulator. The first game's DLC "Telegraphic Supplement" headline, one of the 5, was seen in an emulator, both lines the same orange and both centred; not yet checked on a 3DS |
 | A DLC newspaper headline types its second half at a different speed than the first | first game's DLC | FIXED in v1.9h. The headline is split over two pages and the second restated the speed from the top of the first page instead of the one in force, the same split-page speed bug v1.9g fixed elsewhere, missed here. Not a word of dialogue changed. Not yet seen on screen |
 | A thought (the blue text in brackets) that runs onto a second page shows the second half in plain white speech instead of blue | both games, mostly the second | FIXED in v1.9g. Splitting a page onto a second page restarted the renderer without saying again what was running at the split point, so a thought in progress was lost. 26 pages in the second game and 2 in the first did this |
 | A phrase in red that runs onto a second page loses its red on the second page | second game | FIXED in v1.9g. Same cause as the thought-color row above: red is state that has to be re-said on the new page, not a one-off cue, and the split wasn't re-saying it. 4 pages did this |
@@ -82,7 +82,7 @@ the first game's number on the screen, in the filename and in the console are th
 number. The second game keeps `1.0.x` on screen and in the filename, but from v1.5 the
 console is told `3.x`, because Capcom's own update for it is
 `1.3.0`, and a lower number is what made consoles offer that update over the patch. v1.5
-was `3.0.15` to the console; v1.6 is `3.1.0`, because the last part cannot go above 15.
+was `3.0.15` to the console; v1.6 was `3.1.0`, because the last part cannot go above 15.
 
 Both title screens now show Capcom's own *Adventures* and *Resolve* logos instead of the
 fan-drawn ones, so the logo alone tells you the update took. If you want a text check as
@@ -433,8 +433,8 @@ you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
 |---|---|---|
-| `-update.xdelta` | your decrypted game `.cci` | the update CIA, byte for byte the one in rows 2 above |
-| `-DLC.xdelta` | your decrypted DLC `.cia` | the DLC CIA, same contents as row 3, stored unencrypted |
+| `-update.xdelta` | your decrypted game `.cci` | the update CIA, byte for byte the one in row 2 of the README's install table |
+| `-DLC.xdelta` | your decrypted DLC `.cia` | the DLC CIA, same contents as row 3 of that table, stored unencrypted |
 | `-base.xdelta` | your decrypted game `.cci` | the same game with the English HOME banner, as above |
 
 The zip has xdelta3.exe and a readme with the exact commands, the sizes to expect and the
@@ -443,13 +443,15 @@ source will not hash-match the readme's and the patches are built so that does n
 matter; the outputs must match exactly. The update patch is 27 to 35 MB because most of
 the update is files that already exist in the game image; the first game's DLC patch is
 about 180 MB because the subtitled videos are genuinely new data. The patches were proven
-on the `.cci` the decryptor writes from a CIA of the game; a raw `.3ds` cartridge dump has
-not been tested. Same install order afterwards: base, update, DLC.
+on the `.cci` the decryptor writes from a CIA of the game; from v1.8a the update and DLC
+patches also take a `.3ds` cartridge dump converted the same way, ignoring the header bytes
+that differ from an installed-title CIA dump. The optional base patch still wants a CIA dump
+of an installed title. Same install order afterwards: base, update, DLC.
 
 The same readme text is also on the release on its own, as `TGAA1-README-v1.9i.txt` and
 `TGAA2-README-v1.9i.txt`, because romhacking.net wants the readme as a separate link rather
 than only inside the zip. `HASHES_v1.9i.txt` on the release lists the size, CRC32 and sha256
-of every source dump, patch and result for both games.
+of the English xdelta sources, patches and results for both games.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
 because a patch against a file most people dump differently is a support thread waiting
@@ -469,5 +471,8 @@ reverted file equals the Japanese one. The first game's banner patch in that zip
 the Japanese HOME menu jingle, which the main release's banner replaces.
 
 The edition declares the same title versions as the main release, so install one or the
-other, not both; the title screens read the same `ENG` stamps. Both games and their DLC were
-installed and run before posting. The build and its check are `jpvoice/` in the tools.
+other, not both; the title screens read the same `ENG` stamps. It was checked file by file
+against the main release and the Japanese originals before posting: text and art identical
+to the main release, and every reverted file identical to the Japanese original. This build
+has not been run on a console or in an emulator. The build and its check are `jpvoice/` in
+the tools.
