@@ -40,9 +40,9 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.3.10.cia` / `TGAA2-base-1.0.23.cia` | the update |
+| 2 | `TGAA1-base-3.3.10.cia` / `TGAA2-base-1.0.24.cia` | the update |
 | 3 | `TGAA1-DLC-1.0.19.cia` / `TGAA2-DLC-1.0.15.cia` | the DLC |
-| 4 | `TGAA1-3DS-English-v1.9h-xdelta.zip` / `TGAA2-3DS-English-v1.9h-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
+| 4 | `TGAA1-3DS-English-v1.9i-xdelta.zip` / `TGAA2-3DS-English-v1.9i-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
@@ -53,7 +53,7 @@ returns to the title, or your emulator refuses to install the DLC at all, use
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
-`TGAA1-README-v1.9h.txt` and `TGAA2-README-v1.9h.txt` on the release page are the readmes from
+`TGAA1-README-v1.9i.txt` and `TGAA2-README-v1.9i.txt` on the release page are the readmes from
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
@@ -87,7 +87,7 @@ luck. The wording xdelta3 gives you is `target window checksum mismatch`.
 |---|---|
 | TGAA1 title screen, top right | `ENG 3.3.10` |
 | TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.19`, top left |
-| TGAA2 title screen, top right | `ENG 1.0.23` |
+| TGAA2 title screen, top right | `ENG 1.0.24` |
 | TGAA2 DLC, costume pack banner | `DLC 1.0.15`, bottom right |
 
 An older number means an older update is still installed. Both title screens should also
