@@ -444,7 +444,8 @@ matter; the outputs must match exactly. The update patch is 27 to 35 MB because 
 the update is files that already exist in the game image; the first game's DLC patch is
 about 180 MB because the subtitled videos are genuinely new data. The patches were proven
 on the `.cci` the decryptor writes from a CIA of the game; from v1.8a the update and DLC
-patches also take a `.3ds` cartridge dump converted the same way, ignoring the header bytes
+patches also take a `.3ds` cartridge dump turned into a CIA with GodMode9's Build CIA from file
+(NCSD image options) and decrypted the same way, ignoring the header bytes
 that differ from an installed-title CIA dump. The optional base patch still wants a CIA dump
 of an installed title. Same install order afterwards: base, update, DLC.
 
