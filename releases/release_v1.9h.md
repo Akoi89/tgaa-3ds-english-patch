@@ -1,3 +1,6 @@
+**Superseded by [v1.9i](../../releases/tag/v1.9i).** v1.9i removes the extra space after a
+lowercase w in the second game. Coming from v1.9h, redo the second game's update only.
+
 v1.9h fixes a line-centring bug and one DLC headline's typing speed.
 
 - **A centred line that lost its centring.** On some centred pages, such as narration, flashbacks, place and time cards and thoughts, a line further down the page sat against the left edge while the line above it stayed centred. Seen on the first game's Episode 5 opening page, in the line "Our first two months in / London passed by in a flash." Fixed in the first game and in both games' DLC.
