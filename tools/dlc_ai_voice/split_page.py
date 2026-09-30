@@ -28,6 +28,29 @@ No <E800> is invented or duplicated: those number voice/event streams and are
 dense and ascending through an entry, so B re-states state only. Tags that sit
 inside the text with no whitespace around them travel with their word.
 
+A split inside a thought closes and reopens the bracket (v1.9j, issue #1: a
+page B with no opening `(` animates the speaker's mouth; Capcom JP and
+Capcom's English never end a page with a thought bracket open). After the
+split is proved, bracket_split() looks at the bracket depth at the end of page
+A (counted from the entry's earlier pages) and, if a thought is still open,
+edits only the two page edges (SPEC_v19j rules, Gemini verdict B):
+  1  A ends . ? ! (not ...) and B starts Capital or ...   A ')'     B '('
+  2  A ends ? or ! and B starts lowercase                  A '...)'  B '(...'
+  3  A ends ... (any number of dots)                       A ')'     B '(...'
+  4  anything else; one trailing , ; : is dropped          A '...)'  B '(...'
+  7  A ends in a dash (- -- en/em dash), dash kept         A ')'     B '('
+  (rules 3 and 4: B gets only '(' when B already starts with ...)
+A's bracket goes straight after its last visible character (before the
+trailing tags); B's straight before its first visible character, or before
+B's restated <E006> when a red span is open there, so the bracket stays in
+thought colour (Capcom: `<E007>(...<E006>word<E007>)`). The script REFUSES
+(exits, writes nothing) when A ends in an abbreviation (Mr. Dr. No. vs. or any
+1-3 letter word + '.'), when A ends on a title with or without a period (Mr Mrs
+Ms Miss Dr Lord Lady Sir Master Madam Inspector Professor Justice Judge: it
+would be split from its name), when the break is inside quotation marks, when red is
+open at the end of A, or when a bracketed line would pass the limit: those
+need a human. Tags and <E800> are never added or moved by this step.
+
     python split_page.py <gmd> <label> <page> [--limit 345] [--apply]
 """
 import argparse
@@ -213,6 +236,98 @@ def proofs(page, pa, pb, lp, trailer_a):
     return None
 
 
+VIS_CHAR = re.compile(r'[^<>\s](?![^<]*>)')
+DASH_END = re.compile(r'(-|–|—)$')
+ABBREV_END = re.compile(r'(?:^|[^A-Za-z])([A-Za-z]{1,3}\.)$')
+# a title left at the end of page A ("...with Iris and Mr" | "Sholmes") splits it from its name
+TITLE_END = re.compile(r'(?:^|[^A-Za-z])((?:Mr|Mrs|Ms|Miss|Dr|Lord|Lady|Sir|Master|Madam|Inspector|Professor|'
+                       r'Justice|Judge)\.?)$')
+
+
+def bracket_depth(text, d=0):
+    """Round-bracket depth after the visible text of `text`, starting at d (bracket_audit.py's walk)."""
+    for ch in P.TAG.sub('', text):
+        if ch == '(':
+            d += 1
+        elif ch == ')':
+            d = max(0, d - 1)
+    return d
+
+
+def _open_thought(vis):
+    stack = []
+    for k, ch in enumerate(vis):
+        if ch == '(':
+            stack.append(k)
+        elif ch == ')' and stack:
+            stack.pop()
+    return vis[stack[0]:] if stack else vis
+
+
+def bracket_split(pa, pb, before='', adv=None, limit=None):
+    """Close a thought left open at the end of page A and reopen it on page B.
+
+    `before` is the entry's visible text before the page that was split (for the
+    bracket depth and the quote guard). Returns (pa, pb, note); note is None
+    when no thought is open at the split. Raises SystemExit on a guard case."""
+    d = bracket_depth(before)
+    if bracket_depth(pa, d) == 0:
+        return pa, pb, None
+    va = [m.start() for m in VIS_CHAR.finditer(pa)]
+    vb = [m.start() for m in VIS_CHAR.finditer(pb)]
+    la = va[-1]
+    last_a = P.TAG.sub('', pa[:la + 1]).rstrip()
+    first_b = P.TAG.sub('', pb[vb[0]:]).lstrip()
+    m = TITLE_END.search(last_a)
+    if m:
+        raise SystemExit('REFUSED: page A ends on the title %r, which would be split from its name; '
+                         'split this thought by hand (move the title to page B)' % m.group(1))
+    m = ABBREV_END.search(last_a)
+    if m and not last_a.endswith(('..', '…')):
+        raise SystemExit('REFUSED: page A ends in %r (abbreviation guard); split this thought by hand' % m.group(1))
+    th = _open_thought(P.TAG.sub('', before) + P.TAG.sub('', pa))
+    opens = [q.start() for q in re.finditer(r"(?:^|[\s(])'(?=\w)", th)]
+    if (th.count('"') % 2 or th.count('“') > th.count('”')
+            or (opens and not re.search(r"[\w.,!?]'(?=\s|$|[.,!?)])", th[opens[-1] + 2:]))):
+        raise SystemExit('REFUSED: the split falls inside quotation marks; split this thought by hand')
+    if carried_styles(pa[:la + 1]).endswith('<E006>'):
+        raise SystemExit('REFUSED: a red span is open at the end of page A; close it by hand')
+    if DASH_END.search(last_a):
+        rule, a_del, a_ins, b_ins = 7, 0, ')', '('
+    elif last_a.endswith(('..', '…')):   # U+2026 too, or it would fall to rule 4 and double the dots
+        rule, a_del, a_ins, b_ins = 3, 0, ')', '(...'
+    elif last_a[-1] in '.?!':
+        if first_b[:1].isupper() or first_b.startswith('...'):
+            rule, a_del, a_ins, b_ins = 1, 0, ')', '('
+        elif last_a[-1] in '?!' and first_b[:1].islower():
+            rule, a_del, a_ins, b_ins = 2, 0, '...)', '(...'
+        else:
+            raise SystemExit('REFUSED: page A ends %r and page B starts %r; no rule fits' % (last_a[-1], first_b[:1]))
+    else:
+        rule, a_del, a_ins, b_ins = 4, (1 if last_a[-1] in ',;:' else 0), '...)', '(...'
+    if rule in (3, 4) and first_b.startswith(('...', '…')):
+        b_ins = '('
+    new_a = pa[:la + 1 - a_del] + a_ins + pa[la + 1:]
+    bpos = vb[0]
+    head_colours = COLOUR.findall(pb[:bpos])
+    if head_colours and head_colours[-1] == 'E006':
+        bpos = pb.rfind('<E006>', 0, bpos)      # outside the red span, in thought colour
+    new_b = pb[:bpos] + b_ins + pb[bpos:]
+    # proof: tags untouched and in order, line count unchanged, only the two edges changed
+    assert P.TAG.findall(new_a) == P.TAG.findall(pa) and P.TAG.findall(new_b) == P.TAG.findall(pb)
+    assert len(P.lines(new_a)) == len(P.lines(pa)) and len(P.lines(new_b)) == len(P.lines(pb))
+    assert P.TAG.sub('', new_a) == P.TAG.sub('', pa)[:len(P.TAG.sub('', pa[:la + 1])) - a_del] + a_ins + \
+        P.TAG.sub('', pa[la + 1:])
+    assert P.TAG.sub('', new_b) == P.TAG.sub('', pb[:bpos]) + b_ins + P.TAG.sub('', pb[bpos:])
+    if adv is not None and limit is not None:
+        over = [l for l in P.lines(new_a) + P.lines(new_b) if P.px(l, adv) > limit]
+        if over:
+            raise SystemExit('REFUSED: with the brackets a line passes %d px: %r' % (limit, over))
+    return new_a, new_b, 'rule %d: A +%r%s, B +%r%s' % (
+        rule, a_ins, ' (dropped %r)' % last_a[-1] if a_del else '', b_ins,
+        ' before the restated <E006>' if bpos != vb[0] else '')
+
+
 def centre_split(pa, pb):
     """Run AFTER proofs(): on a centred page every line after the first that has no <CNTR> of its own gets
     <E042><CNTR> at its start (fix_dlc_overflow.centre_new_lines; rig 2026-09-27: such a line renders LEFT).
@@ -256,6 +371,15 @@ def main():
     print('\nproofs: words identical; tags identical except the restated state (%s) and what A kept of '
           'the trailer (%s); <E800> sequence identical; A ends on a wait marker'
           % (restated_lp or '(nothing)', trailer_a))
+    pa, pb, note = bracket_split(pa, pb, '<PAGE>'.join(pages[:a.page]), adv, a.limit)
+    if note:
+        print('thought brackets (v1.9j): %s' % note)
+        print('   A raw: %r' % pa)
+        print('   B raw: %r' % pb)
+        for l in P.lines(pa) + P.lines(pb):
+            print('   %3d  %s' % (P.px(l, adv), l))
+    else:
+        print('thought brackets (v1.9j): no thought open at the split, nothing to do')
     pa, pb, n_centred = centre_split(pa, pb)
     print('centring: <E042><CNTR> added at the start of %d line(s)%s'
           % (n_centred, (': A %r / B %r' % (pa, pb)) if n_centred else ''))
