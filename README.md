@@ -6,12 +6,12 @@ carried onto the Japanese 3DS releases, DLC included.**
 Neither *Dai Gyakuten Saiban* (2015) nor *Resolve* (2017) got an English 3DS release.
 Capcom localized both for *Chronicles* in 2021 on PC and console but never brought that
 text back to the handheld. **[senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch)**
-does exactly that, with a real layout pipeline rather than hand-edited scripts. That's the
-hard part and it's theirs.
+brought that text to the 3DS builds first, with a real layout pipeline rather than
+hand-edited scripts, and this patch starts from it.
 
-This builds on it and adds everything that isn't text: Capcom's English voice acting, the
-videos, the art, and the DLC that nothing had ever translated. You don't need senyarom's
-release installed first, these builds supersede it.
+This builds on it and adds Capcom's English voice acting, the videos and the art, the DLC
+that nothing had ever translated, and a lot of layout work of its own. You don't need
+senyarom's release installed first, these builds supersede it.
 
 Every figure in [DETAILS.md](DETAILS.md) is reproducible. The audio counts come from
 `audit_all_audio.py`, which compares each file against Capcom's own recording rather than
@@ -167,9 +167,9 @@ the files.
 
 ## Credits
 
-**senyarom** did the hard part: **[senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch)**.
-Their layout pipeline, their font handling, their port of Capcom's script onto the 3DS
-builds. Without it there's nothing here.
+**senyarom**: **[senyarom/tgaa2-en-patch](https://github.com/senyarom/tgaa2-en-patch)**.
+Their layout pipeline, their font handling and their port of Capcom's script onto the 3DS
+builds are what this patch starts from.
 
 **Scarlet Study / Fan Translators International**, as senyarom's README credits them, are
 further back down the same chain, and not just as a reference point. They made the first

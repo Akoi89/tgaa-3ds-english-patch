@@ -136,9 +136,9 @@ source dump won't hash-match mine, and that's expected.
 
 ## Credits
 
-senyarom did the hard part: their layout pipeline, font handling and port of Capcom's
-script onto the 3DS builds are what everything here sits on, building on Scarlet Study
-and Fan Translators International's earlier English builds. The logos, evidence cards,
+senyarom's layout pipeline, font handling and port of Capcom's script onto the 3DS builds
+are what this patch starts from, building on Scarlet Study and Fan Translators
+International's earlier English builds. The logos, evidence cards,
 shout lettering and voices are Capcom's, from Chronicles. Full credits are in the README.
 
 The Great Ace Attorney and Chronicles are (c) Capcom.
