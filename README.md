@@ -180,7 +180,7 @@ build inputs, so it is structurally underneath this patch too.
 
 The title logos, evidence cards, end card, Dance of Deduction wording and the lettering on its note cards are Capcom's own
 artwork and text from *Chronicles*, carried over rather than redrawn. The three banners in
-the second game's DLC were made for this patch.
+the second game's DLC are adapted from Capcom's own artwork.
 
 The tooling was written with LLM assistance (Claude, through Claude Code). That's stated
 here rather than buried. Most of what ships is Capcom's own files and senyarom's carry of

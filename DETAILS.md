@@ -121,7 +121,7 @@ So this is the part that did not exist anywhere before:
 | **34** | shouts in those mini-episodes, which had been speaking Japanese over English text |
 | **11** | commentary videos in the first game's DLC, subtitled and re-encoded to Capcom's own container spec |
 | **14** | magazine covers in the first game's DLC: 9 rebuilt from the official *Chronicles* banner art, 5 relabelled so you can tell the empty issues from the playable one |
-| **3** | DLC banners and the icon labels redrawn; the two story banners re-titled on new artwork (v1.4) |
+| **3** | DLC banners and the icon labels redrawn; the two story banners re-titled on artwork adapted from Capcom's (v1.4) |
 | **4** | event pictures in the second game's DLC that were still Japanese: the opening "work of fiction" card and a handwritten score sheet in three views, re-typeset in English at the photograph's own angle and focus (v1.4); the score sheet's paper cleaned of a dark band and leftover brush specks (v1.7) |
 | **76** | pages in the first game's DLC that were still Japanese images: 66 Picture Book pages of the art director's commentary with the handwritten notes on the design sheets, 8 theme preview titles and 2 Editor's Notes pages, all now in English (v1.7, see below) |
 | **29** | of those Picture Book pages where the commentary sits on a see-through panel over the artwork, redone so the artwork under and around the panel is Capcom's own rather than a blurred repaint (v1.8, see below) |
