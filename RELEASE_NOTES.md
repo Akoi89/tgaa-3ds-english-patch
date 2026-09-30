@@ -41,11 +41,14 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   and case documents, and the first game's pop-up pages ran off the edge. They're all
   re-broken; only a few location descriptions, captions, evidence names, questions and one
   remark were lightly trimmed. A line split onto a second page now keeps its thought
-  color, red highlight and typing speed, and a line further down a centred page now keeps
+  color, red highlight and typing speed, and a thought that runs onto a second page closes
+  its bracket at the break and opens a new one on the next, so the speaker's mouth stays
+  still while they're only thinking. A line further down a centred page now keeps
   its centring instead of landing against the left edge.
 
 ## Version history
 
+- v1.9j: a thought that runs onto a second page no longer makes the speaker's mouth move.
 - v1.9i: a lowercase w in the second game no longer leaves an extra sliver of space
   before the next letter.
 - v1.9h: a line further down a centred page keeps its centring instead of landing against
@@ -113,22 +116,22 @@ The full account of what has and hasn't been checked is in TESTING.md.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.10.cia` / `TGAA2-base-1.0.24.cia`: the update.
-- `TGAA1-DLC-1.0.19.cia` / `TGAA2-DLC-1.0.15.cia`: the DLC. `TGAA1-EN-DLC-v1.9h.cia` /
+- `TGAA1-base-3.3.11.cia` / `TGAA2-base-1.0.25.cia`: the update.
+- `TGAA1-DLC-1.0.20.cia` / `TGAA2-DLC-1.0.15.cia`: the DLC. `TGAA1-EN-DLC-v1.9j.cia` /
   `TGAA2-EN-DLC-v1.9h.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9i-xdelta.zip` / `TGAA2-3DS-English-v1.9i-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9j-xdelta.zip` / `TGAA2-3DS-English-v1.9j-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the banner patch inside the zip
-  (`TGAA1-v1.9i-base.xdelta` / `TGAA2-v1.9i-base.xdelta`, the same file as the posted
+  (`TGAA1-v1.9j-base.xdelta` / `TGAA2-v1.9j-base.xdelta`, the same file as the posted
   `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
-  inside the zip, also posted on its own as `TGAA1-README-v1.9i.txt` /
-  `TGAA2-README-v1.9i.txt`).
-- `TGAA1-3DS-English-JPvoice-v1.9i-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9i-xdelta.zip`:
+  inside the zip, also posted on its own as `TGAA1-README-v1.9j.txt` /
+  `TGAA2-README-v1.9j.txt`).
+- `TGAA1-3DS-English-JPvoice-v1.9j-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9j-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9i.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+- `HASHES_v1.9j.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
   results.
 
-The result hashes are in `HASHES_v1.9i.txt` and in the readme inside each zip. Your own
+The result hashes are in `HASHES_v1.9j.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.
 
 ## Credits
