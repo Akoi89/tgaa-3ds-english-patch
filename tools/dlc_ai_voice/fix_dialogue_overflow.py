@@ -39,6 +39,57 @@ import re
 _TOK = re.compile(r'<[^>]*>|[^\s<]+|\s+')
 
 
+_HYPHEN_END = re.compile(r'[A-Za-z]-$')            # letter + ONE hyphen ("anti-"), not "--"
+_SCREAM = re.compile(r'(.)\1\1')
+
+
+def _vis_word(t):
+    return P.TAG.sub('', t)
+
+
+def _is_scream_left(t):
+    """Left half of a scream split inside the word: letters only (tags removed; it ends on a letter, so no '!',
+    '?', '...' or hyphen) and a run of 3+ identical letters."""
+    v = _vis_word(t)
+    return bool(v) and v.isalpha() and _SCREAM.search(v.lower()) is not None
+
+
+def _is_scream_right(t):
+    """Right half: strip leading punctuation (an ellipsis such as '...' or U+2026), take the letters up to the first
+    non-letter; that run must hold 3+ identical letters ("AAAARGH!" -> "AAAARGH", "...AAARGH!" -> "AAARGH")."""
+    m = re.match(r'[^A-Za-z]*([A-Za-z]*)', _vis_word(t))
+    lead = m.group(1) if m else ''
+    return bool(lead) and _SCREAM.search(lead.lower()) is not None
+
+
+def join_rows(body):
+    """Flatten a page body's CRLF row breaks for re-wrapping (v1.9k). A row break normally becomes a space. Two
+    kinds become NOTHING, because the break sat inside one word:
+      - right after letter + single hyphen ("anti-" CRLF "gravity" -> "anti-gravity"; it was "anti- gravity")
+      - inside a scream (round 3): the LEFT word is letters only with a run of 3+ identical letters, and the
+        RIGHT word's leading letters (after any leading punctuation) also hold such a run
+        ("GAAAA" CRLF "AAARGH!" -> "GAAAAAAARGH!", "NOOOO" CRLF "OOOO!!!" -> "NOOOOOOOO!!!").
+        Two-word pairs stay apart because their left word ends in punctuation or holds a hyphen
+        ("NAAAGH!" CRLF "GAAAGH!", "Ruuuno!" CRLF "Suuusie!", "h-h-history" CRLF "r-r-really").
+    Checked on Capcom's own breaks (_gaps/scream_hyphen_20261001/A_capcom_breaks.tsv): 28 of 28 inside-word scream
+    breaks joined, 13 of 13 two-word pairs kept, 16 of 16 hyphen breaks joined (v1.9k_work/test_join_rows_r3.txt)."""
+    rows = body.split('\r\n')
+    out = rows[0]
+    for r in rows[1:]:
+        # words split on whitespace OUTSIDE tags (a tag such as <E003 4> holds a space and is part of its word)
+        mo = P.TAG.sub(lambda m: '\0' * len(m.group()), out)
+        mr = P.TAG.sub(lambda m: '\0' * len(m.group()), r)
+        ls = max(mo.rfind(' '), mo.rfind('\t'), mo.rfind('\n')) + 1
+        re_ = min([i for i in (mr.find(' '), mr.find('\t'), mr.find('\n')) if i >= 0] or [len(r)])
+        left, right = out[ls:], r[:re_]
+        lv = _vis_word(left).rstrip()
+        glue = (out and not out[-1].isspace() and r and not r[0].isspace() and
+                ((_HYPHEN_END.search(lv) and not lv.endswith('--')) or
+                 (_is_scream_left(left) and _is_scream_right(right))))
+        out += ('' if glue else ' ') + r
+    return out
+
+
 def words_of(body):
     """Tokens a line break may fall between -- and ONLY those.
 
@@ -51,7 +102,7 @@ def words_of(body):
     glue unless whitespace separates it from the visible text on BOTH sides.
     Breaks land on real spaces, nowhere else.
     """
-    toks = _TOK.findall(body.replace('\r\n', ' '))
+    toks = _TOK.findall(join_rows(body))
     out = []
     prev_space = True
     for x in toks:
@@ -132,7 +183,7 @@ def main():
                     if cand and cand[1] <= a.limit:
                         got = (cand, n)
                         break
-                seq = P.TAG.sub('', body.replace('\r\n', ' ')).split()
+                seq = P.TAG.sub('', join_rows(body)).split()
                 if got is None:
                     unfixed += 1
                     if a.verbose:
