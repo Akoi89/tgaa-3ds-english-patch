@@ -11,11 +11,13 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   stray letter for its title and a blank conclusion, because its fonts had no English
   letters. Both fonts now draw Capcom's own English lettering, in every Dance of Deduction
   in both games.
-- **Broken letters and cramped names.** DLC menu headings no longer show broken letters
-  (like "Picturc Book"), the t in the first game's Picture Book commentary has a proper
+- **Broken letters, cramped names and stray spaces.** DLC menu headings no longer show
+  broken letters (like "Picturc Book"), the t in the first game's Picture Book commentary has a proper
   crossbar, the gap after a capital T, V or W is tighter, the second game's Court
   Record no longer crams evidence and profile names together, and a lowercase w in the
-  second game no longer leaves a sliver of extra space before the next letter.
+  second game no longer leaves a sliver of extra space before the next letter. Lines no
+  longer have stray spaces or odd punctuation where Capcom's script has none ("student ,
+  currently", "touch ' Present '"), and a handful of small slips are fixed.
 - **The first game's DLC Picture Book.** Commentary is bigger on most pages, with the faint
   leftover Japanese behind it gone. The smudged menu icons are clean again, and the
   galleries for issues that were never released show Capcom's English placeholder text.
@@ -48,6 +50,8 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## Version history
 
+- v1.9k: stray spaces in the text ("student , currently") and a few small typos are gone,
+  matching Capcom's script.
 - v1.9j: a thought that runs onto a second page no longer makes the speaker's mouth move.
 - v1.9i: a lowercase w in the second game no longer leaves an extra sliver of space
   before the next letter.
@@ -116,22 +120,22 @@ The full account of what has and hasn't been checked is in TESTING.md.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.11.cia` / `TGAA2-base-1.0.25.cia`: the update.
-- `TGAA1-DLC-1.0.20.cia` / `TGAA2-DLC-1.0.15.cia`: the DLC. `TGAA1-EN-DLC-v1.9j.cia` /
+- `TGAA1-base-3.3.12.cia` / `TGAA2-base-1.0.26.cia`: the update.
+- `TGAA1-DLC-1.0.21.cia` / `TGAA2-DLC-1.0.15.cia`: the DLC. `TGAA1-EN-DLC-v1.9k.cia` /
   `TGAA2-EN-DLC-v1.9h.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9j-xdelta.zip` / `TGAA2-3DS-English-v1.9j-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9k-xdelta.zip` / `TGAA2-3DS-English-v1.9k-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the banner patch inside the zip
-  (`TGAA1-v1.9j-base.xdelta` / `TGAA2-v1.9j-base.xdelta`, the same file as the posted
+  (`TGAA1-v1.9k-base.xdelta` / `TGAA2-v1.9k-base.xdelta`, the same file as the posted
   `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
-  inside the zip, also posted on its own as `TGAA1-README-v1.9j.txt` /
-  `TGAA2-README-v1.9j.txt`).
-- `TGAA1-3DS-English-JPvoice-v1.9j-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9j-xdelta.zip`:
+  inside the zip, also posted on its own as `TGAA1-README-v1.9k.txt` /
+  `TGAA2-README-v1.9k.txt`).
+- `TGAA1-3DS-English-JPvoice-v1.9k-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9k-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9j.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+- `HASHES_v1.9k.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
   results.
 
-The result hashes are in `HASHES_v1.9j.txt` and in the readme inside each zip. Your own
+The result hashes are in `HASHES_v1.9k.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.
 
 ## Credits
