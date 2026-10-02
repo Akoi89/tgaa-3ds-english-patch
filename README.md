@@ -40,13 +40,13 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.3.11.cia` / `TGAA2-base-1.0.25.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.20.cia` / `TGAA2-DLC-1.0.15.cia` | the DLC |
-| 4 | `TGAA1-3DS-English-v1.9j-xdelta.zip` / `TGAA2-3DS-English-v1.9j-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
+| 2 | `TGAA1-base-3.3.12.cia` / `TGAA2-base-1.0.26.cia` | the update |
+| 3 | `TGAA1-DLC-1.0.21.cia` / `TGAA2-DLC-1.0.15.cia` | the DLC |
+| 4 | `TGAA1-3DS-English-v1.9k-xdelta.zip` / `TGAA2-3DS-English-v1.9k-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
-The row-3 DLC CIAs are 326,388,736 bytes (`TGAA1-DLC-1.0.20.cia`, sha256
-`138cc2b670d8011b2fcf7fc2947033dad189b307edcb8c0d54d5c69b4f43c1ae`) and 39,500,160 bytes
+The row-3 DLC CIAs are 326,388,736 bytes (`TGAA1-DLC-1.0.21.cia`, sha256
+`57e5d53920ddc962442833f497a942a6dc5f007c7c8aa1bd3d0acbd9d06e7bbb`) and 39,500,160 bytes
 (`TGAA2-DLC-1.0.15.cia`, sha256
 `280b2de55bfda0603d1b2709964d577657af4524b92183fe2ed914bfd19a4a19`). The release page shows
 a sha256 for every posted file, so any of them can be checked the same way.
@@ -55,11 +55,11 @@ You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
 **On an emulator, take the plain DLC instead.** If the DLC card shows a padlock and the game
 returns to the title, or your emulator refuses to install the DLC at all, use
-`TGAA1-EN-DLC-v1.9j.cia` or `TGAA2-EN-DLC-v1.9h.cia` in place of row 3. Same DLC, same version,
+`TGAA1-EN-DLC-v1.9k.cia` or `TGAA2-EN-DLC-v1.9h.cia` in place of row 3. Same DLC, same version,
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
-`TGAA1-README-v1.9j.txt` and `TGAA2-README-v1.9j.txt` on the release page are the readmes from
+`TGAA1-README-v1.9k.txt` and `TGAA2-README-v1.9k.txt` on the release page are the readmes from
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
@@ -87,16 +87,16 @@ Your files won't match my hashes, and that's fine: the decryptor writes random b
 card header and the ticket. The patches are built so those bytes don't matter. Everything else
 has to match, so a checksum error means the source is the wrong file, not the wrong
 luck. The wording xdelta3 gives you is `target window checksum mismatch`. If you see it,
-redump the title encrypted and check the source against `HASHES_v1.9j.txt` before trying
+redump the title encrypted and check the source against `HASHES_v1.9k.txt` before trying
 again.
 
 **Check it took:**
 
 | | reads |
 |---|---|
-| TGAA1 title screen, top right | `ENG 3.3.11` |
-| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.20`, top left |
-| TGAA2 title screen, top right | `ENG 1.0.25` |
+| TGAA1 title screen, top right | `ENG 3.3.12` |
+| TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.21`, top left |
+| TGAA2 title screen, top right | `ENG 1.0.26` |
 | TGAA2 DLC, costume pack banner | `DLC 1.0.15`, bottom right |
 
 An older number means an older update is still installed; delete it and install again. Both
