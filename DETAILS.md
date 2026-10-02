@@ -28,6 +28,7 @@ I'd much rather have a duplicate than miss something.
 | A voice line in the second game sounds hurried, with the breath between phrases missing | second game, story scenes | FIXED in v1.9. 27 lines had pauses cut out of the middle to make them fit the space, a workaround for the same misplacement bug. The pauses are back, and every second-game voice that had been stored at reduced quality for the same reason is at full quality again: a scan of the finished build found no replaced voice below Capcom's sample rate in either game or either DLC |
 | The parchment narration at the start of Episode 2 sounds rushed, or pauses in the middle of a sentence | first game | FIXED in v1.9 and v1.9a. Each page of that opening had been timed for the Japanese takes, and the longer English takes had been sped up, by up to about a third, to finish in time. v1.9 restored the natural pace, but each page's English is in two pieces and the second piece still waited on the cue for the Japanese second line, which left pauses of half a second to over a second on five pages, three of them mid-sentence or mid-word, while two pages felt rushed. v1.9a times each page the way Capcom's PC release does: one continuous read per page, the second piece following the first after the recording's own pause, with the page turns, art and music on Capcom's original timing. Heard in-game: nothing is cut off and nothing overlaps |
 | A gasp, effort or cry during the third episode's Dance of Deduction sounds distorted | second game | FIXED in v1.9. Those 14 reactions went through a converter of mine that read part of the source format wrong. Fixed at source; they now decode exactly like the reference decoder. Checked by decoding, not yet heard in the scene |
+| Stray spaces in the text where a hidden control code sat against a word: "student , currently", "touch ' Present '", "m- my omnibus", "Well... I think", double spaces, and three lines that began with the punctuation that belonged to the line before. One evidence-report page (the first game's "Additional Notes") also had Capcom's three "- " list points run into the paragraph | both games and the first game's DLC, mostly the first game | FIXED in v1.9k. A cleanup pass of mine on 2026-09-05 (not senyarom's text) split words wherever one of the game's hidden text-timing or colour codes sat against a word, and joined the pieces back with a space. Every one now matches Capcom's script at that spot, and the three list points each start their own line again. Smaller slips went in the same release: "anti- gravity" (second game), "Sherlock" for "Herlock" in two second-game costume error messages, "judgment" and three dashes in the first game's DLC (now Capcom's form, two " - " and one "--"), missing spaces in three DLC music notes (Iris Wilson, Lord Chief Justice Stronghart, Gina Lestrade), a space inside a bracket in the DLC, and a leading space that pushed a centred system line off centre in both games. Found by comparing every shipped line against Capcom's Chronicles script. 250 places in the first round (221 in the first game, 20 in its DLC, 9 in the second game) plus 13 edits in a second round. The report page went from 9 to 10 rows, the height already proven safe for that page. The widest changed dialogue line is 344 px of the 345 px limit, and no tag, page or line count changed anywhere else. The three tools that caused it are fixed so a later cleanup can't repeat it. Seen on Azahar: the three version stamps, and the first game's Episode 1 tutorial line "Find the victim in the 'People' section of the / Court Record, then touch 'Present'. Try it now."; not run on a 3DS. Everything else was checked in the files, not on screen |
 | A thought (the blue text in brackets) that runs onto a second page has its second half spoken: the speaker's mouth moves as if they were talking | both games and the first game's DLC | FIXED in v1.9j. The second page started without its opening bracket, so the game read it as speech and animated the mouth. Every split thought now closes its bracket at the break and opens a new one on the next page, the way Capcom's own script does: "(Now that I'm standing in his shoes...)" then "(...I'm starting to understand something else Naruhodo-san goes through.)". Reported by GlacialSkyfarer on issue #1. 349 page breaks fell inside a thought: 293 in the first game, 6 in its DLC, 50 in the second game, 0 in its DLC. Capcom's Japanese and English scripts have none. Four breaks had split a title from its name ("Mr" / "Miss"); the title now goes onto the second page with the name. The wording puts an ellipsis at each side of the break, and plain brackets where the first page already ends a sentence. The widest changed line is 330 px of the 345 px limit, and no page gained a line. Seen on Azahar in the second game (Episode 1, Trial Start: the second page's mouth moved on v1.9i and stays still on v1.9j); not run on a 3DS. The first game's pages and the DLC's were checked in the files, not on screen |
 | On some centred pages (narration, flashbacks, place and time cards, thoughts, a few choices), a line further down the page sits against the left edge while the line above it stays centred | first game, its DLC and the second game's DLC | FIXED in v1.9h. 18 pages in the first game, 5 in its DLC and 6 in the second game's DLC, the last six inherited from the earlier fan patch. Seen on the first game's Episode 5 opening page, in the line "Our first two months in / London passed by in a flash.", confirmed centred in an emulator. The first game's DLC "Telegraphic Supplement" headline, one of the 5, was seen in an emulator, both lines the same orange and both centred; not yet checked on a 3DS |
 | A DLC newspaper headline types its second half at a different speed than the first | first game's DLC | FIXED in v1.9h. The headline is split over two pages and the second restated the speed from the top of the first page instead of the one in force, the same split-page speed bug v1.9g fixed elsewhere, missed here. Not a word of dialogue changed. Not yet seen on screen |
@@ -428,8 +429,8 @@ listened to, and what has only been checked in the files.
 
 ## Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9j-xdelta.zip`
-and `TGAA2-3DS-English-v1.9j-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9k-xdelta.zip`
+and `TGAA2-3DS-English-v1.9k-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -450,9 +451,9 @@ patches also take a `.3ds` cartridge dump turned into a CIA with GodMode9's Buil
 that differ from an installed-title CIA dump. The optional base patch still wants a CIA dump
 of an installed title. Same install order afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.9j.txt` and
-`TGAA2-README-v1.9j.txt`, because romhacking.net wants the readme as a separate link rather
-than only inside the zip. `HASHES_v1.9j.txt` on the release lists the size, CRC32 and sha256
+The same readme text is also on the release on its own, as `TGAA1-README-v1.9k.txt` and
+`TGAA2-README-v1.9k.txt`, because romhacking.net wants the readme as a separate link rather
+than only inside the zip. `HASHES_v1.9k.txt` on the release lists the size, CRC32 and sha256
 of the English xdelta sources, patches and results for both games.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
@@ -462,8 +463,8 @@ to happen.
 ## Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.9j-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.9j-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.9k-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.9k-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are
