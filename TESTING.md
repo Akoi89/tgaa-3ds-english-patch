@@ -61,6 +61,7 @@ is already on my list.
 | The item-added evidence plate, long names shown whole (TGAA1 Episode 3 trial, TGAA2 Episode 3) | seen in an emulator: "Autopsy Report", "Crime Scene Photograph" and "Defendant's Leather Gloves" in the first game, and "Great Exhibition Newspaper" in the second, all whole and clear of the plate's border. Emulator only |
 | The lowercase w spacing fix, second game (v1.9i) | seen on the emulator, not yet on a 3DS |
 | Thoughts that run onto a second page keep the speaker's mouth still (v1.9j) | seen on the emulator, not yet on a 3DS |
+| Text has no stray spaces where Capcom has none (v1.9k) | seen on the emulator in the first game's opening tutorial (the "Find the victim in the 'People' section of the Court Record, then touch 'Present'" line, plus the three version stamps); the rest was checked against Capcom's script in the files, not on screen. Not run on a 3DS |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a
