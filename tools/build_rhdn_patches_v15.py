@@ -184,11 +184,17 @@ def main():
     ap.add_argument('--release', help=r'release folder, default Final\_new\<tag>; a relative path is '
                                       r'taken from the project root (so Final\_CURRENT), not the current folder')
     ap.add_argument('--only', choices=['TGAA1', 'TGAA2'])
+    ap.add_argument('--enbanner', action='append', default=[], metavar='GAME=PATH', help='override the English-banner image the base patch targets, e.g. TGAA2=<path>\\new.cci (v1.9l: the new TGAA2 banner is not in banner_tools\\_out)')
     a = ap.parse_args()
     folder, found = release_set.resolve(R, a.tag, a.release)
     release_set.describe(folder, found)
     for g, cfg in GAMES.items():
         cfg.update(update=found[g]['update'], dlc=found[g]['dlc'], en_dlc=found[g]['en_dlc'])
+    for ov in a.enbanner:
+        og, op = ov.split('=', 1)
+        assert og in GAMES and os.path.isfile(op), ('--enbanner', ov)
+        GAMES[og]['enbanner'] = op   # absolute path; os.path.join(R, abs) keeps the absolute one
+        print('enbanner override:', og, op)
     os.makedirs(a.work, exist_ok=True); os.makedirs(a.out, exist_ok=True)
     # a partial (--only) run must not leave the other game's rows from an older run looking current
     for stale in ('HASHES_%s.txt' % a.tag, 'RELEASE_SET_%s.json' % a.tag):
