@@ -1,3 +1,7 @@
+**Superseded by [v1.9l](../../releases/tag/v1.9l).** v1.9l fixes the Move list, the juror
+boxes, a stray "Invalid Message" and a round of pictures. Coming from v1.9k, redo both
+games' updates, both DLCs and the second game's banner patch if you use it.
+
 v1.9k clears out stray spaces and a few small slips in the English text.
 
 - **Stray spaces in Capcom's lines.** A cleanup pass I ran in September left a space wherever a hidden timing or colour code sat against a word, so lines read "student , currently", "touch ' Present '" or "m- my omnibus". They're gone, each checked against Capcom's script.
