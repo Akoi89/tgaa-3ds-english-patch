@@ -18,9 +18,12 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   second game no longer leaves a sliver of extra space before the next letter. Lines no
   longer have stray spaces or odd punctuation where Capcom's script has none ("student ,
   currently", "touch ' Present '"), and a handful of small slips are fixed.
-- **The first game's DLC Picture Book.** Commentary is bigger on most pages, with the faint
-  leftover Japanese behind it gone. The smudged menu icons are clean again, and the
-  galleries for issues that were never released show Capcom's English placeholder text.
+- **Pictures that looked patched, and the first game's DLC Picture Book.** Commentary is
+  bigger on most pages, with the faint leftover Japanese behind it gone. The smudged menu
+  icons are clean again, and the galleries for issues that were never released show
+  Capcom's English placeholder text. Pictures that looked patched rather than made are
+  redone in both games: picture book pages, maps, pawn tickets, a newspaper and the second
+  game's HOME menu banner, where the "2" was cut off.
 - **The title screen's DLC card.** It read "D L C" on four diamonds and went dark when
   pressed; it now reads "Extras" sideways like its neighbours and turns white when
   pressed, in both games.
@@ -46,10 +49,17 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   color, red highlight and typing speed, and a thought that runs onto a second page closes
   its bracket at the break and opens a new one on the next, so the speaker's mouth stays
   still while they're only thinking. A line further down a centred page now keeps
-  its centring instead of landing against the left edge.
+  its centring instead of landing against the left edge. The Move list no longer hides the
+  start of a place name under the "You" tag or cuts long ones off, the juror boxes in the
+  Summation Examination no longer chop lines at the edge, autopsy reports and other
+  evidence pages fit their frame, and "Invalid Message" no longer shows under two cutscene
+  subtitles in the first game.
 
 ## Version history
 
+- v1.9l: the Move list shows whole place names; juror boxes and autopsy pages no longer
+  cut off or run into their frame; "Invalid Message" gone from two cutscene subtitles; a
+  round of pictures redone, including the second game's HOME menu banner.
 - v1.9k: stray spaces in the text ("student , currently") and a few small typos are gone,
   matching Capcom's script.
 - v1.9j: a thought that runs onto a second page no longer makes the speaker's mouth move.
@@ -120,22 +130,22 @@ The full account of what has and hasn't been checked is in TESTING.md.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.12.cia` / `TGAA2-base-1.0.26.cia`: the update.
-- `TGAA1-DLC-1.0.21.cia` / `TGAA2-DLC-1.0.15.cia`: the DLC. `TGAA1-EN-DLC-v1.9k.cia` /
-  `TGAA2-EN-DLC-v1.9h.cia`: the same DLC decrypted inside, for emulators. One or the
+- `TGAA1-base-3.3.13.cia` / `TGAA2-base-1.0.27.cia`: the update.
+- `TGAA1-DLC-1.0.22.cia` / `TGAA2-DLC-1.0.16.cia`: the DLC. `TGAA1-EN-DLC-v1.9l.cia` /
+  `TGAA2-EN-DLC-v1.9l.cia`: the same DLC decrypted inside, for emulators. One or the
   other, not both.
-- `TGAA1-3DS-English-v1.9k-xdelta.zip` / `TGAA2-3DS-English-v1.9k-xdelta.zip`: both as
+- `TGAA1-3DS-English-v1.9l-xdelta.zip` / `TGAA2-3DS-English-v1.9l-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the banner patch inside the zip
-  (`TGAA1-v1.9k-base.xdelta` / `TGAA2-v1.9k-base.xdelta`, the same file as the posted
+  (`TGAA1-v1.9l-base.xdelta` / `TGAA2-v1.9l-base.xdelta`, the same file as the posted
   `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
-  inside the zip, also posted on its own as `TGAA1-README-v1.9k.txt` /
-  `TGAA2-README-v1.9k.txt`).
-- `TGAA1-3DS-English-JPvoice-v1.9k-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9k-xdelta.zip`:
+  inside the zip, also posted on its own as `TGAA1-README-v1.9l.txt` /
+  `TGAA2-README-v1.9l.txt`).
+- `TGAA1-3DS-English-JPvoice-v1.9l-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9l-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9k.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+- `HASHES_v1.9l.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
   results.
 
-The result hashes are in `HASHES_v1.9k.txt` and in the readme inside each zip. Your own
+The result hashes are in `HASHES_v1.9l.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.
 
 ## Credits
