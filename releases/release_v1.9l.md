@@ -1,3 +1,7 @@
+**Superseded by [v1.9m](../../releases/tag/v1.9m).** v1.9m fixes Van Zieks's cut-off
+"Objection!", the first game's Dance of Deduction labels and staff credits, and a few names
+in pictures. Coming from v1.9l, redo both games' updates and the first game's DLC.
+
 v1.9l fixes what a tester reported in the testing thread and redoes a round of pictures.
 
 - **The Move list** hid the start of place names under the "You" tag and cut the long ones off. Names now start after the tag, and long ones use shorter forms, mostly Capcom's own.
