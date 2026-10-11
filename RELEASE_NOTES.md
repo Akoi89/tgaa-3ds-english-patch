@@ -10,7 +10,10 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 - **The Dance of Deduction note cards.** The card that sums up each topic showed a single
   stray letter for its title and a blank conclusion, because its fonts had no English
   letters. Both fonts now draw Capcom's own English lettering, in every Dance of Deduction
-  in both games.
+  in both games. The cyan labels the first game shows when the crosshair is on an object
+  no longer have the tails of g, p and y cut flat. In both games, the "Hold it, Mr
+  Holmes!" and "Deduction Failed" lines now read "Hold it, Mr Sholmes!" and "I can see
+  nothing.", as in Capcom's version.
 - **Broken letters, cramped names and stray spaces.** DLC menu headings no longer show
   broken letters (like "Picturc Book"), the t in the first game's Picture Book commentary has a proper
   crossbar, the gap after a capital T, V or W is tighter, the second game's Court
@@ -18,12 +21,17 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   second game no longer leaves a sliver of extra space before the next letter. Lines no
   longer have stray spaces or odd punctuation where Capcom's script has none ("student ,
   currently", "touch ' Present '"), and a handful of small slips are fixed.
-- **Pictures that looked patched, and the first game's DLC Picture Book.** Commentary is
+- **Pictures that looked patched, wrong names in pictures, and the first game's DLC Picture Book.** Commentary is
   bigger on most pages, with the faint leftover Japanese behind it gone. The smudged menu
   icons are clean again, and the galleries for issues that were never released show
   Capcom's English placeholder text. Pictures that looked patched rather than made are
   redone in both games: picture book pages, maps, pawn tickets, a newspaper and the second
-  game's HOME menu banner, where the "2" was cut off.
+  game's HOME menu banner, where the "2" was cut off. A second full look at every picture
+  fixed Van Zieks's "Objection!" bubble, which was chopped off after the "n" with no "!"
+  in both games, the first game's staff credits (spellings and job titles now follow
+  Capcom's own English credits), a medical report card that said John Watson instead of
+  Wilson, a tutorial picture that spelt Yujin and Yumei with a double u, a washed-out
+  bookcase, and a DLC design page whose text crowded a sketch.
 - **The title screen's DLC card.** It read "D L C" on four diamonds and went dark when
   pressed; it now reads "Extras" sideways like its neighbours and turns white when
   pressed, in both games.
@@ -57,6 +65,9 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## Version history
 
+- v1.9m: Van Zieks's "Objection!" bubble shows the whole word and the "!"; the first
+  game's Dance of Deduction labels keep the tails of g, p and y; its staff credits follow
+  Capcom's English credits; "Hold it, Mr Sholmes!" and a few names in pictures corrected.
 - v1.9l: the Move list shows whole place names; juror boxes and autopsy pages no longer
   cut off or run into their frame; "Invalid Message" gone from two cutscene subtitles; a
   round of pictures redone, including the second game's HOME menu banner.
@@ -122,7 +133,8 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 - Japanese remains in the first game's DLC Picture Book (name tags, production scribbles).
 - Nobody has played either main game through on a console yet. The cutscene grain fix
   hasn't been heard on a 3DS, and the English lines added to the second game's last two
-  episodes, and the crowd loops, were checked offline only.
+  episodes, and the crowd loops, were checked offline only. The first game's new staff
+  credits are at the end of the game and haven't been seen on screen yet.
 
 The full account of what has and hasn't been checked is in TESTING.md.
 
@@ -130,22 +142,23 @@ The full account of what has and hasn't been checked is in TESTING.md.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.13.cia` / `TGAA2-base-1.0.27.cia`: the update.
-- `TGAA1-DLC-1.0.22.cia` / `TGAA2-DLC-1.0.16.cia`: the DLC. `TGAA1-EN-DLC-v1.9l.cia` /
+- `TGAA1-base-3.3.14.cia` / `TGAA2-base-1.0.28.cia`: the update.
+- `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.16.cia`: the DLC. `TGAA1-EN-DLC-v1.9m.cia` /
   `TGAA2-EN-DLC-v1.9l.cia`: the same DLC decrypted inside, for emulators. One or the
-  other, not both.
-- `TGAA1-3DS-English-v1.9l-xdelta.zip` / `TGAA2-3DS-English-v1.9l-xdelta.zip`: both as
+  other, not both. The second game's DLC didn't change in v1.9m, so it keeps its v1.9l
+  name.
+- `TGAA1-3DS-English-v1.9m-xdelta.zip` / `TGAA2-3DS-English-v1.9m-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the banner patch inside the zip
-  (`TGAA1-v1.9l-base.xdelta` / `TGAA2-v1.9l-base.xdelta`, the same file as the posted
+  (`TGAA1-v1.9m-base.xdelta` / `TGAA2-v1.9m-base.xdelta`, the same file as the posted
   `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
-  inside the zip, also posted on its own as `TGAA1-README-v1.9l.txt` /
-  `TGAA2-README-v1.9l.txt`).
-- `TGAA1-3DS-English-JPvoice-v1.9l-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9l-xdelta.zip`:
+  inside the zip, also posted on its own as `TGAA1-README-v1.9m.txt` /
+  `TGAA2-README-v1.9m.txt`).
+- `TGAA1-3DS-English-JPvoice-v1.9m-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9m-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9l.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+- `HASHES_v1.9m.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
   results.
 
-The result hashes are in `HASHES_v1.9l.txt` and in the readme inside each zip. Your own
+The result hashes are in `HASHES_v1.9m.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.
 
 ## Credits
