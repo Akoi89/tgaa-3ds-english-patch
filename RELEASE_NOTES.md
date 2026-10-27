@@ -40,12 +40,15 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   few crowd sounds also had the wrong channel layout. Every sound is back in position, the
   click at the end of replaced voice lines is gone at the root, and crowd noise loops
   where Capcom's recording says to.
-- **Voice lines cut short, dulled, or left in Japanese.** Every replaced voice now plays at
-  full quality and length, and the second game's lines with pauses cut from the middle
-  are whole again. Story lines that had stayed Japanese because the English ran long now
-  play Capcom's English recording, as do four bonus recital tracks in the first game's
-  DLC and the second game's last crowd chant, and the second game's Dance of Deduction
-  gasps and cries aren't distorted any more.
+- **Voice lines cut short, dulled, left in Japanese, or missing the "shing".** Every
+  replaced voice now plays at full quality and length, and the second game's lines with
+  pauses cut from the middle are whole again. Story lines that had stayed Japanese because
+  the English ran long now play Capcom's English recording, as do four bonus recital tracks
+  in the first game's DLC and the second game's last crowd chant, and the second game's
+  Dance of Deduction gasps and cries aren't distorted any more. Capcom mixes a metallic
+  "shing" into its Japanese shout clips, and the English recordings didn't have it. It's
+  mixed back in under the English "Hold it!", "Objection!" and "Take that!", in both games
+  and the second game's DLC, set so the louder shouts don't distort.
 - **The first game's Episode 2 opening narration.** It had been sped up to finish before
   each page turned. It now reads straight through at a natural pace, with the page turns
   on Capcom's own timing.
@@ -61,10 +64,15 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   start of a place name under the "You" tag or cuts long ones off, the juror boxes in the
   Summation Examination no longer chop lines at the edge, autopsy reports and other
   evidence pages fit their frame, and "Invalid Message" no longer shows under two cutscene
-  subtitles in the first game.
+  subtitles in the first game. The question shown with the Present and Examine buttons
+  runs further right than the speech bubble does, and a few of them were chopped off
+  partway through a word on the lower screen; they're re-broken now, and the longest
+  continue on a second page.
 
 ## Version history
 
+- v1.9n: the question beside the Present and Examine buttons is no longer chopped off
+  partway through a word; the metallic "shing" is back under the English shouts.
 - v1.9m: Van Zieks's "Objection!" bubble shows the whole word and the "!"; the first
   game's Dance of Deduction labels keep the tails of g, p and y; its staff credits follow
   Capcom's English credits; "Hold it, Mr Sholmes!" and a few names in pictures corrected.
@@ -134,7 +142,9 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 - Nobody has played either main game through on a console yet. The cutscene grain fix
   hasn't been heard on a 3DS, and the English lines added to the second game's last two
   episodes, and the crowd loops, were checked offline only. The first game's new staff
-  credits are at the end of the game and haven't been seen on screen yet.
+  credits are at the end of the game and haven't been seen on screen yet. The "shing" mixed
+  back under the English shouts hasn't been heard on a 3DS, and the re-broken Present and
+  Examine questions haven't been seen on screen.
 
 The full account of what has and hasn't been checked is in TESTING.md.
 
@@ -142,23 +152,22 @@ The full account of what has and hasn't been checked is in TESTING.md.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.14.cia` / `TGAA2-base-1.0.28.cia`: the update.
-- `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.16.cia`: the DLC. `TGAA1-EN-DLC-v1.9m.cia` /
-  `TGAA2-EN-DLC-v1.9l.cia`: the same DLC decrypted inside, for emulators. One or the
-  other, not both. The second game's DLC didn't change in v1.9m, so it keeps its v1.9l
-  name.
-- `TGAA1-3DS-English-v1.9m-xdelta.zip` / `TGAA2-3DS-English-v1.9m-xdelta.zip`: both as
+- `TGAA1-base-3.3.15.cia` / `TGAA2-base-1.0.29.cia`: the update.
+- `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.17.cia`: the DLC. `TGAA1-EN-DLC-v1.9m.cia` /
+  `TGAA2-EN-DLC-v1.9n.cia`: the same DLC decrypted inside, for emulators. One or the
+  other, not both. The first game's DLC didn't change in v1.9n, so it keeps its names.
+- `TGAA1-3DS-English-v1.9n-xdelta.zip` / `TGAA2-3DS-English-v1.9n-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the banner patch inside the zip
-  (`TGAA1-v1.9m-base.xdelta` / `TGAA2-v1.9m-base.xdelta`, the same file as the posted
+  (`TGAA1-v1.9n-base.xdelta` / `TGAA2-v1.9n-base.xdelta`, the same file as the posted
   `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
-  inside the zip, also posted on its own as `TGAA1-README-v1.9m.txt` /
-  `TGAA2-README-v1.9m.txt`).
-- `TGAA1-3DS-English-JPvoice-v1.9m-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9m-xdelta.zip`:
+  inside the zip, also posted on its own as `TGAA1-README-v1.9n.txt` /
+  `TGAA2-README-v1.9n.txt`).
+- `TGAA1-3DS-English-JPvoice-v1.9n-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9n-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9m.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+- `HASHES_v1.9n.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
   results.
 
-The result hashes are in `HASHES_v1.9m.txt` and in the readme inside each zip. Your own
+The result hashes are in `HASHES_v1.9n.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.
 
 ## Credits
