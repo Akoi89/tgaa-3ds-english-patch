@@ -1,3 +1,7 @@
+**Superseded by [v1.9n](../../releases/tag/v1.9n).** v1.9n fixes the Present and Examine question
+being cut off, and puts the "shing" back under the English shouts. Coming from v1.9m, redo both
+games' updates and the second game's DLC.
+
 v1.9m fixes what a second full picture check turned up.
 
 - **Van Zieks's "Objection!"** was chopped off after the "n", with no "!", in both games. It's whole now.
