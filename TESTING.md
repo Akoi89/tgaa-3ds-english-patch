@@ -74,9 +74,18 @@ is already on my list.
 | The Dance of Deduction stamp lines (v1.9m) | seen on the emulator: "Review Start / Hold it, Mr Sholmes!" in both games, and "Deduction Failed / I can see nothing." in the first game. The second game's "Deduction Failed" stamp and the topic conclusion lines in its Dance weren't captured. Not run on a 3DS |
 | The medical report card and the first game's DLC design page (v1.9m) | seen on the emulator: the card's 3D view reads JOHN WILSON, and the Susato design page (issue No.2, page 5) has its paragraph clear of the sketches. Not run on a 3DS |
 | The first game's new staff credits, the restored bookcase and the second game's tutorial screenshot (v1.9m) | **not seen on screen.** The credits are at the end of the game and the test save doesn't get there; one of the credit archives is 6,136 bytes bigger than before and I haven't confirmed the game's loader takes it. The bookcase view wasn't reached, and the Guide entry with the tutorial screenshot wasn't found in the second game. All three were checked as pictures and files |
+| The version stamps (v1.9n) | seen on the emulator after installing the three updates: the first game's title reads ENG 3.3.15, the second game's title reads ENG 1.0.29 and its costume pack banner reads DLC 1.0.17, and both games reach the title. The first game's DLC is the v1.9m file, unchanged. Not run on a 3DS |
+| The shout cut-ins after the sound change (v1.9n) | seen on the emulator: the first game's "Hold it!" and the second game's DLC "Objection!" play with no crash. The emulator run couldn't judge the sound, so the "shing" mixed back under the English shouts has **not been heard** on any device. I chose the mix by comparing two on a PC render of the clips. Not run on a 3DS |
+| The larger sound archives (v1.9n) | **not run on anything.** Three sound archives are now bigger than Capcom's own Japanese ones: the first game's `chr413`, the second game's `chr434` and the second game's DLC `chr614`, the first DLC archive over its Japanese counterpart. I don't know whether the game's loader takes archives that size, and no scene that loads them was reached. This is the kind of change that most needs a look on a console |
+| The Present and Examine questions (v1.9n) | **not seen on screen.** The six re-broken question pages (two scripts in the first game, four in the second) were measured as files, and the emulator run couldn't reach those scenes. One more page of the same kind, the first game's `L_TF_START_B`, is left as it was and hasn't been checked |
+| The second game's DLC at version 1.0.17 (v1.9n) | installed in the emulator and read back as version 1.1.1 with the right stamp. Installing it over an older DLC hasn't been tried. Not run on a 3DS |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a
 size limit turned out to be the misplaced-audio bug fixed in v1.9, and every shout is
 written at Capcom's position now. But that is reasoning, not listening. **If you play the first game, a jury
 verdict or a press that stops part-way is the single most useful thing to listen for.**
+
+For v1.9n, the most useful console look is at a shout's "shing", at a scene that uses one of
+the three bigger sound archives, and at a Present and Examine question in the 3D
+investigation. If any of them looks or sounds wrong, [issue #1](../../issues/1) is the place.
