@@ -28,6 +28,7 @@ I'd much rather have a duplicate than miss something.
 | A voice line in the second game sounds hurried, with the breath between phrases missing | second game, story scenes | FIXED in v1.9. 27 lines had pauses cut out of the middle to make them fit the space, a workaround for the same misplacement bug. The pauses are back, and every second-game voice that had been stored at reduced quality for the same reason is at full quality again: a scan of the finished build found no replaced voice below Capcom's sample rate in either game or either DLC |
 | The parchment narration at the start of Episode 2 sounds rushed, or pauses in the middle of a sentence | first game | FIXED in v1.9 and v1.9a. Each page of that opening had been timed for the Japanese takes, and the longer English takes had been sped up, by up to about a third, to finish in time. v1.9 restored the natural pace, but each page's English is in two pieces and the second piece still waited on the cue for the Japanese second line, which left pauses of half a second to over a second on five pages, three of them mid-sentence or mid-word, while two pages felt rushed. v1.9a times each page the way Capcom's PC release does: one continuous read per page, the second piece following the first after the recording's own pause, with the page turns, art and music on Capcom's original timing. Heard in-game: nothing is cut off and nothing overlaps |
 | A gasp, effort or cry during the third episode's Dance of Deduction sounds distorted | second game | FIXED in v1.9. Those 14 reactions went through a converter of mine that read part of the source format wrong. Fixed at source; they now decode exactly like the reference decoder. Checked by decoding, not yet heard in the scene |
+| The manual shows an older name, such as Naruhodou or Holmes, or a menu word that differs from the game | both games, the manual opened from the HOME menu | The manual's text is English and revised as of v1.9o, but its screenshots and some headings are pictures from Scarlet Study's translation and I haven't redrawn them. The text is right where a picture disagrees with it. I plan to redo the pictures later. Not seen on a 3DS |
 | The question shown with the Present and Examine buttons is chopped off partway through a word on the lower screen | both games, the 3D investigation (seen in a photo from the first game) | FIXED in v1.9n, reported on issue #1. In the 3D investigation the game puts a question on the lower screen next to the Present and Examine buttons, for example "Point out what it is that proves the victim fell from the roof deck through the skylight!". That text is drawn in a widget that runs further right than the speech bubble does, and it was never part of my width checks, so a few of the longer questions were cut off. Six of these question pages across the two games (the first game's 2 script files, the second game's 4) are re-broken so each line stays inside a safe width: three long ones are split into two pages, the other three just get a new line break. No wording changed. **Not seen on screen:** my emulator run couldn't reach those scenes, so this is measured as files. One more page of the same kind, in the first game, is left as it was and hasn't been checked. Details under *The Present and Examine question* below. Not run on a 3DS |
 | A shout has lost its metallic "shing": "Hold it!", "Objection!" or "Take that!" is just the voice | both games and the second game's DLC, the English shouts | FIXED in v1.9n, reported on issue #1. In Capcom's Japanese files that sound effect is mixed into the shout clips themselves, and the English recordings didn't have it, so it was lost. It is mixed back in under 186 English shouts now (40 in the first game, 65 in the second, 81 in the second game's DLC) at the level Capcom used, with a soft limiter so the loud ones don't clip. The first game's DLC has no such clips. I compared two ways of mixing it on a PC render of the clips and chose the limiter version. **Not heard on a 3DS**; the emulator run played two shout cut-ins without a crash but couldn't judge the sound. Six shouts are still Japanese because they were never in the English update: in the second game, `chr104_mrs` and `chr210_mmm` "igiari" and "matta" (4), and in its DLC `chr010_hms` and `chr100_asg` "kurae" (2). The Japanese-voice edition already had the sound and its audio didn't change. Details under *The shout sound effect* below |
 | The British-style *Objection!* bubble reads "Objection" cut off after the "n", with no "!" | both games, the British courtroom bubble (seen in the first game's Episode 3 trial) | FIXED in v1.9m. The game draws that word from a 400 px wide window of its picture, and the English word I shipped ran past the right end of the window, so the last letters and the "!" were never drawn. The word is moved inside the window, moved only, not resized. Seen cut off on the emulator in v1.9l (the "n" touching the frame edge, no "!") and whole with the fixed picture loaded as a replacement file (the "!" sits inside the burst, background visible beyond it); that second test did not use the built CIA. Seen in the first game only, in the first Episode 3 cross-examination after Furst's statement 4 is pressed; the second game gets the same fix and I didn't catch its bubble. This blackletter English bubble is Van Zieks's own (the other speakers use the standard bubble); the bare hand seen inside the burst is Ryunosuke's pointing pose showing behind it, and Van Zieks speaks straight after. Not run on a 3DS |
@@ -342,6 +343,16 @@ starts its loop inside a short fade-in, so it dips a little each time round; tha
 original recording. These were checked by decoding them on a PC. The loops haven't been heard
 on a console yet, and the Episode 5 chant can't be reached on the test save.
 
+#### The English manual (v1.9o)
+
+The short version: the manual you open from the HOME menu is English now, in both games. [Issue #4](../../issues/4) asked for it. Before, the update carried no manual of its own, so the HOME menu showed the Japanese one that comes with the base game. The text is Scarlet Study's fan translation of the manual (their builds are the first game's version 2.4.1 and the second game's 2.1.0), which I revised in place.
+
+What I changed in the text: names and terms follow the game and Capcom's *Chronicles*, so it says Ryunosuke Naruhodo, Herlock Sholmes, Dance of Deduction and Summation Examination where the older text had Naruhodou, Holmes, Joint Reasoning and Closing Argument, and People where it said Profiles. The first page is a short disclaimer saying the manual belongs to a fan patch and that Capcom and Nintendo have nothing to do with it, and the notes pages at the back have an About This Patch page and a list of the names and terms. A few of the titles in the HOME menu's index are shortened to fit.
+
+What I haven't done: the pictures. The screenshots and some headings are images, and I haven't redrawn them, so several still show the older names, and the first game's logo still carries Scarlet Study's version stamp. I plan to redo them as a separate piece of work.
+
+How it's built: the manual is a second content inside each update CIA, next to the game itself, which is the v1.9n build apart from the version stamp. It is 2,023,424 bytes in the first game and 1,994,752 in the second, a little under Scarlet Study's own (2,035,712 and 1,998,848). The update's version moved to 3.4.0 for the first game, because 3.3.15 was the last number its version field could hold, and the second game's moved to 1.0.30. **Not seen on a 3DS:** this is the first time I've added a second content to one of these CIAs, and no 3DS has opened it. In the emulator the HOME menu viewer shows both manuals correctly when they are put where it looks (it reads the manual from the base game, so it ignores the update's copy), which checks the pages but not the delivery. The patches were proven the same way as every other release, and the Japanese-voice edition carries the same manual.
+
 #### The shout sound effect (v1.9n)
 
 The short version: when a character shouts "Hold it!", "Objection!" or "Take that!" in Capcom's Japanese files, a short metallic "shing" plays with the voice. Capcom mixed it into the shout clips themselves, so the English recordings, which came without it, played as the voice alone. v1.9n lays the same sound under the English shouts again.
@@ -484,8 +495,8 @@ listened to, and what has only been checked in the files.
 
 ## Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9n-xdelta.zip`
-and `TGAA2-3DS-English-v1.9n-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9o-xdelta.zip`
+and `TGAA2-3DS-English-v1.9o-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
@@ -506,9 +517,9 @@ patches also take a `.3ds` cartridge dump turned into a CIA with GodMode9's Buil
 that differ from an installed-title CIA dump. The optional base patch still wants a CIA dump
 of an installed title. Same install order afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.9n.txt` and
-`TGAA2-README-v1.9n.txt`, because romhacking.net wants the readme as a separate link rather
-than only inside the zip. `HASHES_v1.9n.txt` on the release lists the size, CRC32 and sha256
+The same readme text is also on the release on its own, as `TGAA1-README-v1.9o.txt` and
+`TGAA2-README-v1.9o.txt`, because romhacking.net wants the readme as a separate link rather
+than only inside the zip. `HASHES_v1.9o.txt` on the release lists the size, CRC32 and sha256
 of the English xdelta sources, patches and results for both games.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
@@ -518,8 +529,8 @@ to happen.
 ## Japanese voice edition
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
-release also carries `TGAA1-3DS-English-JPvoice-v1.9n-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.9n-xdelta.zip`: the same three patches as the zips above,
+release also carries `TGAA1-3DS-English-JPvoice-v1.9o-xdelta.zip` and
+`TGAA2-3DS-English-JPvoice-v1.9o-xdelta.zip`: the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are

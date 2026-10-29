@@ -40,9 +40,9 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.3.15.cia` / `TGAA2-base-1.0.29.cia` | the update |
-| 3 | `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.17.cia` | the DLC (the first game's is unchanged since v1.9m and keeps its file name) |
-| 4 | `TGAA1-3DS-English-v1.9n-xdelta.zip` / `TGAA2-3DS-English-v1.9n-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
+| 2 | `TGAA1-base-3.4.0.cia` / `TGAA2-base-1.0.30.cia` | the update, which now carries the English manual |
+| 3 | `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.17.cia` | the DLC (unchanged since v1.9m for the first game and v1.9n for the second, so both keep their file names) |
+| 4 | `TGAA1-3DS-English-v1.9o-xdelta.zip` / `TGAA2-3DS-English-v1.9o-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
 The row-3 DLC CIAs are 326,388,736 bytes (`TGAA1-DLC-1.0.23.cia`, sha256
@@ -59,7 +59,7 @@ returns to the title, or your emulator refuses to install the DLC at all, use
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
-`TGAA1-README-v1.9n.txt` and `TGAA2-README-v1.9n.txt` on the release page are the readmes from
+`TGAA1-README-v1.9o.txt` and `TGAA2-README-v1.9o.txt` on the release page are the readmes from
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
@@ -87,21 +87,26 @@ Your files won't match my hashes, and that's fine: the decryptor writes random b
 card header and the ticket. The patches are built so those bytes don't matter. Everything else
 has to match, so a checksum error means the source is the wrong file, not the wrong
 luck. The wording xdelta3 gives you is `target window checksum mismatch`. If you see it,
-redump the title encrypted and check the source against `HASHES_v1.9n.txt` before trying
+redump the title encrypted and check the source against `HASHES_v1.9o.txt` before trying
 again.
 
 **Check it took:**
 
 | | reads |
 |---|---|
-| TGAA1 title screen, top right | `ENG 3.3.15` |
+| TGAA1 title screen, top right | `ENG 3.4.0` |
 | TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.23`, top left |
-| TGAA2 title screen, top right | `ENG 1.0.29` |
+| TGAA2 title screen, top right | `ENG 1.0.30` |
 | TGAA2 DLC, costume pack banner | `DLC 1.0.17`, bottom right |
 
 An older number means an older update is still installed; delete it and install again. Both
 title screens should also
 show Capcom's own *Adventures* and *Resolve* logos rather than fan-drawn ones.
+
+**The manual.** From v1.9o the update has an English manual in it. Highlight the game on the
+HOME menu and tap Manual. The text is English now, but the screenshots in it and some of its
+headings are still the older fan translation's, so a few show names like Naruhodou or Holmes.
+I haven't opened it on a 3DS myself yet.
 
 **Back up your saves first.** The second game throws a corrupted save prompt if it sees
 data it doesn't expect, and confirming it wipes your slots. Decline it and report it.
@@ -121,7 +126,9 @@ it carries, which was translated from the Japanese by hand, and its Picture Book
 titles and Editor's Notes, which open now and are in English. Capcom's own title logos,
 evidence cards and shout lettering in place of the fan-drawn art. And a lot of layout work:
 dialogue re-broken at corrected font metrics, captions rewritten to fit, glyph advances
-fixed.
+fixed. From v1.9o the update also carries an English eManual, the one you open from the HOME
+menu. Its text is Scarlet Study's fan translation of the manual, which I revised so that the
+names and terms match the game and Capcom's English release.
 
 Counts, sources and the reasoning for every one of those are in [DETAILS.md](DETAILS.md),
 along with what stays Japanese and why. [RELEASE_NOTES.md](RELEASE_NOTES.md) has a short
@@ -153,6 +160,9 @@ These are the ones you're most likely to meet:
   edge. And two lines in
   the first game's second Dance of Deduction, set in the fancier face, end slightly under
   the page arrow.
+- **The manual's pictures are still the older fan translation's.** The text is revised, but
+  the screenshots and some headings are Scarlet Study's originals, so a few show older names
+  and menu words. I plan to redo them later.
 - **There's still Japanese inside the first game's DLC Picture Book.** The brush-written
   name tags and the small production scribbles on the design sheets were left alone on
   purpose. On the rough sketches page in issue 6, the tips of the pencil hair are clipped,
@@ -162,7 +172,8 @@ Nobody has played either main game the whole way through on a console yet, so th
 chapters of both are the least tested thing here. The English voice lines added to the
 second game's last two episodes in v1.9 were checked against the recordings offline, not
 heard in-game, and the "shing" sound mixed back under the English shouts in v1.9n hasn't been
-heard on a 3DS yet. [TESTING.md](TESTING.md) is the full
+heard on a 3DS yet. The English manual added in v1.9o hasn't been opened on a 3DS either.
+[TESTING.md](TESTING.md) is the full
 account of what has been played, watched and listened to, and what has only been checked in
 the files.
 
@@ -178,6 +189,9 @@ playable English 3DS builds years earlier, along with the font, rendering and re
 engineering work those builds rest on. senyarom's README says their project builds on that
 work, and their importer takes the Scarlet Study TGAA1 v2.4.1 and TGAA2 v2.1.0 CIAs as
 build inputs, so it is structurally underneath this patch too.
+
+The English eManual in v1.9o is Scarlet Study's. Their fan translation of the manual is where
+its text and all of its pictures come from, and I revised the wording for this patch.
 
 The title logos, evidence cards, end card, Dance of Deduction wording and the lettering on its note cards are Capcom's own
 artwork and text from *Chronicles*, carried over rather than redrawn. The three banners in

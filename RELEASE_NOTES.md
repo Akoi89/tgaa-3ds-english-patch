@@ -7,6 +7,10 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## What this build fixes
 
+- **An English manual.** The manual you open from the HOME menu was Japanese in both games.
+  The update now carries an English one: Scarlet Study's fan translation of it, with the
+  wording revised so names and terms match the game and Capcom's release, and a page about
+  this patch. Its screenshots and some of its headings are still the older translation's.
 - **The Dance of Deduction note cards.** The card that sums up each topic showed a single
   stray letter for its title and a blank conclusion, because its fonts had no English
   letters. Both fonts now draw Capcom's own English lettering, in every Dance of Deduction
@@ -71,6 +75,8 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## Version history
 
+- v1.9o: the update carries an English manual (Scarlet Study's text, revised so names and
+  terms match the game), opened from the HOME menu.
 - v1.9n: the question beside the Present and Examine buttons is no longer chopped off
   partway through a word; the metallic "shing" is back under the English shouts.
 - v1.9m: Van Zieks's "Objection!" bubble shows the whole word and the "!"; the first
@@ -138,13 +144,15 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   page arrow, one first-game single-word page and three widget pages sit on the edge, and
   two lines in the fancier
   face end slightly under the arrow.
+- The English manual's screenshots and some of its headings are still the older fan
+  translation's, so a few show older names and menu words.
 - Japanese remains in the first game's DLC Picture Book (name tags, production scribbles).
 - Nobody has played either main game through on a console yet. The cutscene grain fix
   hasn't been heard on a 3DS, and the English lines added to the second game's last two
   episodes, and the crowd loops, were checked offline only. The first game's new staff
   credits are at the end of the game and haven't been seen on screen yet. The "shing" mixed
   back under the English shouts hasn't been heard on a 3DS, and the re-broken Present and
-  Examine questions haven't been seen on screen.
+  Examine questions haven't been seen on screen. The English manual hasn't been opened on a 3DS.
 
 The full account of what has and hasn't been checked is in TESTING.md.
 
@@ -152,29 +160,30 @@ The full account of what has and hasn't been checked is in TESTING.md.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.3.15.cia` / `TGAA2-base-1.0.29.cia`: the update.
+- `TGAA1-base-3.4.0.cia` / `TGAA2-base-1.0.30.cia`: the update, with the English manual in it.
 - `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.17.cia`: the DLC. `TGAA1-EN-DLC-v1.9m.cia` /
   `TGAA2-EN-DLC-v1.9n.cia`: the same DLC decrypted inside, for emulators. One or the
-  other, not both. The first game's DLC didn't change in v1.9n, so it keeps its names.
-- `TGAA1-3DS-English-v1.9n-xdelta.zip` / `TGAA2-3DS-English-v1.9n-xdelta.zip`: both as
+  other, not both. Neither game's DLC changed in v1.9o, so they keep their names.
+- `TGAA1-3DS-English-v1.9o-xdelta.zip` / `TGAA2-3DS-English-v1.9o-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the banner patch inside the zip
-  (`TGAA1-v1.9n-base.xdelta` / `TGAA2-v1.9n-base.xdelta`, the same file as the posted
+  (`TGAA1-v1.9o-base.xdelta` / `TGAA2-v1.9o-base.xdelta`, the same file as the posted
   `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
-  inside the zip, also posted on its own as `TGAA1-README-v1.9n.txt` /
-  `TGAA2-README-v1.9n.txt`).
-- `TGAA1-3DS-English-JPvoice-v1.9n-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9n-xdelta.zip`:
+  inside the zip, also posted on its own as `TGAA1-README-v1.9o.txt` /
+  `TGAA2-README-v1.9o.txt`).
+- `TGAA1-3DS-English-JPvoice-v1.9o-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9o-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9n.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+- `HASHES_v1.9o.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
   results.
 
-The result hashes are in `HASHES_v1.9n.txt` and in the readme inside each zip. Your own
+The result hashes are in `HASHES_v1.9o.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.
 
 ## Credits
 
 senyarom's layout pipeline, font handling and port of Capcom's script onto the 3DS builds
 are what this patch starts from, building on Scarlet Study and Fan Translators
-International's earlier English builds. The logos, evidence cards,
+International's earlier English builds. The English manual's text is Scarlet Study's,
+revised for this patch. The logos, evidence cards,
 shout lettering and voices are Capcom's, from Chronicles. Full credits are in the README.
 
 The Great Ace Attorney and Chronicles are (c) Capcom.
