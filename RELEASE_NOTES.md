@@ -7,6 +7,20 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## What this build fixes
 
+- **Two Episode 1 evidence pictures.** The first game's Waiter's Business Card and Medical
+  Report Card cover were the older fan translation's English art and didn't match what the
+  characters say. I redrew them for this patch with an image generator and finished them
+  myself, since Chronicles has no English version of either. The card's front now reads
+  Imperial Police Bureau, Primary Criminal Investigation Division, Chief Inspector, Satoru
+  Hosonaga, as the characters read it out, and the cover reads Medical Report Card,
+  Required for every visit, Name: Mr John Wilson, Hotta Clinic. Their small list icons
+  match.
+- **Chapter names and episode headings.** In the box that asks whether to start a chapter,
+  the chapter name sat against the left edge. It's centred now, in both games. In the second
+  game the episode heading above it was one line in two mismatched fonts; it's now two
+  centred lines, "Ep. 1:" above the title. The saved-game list keeps the heading on one line
+  but sits it slightly lower, with more space under the date, and the Episode 1 and
+  Episode 3 titles are set a little smaller than the others so they fit the row.
 - **An English manual.** The manual you open from the HOME menu was Japanese in both games.
   The update now carries an English one: Scarlet Study's fan translation of it, with the
   wording revised so names and terms match the game and Capcom's release, and a page about
@@ -24,7 +38,9 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   Record no longer crams evidence and profile names together, and a lowercase w in the
   second game no longer leaves a sliver of extra space before the next letter. Lines no
   longer have stray spaces or odd punctuation where Capcom's script has none ("student ,
-  currently", "touch ' Present '"), and a handful of small slips are fixed.
+  currently", "touch ' Present '"), and a handful of small slips are fixed. A capital H, E or F in a long Court Record
+  caption could lose its crossbar when the game shrank the caption, so "Hosonaga-san" read
+  "IIosonaga-san"; the crossbar is slightly thicker now and survives, in both games.
 - **Pictures that looked patched, wrong names in pictures, and the first game's DLC Picture Book.** Commentary is
   bigger on most pages, with the faint leftover Japanese behind it gone. The smudged menu
   icons are clean again, and the galleries for issues that were never released show
@@ -44,7 +60,7 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   few crowd sounds also had the wrong channel layout. Every sound is back in position, the
   click at the end of replaced voice lines is gone at the root, and crowd noise loops
   where Capcom's recording says to.
-- **Voice lines cut short, dulled, left in Japanese, or missing the "shing".** Every
+- **Voice lines cut short, dulled, left in Japanese, missing the "shing", or rushed.** Every
   replaced voice now plays at full quality and length, and the second game's lines with
   pauses cut from the middle are whole again. Story lines that had stayed Japanese because
   the English ran long now play Capcom's English recording, as do four bonus recital tracks
@@ -52,10 +68,9 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   Dance of Deduction gasps and cries aren't distorted any more. Capcom mixes a metallic
   "shing" into its Japanese shout clips, and the English recordings didn't have it. It's
   mixed back in under the English "Hold it!", "Objection!" and "Take that!", in both games
-  and the second game's DLC, set so the louder shouts don't distort.
-- **The first game's Episode 2 opening narration.** It had been sped up to finish before
-  each page turned. It now reads straight through at a natural pace, with the page turns
-  on Capcom's own timing.
+  and the second game's DLC, set so the louder shouts don't distort. The first game's
+  Episode 2 opening narration had been sped up to finish before each page turned; it now
+  reads straight through at a natural pace, with the page turns on Capcom's own timing.
 - **Text that ran past its box.** The partner's speech bubble on the bottom screen cut
   long lines off, often mid-word, and location cards, the second game's autopsy reports
   and case documents, and the first game's pop-up pages ran off the edge. They're all
@@ -75,6 +90,10 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## Version history
 
+- v1.9p: the first game's Waiter's Business Card and Medical Report Card cover redrawn to
+  match the dialogue; a capital H, E or F keeps its crossbar in shrunk Court Record
+  captions, in both games; chapter names centred in the start-a-chapter box in both games,
+  with the second game's episode heading on two centred lines.
 - v1.9o: the update carries an English manual (Scarlet Study's text, revised so names and
   terms match the game), opened from the HOME menu.
 - v1.9n: the question beside the Present and Examine buttons is no longer chopped off
@@ -153,6 +172,10 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   credits are at the end of the game and haven't been seen on screen yet. The "shing" mixed
   back under the English shouts hasn't been heard on a 3DS, and the re-broken Present and
   Examine questions haven't been seen on screen. The English manual hasn't been opened on a 3DS.
+  Nothing in v1.9p has been tried on a 3DS; I checked what I could on the Azahar emulator.
+  The redrawn Medical Report Card's small list icon hasn't been seen on screen, and neither
+  have the second game's saved-game rows for Episode 1, Episode 4 and Final, which fit by
+  measurement only.
 
 The full account of what has and hasn't been checked is in TESTING.md.
 
@@ -160,22 +183,22 @@ The full account of what has and hasn't been checked is in TESTING.md.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.4.0.cia` / `TGAA2-base-1.0.30.cia`: the update, with the English manual in it.
-- `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.17.cia`: the DLC. `TGAA1-EN-DLC-v1.9m.cia` /
-  `TGAA2-EN-DLC-v1.9n.cia`: the same DLC decrypted inside, for emulators. One or the
-  other, not both. Neither game's DLC changed in v1.9o, so they keep their names.
-- `TGAA1-3DS-English-v1.9o-xdelta.zip` / `TGAA2-3DS-English-v1.9o-xdelta.zip`: both as
+- `TGAA1-base-3.4.1.cia` / `TGAA2-base-1.0.31.cia`: the update, with the English manual in it.
+- `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.18.cia`: the DLC. `TGAA1-EN-DLC-v1.9m.cia` /
+  `TGAA2-EN-DLC-v1.9p.cia`: the same DLC decrypted inside, for emulators. One or the
+  other, not both. The first game's DLC didn't change in v1.9p, so it keeps its names.
+- `TGAA1-3DS-English-v1.9p-xdelta.zip` / `TGAA2-3DS-English-v1.9p-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the banner patch inside the zip
-  (`TGAA1-v1.9o-base.xdelta` / `TGAA2-v1.9o-base.xdelta`, the same file as the posted
+  (`TGAA1-v1.9p-base.xdelta` / `TGAA2-v1.9p-base.xdelta`, the same file as the posted
   `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
-  inside the zip, also posted on its own as `TGAA1-README-v1.9o.txt` /
-  `TGAA2-README-v1.9o.txt`).
-- `TGAA1-3DS-English-JPvoice-v1.9o-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9o-xdelta.zip`:
+  inside the zip, also posted on its own as `TGAA1-README-v1.9p.txt` /
+  `TGAA2-README-v1.9p.txt`).
+- `TGAA1-3DS-English-JPvoice-v1.9p-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9p-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9o.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+- `HASHES_v1.9p.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
   results.
 
-The result hashes are in `HASHES_v1.9o.txt` and in the readme inside each zip. Your own
+The result hashes are in `HASHES_v1.9p.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.
 
 ## Credits
@@ -184,6 +207,8 @@ senyarom's layout pipeline, font handling and port of Capcom's script onto the 3
 are what this patch starts from, building on Scarlet Study and Fan Translators
 International's earlier English builds. The English manual's text is Scarlet Study's,
 revised for this patch. The logos, evidence cards,
-shout lettering and voices are Capcom's, from Chronicles. Full credits are in the README.
+shout lettering and voices are Capcom's, from Chronicles, apart from two first-game
+evidence pictures I redrew for this patch (an image generator, finished by me). Full
+credits are in the README.
 
 The Great Ace Attorney and Chronicles are (c) Capcom.

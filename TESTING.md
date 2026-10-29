@@ -81,12 +81,25 @@ is already on my list.
 | The English manual (v1.9o) | **seen in the emulator's HOME menu viewer, not on a 3DS.** I put the two manuals where the emulator looks for them (it reads the manual from the base game, not from the update) and opened them: both contents lists show every title whole, and the pages I opened (a handful in each game, including the notice, About This Patch and a gameplay page) displayed with no clipping. The rest of the pages weren't opened. **Not seen:** a 3DS taking the manual from inside the update. Not run on a 3DS |
 | The version stamps (v1.9o) | seen on the emulator: the first game's title screen reads ENG 3.4.0 and the second game's reads ENG 1.0.30, and both updates installed with their manual. Not run on a 3DS |
 | The second game's DLC at version 1.0.17 (v1.9n) | installed in the emulator and read back as version 1.1.1 with the right stamp. Installing it over an older DLC hasn't been tried. Not run on a 3DS |
+| The version stamps (v1.9p) | seen on the emulator: the first game's title screen reads ENG 3.4.1. the second game's title screen reads ENG 1.0.31. Its costume pack banner (DLC 1.0.18) was checked in the files, not on screen. Not run on a 3DS |
+| The redrawn Waiter's Business Card and Medical Report Card cover (v1.9p) | seen on the emulator in the first game: the card's front and back in the 3D view, and the Medical Report Card cover in the 3D view. **Not seen:** the cover's small list icon (it only appears at a later point in the story) and the Medical Report details view. Not run on a 3DS |
+| The thicker crossbar on capital H, E and F (v1.9p) | seen on the emulator in the first game: the Court Record caption for the Waiter's Business Card now reads "Hosonaga-san" with its crossbar, and H and E keep theirs in other captions and on the People tab. **Not seen:** the Red-Handed captions (Episode 5). In the second game, H and E keep their crossbars in the Poison Article caption and the People entries for Yujin Mikotoba, Taketsuchi Auchi and Satoru Hosonaga; I couldn't tell whether any of those lines was actually shrunk. Not run on a 3DS |
+| The second game's chapter confirmation box (v1.9p) | seen on the Azahar emulator, not on a 3DS: Select Episode, Episode 1, Trial Start. The heading is two centred lines, "Ep. 1:" over "The Adventure of the Blossoming Attorney" (the title a little smaller than "Ep. 1:"), with "Trial Start" centred underneath, and nothing overlaps or is clipped. The chapter list itself is unchanged. **Not seen:** the boxes for the other episodes, and the longest chapter names (Trial Resumption, Testimony 4), which my save doesn't reach. Not run on a 3DS |
+| The second game's saved-game rows (v1.9p) | seen on the Azahar emulator, not on a 3DS: the Load screen and the box after tapping a slot, with the Episode 2 and Episode 3 saves. The heading stays on one line and sits slightly lower, with more space under the date. Nothing overprints the date or the chapter row, nothing is clipped, and the Episode 3 title (set a little smaller) has a visible gap after "Ep. 3:" and room before the frame. **Not seen:** the Episode 1, Episode 4 and Final rows (I have no such saves), which fit by measurement only; Episode 1's is the tightest, with a little room either side. I only looked at the Load screen, not the Save screen. Not run on a 3DS |
+| The first game's centred chapter names (v1.9p) | seen on the Azahar emulator in the build I'm releasing, not on a 3DS: in the chapter confirmation box "Recess" and "Susato's Sudden Entrance" are centred under the heading line, which is unchanged, the chapter list buttons are unchanged, and the Load screen looks the same as before. Not run on a 3DS |
+| The second game's DLC with the font change, at version 1.0.18 (v1.9p) | checked in the files only: **not installed or booted** on anything. Not run on a 3DS |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a
 size limit turned out to be the misplaced-audio bug fixed in v1.9, and every shout is
 written at Capcom's position now. But that is reasoning, not listening. **If you play the first game, a jury
 verdict or a press that stops part-way is the single most useful thing to listen for.**
+
+For v1.9p, the most useful console look is the Court Record: the Waiter's Business Card and the
+Medical Report Card pictures, and a long caption with a capital H, E or F in it. After that, the
+box that asks whether to start a chapter in both games, and in the second game the Load screen
+with an Episode 1, Episode 4 or Final save if you have one. If any of them
+looks wrong, [issue #1](../../issues/1) is the place.
 
 For v1.9o, the most useful console look is the manual: highlight the game on the HOME menu,
 tap Manual, and look at the index titles and the first pages. If it doesn't open, or anything

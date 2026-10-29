@@ -40,26 +40,26 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.4.0.cia` / `TGAA2-base-1.0.30.cia` | the update, which now carries the English manual |
-| 3 | `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.17.cia` | the DLC (unchanged since v1.9m for the first game and v1.9n for the second, so both keep their file names) |
-| 4 | `TGAA1-3DS-English-v1.9o-xdelta.zip` / `TGAA2-3DS-English-v1.9o-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
+| 2 | `TGAA1-base-3.4.1.cia` / `TGAA2-base-1.0.31.cia` | the update, which carries the English manual |
+| 3 | `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.18.cia` | the DLC (the first game's is unchanged since v1.9m and keeps its file name; the second game's has a new one) |
+| 4 | `TGAA1-3DS-English-v1.9p-xdelta.zip` / `TGAA2-3DS-English-v1.9p-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
 The row-3 DLC CIAs are 326,388,736 bytes (`TGAA1-DLC-1.0.23.cia`, sha256
 `3c1d503be27b4195df2baf6fc651f3b390edcee0b7b8e68165e36e3e50b04e86`) and 40,249,728 bytes
-(`TGAA2-DLC-1.0.17.cia`, sha256
-`6dd5030a159936fb836eeca03f9f22d01d996ab7a86f7223077f7721e15d17a5`). The release page shows
+(`TGAA2-DLC-1.0.18.cia`, sha256
+`e3928031b4a9f5264e2ce82f689a98d9ca8bf924cc02f38c1f9b107836f0c92e`). The release page shows
 a sha256 for every posted file, so any of them can be checked the same way.
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
 **On an emulator, take the plain DLC instead.** If the DLC card shows a padlock and the game
 returns to the title, or your emulator refuses to install the DLC at all, use
-`TGAA1-EN-DLC-v1.9m.cia` or `TGAA2-EN-DLC-v1.9n.cia` in place of row 3. Same DLC, same version,
+`TGAA1-EN-DLC-v1.9m.cia` or `TGAA2-EN-DLC-v1.9p.cia` in place of row 3. Same DLC, same version,
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
-`TGAA1-README-v1.9o.txt` and `TGAA2-README-v1.9o.txt` on the release page are the readmes from
+`TGAA1-README-v1.9p.txt` and `TGAA2-README-v1.9p.txt` on the release page are the readmes from
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
@@ -87,17 +87,17 @@ Your files won't match my hashes, and that's fine: the decryptor writes random b
 card header and the ticket. The patches are built so those bytes don't matter. Everything else
 has to match, so a checksum error means the source is the wrong file, not the wrong
 luck. The wording xdelta3 gives you is `target window checksum mismatch`. If you see it,
-redump the title encrypted and check the source against `HASHES_v1.9o.txt` before trying
+redump the title encrypted and check the source against `HASHES_v1.9p.txt` before trying
 again.
 
 **Check it took:**
 
 | | reads |
 |---|---|
-| TGAA1 title screen, top right | `ENG 3.4.0` |
+| TGAA1 title screen, top right | `ENG 3.4.1` |
 | TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.23`, top left |
-| TGAA2 title screen, top right | `ENG 1.0.30` |
-| TGAA2 DLC, costume pack banner | `DLC 1.0.17`, bottom right |
+| TGAA2 title screen, top right | `ENG 1.0.31` |
+| TGAA2 DLC, costume pack banner | `DLC 1.0.18`, bottom right |
 
 An older number means an older update is still installed; delete it and install again. Both
 title screens should also
@@ -128,7 +128,12 @@ evidence cards and shout lettering in place of the fan-drawn art. And a lot of l
 dialogue re-broken at corrected font metrics, captions rewritten to fit, glyph advances
 fixed. From v1.9o the update also carries an English eManual, the one you open from the HOME
 menu. Its text is Scarlet Study's fan translation of the manual, which I revised so that the
-names and terms match the game and Capcom's English release.
+names and terms match the game and Capcom's English release. And from v1.9p, two of the
+first game's Episode 1 evidence pictures, the Waiter's Business Card and the Medical Report
+Card cover, are redrawn to match the dialogue, which they didn't before. Also from v1.9p, the
+box that asks whether to start a chapter shows the chapter name centred in both games, and in
+the second game the episode heading there is two centred lines, with the saved-game list set a
+little lower to match.
 
 Counts, sources and the reasoning for every one of those are in [DETAILS.md](DETAILS.md),
 along with what stays Japanese and why. [RELEASE_NOTES.md](RELEASE_NOTES.md) has a short
@@ -173,6 +178,10 @@ chapters of both are the least tested thing here. The English voice lines added 
 second game's last two episodes in v1.9 were checked against the recordings offline, not
 heard in-game, and the "shing" sound mixed back under the English shouts in v1.9n hasn't been
 heard on a 3DS yet. The English manual added in v1.9o hasn't been opened on a 3DS either.
+Nothing in v1.9p has been tried on a 3DS; what I could look at, I looked at on the Azahar
+emulator. The redrawn Medical Report Card's small list icon hasn't been seen on screen at all,
+and neither have the second game's saved-game rows for Episode 1, Episode 4 and Final, because
+I had no such saves.
 [TESTING.md](TESTING.md) is the full
 account of what has been played, watched and listened to, and what has only been checked in
 the files.
@@ -194,7 +203,10 @@ The English eManual in v1.9o is Scarlet Study's. Their fan translation of the ma
 its text and all of its pictures come from, and I revised the wording for this patch.
 
 The title logos, evidence cards, end card, Dance of Deduction wording and the lettering on its note cards are Capcom's own
-artwork and text from *Chronicles*, carried over rather than redrawn. The three banners in
+artwork and text from *Chronicles*, carried over rather than redrawn, except the first game's Waiter's Business Card and
+Medical Report Card cover (and their small list icons). Those two I redrew for v1.9p,
+because *Chronicles* has no English version of either, so they are not Capcom's artwork.
+The three banners in
 the second game's DLC are adapted from Capcom's own artwork.
 
 The tooling was written with LLM assistance (Claude, through Claude Code). That's stated
@@ -203,7 +215,8 @@ their script. Two things in the first game's DLC aren't, because Capcom never ma
 English: the Picture Book commentary, sketch notes, theme titles and Editor's Notes were
 translated with Claude's help, checked against a second model and against Capcom's
 spelling of every name; and where that Japanese sat over artwork, the covered part of the
-art was filled in with an image inpainting model (LaMa). No generated audio ships.
+art was filled in with an image inpainting model (LaMa). The two Episode 1 pictures redrawn in v1.9p were made with an image generator
+and finished by me. No generated audio ships.
 `tools/` is there so you can check all of it rather than take it from me.
 
 *The Great Ace Attorney* and *Chronicles* are © Capcom.
