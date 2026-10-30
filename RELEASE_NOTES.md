@@ -7,6 +7,22 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## What this build fixes
 
+- **The second game's Case 5 suitcase lock.** On the SS Grouse, the clue asked for a
+  seven-digit code and the sailor's tattoo had seven characters, but the 3DS game's lock screen
+  has six digit wheels, so the code could not be entered. The tattoo is now the Japanese
+  game's six-letter one, the clue lines say "six-digit", and Susato's line about the tattoo
+  reads "That says 'Holmes'?! Not 'Sholmes'?!". This build now differs from Capcom's
+  English here on purpose, because the 3DS engine can't show a seventh wheel.
+- **The flying words in the Dance of Deduction.** When you present something, its name
+  flies across the top screen. In both games the word was cut into three pieces drawn at
+  different heights, each one a little lower than the last, so it looked broken as it
+  crossed. The pieces now line up and the word flies as one straight line. This is
+  separate from the cyan label on the bottom screen, which was fine.
+- **The letters e, t, i, j and l.** A player noticed an extra pixel on the "e". In v1.9c I had
+  added a row of faint pixels under the crossbars of "e" and "t" and lightened the stems of
+  "i", "j" and "l". All five are back to the original font's shapes in both games and in the
+  second game's DLC, which carries its own copy of the font, so the lettering is the earlier
+  fan translation's again.
 - **Two Episode 1 evidence pictures.** The first game's Waiter's Business Card and Medical
   Report Card cover were the older fan translation's English art and didn't match what the
   characters say. I redrew them for this patch with an image generator and finished them
@@ -24,7 +40,8 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 - **An English manual.** The manual you open from the HOME menu was Japanese in both games.
   The update now carries an English one: Scarlet Study's fan translation of it, with the
   wording revised so names and terms match the game and Capcom's release, and a page about
-  this patch. Its screenshots and some of its headings are still the older translation's.
+  this patch. Its main screenshots were retaken in the patched game in v1.9q; the logo, a few
+  headings and some diagrams are still the older translation's.
 - **The Dance of Deduction note cards.** The card that sums up each topic showed a single
   stray letter for its title and a blank conclusion, because its fonts had no English
   letters. Both fonts now draw Capcom's own English lettering, in every Dance of Deduction
@@ -90,6 +107,13 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## Version history
 
+- v1.9q: the second game's Case 5 suitcase lock now matches the six wheels the 3DS has;
+  the flying words in the Dance of Deduction line up in both games instead of stepping down;
+  the letters e, t, i, j and l back to the original font's shapes, which means the second
+  game's DLC changed too and is now 1.0.19;
+  the English manual's main screenshots retaken in the patched game, in both games;
+  the title screen picture no longer carries a version stamp, the Cross-Examination heading
+  has its hyphen, and the About This Patch page says which pictures are new.
 - v1.9p: the first game's Waiter's Business Card and Medical Report Card cover redrawn to
   match the dialogue; a capital H, E or F keeps its crossbar in shrunk Court Record
   captions, in both games; chapter names centred in the start-a-chapter box in both games,
@@ -163,8 +187,9 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   page arrow, one first-game single-word page and three widget pages sit on the edge, and
   two lines in the fancier
   face end slightly under the arrow.
-- The English manual's screenshots and some of its headings are still the older fan
-  translation's, so a few show older names and menu words.
+- The English manual's logo, a few headings and some diagrams are still the older fan
+  translation's, so a few show older names and menu words, and the first game's Summation
+  Examination page has no jury picture.
 - Japanese remains in the first game's DLC Picture Book (name tags, production scribbles).
 - Nobody has played either main game through on a console yet. The cutscene grain fix
   hasn't been heard on a 3DS, and the English lines added to the second game's last two
@@ -172,7 +197,7 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   credits are at the end of the game and haven't been seen on screen yet. The "shing" mixed
   back under the English shouts hasn't been heard on a 3DS, and the re-broken Present and
   Examine questions haven't been seen on screen. The English manual hasn't been opened on a 3DS.
-  Nothing in v1.9p has been tried on a 3DS; I checked what I could on the Azahar emulator.
+  Nothing in v1.9p or v1.9q has been tried on a 3DS; I checked what I could on the Azahar emulator.
   The redrawn Medical Report Card's small list icon hasn't been seen on screen, and neither
   have the second game's saved-game rows for Episode 1, Episode 4 and Final, which fit by
   measurement only.
@@ -183,30 +208,30 @@ The full account of what has and hasn't been checked is in TESTING.md.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.4.1.cia` / `TGAA2-base-1.0.31.cia`: the update, with the English manual in it.
-- `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.18.cia`: the DLC. `TGAA1-EN-DLC-v1.9m.cia` /
-  `TGAA2-EN-DLC-v1.9p.cia`: the same DLC decrypted inside, for emulators. One or the
-  other, not both. The first game's DLC didn't change in v1.9p, so it keeps its names.
-- `TGAA1-3DS-English-v1.9p-xdelta.zip` / `TGAA2-3DS-English-v1.9p-xdelta.zip`: both as
+- `TGAA1-base-3.4.2.cia` / `TGAA2-base-1.0.32.cia`: the update, with the English manual in it.
+- `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.19.cia`: the DLC. `TGAA1-EN-DLC-v1.9m.cia` /
+  `TGAA2-EN-DLC-v1.9q.cia`: the same DLC decrypted inside, for emulators. One or the
+  other, not both. Only the second game's DLC changed in v1.9q; the first game's keeps its name.
+- `TGAA1-3DS-English-v1.9q-xdelta.zip` / `TGAA2-3DS-English-v1.9q-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the banner patch inside the zip
-  (`TGAA1-v1.9p-base.xdelta` / `TGAA2-v1.9p-base.xdelta`, the same file as the posted
+  (`TGAA1-v1.9q-base.xdelta` / `TGAA2-v1.9q-base.xdelta`, the same file as the posted
   `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
-  inside the zip, also posted on its own as `TGAA1-README-v1.9p.txt` /
-  `TGAA2-README-v1.9p.txt`).
-- `TGAA1-3DS-English-JPvoice-v1.9p-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9p-xdelta.zip`:
+  inside the zip, also posted on its own as `TGAA1-README-v1.9q.txt` /
+  `TGAA2-README-v1.9q.txt`).
+- `TGAA1-3DS-English-JPvoice-v1.9q-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9q-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9p.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+- `HASHES_v1.9q.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
   results.
 
-The result hashes are in `HASHES_v1.9p.txt` and in the readme inside each zip. Your own
+The result hashes are in `HASHES_v1.9q.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.
 
 ## Credits
 
 senyarom's layout pipeline, font handling and port of Capcom's script onto the 3DS builds
 are what this patch starts from, building on Scarlet Study and Fan Translators
-International's earlier English builds. The English manual's text is Scarlet Study's,
-revised for this patch. The logos, evidence cards,
+International's earlier English builds. The English manual's text, logo and the headings and diagrams I haven't redone are Scarlet Study's,
+with the text revised for this patch. The logos, evidence cards,
 shout lettering and voices are Capcom's, from Chronicles, apart from two first-game
 evidence pictures I redrew for this patch (an image generator, finished by me). Full
 credits are in the README.
