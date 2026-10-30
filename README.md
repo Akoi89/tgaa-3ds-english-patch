@@ -40,9 +40,9 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.4.2.cia` / `TGAA2-base-1.0.32.cia` | the update, which carries the English manual |
-| 3 | `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.19.cia` | the DLC (the first game's is unchanged since v1.9m; the second game's changed in v1.9q and is now 1.0.19) |
-| 4 | `TGAA1-3DS-English-v1.9q-xdelta.zip` / `TGAA2-3DS-English-v1.9q-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
+| 2 | `TGAA1-base-3.4.2.cia` / `TGAA2-base-1.0.32.cia` | the update, which carries the English manual (v1.9r changed the second game's only) |
+| 3 | `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.19.cia` | the DLC (the first game's is unchanged since v1.9m; the second game's is unchanged since v1.9q, when it became 1.0.19) |
+| 4 | `TGAA1-3DS-English-v1.9r-xdelta.zip` / `TGAA2-3DS-English-v1.9r-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner on its own |
 
 The row-3 DLC CIAs are 326,388,736 bytes (`TGAA1-DLC-1.0.23.cia`, sha256
@@ -50,6 +50,11 @@ The row-3 DLC CIAs are 326,388,736 bytes (`TGAA1-DLC-1.0.23.cia`, sha256
 (`TGAA2-DLC-1.0.19.cia`, sha256
 `e6f6d18345fdaa5ed326ecb1247707be82bb0d8d4f74117123ed730aff736c2d`). The release page shows
 a sha256 for every posted file, so any of them can be checked the same way.
+
+**Updating from v1.9q.** Only the second game's update changed in v1.9r. The first game's
+update and DLC, the second game's DLC and both banner patches are the same files as in v1.9q,
+so there is nothing to redo for the first game. The xdelta zips carry the new version in their
+names, and the first game's patches inside them are the v1.9q ones.
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
@@ -59,7 +64,7 @@ returns to the title, or your emulator refuses to install the DLC at all, use
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
-`TGAA1-README-v1.9q.txt` and `TGAA2-README-v1.9q.txt` on the release page are the readmes from
+`TGAA1-README-v1.9r.txt` and `TGAA2-README-v1.9r.txt` on the release page are the readmes from
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
@@ -87,7 +92,7 @@ Your files won't match my hashes, and that's fine: the decryptor writes random b
 card header and the ticket. The patches are built so those bytes don't matter. Everything else
 has to match, so a checksum error means the source is the wrong file, not the wrong
 luck. The wording xdelta3 gives you is `target window checksum mismatch`. If you see it,
-redump the title encrypted and check the source against `HASHES_v1.9q.txt` before trying
+redump the title encrypted and check the source against `HASHES_v1.9r.txt` before trying
 again.
 
 **Check it took:**
@@ -102,6 +107,14 @@ again.
 An older number means an older update is still installed; delete it and install again. Both
 title screens should also
 show Capcom's own *Adventures* and *Resolve* logos rather than fan-drawn ones.
+
+**v1.9r and v1.9q look the same on the title screen.** The second game's update is still named
+`TGAA2-base-1.0.32.cia` and still reads `ENG 1.0.32`, so the stamp can't tell the two apart. The
+file is 88,699,904 bytes in both. v1.9r's sha256 is
+`84c6b79034118e3f17a4987df1c5bfc26bb5ffa7cbb17dfad43cf0e0ddca2e7e` and v1.9q's was
+`0e28c869969d1def939eb4b022cdb33fe775fc1f3e25875e129011effba6e631`. In the game, the Case 5
+suitcase lock on the SS Grouse has seven wheels in v1.9r and six in v1.9q. I installed v1.9r over
+v1.9q on the Azahar emulator and it replaced it; I haven't tried that on a 3DS.
 
 **The manual.** From v1.9o the update has an English manual in it. Highlight the game on the
 HOME menu and tap Manual. The text is English, and from v1.9q the main screenshots in it were
@@ -135,7 +148,9 @@ first game's Episode 1 evidence pictures, the Waiter's Business Card and the Med
 Card cover, are redrawn to match the dialogue, which they didn't before. Also from v1.9p, the
 box that asks whether to start a chapter shows the chapter name centred in both games, and in
 the second game the episode heading there is two centred lines, with the saved-game list set a
-little lower to match.
+little lower to match. And from v1.9r the second game's Case 5 suitcase lock has seven wheels, as in
+Capcom's version, which meant changing the game's program as well as its data, and the topic names
+that fly across the screen in that game's Dance of Deduction keep the tails of g, y and p.
 
 Counts, sources and the reasoning for every one of those are in [DETAILS.md](DETAILS.md),
 along with what stays Japanese and why. [RELEASE_NOTES.md](RELEASE_NOTES.md) has a short
@@ -171,6 +186,9 @@ These are the ones you're most likely to meet:
   revised and the main screenshots were retaken in v1.9q, but the logo, a few headings and some
   diagrams are Scarlet Study's originals, so a few show older names and menu words. The first
   game's Summation Examination page has no jury picture. I plan to redo them later.
+- **The seven-wheel lock's cursor is clipped a little.** On the second game's Case 5 suitcase
+  lock, the cyan cursor is cut off by the frame's edge on the first and last wheel. It's cosmetic,
+  and the lock works.
 - **There's still Japanese inside the first game's DLC Picture Book.** The brush-written
   name tags and the small production scribbles on the design sheets were left alone on
   purpose. On the rough sketches page in issue 6, the tips of the pencil hair are clipped,
@@ -181,10 +199,11 @@ chapters of both are the least tested thing here. The English voice lines added 
 second game's last two episodes in v1.9 were checked against the recordings offline, not
 heard in-game, and the "shing" sound mixed back under the English shouts in v1.9n hasn't been
 heard on a 3DS yet. The English manual added in v1.9o, with its pictures retaken in v1.9q, hasn't been opened
-from the update on a 3DS either. Nothing in v1.9p or v1.9q has been tried on a 3DS; what I could look at, I looked at on the Azahar
+from the update on a 3DS either. Nothing in v1.9p, v1.9q or v1.9r has been tried on a 3DS; what I could look at, I looked at on the Azahar
 emulator. The redrawn Medical Report Card's small list icon hasn't been seen on screen at all,
 and neither have the second game's saved-game rows for Episode 1, Episode 4 and Final, because
-I had no such saves.
+I had no such saves. The seven-wheel lock in v1.9r changes the second game's program itself, not only
+its data, and that has only run in an emulator.
 [TESTING.md](TESTING.md) is the full
 account of what has been played, watched and listened to, and what has only been checked in
 the files.

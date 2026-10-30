@@ -8,16 +8,18 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 ## What this build fixes
 
 - **The second game's Case 5 suitcase lock.** On the SS Grouse, the clue asked for a
-  seven-digit code and the sailor's tattoo had seven characters, but the 3DS game's lock screen
-  has six digit wheels, so the code could not be entered. The tattoo is now the Japanese
-  game's six-letter one, the clue lines say "six-digit", and Susato's line about the tattoo
-  reads "That says 'Holmes'?! Not 'Sholmes'?!". This build now differs from Capcom's
-  English here on purpose, because the 3DS engine can't show a seventh wheel.
+  seven-digit code and the sailor's tattoo had seven characters, but the Japanese 3DS game's
+  lock has six digit wheels, so the code could not be entered. The lock now has a seventh
+  wheel, as in Capcom's English version, so the clue says seven digits, the tattoo has seven
+  characters again and Susato's line reads "That says 'Sholmes'?!". Getting the wheel in
+  meant changing the game's program itself, not only its data.
 - **The flying words in the Dance of Deduction.** When you present something, its name
   flies across the top screen. In both games the word was cut into three pieces drawn at
   different heights, each one a little lower than the last, so it looked broken as it
-  crossed. The pieces now line up and the word flies as one straight line. This is
-  separate from the cyan label on the bottom screen, which was fine.
+  crossed. The pieces now line up and the word flies as one straight line. In the second
+  game the bottom of g, y and p had also been cut off flat, as in "Rules of Passage"; those
+  words show whole now. This is separate from the cyan label on the bottom screen, which
+  was fine.
 - **The letters e, t, i, j and l.** A player noticed an extra pixel on the "e". In v1.9c I had
   added a row of faint pixels under the crossbars of "e" and "t" and lightened the stems of
   "i", "j" and "l". All five are back to the original font's shapes in both games and in the
@@ -107,7 +109,12 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 
 ## Version history
 
-- v1.9q: the second game's Case 5 suitcase lock now matches the six wheels the 3DS has;
+- v1.9r: the second game's Case 5 suitcase lock has seven wheels, as in Capcom's version, with the
+  seven-digit clue and the seven-character tattoo back, which means the update now changes the game's
+  program as well as its data; the second game's Dance of Deduction flying words keep the tails of
+  g, y and p; the first game, both DLCs and both banner patches are unchanged.
+- v1.9q: the second game's Case 5 suitcase lock cut down to the six wheels the 3DS had (v1.9r gives
+  it seven instead);
   the flying words in the Dance of Deduction line up in both games instead of stepping down;
   the letters e, t, i, j and l back to the original font's shapes, which means the second
   game's DLC changed too and is now 1.0.19;
@@ -191,13 +198,17 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
   translation's, so a few show older names and menu words, and the first game's Summation
   Examination page has no jury picture.
 - Japanese remains in the first game's DLC Picture Book (name tags, production scribbles).
+- On the new seven-wheel lock, the cyan cursor is clipped a little by the frame's edge on the first
+  and last wheel. It's cosmetic, and the lock works.
 - Nobody has played either main game through on a console yet. The cutscene grain fix
   hasn't been heard on a 3DS, and the English lines added to the second game's last two
   episodes, and the crowd loops, were checked offline only. The first game's new staff
   credits are at the end of the game and haven't been seen on screen yet. The "shing" mixed
   back under the English shouts hasn't been heard on a 3DS, and the re-broken Present and
   Examine questions haven't been seen on screen. The English manual hasn't been opened on a 3DS.
-  Nothing in v1.9p or v1.9q has been tried on a 3DS; I checked what I could on the Azahar emulator.
+  Nothing in v1.9p, v1.9q or v1.9r has been tried on a 3DS; I checked what I could on the Azahar emulator.
+  The seven-wheel lock in v1.9r changes the second game's program itself, not only its data, and has
+  only run in an emulator.
   The redrawn Medical Report Card's small list icon hasn't been seen on screen, and neither
   have the second game's saved-game rows for Episode 1, Episode 4 and Final, which fit by
   measurement only.
@@ -208,22 +219,24 @@ The full account of what has and hasn't been checked is in TESTING.md.
 
 Per game, on the release page:
 
-- `TGAA1-base-3.4.2.cia` / `TGAA2-base-1.0.32.cia`: the update, with the English manual in it.
+- `TGAA1-base-3.4.2.cia` / `TGAA2-base-1.0.32.cia`: the update, with the English manual in it. In
+  v1.9r only the second game's changed, and it keeps its name and its `ENG 1.0.32` stamp; the README
+  gives the sha256 that tells it from v1.9q's.
 - `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.19.cia`: the DLC. `TGAA1-EN-DLC-v1.9m.cia` /
   `TGAA2-EN-DLC-v1.9q.cia`: the same DLC decrypted inside, for emulators. One or the
-  other, not both. Only the second game's DLC changed in v1.9q; the first game's keeps its name.
-- `TGAA1-3DS-English-v1.9q-xdelta.zip` / `TGAA2-3DS-English-v1.9q-xdelta.zip`: both as
+  other, not both. Neither DLC changed in v1.9r.
+- `TGAA1-3DS-English-v1.9r-xdelta.zip` / `TGAA2-3DS-English-v1.9r-xdelta.zip`: both as
   xdelta patches against your own decrypted dump, with the banner patch inside the zip
-  (`TGAA1-v1.9q-base.xdelta` / `TGAA2-v1.9q-base.xdelta`, the same file as the posted
+  (`TGAA1-v1.9r-base.xdelta` / `TGAA2-v1.9r-base.xdelta`, the same file as the posted
   `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta`) and a readme (`README.txt`
-  inside the zip, also posted on its own as `TGAA1-README-v1.9q.txt` /
-  `TGAA2-README-v1.9q.txt`).
-- `TGAA1-3DS-English-JPvoice-v1.9q-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9q-xdelta.zip`:
+  inside the zip, also posted on its own as `TGAA1-README-v1.9r.txt` /
+  `TGAA2-README-v1.9r.txt`).
+- `TGAA1-3DS-English-JPvoice-v1.9r-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9r-xdelta.zip`:
   the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
-- `HASHES_v1.9q.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
+- `HASHES_v1.9r.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and
   results.
 
-The result hashes are in `HASHES_v1.9q.txt` and in the readme inside each zip. Your own
+The result hashes are in `HASHES_v1.9r.txt` and in the readme inside each zip. Your own
 source dump won't hash-match mine, and that's expected.
 
 ## Credits
