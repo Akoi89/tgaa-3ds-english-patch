@@ -593,16 +593,17 @@ The CIAs stay on the release because they are what the hardware testing was done
 because a patch against a file most people dump differently is a support thread waiting
 to happen.
 
-The extra file on the v1.9r release, `TGAA2-SevenWheelLock-LayeredFS-v1.9r.zip` (1,264,128 bytes), is
+The extra file on the v1.9r release, `TGAA2-SevenWheelLock-LayeredFS-v1.9r.zip` (1,264,137 bytes), is
 the seven-wheel lock change as loose files, in a Luma3DS layout and an Azahar layout, for the second
 game's title id `00040000001AE200`. It holds a 276 byte `code.ips` (68 bytes changed in 40 places of the
-program file, plus a 20 byte routine in unused padding), the added `scene/lock/lock.lcm`, the three
+program file, plus a 20 byte routine in unused padding), the lock camera file `scene/lock/lock.lcm` (the base game has it; the v1.9r update now carries a changed copy), the three
 lock scripts and the sailor's arm picture. The patch only fits a program file with those exact bytes:
 the v1.9q and v1.9r updates, the unmodified English v2.3.3 update, and the Japanese 1.0 file once
 decompressed. It does not fit the file labelled Japanese v2.3.3 that I also tried. In Azahar, with only
 the mod folder added to an installed v1.9q build, the lock showed seven wheels and 5231045
-opened it. From Luma's source the patch format and a new romfs file should both load, but I haven't
-tried it on a console, so treat it as untested there.
+opened it. From Luma's source the patch format and the replaced romfs file should both load, but I haven't
+tried it on a console, so treat it as untested there. The technical notes for porting it to another
+language are in `LOCK_PATCH_NOTES.md`.
 
 ## Japanese voice edition
 
