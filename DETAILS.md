@@ -67,6 +67,7 @@ I'd much rather have a duplicate than miss something.
 | A DLC Music and Sound gallery title runs past its plate | first game's DLC, issues 1 to 8 | FIXED in v1.9 |
 | A "Bonus voice recital" track in the DLC Music gallery plays in Japanese | first game's DLC | FIXED in v1.9 for four of the eight. Capcom's English recordings exist for them and are in now, checked on the rig |
 | A lowercase t looks broken, or "Picture" reads "Picturc", on a DLC menu heading | first game's DLC menus (the same letters in the second game) | FIXED in v1.9b, redone in v1.9c. The headings use the fan patch's menu font, whose t and e crossbars are one pixel thin; the game draws the headings slightly shrunk and smoothed, and the thin bars vanished. v1.9b thickened both letters but pushed their bottoms a pixel below the line, so the e grew a small tail in lists and dialogue. From v1.9c only the crossbars get a light extra row, and the i, j and l, which read a shade heavier than their neighbours, are slightly lighter. Nothing else in the font moved. Checked on the emulator in the Sound gallery, the DLC headings and the music notes |
+| A faint extra pixel on the letter "e", or the letters t, i, j and l looking a shade off | both games and the second game's DLC | FIXED in v1.9q, reported by a player. In v1.9c I had added a row of faint pixels under the crossbars of "e" and "t" and lightened the stems of "i", "j" and "l". All five are back to the earlier fan translation's shapes in both games and in the second game's DLC, which carries its own copy of the font, so the lettering is the earlier fan translation's again. The second game's DLC changed for this and is 1.0.19. Not run on a 3DS |
 | A closing quote mark or a punctuation mark shows as a blank space | first game and its DLC | FIXED in v1.9. A handful of characters, mostly curly closing quotes in the DLC gallery text plus a few punctuation marks in the first game's own text, aren't in any of the game's fonts. Replaced with characters the fonts do carry |
 | A "Take that!" comes out in Japanese | second game's DLC, two shouts | No English recording exists for these two. Same class as the four base-game shouts above |
 | The gallery text for DLC issues 9 to 13 is Japanese | first game's DLC | FIXED in v1.9c. It's Capcom's placeholder text for issues that were never released ("Track 1 title (provisional)", notes to their own team, two unreleased episode titles). It's in English now and still reads as placeholders |
@@ -550,6 +551,43 @@ in the serif face that overrun the box, because the wrapper measures them with t
 font's metrics) is mostly fixed here from v1.9c, and still open upstream. Both of those two appear
 in the list at the top. They are listed here because a contribution section that
 only lists wins is not worth much.
+
+---
+
+## Release by release, in full
+
+The fuller wording of each release. RELEASE_NOTES.md keeps one short line per version.
+
+- v1.9r: the second game's Case 5 suitcase lock has seven wheels, as in Capcom's version, with the seven-digit clue and the seven-character tattoo back, which means the update now changes the game's program as well as its data; the second game's Dance of Deduction flying words keep the tails of g, y and p; the first game, both DLCs and both banner patches are unchanged.
+- v1.9q: the second game's Case 5 suitcase lock clue and tattoo changed to match the six-wheel lock the 3DS had (v1.9r gives it seven wheels instead); the flying words in the Dance of Deduction line up in both games instead of stepping down; the letters e, t, i, j and l back to the earlier fan translation's shapes, which means the second game's DLC changed too and is now 1.0.19; the English manual's main screenshots retaken in the patched game, in both games; the title screen picture no longer carries a version stamp, the Cross-Examination heading has its hyphen, and the About This Patch page says which pictures are new.
+- v1.9p: the first game's Waiter's Business Card and Medical Report Card cover redrawn to match the dialogue; a capital H, E or F keeps its crossbar in shrunk Court Record captions, in both games; chapter names centred in the start-a-chapter box in both games, with the second game's episode heading on two centred lines.
+- v1.9o: the update carries an English manual (Scarlet Study's text, revised so names and terms match the game), opened from the HOME menu.
+- v1.9n: the question beside the Present and Examine buttons is no longer chopped off partway through a word; the metallic "shing" is back under the English shouts.
+- v1.9m: Van Zieks's "Objection!" bubble shows the whole word and the "!"; the first game's Dance of Deduction labels keep the tails of g, p and y; its staff credits follow Capcom's English credits; "Hold it, Mr Sholmes!" and a few names in pictures corrected.
+- v1.9l: the Move list shows whole place names; juror boxes and autopsy pages no longer cut off or run into their frame; "Invalid Message" gone from two cutscene subtitles; a round of pictures redone, including the second game's HOME menu banner.
+- v1.9k: stray spaces in the text ("student , currently") and a few small typos are gone, matching Capcom's script.
+- v1.9j: a thought that runs onto a second page no longer makes the speaker's mouth move.
+- v1.9i: a lowercase w in the second game no longer leaves an extra sliver of space before the next letter.
+- v1.9h: a line further down a centred page keeps its centring instead of landing against the left edge; a DLC newspaper headline types at the right speed all the way through.
+- v1.9g: a line split onto a second page keeps its color, red highlight and typing speed.
+- v1.9f: location cards, second-game autopsy reports and case documents, and other overflowing lines re-broken or lightly trimmed; a tighter letter gap; the second game's Court Record names no longer crammed; a clearer lowercase t in the first game's DLC menu headings and Picture Book.
+- v1.9e: long lines in the bottom-screen speech bubble no longer get cut off.
+- v1.9d: English text on the Dance of Deduction note cards.
+- v1.9c: the DLC letter fix redone; bigger Picture Book commentary with the leftover Japanese gone; the clean DLC menu icons back; an "Extras" title card; decorative-font lines re-broken.
+- v1.9b: the broken t and e on the DLC menu headings fixed; the second game's title screen and DLC banner show their real version numbers again.
+- v1.9a: the first game's Episode 2 opening narration reads straight through instead of pausing mid-sentence.
+- v1.9: cutscene grain, scrambled crowd sounds, crowd loops and the click's root cause fixed; every voice at full quality and length, second-game pauses restored, the too-long story lines and the last crowd chant in English; clean Dance of Deduction gasps; Episode 2 narration at natural speed; pop-up pages, captions, blank quote marks and punctuation, four recitals, and DLC gallery and Picture Book text.
+- v1.8b: the crackle over the first game's cutscenes fixed.
+- v1.8a: no game change; the xdelta patches apply to cartridge dumps too.
+- v1.8: the blurred DLC art book pages from v1.7 fixed.
+- v1.7: the first game's DLC art book, theme gallery and editor's notes in English; DLC icons redrawn; a smudged second-game DLC score sheet fixed.
+- v1.6: Capcom's own shout graphics and more of its textures; the second game's official logo.
+- v1.5: the click at the end of replaced voice lines covered with silence; two cramped second-game menus; the second game's patch now outranks Capcom's own update.
+- v1.4: first hardware playthrough of the DLC stories; second-game dialogue no longer cut off under the page arrow; more English voices; English HOME icon and banner.
+- v1.3: the v1.2 fix carried to the second game and its DLC; over-long evidence pop-ups shortened.
+- v1.2: first-game cross-examination statements no longer run into the box edge; typos fixed.
+- v1.1: Capcom's real logos, evidence card names, deduction plates and ending card; real version numbers; spellings.
+- v1.0: first public release: Capcom's English text on both games and their DLC over senyarom's patch, plus English DLC voice clips, subtitled commentary videos, magazine covers, refitted captions and readable second-game menus.
 
 ---
 
