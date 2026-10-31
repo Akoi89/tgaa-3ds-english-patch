@@ -68,6 +68,11 @@ AES keys of its own to read it. A console reads either form. Install one or the 
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
+**Optional, second game only:** `TGAA2-SevenWheelLock-LayeredFS-v1.9r.zip` on the release page is the
+seven-wheel lock change from v1.9r as loose files for Luma3DS or Azahar, for anyone who wants just
+that, or who is building another language. You don't need it with the v1.9r update. It has only
+been tried in Azahar so far, and its readme says what it fits.
+
 **If you're using the xdelta zips**, the patches apply to the files Batch CIA 3DS Decryptor
 writes from your own Japanese dumps, and they're strict about it.
 
