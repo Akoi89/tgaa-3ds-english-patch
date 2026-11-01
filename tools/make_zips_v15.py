@@ -45,12 +45,15 @@ Three patches are in this zip, and all three apply to files you make from your
 own dumps:
 
   {g}-{tag}-base.xdelta     your game image       ->  the same game with an English
-                             HOME menu banner and title. Code and data untouched.
+                             HOME menu banner and title and the English manual.
+                             Code and game data untouched.
   {g}-{tag}-update.xdelta   your game image       ->  the English update, as a .cia
                              you install. This is the actual patch.
   {g}-{tag}-DLC.xdelta      your Japanese DLC     ->  the English DLC, as a .cia
 
-The base patch is cosmetic and optional. The update and DLC patches are the
+The base patch is optional. It carries the English HOME banner and title and the
+English manual, so the HOME menu Manual also works on Azahar, which reads the
+manual from the base game. The update and DLC patches are the
 translation. The layout matches how the game is built for the 3DS: a base title,
 an update title on top, and a DLC title; installing an update over the Japanese
 game is exactly what Capcom's own patch did.
@@ -100,8 +103,8 @@ APPLY
 
   xdelta3.exe -d -s "<your DLC> (DLC)-decrypted.cia" {g}-{tag}-DLC.xdelta {g}-EN-DLC-{dlc_tag}.cia
 
-  optional, for the English HOME menu banner (this one needs a CIA dump of an
-  installed title; it will not take a converted cartridge image):
+  optional, for the English HOME menu banner and manual (this one needs a CIA
+  dump of an installed title; it will not take a converted cartridge image):
   xdelta3.exe -d -s "<your game>-decrypted.cci" {g}-{tag}-base.xdelta {g}-EN-base-{tag}.cci
 
 Yes, the update patch reads your whole game image and writes a .cia
@@ -134,19 +137,27 @@ INSTALL
 
 Console (CFW): install {upd} and then {g}-EN-DLC-{dlc_tag}.cia with FBI, over the
 Japanese game you already have. Base first, then update, then DLC. Your saves
-stay; they belong to the base title. For the English HOME banner, convert
+stay; they belong to the base title. For the English HOME banner and manual, convert
 {g}-EN-base-{tag}.cci to a CIA in GodMode9 (NCSD image options, Build CIA from
 file) and install it; it replaces the Japanese base in place and the update and
 DLC on top are untouched. If the tile still shows the Japanese name afterwards,
-that is the HOME menu's icon cache; a reboot rebuilds it. This whole route, the
-GodMode9 conversion included, was walked on a New 3DS from a clean install. If
-anything about it misbehaves for you, install the CIAs from the GitHub release
-instead and say so on the issue tracker.
+that is the HOME menu's icon cache; a reboot rebuilds it. The banner part of
+this route, the GodMode9 conversion included, was walked on a New 3DS from a
+clean install; the English manual in the patched base has been checked on
+Azahar only. If anything about it misbehaves for you, install the CIAs from the
+GitHub release instead and say so on the issue tracker.
 
 Azahar / Citra: File > Install CIA for the update and the DLC, with the
 Japanese game already loaded or installed. Remove any older update title of this
 patch, or senyarom's, first: the newest installed update is the one that runs,
 and the console picks by version number, not by install order.
+
+The HOME menu Manual on Azahar is read from the base game, not from the update.
+To see the English manual there, also install the patched base: apply the base
+patch, convert the result to a CIA the way the Console (CFW) paragraph above
+describes, and install it over the Japanese base before the update. A real
+console reads the manual from the update; I haven't confirmed that on hardware
+with a test of my own.
 
 Back up your save before switching builds. The second game shows a
 corrupted-save prompt if it finds data it does not expect, and confirming

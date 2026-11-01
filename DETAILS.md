@@ -558,6 +558,7 @@ only lists wins is not worth much.
 
 The fuller wording of each release. RELEASE_NOTES.md keeps one short line per version.
 
+- v1.9s: the optional base patch for each game now produces a base game image that carries the English HOME banner and the English manual. The manual is the same one the update carries, put into the base game, because Azahar looks for the HOME menu Manual there. The update and DLC patches, the update and DLC CIAs and the program are the v1.9r files, byte for byte. I checked it on the Azahar desktop app, not on a 3DS or on Android. The Japanese voice edition is still the v1.9r files (names carry v1.9r); its base patches carry the banner and jingle but not the manual, so they are unchanged.
 - v1.9r: the second game's Case 5 suitcase lock has seven wheels, as in Capcom's version, with the seven-digit clue and the seven-character tattoo back, which means the update now changes the game's program as well as its data; the second game's Dance of Deduction flying words keep the tails of g, y and p; the first game, both DLCs and both banner patches are unchanged.
 - v1.9q: the second game's Case 5 suitcase lock clue and tattoo changed to match the six-wheel lock the 3DS had (v1.9r gives it seven wheels instead); the flying words in the Dance of Deduction line up in both games instead of stepping down; the letters e, t, i, j and l back to the earlier fan translation's shapes, which means the second game's DLC changed too and is now 1.0.19; the English manual's main screenshots retaken in the patched game, in both games; the title screen picture no longer carries a version stamp, the Cross-Examination heading has its hyphen, and the About This Patch page says which pictures are new.
 - v1.9p: the first game's Waiter's Business Card and Medical Report Card cover redrawn to match the dialogue; a capital H, E or F keeps its crossbar in shrunk Court Record captions, in both games; chapter names centred in the start-a-chapter box in both games, with the second game's episode heading on two centred lines.
@@ -600,15 +601,15 @@ listened to, and what has only been checked in the files.
 
 ## Patch files
 
-From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9r-xdelta.zip`
-and `TGAA2-3DS-English-v1.9r-xdelta.zip`, holding three xdelta3 patches that apply to files
+From v1.5 each release also carries one zip per game, `TGAA1-3DS-English-v1.9s-xdelta.zip`
+and `TGAA2-3DS-English-v1.9s-xdelta.zip`, holding three xdelta3 patches that apply to files
 you make from your own Japanese dumps with Batch CIA 3DS Decryptor:
 
 | patch | applies to | produces |
 |---|---|---|
 | `-update.xdelta` | your decrypted game `.cci` | the update CIA, byte for byte the one in row 2 of the README's install table |
 | `-DLC.xdelta` | your decrypted DLC `.cia` | the DLC CIA, same contents as row 3 of that table, stored unencrypted |
-| `-base.xdelta` | your decrypted game `.cci` | the same game with the English HOME banner, as above |
+| `-base.xdelta` | your decrypted game `.cci` | the same game with the English HOME banner and, from v1.9s, the English manual, as above |
 
 The zip has xdelta3.exe and a readme with the exact commands, the sizes to expect and the
 output hashes. The decryptor writes a few random bytes into every file it makes, so your
@@ -620,18 +621,21 @@ on the `.cci` the decryptor writes from a CIA of the game; from v1.8a the update
 patches also take a `.3ds` cartridge dump turned into a CIA with GodMode9's Build CIA from file
 (NCSD image options) and decrypted the same way, ignoring the header bytes
 that differ from an installed-title CIA dump. The optional base patch still wants a CIA dump
-of an installed title. Same install order afterwards: base, update, DLC.
+of an installed title. The patch's output is the base game image, not a CIA; convert it to a CIA
+before installing it. Azahar reads the HOME menu Manual from the base game, not from the update,
+which is why the manual is in this patch as well as in the update. Same install order
+afterwards: base, update, DLC.
 
-The same readme text is also on the release on its own, as `TGAA1-README-v1.9r.txt` and
-`TGAA2-README-v1.9r.txt`, because romhacking.net wants the readme as a separate link rather
-than only inside the zip. `HASHES_v1.9r.txt` on the release lists the size, CRC32 and sha256
+The same readme text is also on the release on its own, as `TGAA1-README-v1.9s.txt` and
+`TGAA2-README-v1.9s.txt`, because romhacking.net wants the readme as a separate link rather
+than only inside the zip. `HASHES_v1.9s.txt` on the release lists the size, CRC32 and sha256
 of the English xdelta sources, patches and results for both games.
 
 The CIAs stay on the release because they are what the hardware testing was done on, and
 because a patch against a file most people dump differently is a support thread waiting
 to happen.
 
-The extra file on the v1.9r release, `TGAA2-SevenWheelLock-LayeredFS-v1.9r.zip` (1,264,137 bytes), is
+The extra file on the v1.9r release, `TGAA2-SevenWheelLock-LayeredFS-v1.9r.zip` (1,264,137 bytes, unchanged since), is
 the seven-wheel lock change as loose files, in a Luma3DS layout and an Azahar layout, for the second
 game's title id `00040000001AE200`. It holds a 276 byte `code.ips` (68 bytes changed in 40 places of the
 program file, plus a 20 byte routine in unused padding), the lock camera file `scene/lock/lock.lcm` (the base game has it; the v1.9r update now carries a changed copy), the three
@@ -647,14 +651,14 @@ language are in `LOCK_PATCH_NOTES.md`.
 
 Some people want Capcom's English text over the original Japanese cast. From v1.5 the
 release also carries `TGAA1-3DS-English-JPvoice-v1.9r-xdelta.zip` and
-`TGAA2-3DS-English-JPvoice-v1.9r-xdelta.zip`: the same three patches as the zips above,
+`TGAA2-3DS-English-JPvoice-v1.9r-xdelta.zip` (still the v1.9r files in v1.9s): the same three patches as the zips above,
 producing the same update and DLC with one difference. Every audio file is Capcom's
 Japanese original, taken from the cartridge and the Japanese DLC: the courtroom shouts,
 the story lines, the narration, the crowd cues and the DLC voices. Text, art and layout are
 byte for byte the main release, and that was checked file by file rather than assumed:
 everything outside the sound files and the character archives is identical, and every
 reverted file equals the Japanese one. The first game's banner patch in that zip also keeps
-the Japanese HOME menu jingle, which the main release's banner replaces. The second game's banner patch in the JPvoice zip is the English set's, so it carries the same HOME banner.
+the Japanese HOME menu jingle, which the main release's banner replaces. The second game's banner patch in the JPvoice zip is the v1.9r English set's, so it carries the same HOME banner, but not the manual that the main release's base patch gained in v1.9s.
 
 The edition declares the same title versions as the main release, so install one or the
 other, not both; the title screens read the same `ENG` stamps. It was checked file by file
