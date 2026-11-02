@@ -40,9 +40,9 @@ Download from [Releases](../../releases). **Order matters.**
 | order | file | what it is |
 |---|---|---|
 | 1 | *the Japanese base game* | not distributed, bring your own |
-| 2 | `TGAA1-base-3.4.2.cia` / `TGAA2-base-1.0.32.cia` | the update, which carries the English manual (v1.9r changed the second game's only) |
+| 2 | `TGAA1-base-3.4.3.cia` / `TGAA2-base-1.0.32.cia` | the update, which carries the English manual (v1.9t changed the first game's only; the second game's last changed in v1.9r) |
 | 3 | `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.19.cia` | the DLC (the first game's is unchanged since v1.9m; the second game's is unchanged since v1.9q, when it became 1.0.19) |
-| 4 | `TGAA1-3DS-English-v1.9s-xdelta.zip` / `TGAA2-3DS-English-v1.9s-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner and manual patch and a readme |
+| 4 | `TGAA1-3DS-English-v1.9t-xdelta.zip` / `TGAA2-3DS-English-v1.9s-xdelta.zip` | optional: rows 2 and 3 as xdelta patches against your own decrypted dump, plus the HOME banner and manual patch and a readme |
 | 5 | `TGAA1-Base-enbanner.xdelta` / `TGAA2-Base-enbanner.xdelta` | optional, the English HOME menu banner and, from v1.9s, the English manual, patched into your own copy of the base game (see "The manual" below for when you need it) |
 
 The row-3 DLC CIAs are 326,388,736 bytes (`TGAA1-DLC-1.0.23.cia`, sha256
@@ -51,12 +51,21 @@ The row-3 DLC CIAs are 326,388,736 bytes (`TGAA1-DLC-1.0.23.cia`, sha256
 `e6f6d18345fdaa5ed326ecb1247707be82bb0d8d4f74117123ed730aff736c2d`). The release page shows
 a sha256 for every posted file, so any of them can be checked the same way.
 
-**Updating from v1.9r.** The only change in v1.9s is the optional row 5 patch, which now puts
-the English manual into the base game as well as the banner. The update and the DLC for both
-games are the same files as in v1.9r, so there is nothing to redo unless you use Azahar and
-want the manual from the base game. The xdelta zips carry the new version in their names, and
-the update and DLC patches inside them are the v1.9r ones. The Japanese voice edition is
-unchanged and keeps its v1.9r names.
+**Updating from v1.9s.** The only change in v1.9t is the first game's update, now
+`TGAA1-base-3.4.3.cia`. Five of that game's questions that ask you to tap a spot on a picture
+had been split over two pages, so the bottom screen showed only the second half; each is one
+page now. Install the new update over the old one, or use the new first-game xdelta zip. The
+second game's update, both DLCs and both optional base patches are the same files as in v1.9s,
+so there is nothing to redo for them. If you're coming from v1.9r, the row 5 patch also carries
+the English manual now, which matters only on Azahar (see "The manual on Azahar" below).
+
+- **New in v1.9t:** `TGAA1-base-3.4.3.cia`, `TGAA1-3DS-English-v1.9t-xdelta.zip`,
+  `TGAA1-README-v1.9t.txt`, `HASHES_v1.9t.txt` and `TGAA1-3DS-English-JPvoice-v1.9t-xdelta.zip`.
+- **Unchanged, so they keep their old names:** `TGAA2-base-1.0.32.cia`,
+  `TGAA2-3DS-English-v1.9s-xdelta.zip`, `TGAA2-README-v1.9s.txt`, both DLC CIAs, both
+  `-Base-enbanner.xdelta` files, `TGAA2-3DS-English-JPvoice-v1.9r-xdelta.zip` and
+  `TGAA2-SevenWheelLock-LayeredFS-v1.9r.zip`. `HASHES_v1.9t.txt` covers both games, and the
+  second game's rows keep the v1.9s names.
 
 You need a 3DS that can install CIAs, or Azahar/Citra. No QR codes.
 
@@ -66,7 +75,7 @@ returns to the title, or your emulator refuses to install the DLC at all, use
 same size, with Capcom's encryption taken off the filesystem inside, so the emulator doesn't need
 AES keys of its own to read it. A console reads either form. Install one or the other, not both.
 
-`TGAA1-README-v1.9s.txt` and `TGAA2-README-v1.9s.txt` on the release page are the readmes from
+`TGAA1-README-v1.9t.txt` and `TGAA2-README-v1.9s.txt` on the release page are the readmes from
 inside the xdelta zips, there so you can read the commands and the hashes without downloading
 the zip first.
 
@@ -100,14 +109,14 @@ Your files won't match my hashes, and that's fine: the decryptor writes random b
 card header and the ticket. The patches are built so those bytes don't matter. Everything else
 has to match, so a checksum error means the source is the wrong file, not the wrong
 luck. The wording xdelta3 gives you is `target window checksum mismatch`. If you see it,
-redump the title encrypted and check the source against `HASHES_v1.9s.txt` before trying
+redump the title encrypted and check the source against `HASHES_v1.9t.txt` before trying
 again.
 
 **Check it took:**
 
 | | reads |
 |---|---|
-| TGAA1 title screen, top right | `ENG 3.4.2` |
+| TGAA1 title screen, top right | `ENG 3.4.3` |
 | TGAA1 DLC, Episode 0 magazine cover | `DLC 1.0.23`, top left |
 | TGAA2 title screen, top right | `ENG 1.0.32` |
 | TGAA2 DLC, costume pack banner | `DLC 1.0.19`, bottom right |
@@ -122,8 +131,8 @@ file is 88,699,904 bytes in both. v1.9r's sha256 is
 `84c6b79034118e3f17a4987df1c5bfc26bb5ffa7cbb17dfad43cf0e0ddca2e7e` and v1.9q's was
 `0e28c869969d1def939eb4b022cdb33fe775fc1f3e25875e129011effba6e631`. In the game, the Case 5
 suitcase lock on the SS Grouse has seven wheels in v1.9r and six in v1.9q. I installed v1.9r over
-v1.9q on the Azahar emulator and it replaced it; I haven't tried that on a 3DS. The update in
-v1.9s is the same file as v1.9r's.
+v1.9q on the Azahar emulator and it replaced it; I haven't tried that on a 3DS. The second game's update in
+v1.9s and v1.9t is the same file as v1.9r's.
 
 **The manual.** From v1.9o the update has an English manual in it. Highlight the game on the
 HOME menu and tap Manual. The text is English, and from v1.9q the main screenshots in it were
@@ -166,7 +175,8 @@ box that asks whether to start a chapter shows the chapter name centred in both 
 the second game the episode heading there is two centred lines, with the saved-game list set a
 little lower to match. And from v1.9r the second game's Case 5 suitcase lock has seven wheels, as in
 Capcom's version, which meant changing the game's program as well as its data, and the topic names
-that fly across the screen in that game's Dance of Deduction keep the tails of g, y and p.
+that fly across the screen in that game's Dance of Deduction keep the tails of g, y and p. And from v1.9t, five of the first game's questions that ask you to tap a spot on a
+picture fit on one page instead of being split in two.
 
 Counts, sources and the reasoning for every one of those are in [DETAILS.md](DETAILS.md),
 along with what stays Japanese and why. [RELEASE_NOTES.md](RELEASE_NOTES.md) has a short
@@ -215,8 +225,9 @@ chapters of both are the least tested thing here. The English voice lines added 
 second game's last two episodes in v1.9 were checked against the recordings offline, not
 heard in-game, and the "shing" sound mixed back under the English shouts in v1.9n hasn't been
 heard on a 3DS yet. The English manual added in v1.9o, with its pictures retaken in v1.9q, hasn't been opened
-from the update on a 3DS either. Nothing in v1.9p, v1.9q, v1.9r or v1.9s has been tried on a 3DS; what I could look at, I looked at on the Azahar
-emulator, and the v1.9s base patch only on the Azahar desktop app. The redrawn Medical Report Card's small list icon hasn't been seen on screen at all,
+from the update on a 3DS either. Nothing in v1.9p, v1.9q, v1.9r, v1.9s or v1.9t has been tried on a 3DS; what I could look at, I looked at on the Azahar
+emulator, and the v1.9s base patch only on the Azahar desktop app. The v1.9t change to the first game's
+point-at-the-picture questions hasn't been seen on screen at all, in the emulator or on a console. The redrawn Medical Report Card's small list icon hasn't been seen on screen at all,
 and neither have the second game's saved-game rows for Episode 1, Episode 4 and Final, because
 I had no such saves. The seven-wheel lock in v1.9r changes the second game's program itself, not only
 its data, and that has only run in an emulator.

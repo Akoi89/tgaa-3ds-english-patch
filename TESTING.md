@@ -102,12 +102,19 @@ is already on my list.
 | The program change and the Japanese-voice edition (v1.9r) | the update changes 68 bytes of the second game's program and adds one small camera file. That runs in the emulator; **no 3DS has run it**, and I don't know that a console's loader takes the added file. The Japanese-voice edition carries the same change and was not run on anything. The first game's update, both DLCs and both banner patches are the v1.9q files (sha256 equal), so they were not tested again. Not run on a 3DS |
 | The English manual in the optional base patch (v1.9s) | seen on the Azahar desktop app, both games: I installed the patched base over an installed Japanese base and it replaced it, the HOME menu preview showed the English banner, the Manual opened in English (I opened the first entries in each game's Manual, not every page), and both games reached the title screen. **Not checked:** a 3DS, Azahar on Android, and whether the base I converted for the test carries a ticket that a console accepts |
 | The update, the DLC and the program (v1.9s) | the same files as v1.9r (sha256 equal), so they were not tested again |
+| The first game's point-at-the-picture questions on one page (v1.9t) | **not seen on screen**, in the emulator or on a 3DS. Checked in the files only: the five affected scripts each hold the question as one page of two lines, the widest line measures 293 px against the 306 px I allow for these, the first game's other point-at-the-picture questions are unchanged, and the update's game files differ from v1.9s's in nothing else except the version stamp (3.4.3, read in the file, not on the title screen). The reporter's question, where the judge asks for the "significant detail" in the photographic print, is one of the five. Not installed or run on anything, including installing 3.4.3 over 3.4.2 |
+| The rest of v1.9t | the second game's update, both DLCs and both banner and manual patches are the v1.9s files (sha256 equal), so they were not tested again. The first game's Japanese-voice update carries the same five scripts and was checked against the main release's in the files; it was not run on anything |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a
 size limit turned out to be the misplaced-audio bug fixed in v1.9, and every shout is
 written at Capcom's position now. But that is reasoning, not listening. **If you play the first game, a jury
 verdict or a press that stops part-way is the single most useful thing to listen for.**
+
+For v1.9t, the most useful look is any question in the first game that asks you to tap a spot on a picture: the
+bottom screen should show the whole sentence on two lines, not just its second half. The one the reporter hit is
+where the judge asks you to show where in the photographic print the "significant detail" is, in Episode 1. If it
+still looks cut off, [issue #1](../../issues/1) is the place.
 
 For v1.9r, the most useful console look is the second game's Case 5 suitcase lock on the SS Grouse:
 whether it shows seven wheels, whether touching each wheel selects it, and whether the seven-digit
