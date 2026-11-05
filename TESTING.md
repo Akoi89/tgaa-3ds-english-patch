@@ -104,12 +104,19 @@ is already on my list.
 | The update, the DLC and the program (v1.9s) | the same files as v1.9r (sha256 equal), so they were not tested again |
 | The first game's point-at-the-picture questions on one page (v1.9t) | **not seen on screen**, in the emulator or on a 3DS. Checked in the files only: the five affected scripts each hold the question as one page of two lines, the widest line measures 293 px against the 306 px I allow for these, the first game's other point-at-the-picture questions are unchanged, and the update's game files differ from v1.9s's in nothing else except the version stamp (3.4.3, read in the file, not on the title screen). The reporter's question, where the judge asks for the "significant detail" in the photographic print, is one of the five. Not installed or run on anything, including installing 3.4.3 over 3.4.2 |
 | The rest of v1.9t | the second game's update, both DLCs and both banner and manual patches are the v1.9s files (sha256 equal), so they were not tested again. The first game's Japanese-voice update carries the same five scripts and was checked against the main release's in the files; it was not run on anything |
+| The first game's three-line conversation pages, now two pages each (v1.9u) | **seen on screen in the Azahar emulator on 3.4.4, not on a 3DS.** The title screen reads ENG 3.4.4, and I installed the update over 3.4.3 there. In Episode 4 the juror's page about the open window ("And on account of the smoke," then two lines) played whole, on both ways of reaching it, with the box staying open between the two pages and the juror's name plate unchanged. In Episode 5's Dance of Deduction I saw the pages in both states of the scene: the handle sentence, the "gentleman" and "Let us consider" sentences, and the "council notice" sentence in its first-time and review forms, each whole on screen and none repeated or skipped. No crash, freeze or black screen in either pass. **Not seen:** the Episode 1 page from the photo itself (its box and tags are the same shape as the ones I saw), the copies of the Episode 5 pages that only appear in a state I couldn't reach in either pass, and the Japanese-voice build, which was not run on anything |
+| What else is unchecked after the v1.9u scan (v1.9u) | I scanned all four titles and found no other conversation page with three lines in a two-line box. Three similar-looking juror boxes in the first game are left as they were and I haven't checked them. 96 of the second game's one- and two-line pages have a line wider than the usual cut-off point, and I haven't looked at those on screen. Nothing has been run on a 3DS |
+| The rest of v1.9u | the first game's DLC, the second game's update and DLC, and both banner and manual patches are the v1.9t files (sha256 equal), so they were not tested again. The second game's xdelta zip has a new name and the same patches. The game's program changed only in the version text |
 | Playing through on a 3DS | not yet |
 
 The 32 unheard shouts are expected to be fine. The cut-off clips that once looked like a
 size limit turned out to be the misplaced-audio bug fixed in v1.9, and every shout is
 written at Capcom's position now. But that is reasoning, not listening. **If you play the first game, a jury
 verdict or a press that stops part-way is the single most useful thing to listen for.**
+
+For v1.9u, the most useful look is any conversation page in the first game that used to end with its last line sliced
+by the bottom of the box: the whole sentence should show, split over two pages. The one from the photo is in the
+Episode 1 cross-examination. If a page still looks cut off, or one repeats or skips, [issue #1](../../issues/1) is the place.
 
 For v1.9t, the most useful look is any question in the first game that asks you to tap a spot on a picture: the
 bottom screen should show the whole sentence on two lines, not just its second half. The one the reporter hit is
