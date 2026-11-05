@@ -30,10 +30,11 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 - **Text that ran past its box.** Speech bubbles, location cards, documents, juror boxes and
   the Move list have new line breaks or shorter wording to fit their boxes, and a split thought no longer moves the speaker's
   mouth. The first game's tap-a-spot-on-a-picture questions fit on one page, and so do a set of
-  conversation pages whose third line was cut off by the bottom of the box.
+  conversation pages and a few Court Record report pages whose last line was cut off at the bottom.
 
 ## Version history
 
+- v1.9v: a few Court Record report pages that had one line too many for their box, so the last line was cut off at the bottom of the screen, are laid out again to fit, with no words changed; the updates are now 3.4.5 and 1.0.33.
 - v1.9u: first-game conversation pages that held three lines in a box for two now run as two pages, so the third line is no longer cut off by the bottom of the box.
 - v1.9t: five of the first game's questions that ask you to tap a spot on a picture are one page again, so the bottom screen shows the whole question instead of its second half.
 - v1.9s: the optional base patch now puts the English manual into the base game as well as the banner, so the HOME menu Manual is English on Azahar.
@@ -77,17 +78,17 @@ DLC for each game, plus optional xdelta patch zips for your own dumps.
 - Japanese remains in the first game's DLC Picture Book (name tags, production scribbles).
 - The seven-wheel lock's cyan cursor is clipped slightly at the frame's edge on the first and last wheel. It's cosmetic.
 
-Testing: earlier versions of both games install and start on a 3DS, and a tester played the second game's DLC stories through on an original 3DS. The v1.9p, v1.9q, v1.9r, v1.9s, v1.9t and v1.9u changes haven't been tried on a 3DS; most of the v1.9u pages were seen in the Azahar emulator, but not the Episode 1 one from the tester's photo; the v1.9t questions haven't been seen on screen at all; the v1.9s base patch was seen on the Azahar desktop app only, the seven-wheel lock opens in the Azahar emulator, but some other changes were checked only in the game's files, and the add-on below hasn't been tried with Luma or on a console. Nobody has played either main game through on a console. [TESTING.md](TESTING.md) has the detail; if anything looks wrong, [issue #1](../../issues/1) is the place.
+Testing: earlier versions of both games install and start on a 3DS, and a tester played the second game's DLC stories through on an original 3DS. The changes from v1.9p on haven't been tried on a 3DS; most of the v1.9u pages were seen in the Azahar emulator, but not the Episode 1 one from the tester's photo; of the v1.9v pages only Jezaille's Report was seen there; the v1.9t questions haven't been seen on screen at all; the v1.9s base patch was seen on the Azahar desktop app only, the seven-wheel lock opens in the Azahar emulator, but some other changes were checked only in the game's files, and the add-on below hasn't been tried with Luma or on a console. Nobody has played either main game through on a console. [TESTING.md](TESTING.md) has the detail; if anything looks wrong, [issue #1](../../issues/1) is the place.
 
 ## Files
 
 Per game, on the release page:
 
-- `TGAA1-base-3.4.4.cia` / `TGAA2-base-1.0.32.cia`: the update, with the English manual in it. In v1.9u only the first game's changed, to 3.4.4 (`ENG 3.4.4`). The second game's is the v1.9r file, still `ENG 1.0.32`; the README gives the sha256 that tells it from v1.9q's.
+- `TGAA1-base-3.4.5.cia` / `TGAA2-base-1.0.33.cia`: the update, with the English manual in it. In v1.9v both changed, to 3.4.5 (`ENG 3.4.5`) and 1.0.33 (`ENG 1.0.33`).
 - `TGAA1-DLC-1.0.23.cia` / `TGAA2-DLC-1.0.19.cia`: the DLC, unchanged since v1.9s. `TGAA1-EN-DLC-v1.9m.cia` / `TGAA2-EN-DLC-v1.9q.cia`: the same DLC decrypted inside, for emulators. One or the other, not both.
-- `TGAA1-3DS-English-v1.9u-xdelta.zip` / `TGAA2-3DS-English-v1.9u-xdelta.zip`: xdelta patches against your own decrypted dump, with the banner and manual patch and a readme inside, both also posted on their own. The second game's has a new name but the same patches.
-- `TGAA1-3DS-English-JPvoice-v1.9u-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9r-xdelta.zip`: the Japanese-voice edition, same text and art, all audio Capcom's Japanese. The second game's is still the v1.9r file.
-- `HASHES_v1.9u.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and results, both games. Your own source dump won't hash-match mine, and that's expected.
+- `TGAA1-3DS-English-v1.9v-xdelta.zip` / `TGAA2-3DS-English-v1.9v-xdelta.zip`: xdelta patches against your own decrypted dump, with the banner and manual patch and a readme inside, both also posted on their own.
+- `TGAA1-3DS-English-JPvoice-v1.9v-xdelta.zip` / `TGAA2-3DS-English-JPvoice-v1.9v-xdelta.zip`: the Japanese-voice edition, same text and art, all audio Capcom's Japanese.
+- `HASHES_v1.9v.txt`: size, CRC32 and sha256 of the English xdelta sources, patches and results, both games. Your own source dump won't hash-match mine, and that's expected.
 
 The install steps are in the README. The release page also has an optional second-game add-on, `TGAA2-SevenWheelLock-LayeredFS-v1.9r.zip` (still the v1.9r file): the seven-wheel lock as loose files for Luma3DS or Azahar. Skip it if you're just installing the update. It's mainly for people porting the lock to another language: its scripts and tattoo are English, and its readme says which builds it fits. `LOCK_PATCH_NOTES.md` has the notes.
 
